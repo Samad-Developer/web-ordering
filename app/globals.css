@@ -41,6 +41,28 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  
+  /* Custom Colors for Header */
+  --color-header-location-bg: var(--header-location-bg);
+  --color-header-location-text: var(--header-location-text);
+  
+  --color-header-phone-bg: var(--header-phone-bg);
+  --color-header-phone-text: var(--header-phone-text);
+  
+  --color-header-button-bg: var(--header-button-bg);
+  --color-header-button-text: var(--header-button-text);
+  
+  --color-header-cart-bg: var(--header-cart-bg);
+  --color-header-cart-text: var(--header-cart-text);
+  --color-header-cart-badge: var(--header-cart-badge);
+  --color-header-cart-badge-text: var(--header-cart-badge-text);
+  
+  --color-header-profile-bg: var(--header-profile-bg);
+  --color-header-profile-text: var(--header-profile-text);
+  
+  --color-header-hamburger-bg: var(--header-hamburger-bg);
+  --color-header-hamburger-text: var(--header-hamburger-text);
 }
 
 :root {
@@ -76,6 +98,27 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Header Colors - Light Mode */
+  --header-location-bg: #FF0000;
+  --header-location-text: #FFFFFF;
+
+  --header-phone-bg: #FFFFFF;
+  --header-phone-text: oklch(0.205 0.2 160);
+
+  --header-button-bg: #FF0000;
+  --header-button-text: #FFFFFF;
+
+  --header-cart-bg: #FFFFFF;
+  --header-cart-text: #000000;
+  --header-cart-badge: #FF0000;
+  --header-cart-badge-text: #FFFFFF;
+
+  --header-profile-bg: oklch(0.92 0 0);
+  --header-profile-text: oklch(0.556 0 0);
+
+  --header-hamburger-bg: oklch(0.92 0 0);
+  --header-hamburger-text: oklch(0.145 0 0);
 }
 
 .dark {
@@ -110,6 +153,27 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Header Colors - Dark Mode */
+  --header-location-bg: oklch(0.25 0.15 250);
+  --header-location-text: oklch(0.9 0.15 250);
+
+  --header-phone-bg: oklch(0.25 0.15 160);
+  --header-phone-text: oklch(0.9 0.15 160);
+
+  --header-button-bg: oklch(0.8 0.2 40);
+  --header-button-text: oklch(0.145 0 0);
+
+  --header-cart-bg: oklch(0.25 0.15 280);
+  --header-cart-text: oklch(0.9 0.15 280);
+  --header-cart-badge: oklch(0.704 0.191 22.216);
+  --header-cart-badge-text: oklch(0.985 0 0);
+
+  --header-profile-bg: oklch(0.269 0 0);
+  --header-profile-text: oklch(0.708 0 0);
+
+  --header-hamburger-bg: oklch(0.269 0 0);
+  --header-hamburger-text: oklch(0.985 0 0);
 }
 
 @layer base {
