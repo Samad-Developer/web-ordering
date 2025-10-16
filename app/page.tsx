@@ -1,10 +1,10 @@
-
-import { BannerWrapper } from "@/components/banner";
+import MenuWrapper from "@/components/menus";
 
 export default function Home() {
+
   return (
     <div className="min-h-screen">
-      <BannerWrapper />
+      <MenuWrapper />
     </div>
   );
 }

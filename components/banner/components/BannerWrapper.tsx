@@ -42,7 +42,7 @@ const BANNER_CONFIG = {
 const handleBannerClick = () => {};
 
 
-export const BannerWrapper: React.FC = () => {
+const BannerWrapper = () => {
   const { images, style, showPaymentCards, autoPlay, autoPlayInterval } = BANNER_CONFIG;
 
   if (!images || images.length === 0) {
@@ -76,3 +76,5 @@ export const BannerWrapper: React.FC = () => {
     />
   );
 };
+
+export default BannerWrapper;
