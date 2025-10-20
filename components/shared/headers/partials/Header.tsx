@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChangeLocation } from "../../../common/LocationButton";
-import { PhoneNumber } from "../../../common/PhoneButton";
-import { Logo } from "../../../common/Logo";
-import { ActionButton } from "../../../common/Extra";
-import { Cart } from "../../../common/CartButton";
-import { UserProfile } from "../../../common/UserProfileButton";
-import { HamburgerMenu } from "../../../common/HamburgerMenu";
+import { ChangeLocation } from "./LocationButton";
+import { PhoneNumber } from "./PhoneButton";
+import { Logo } from "./Logo";
+import { ActionButton } from "./Extra";
+import { Cart } from "./CartButton";
+import { UserProfile } from "./UserProfileButton";
+import { HamburgerMenu } from "./HamburgerMenu";
 import { SvgIcon } from "../../../common/SvgIcon";
 
 const headerConfig = {
