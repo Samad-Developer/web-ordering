@@ -60,7 +60,7 @@ const CategoryBar = () => {
   }
 
   return (
-    <div className="relative w-full md:max-w-7xl mx-auto py-4 sm:py-6">
+    <div className="relative w-full md:max-w-7xl mx-auto sm:py-6">
       {/* Left Arrow */}
       {showLeftArrow && (
         <Button

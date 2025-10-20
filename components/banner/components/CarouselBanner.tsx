@@ -30,7 +30,7 @@ export const CarouselBanner: React.FC<CarouselBannerProps> = ({
 
   const containerClasses = cn(
     'relative w-full',
-    style === 'rounded' && 'px-4 md:px-6 lg:px-8 py-4'
+    style === 'rounded' && 'px-2 md:px-6 lg:px-8 py-4'
   );
 
   const imageWrapperClasses = cn(
