@@ -34,7 +34,7 @@ export const CarouselBanner: React.FC<CarouselBannerProps> = ({
   );
 
   const imageWrapperClasses = cn(
-    'relative w-full',
+    'relative w-full h-auto',
     'aspect-[1400/400]', // Maintain 1400x400 aspect ratio
     style === 'rounded' && 'rounded-xl overflow-hidden',
     onClick && 'cursor-pointer',

@@ -42,7 +42,7 @@ const CategoryTab: React.FC<CategoryItemProps> = ({
                         />
                     </div>
 
-                    <span className="line-clamp-3 px-1 text-center text-wrap w-16 sm:w-24 text-[10px] sm:text-[14px] font-semibold">
+                    <span className="line-clamp-2 px-1 text-center text-wrap w-16 sm:w-24 text-[10px] sm:text-[12px] font-bold">
                         {category.categoryName}
                     </span>
                 </>
