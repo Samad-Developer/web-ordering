@@ -1,14 +1,8 @@
 import { toTitleCase } from "../string/toTitleCase";
+import { MenuCategory } from "@/types/menu.types";
 
-interface MenuItem {
-  Order: number;
-  Id: string;
-  Name: string;
-  Image: string;
-  Items: any[];
-}
 
-export const extractCategoryNames = (menu: MenuItem[]): string[] => {
+export const extractCategoryNames = (menu: MenuCategory[]): string[] => {
   return menu
     .filter(item => item.Name && item.Name.trim() !== '')
     .map(item => toTitleCase(item.Name))
