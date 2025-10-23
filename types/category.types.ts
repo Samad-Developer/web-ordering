@@ -1,5 +1,5 @@
 import { type VariantProps } from 'class-variance-authority';
-import { categoryTabVariants } from '@/components/menus/partials/category-bar/category-tab.variants';
+import { categoryTabVariants } from '@/components/menu/partials/category-bar/category-tab.variants';
 
 export interface CategoryData {
   categoryId: string;

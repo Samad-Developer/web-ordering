@@ -1,4 +1,4 @@
-import MenuWrapper from "@/components/menus";
+import MenuWrapper from "@/components/menu";
 
 export default function Home() {
 

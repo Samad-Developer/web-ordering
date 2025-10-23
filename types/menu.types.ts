@@ -50,3 +50,12 @@ export interface MenuCategory {
   Image: string;
   Items: MenuItem[];
 }
+
+// for category banner
+
+export interface CategoryInfo {
+  Id: string;
+  Name: string;
+  Image: string;
+  Order: number;
+}
