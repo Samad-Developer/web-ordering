@@ -1,19 +1,35 @@
 import React from "react";
+import Link from "next/link";
 
 interface CategoryTextBannerProps {
-  categorName: string;
+  categoryName: string;
+  alignment?: "left" | "center" | "right";
 }
 
-const CategoryTextBanner: React.FC<CategoryTextBannerProps> = ({ categorName }) => {
+const CategoryTextBanner: React.FC<CategoryTextBannerProps> = ({
+  categoryName,
+  alignment = "center",
+}) => {
+  const alignmentClasses = {
+    left: "text-left",
+    center: "text-center",
+    right: "text-right",
+  };
+
+  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, "-");
+
   return (
-    <div className="text-center my-2 sm:my-4 py-4 sm:py-8 border rounded-2xl">
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
-        {categorName}
-      </h2>
-      <p className="text-gray-500 mt-3 text-lg">
-        Discover our delicious {categorName.toLowerCase()} selection
-      </p>
-      <div className="mt-4 mx-auto h-[3px] w-24 bg-red-500 rounded-full"></div>
+    <div
+      className={`${alignmentClasses[alignment]} my-2 sm:my-4 py-10 sm:py-10 md:py-12 lg:py-16 border bg-red-500 rounded-2xl px-4 sm:px-6 md:px-8 `}
+    >
+      <Link href={`/category/${categorySlug}`}>
+        <h2 className="text-2xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight cursor-pointer">
+          {categoryName}
+        </h2>
+      </Link>
+      {/* <p className="text-white/90 mt-2 sm:mt-4 md:mt-5 text-base sm:text-lg md:text-xl lg:text-2xl">
+        Discover our delicious {categoryName.toLowerCase()} selection
+      </p> */}
     </div>
   );
 };
