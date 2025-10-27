@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Providers } from "./providers";
 import Header from "@/components/shared/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MenuProvider } from "@/contexts/MenuContext"
@@ -29,10 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MenuProvider>
-          <Header />
-          {children}
-        </MenuProvider>
+        <Providers>
+          <MenuProvider>
+            <Header />
+            {children}
+          </MenuProvider>
+        </Providers>
       </body>
     </html>
   );
