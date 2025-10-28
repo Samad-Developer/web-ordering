@@ -30,14 +30,14 @@ export const QuantityCounter: React.FC<QuantityCounterProps> = ({
 
   return (
     <div 
-      className={`flex items-center bg-red-600 rounded-lg overflow-hidden shadow-md ${className}`}
+      className={`flex items-center justify-between border rounded-lg overflow-hidden ${className}`}
       role="group"
       aria-label="Quantity controls"
     >
       <button
         onClick={showTrash ? onRemove : onDecrease}
         disabled={disabled}
-        className="p-3 text-white hover:bg-red-700 active:bg-red-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="cursor-pointer p-3 text-white bg-red-600 hover:bg-red-700 active:bg-red-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label={showTrash ? 'Remove item' : 'Decrease quantity'}
         type="button"
       >
@@ -49,7 +49,7 @@ export const QuantityCounter: React.FC<QuantityCounterProps> = ({
       </button>
 
       <div 
-        className="px-6 py-3 bg-white text-gray-900 font-semibold min-w-[70px] text-center select-none"
+        className="px-6 py-2 bg-white text-gray-900 font-semibold min-w-[70px] text-center select-none"
         role="status"
         aria-live="polite"
         aria-atomic="true"
@@ -60,7 +60,7 @@ export const QuantityCounter: React.FC<QuantityCounterProps> = ({
       <button
         onClick={onIncrease}
         disabled={disabled || isAtMax}
-        className="p-3 text-white hover:bg-red-700 active:bg-red-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="cursor-pointer p-3 text-white bg-red-600 hover:bg-red-700 active:bg-red-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         aria-label="Increase quantity"
         type="button"
       >

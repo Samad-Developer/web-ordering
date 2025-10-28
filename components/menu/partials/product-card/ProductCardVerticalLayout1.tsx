@@ -238,7 +238,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         bg-white rounded-2xl shadow-md overflow-hidden 
         hover:shadow-xl transition-all duration-300 
         transform hover:-translate-y-1
-        
+        cursor-pointer
       `}
     >
       <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
@@ -284,15 +284,14 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
 
         {/* Add to Cart / Counter */}
         <div className="pt-2">
-          {false ? (
-            //  <QuantityCounter
-            //    quantity={cartQuantity}
-            //    onIncrease={handleIncrease}
-            //    onDecrease={handleDecrease}
-            //    onRemove={handleRemove}
-            //    disabled={product.stock === 0}
-            //  />
-            <p>Counter will be here</p>
+          {true ? (
+            <QuantityCounter
+              quantity={1}
+              onIncrease={() => {}}
+              onDecrease={() => {}}
+              onRemove={() => {}}
+              disabled={false}
+            />
           ) : (
             <AddToCartButton
               onClick={handleAddToCart}

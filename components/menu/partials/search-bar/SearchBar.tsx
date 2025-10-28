@@ -59,15 +59,14 @@ const AnimatedSearch = () => {
             onBlur={() => setIsFocused(false)}
             placeholder=""
             className="w-full h-11 sm:h-14 pl-12 sm:pl-16 pr-14 text-base rounded-full border 
-  border-slate-500 bg-white transition-all duration-300 ease-in-out
-  shadow-sm hover:shadow-md focus:shadow-lg
+  border-slate-700 bg-white transition-all duration-300 ease-in-out
+  shadow-sm
   outline-none focus:outline-none
   focus:border-red-600 focus:ring-[3px] focus:ring-red-500/25
   focus-visible:ring-red-500/25
-  hover:border-red-600
   [box-shadow:none] focus:[box-shadow:none]
   focus-visible:[box-shadow:none]
-  focus-visible:border-red-600"
+  focus-visible:border-slate-900"
           />
 
           {/* Animated Placeholder */}
@@ -86,13 +85,13 @@ const AnimatedSearch = () => {
           <button
             onClick={handleClear}
             className="absolute right-5 sm:right-5 top-1/2 -translate-y-1/2 w-7 h-7 sm:h-9 sm:w-9 flex 
-              items-center justify-center rounded-md bg-red-50 cursor-pointer
-              hover:bg-red-100 transition-all duration-200 
+              items-center justify-center rounded-md bg-slate-50 cursor-pointer
+              hover:bg-slate-100 transition-all duration-200 
               hover:scale-105 active:scale-95 group/clear z-10"
             aria-label="Clear search"
           >
             <X
-              className="h-5 w-5 text-red-500 group-hover/clear:text-red-700"
+              className="h-5 w-5 text-slate-500 group-hover/clear:text-slate-700"
               strokeWidth={2.5}
             />
           </button>
