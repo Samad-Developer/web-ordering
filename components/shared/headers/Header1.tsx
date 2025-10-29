@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChangeLocation } from "./LocationButton";
-import { PhoneNumber } from "./PhoneButton";
-import { Logo } from "./Logo";
-import { ActionButton } from "./Extra";
-import { Cart } from "./CartButton";
-import { UserProfile } from "./UserProfileButton";
-import { HamburgerMenu } from "./HamburgerMenu";
-import { SvgIcon } from "../../../common/SvgIcon";
+import { ChangeLocation } from "./partials/LocationButton";
+import { PhoneNumber } from "./partials/PhoneButton";
+import { Logo } from "./partials/Logo";
+import { ActionButton } from "./partials/Extra";
+import { Cart } from "./partials/CartButton";
+import { UserProfile } from "./partials/UserProfileButton";
+import { HamburgerMenu } from "./partials/HamburgerMenu";
+import { SvgIcon } from "../../common/SvgIcon";
 
 const headerConfig = {
   phoneNumber: "+923485497976",
@@ -22,7 +22,7 @@ const headerConfig = {
   },
 };
 
-const Header = () => {
+const Header1 = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -75,4 +75,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header1;

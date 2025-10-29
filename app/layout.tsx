@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import Header from "@/components/shared/headers";
+import Header1 from "@/components/shared/headers";
+import Footer1 from "@/components/shared/footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MenuProvider } from "@/contexts/MenuContext"
 
@@ -32,8 +33,9 @@ export default function RootLayout({
       >
         <Providers>
           <MenuProvider>
-            <Header />
+            <Header1 />
             {children}
+            <Footer1 />
           </MenuProvider>
         </Providers>
       </body>

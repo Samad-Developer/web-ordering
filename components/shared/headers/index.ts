@@ -1,3 +1,3 @@
-import Header from "./partials/Header";
+import Header1 from "./Header1";
 
-export default Header;
+export default Header1;

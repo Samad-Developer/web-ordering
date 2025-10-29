@@ -24,7 +24,8 @@ const MenuWrapper = () => {
           ))}
         </div>
 
-        <p className="py-96"></p>
+        {/* create a divided betweeen menu and footer */}
+        <div className="border border-gray-600 mt-20 max-w-4xl mx-auto"></div>
       </SearchProvider>
     </div>
   );
