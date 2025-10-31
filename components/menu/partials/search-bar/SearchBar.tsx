@@ -58,15 +58,8 @@ const AnimatedSearch = () => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder=""
-            className="w-full h-11 sm:h-14 pl-12 sm:pl-16 pr-14 text-base rounded-full border 
-  border-slate-700 bg-white transition-all duration-300 ease-in-out
-  shadow-sm
-  outline-none focus:outline-none
-  focus:border-red-600 focus:ring-[3px] focus:ring-red-500/25
-  focus-visible:ring-red-500/25
-  [box-shadow:none] focus:[box-shadow:none]
-  focus-visible:[box-shadow:none]
-  focus-visible:border-slate-900"
+          className="w-full h-11 sm:h-14 pl-12 sm:pl-16 pr-14 text-base rounded-full border border-slate-700 bg-white transition-all duration-300 ease-in-out shadow-sm outline-none focus:border-slate-600 focus:ring-[5px] focus:ring-slate-500/25 focus-visible:ring-slate-500/25"
+
           />
 
           {/* Animated Placeholder */}

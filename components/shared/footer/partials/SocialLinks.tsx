@@ -21,7 +21,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
         Follow us
       </h3>
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         {links.map((link, index) => {
           const Icon = iconMap[link.platform.toLowerCase()];
           return (
@@ -31,7 +31,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.ariaLabel}
-              className="w-10 h-10 rounded-full dark:bg-gray-800 flex items-center justify-center text-gray-600"
+              className="w-5 h-5 rounded-full dark:bg-gray-800 flex items-center justify-center text-gray-600"
             >
               {Icon && <Icon className="w-5 h-5 hover:text-red-500" />}
             </Link>

@@ -57,8 +57,8 @@ export const AppDownloadSection: React.FC<AppDownloadSectionProps> = ({
                   app.platform === "ios" ? "App Store" : "Google Play"
                 }`}
                 width={150}
-                height={45}
-                className="h-11 w-auto hover:opacity-90 transition-opacity"
+                height={150}
+                className="h-auto w-auto hover:opacity-90 transition-opacity"
               />
             </Link>
           ))}

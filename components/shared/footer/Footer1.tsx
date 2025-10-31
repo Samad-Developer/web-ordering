@@ -13,7 +13,7 @@ interface Footer1Props {
 export const footerData: FooterContent = {
   about: {
     title:
-      "Kababjees Fried Chicken – Redefining the fast-food experience with its exceptional fried chicken",
+      "Kababjees Fried Chicken",
     description: `This haven for fried chicken enthusiasts serves up an array of tantalizing options, featuring a menu that boasts the crispiest and most flavorful chicken in the city. At Kababjees Fried Chicken, each dish is a masterpiece, from the classic Crispy Chicken to the ever-popular Crispy Zenga Burger.
       Our Kababjees Fried Chicken menu is carefully curated to ensure every bite is a delightful experience. Whether you\'re craving Crispy Chicken Wings or the best fried chicken in Karachi, our menu is designed to cater to all tastes. What sets us apart is our dedication to quality and flavor, making us a standout choice for fried chicken in Karachi.
       Convenience is a key in today\'s fast-paced world. Kababjees Fried Chicken’s delivery is swift and reliable, ensuring that your meal arrives hot, fresh, and ready to delight your taste buds. With exciting fried chicken deals, we offer great value, making our mouth-watering chicken accessible to everyone.
