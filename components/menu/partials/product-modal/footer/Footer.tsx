@@ -9,9 +9,9 @@ import { formatPrice } from '@/lib/product/productHelper';
 // import { CartItem } from '@/lib/types/cart.types';
 // import { getVariationDisplayName } from '@/lib/utils/product-helpers';
 
-interface ProductModalFooterProps {
+// interface ProductModalFooterProps {
 //   onAddToCart?: (cartItem: CartItem) => void;
-}
+// }
 
 export function ProductModalFooter () {
 //   const {
@@ -55,7 +55,7 @@ export function ProductModalFooter () {
             // price={priceBreakdown.total}
             price={1000}
             icon={<ShoppingCart className="h-5 w-5" />}
-            className='bg-red-500 text-white hover:bg-red-600 cursor-pointer'
+            className='bg-red-500 text-white hover:bg-red-600 cursor-poi'
           />
         </div>
       </div>
