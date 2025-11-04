@@ -7,6 +7,9 @@ import { closeProductModal } from "@/store/slices/productModalSlice";
 import { useRouter } from "next/navigation";
 import { ProductImage } from "./gallery/ProductImage";
 import { ProductModalHeader } from "./header/Header";
+import { ProductInfo } from "./body/ProductInfo";
+import { SpecialInstructions } from "./body/SpecialInstructions";
+import { ProductModalFooter } from "./footer/Footer";
 
 export const ProductModal = () => {
   const dispatch = useDispatch();
@@ -22,7 +25,10 @@ export const ProductModal = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="md:max-w-4xl lg:max-w-5xl xl:max-w-6xl min-h-[90vh] overflow-hidden p-0" showCloseButton={false}>
+      <DialogContent
+        className="md:max-w-4xl lg:max-w-5xl xl:max-w-6xl min-h-[90vh] overflow-hidden p-0"
+        showCloseButton={false}
+      >
         {/* <ProductModalProvider product={product}> */}
 
         {/* Two Column Grid */}
@@ -36,12 +42,15 @@ export const ProductModal = () => {
           </div>
 
           {/* RIGHT COLUMN - Header + Body + Footer */}
-          <div className="flex flex-col h-full max-h-[90vh]">
+          <div className="lg:border-l flex flex-col h-full max-h-[90vh]">
             {/* Fixed Header */}
             <ProductModalHeader />
 
             {/* Scrollable Body */}
             <div className="flex-1 overflow-y-auto">
+              {/* Product Info (Price, Description) */}
+              <ProductInfo />
+
               {/* Mobile Image (show on small screens) */}
               <div className="lg:hidden pb-0">
                 <ProductImage
@@ -50,12 +59,38 @@ export const ProductModal = () => {
                 />
               </div>
 
-              <p>Product Modal Body will be go here</p>
+              {/* Variation Selector (Size + Flavor) */}
+              {/* {product.Variations.length > 1 && (
+            <ConfigurationSection
+              title="Select Size & Flavor"
+              required={true}
+            >
+              <VariationSelector />
+            </ConfigurationSection>
+          )} */}
+
+              {/* Item Choices */}
+              {/* {currentVariation && currentVariation.ItemChoices.length > 0 && (
+            <>
+              {currentVariation.ItemChoices.map((choice) => (
+                <ConfigurationSection
+                  key={choice.Id}
+                  title={choice.Name}
+                  required={true}
+                  subtitle={`Select ${choice.Quantity} item${choice.Quantity > 1 ? 's' : ''}`}
+                >
+                  <ChoiceSelector choice={choice} />
+                </ConfigurationSection>
+              ))}
+            </>
+          )} */}
+
+              {/* Special Instructions */}
+              <SpecialInstructions />
             </div>
 
             {/* Fixed Footer */}
-            {/* <ProductModalFooter onAddToCart={onAddToCart} /> */}
-            <p>Product Modal Footer</p>
+            <ProductModalFooter />
           </div>
         </div>
         {/* </ProductModalProvider> */}
