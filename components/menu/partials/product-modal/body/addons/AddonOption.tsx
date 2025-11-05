@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, Plus, Minus } from 'lucide-react';
 import { ItemOption } from '@/types/menu.types';
-// import { useProductModal } from '../../product-modal-context';
+import { useProductModal } from '../../ProductModalContext';
 import { formatPrice } from '@/lib/product/productHelper';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -23,7 +23,7 @@ export function AddonOption({
   canAddMore,
   maxChoice,
 }: ChoiceOptionProps) {
-//   const { setChoiceOption, addChoiceQuantity, removeChoiceQuantity } = useProductModal();
+  const { setChoiceOption, addChoiceQuantity, removeChoiceQuantity } = useProductModal();
 
   const isSelected = selectedQuantity > 0;
 
@@ -37,7 +37,7 @@ export function AddonOption({
           "w-full p-4 rounded-lg border-2 text-left transition-all",
           isSelected
             ? "border-red-500 bg-red-50"
-            : "border-gray-200 hover:border-gray-300 bg-white"
+            : "border-gray-100 hover:border-gray-300 hover:bg-gray-50 bg-white"
         )}
       >
         <div className="flex items-center justify-between">

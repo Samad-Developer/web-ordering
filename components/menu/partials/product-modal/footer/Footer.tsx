@@ -2,39 +2,45 @@
 
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
-// import { useProductModal } from '../product-modal-context';
+import { useProductModal } from '../ProductModalContext';
 import { QuantityCounter } from './QuantityCounter';
 import { AddToCartButton } from './AddToCart';
 import { formatPrice } from '@/lib/product/productHelper';
-// import { CartItem } from '@/lib/types/cart.types';
-// import { getVariationDisplayName } from '@/lib/utils/product-helpers';
+import { CartItem } from '@/types/product.types';
+import { getVariationDisplayName } from '@/lib/product/productHelper';
 
-// interface ProductModalFooterProps {
-//   onAddToCart?: (cartItem: CartItem) => void;
-// }
+interface ProductModalFooterProps {
+  onAddToCart?: (cartItem: CartItem) => void;
+}
 
 export function ProductModalFooter () {
-//   const {
-//     product,
-//     configuration,
-//     currentVariation,
-//     priceBreakdown,
-//     isValid,
-//   } = useProductModal();
+  const {
+    product,
+    configuration,
+    currentVariation,
+    priceBreakdown,
+    isValid,
+  } = useProductModal();
 
   const handleAddToCart = () => {
-    // if (!isValid || !currentVariation) return;
+    if (!isValid || !currentVariation) return;
 
-    // const cartItem: CartItem = {
-    //   productId: product.Id,
-    //   productName: product.Name,
-    //   variationId: currentVariation.Id,
-    //   variationName: getVariationDisplayName(currentVariation),
-    //   configuration,
-    //   priceBreakdown,
-    //   specialInstructions: configuration.specialInstructions,
-    //   timestamp: Date.now(),
-    // };
+    const cartItem: CartItem = {
+      productId: product.Id,
+      productName: product.Name,
+      // variationId: currentVariation.Id,
+      variationName: getVariationDisplayName(currentVariation),
+      configuration : configuration,
+      // priceBreakdown,
+      size: currentVariation.Size.Name,
+      quantity: configuration.quantity,
+      price: priceBreakdown.total,
+      image: product.Image,
+      specialInstructions: configuration.specialInstructions,
+      timestamp: Date.now(),
+    };
+
+    console.log('Adding to cart:', cartItem);
 
     // onAddToCart?.(cartItem);
   };
@@ -51,9 +57,8 @@ export function ProductModalFooter () {
           {/* Add to Cart Button */}
           <AddToCartButton
             onClick={handleAddToCart}
-            // disabled={!isValid}
-            // price={priceBreakdown.total}
-            price={1000}
+            disabled={!isValid}
+            price={priceBreakdown.total}
             icon={<ShoppingCart className="h-5 w-5" />}
             className='bg-red-500 text-white hover:bg-red-600 cursor-poi'
           />

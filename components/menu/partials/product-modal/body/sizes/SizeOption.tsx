@@ -1,27 +1,27 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { ProductVariation } from '@/types/product.types';
-// import { useProductModal } from '../../product-modal-context';
+import { useProductModal } from '../../ProductModalContext';
 import { formatPrice } from '@/lib/product/productHelper';
 import { cn } from '@/lib/utils';
 
-interface VariationOptionProps {
+interface SizeOptionProps {
   variation: ProductVariation;
   isSelected: boolean;
 }
 
-export function SizeOption({ variation, isSelected }: VariationOptionProps) {
-//   const { setVariation } = useProductModal();
+export function SizeOption({ variation, isSelected }: SizeOptionProps) {
+  const { setVariation } = useProductModal();
 
   return (
     <button
-    //   onClick={() => setVariation(variation.Id)}
-    onClick={() => {}}
+      // onClick={() => setVariation(variation.Id)}
+      onClick={() => {}}
       className={cn(
         "relative w-full p-4 rounded-lg border-2 text-left transition-all",
-        isSelected
-          ? "border-red-500 bg-red-50"
-          : "border-gray-200 hover:border-gray-300 bg-white"
+        // isSelected
+        //   ? "border-red-500 bg-red-50"
+        //   : "border-gray-200 hover:border-gray-300 bg-white hover:bg-gray-50"
       )}
     >
       <div className="flex items-center justify-between">
@@ -35,13 +35,13 @@ export function SizeOption({ variation, isSelected }: VariationOptionProps) {
         </div>
 
         {/* Checkmark */}
-        {isSelected && (
+        {/* {isSelected && (
           <div className="flex-shrink-0 ml-3">
             <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
               <Check className="w-4 h-4 text-white" />
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </button>
   );

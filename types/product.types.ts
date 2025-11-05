@@ -19,8 +19,12 @@ export interface Product {
 }
 
 export interface CartItem {
-  productId: string;
+  productId: number;
   productName: string;
+  variationName: string;
+  configuration: any;
+  specialInstructions?: string;
+  timestamp: number;
   size: string;
   quantity: number;
   price: number;

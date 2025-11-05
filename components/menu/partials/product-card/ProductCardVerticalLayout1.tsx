@@ -64,7 +64,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
          )} */}
 
         {/* Price */}
-        <PriceDisplay currentPrice={152} originalPrice={540} />
+        <PriceDisplay currentPrice={product.Price} originalPrice={product.Price} />
 
         {/* Add to Cart / Counter */}
         <div className="pt-2">

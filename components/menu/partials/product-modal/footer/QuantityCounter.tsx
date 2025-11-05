@@ -3,19 +3,19 @@
 import React from 'react';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// import { useProductModal } from '../product-modal-context';
+import { useProductModal } from '../ProductModalContext';
 
 export function QuantityCounter() {
-//   const { configuration, setQuantity } = useProductModal();
+  const { configuration, setQuantity } = useProductModal();
 
   const handleDecrement = () => {
-    // if (configuration.quantity > 1) {
-    //   setQuantity(configuration.quantity - 1);
-    // }
+    if (configuration.quantity > 1) {
+      setQuantity(configuration.quantity - 1);
+    }
   };
 
   const handleIncrement = () => {
-    // setQuantity(configuration.quantity + 1);
+    setQuantity(configuration.quantity + 1);
   };
 
   return (
@@ -24,7 +24,7 @@ export function QuantityCounter() {
         variant="ghost"
         size="icon"
         onClick={handleDecrement}
-        // disabled={configuration.quantity <= 1}
+        disabled={configuration.quantity <= 1}
         className="h-10 w-10 hover:bg-white rounded-lg"
       >
         <Minus className="h-4 w-4" />
@@ -32,8 +32,7 @@ export function QuantityCounter() {
 
       <div className="min-w-[40px] text-center">
         <span className="text-lg font-semibold text-gray-900">
-          {/* {configuration.quantity} */}
-          10
+          {configuration.quantity}
         </span>
       </div>
 

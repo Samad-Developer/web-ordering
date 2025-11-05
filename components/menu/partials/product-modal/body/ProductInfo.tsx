@@ -1,25 +1,24 @@
 import React from 'react';
-// import { useProductModal } from '../product-modal-context';
+import { useProductModal } from '../ProductModalContext';
 import { formatPrice } from '@/lib/product/productHelper';
 
 export function ProductInfo() {
-//   const { product, priceBreakdown, currentVariation } = useProductModal();
+  const { product, priceBreakdown, currentVariation } = useProductModal();
 
   return (
     <div className="px-6 py-4 space-y-3">
       {/* Price */}
       <div className="flex items-baseline gap-3">
         <span className="text-xl font-bold text-gray-900">
-          {/* {formatPrice(priceBreakdown.subtotal)} */}
-            Rs. 999
+          {formatPrice(priceBreakdown.subtotal)}
         </span>
         
-        {/* {priceBreakdown.choicesTotal > 0 && (
+        {priceBreakdown.choicesTotal > 0 && (
           <span className="text-sm text-gray-500">
             (Base: {formatPrice(priceBreakdown.variationPrice)} + 
             Extras: {formatPrice(priceBreakdown.choicesTotal)})
           </span>
-        )} */}
+        )}
       </div>
 
       {/* Description (if exists) */}

@@ -1,31 +1,31 @@
 import React from 'react';
 import { ItemChoice } from '@/types/menu.types';
-// import { useProductModal } from '../../product-modal-context';
 import { AddonOption } from './AddonOption';
+import { useProductModal } from '../../ProductModalContext';
 
 interface ChoiceSelectorProps {
   choice: ItemChoice;
 }
 
-export function AddonSelector({ choice }: ChoiceSelectorProps) {
-//   const { configuration } = useProductModal();
+export function AddonWrapper({ choice }: ChoiceSelectorProps) {
+  const { configuration } = useProductModal();
   
-//   const selectedChoice = configuration.selectedChoices[choice.Id];
+  const selectedChoice = configuration.selectedChoices[choice.Id];
   
   // Calculate total selected quantity
-//   const totalSelected = selectedChoice?.selectedOptions.reduce(
-//     (sum, opt) => sum + opt.quantity,
-//     0
-//   ) || 0;
+  const totalSelected = selectedChoice?.selectedOptions.reduce(
+    (sum, opt) => sum + opt.quantity,
+    0
+  ) || 0;
 
   // Determine selection mode
-//   const isMultiSelect = choice.Quantity > 1;
-//   const canAddMore = totalSelected < choice.Quantity;
+  const isMultiSelect = choice.Quantity > 1;
+  const canAddMore = totalSelected < choice.Quantity;
 
   return (
     <div className="space-y-3">
       {/* Progress Indicator */}
-      {/* {isMultiSelect && (
+      {isMultiSelect && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">
             Selected: {totalSelected} / {choice.Quantity}
@@ -34,10 +34,10 @@ export function AddonSelector({ choice }: ChoiceSelectorProps) {
             <span className="text-green-600 font-medium">✓ Complete</span>
           )}
         </div>
-      )} */}
+      )}
 
       {/* Options Grid */}
-      {/* <div className="grid grid-cols-1 gap-2">
+      <div className="grid grid-cols-1 gap-2">
         {choice.ItemOptions.map((option) => {
           const selectedOption = selectedChoice?.selectedOptions.find(
             opt => opt.optionId === option.Id
@@ -55,7 +55,7 @@ export function AddonSelector({ choice }: ChoiceSelectorProps) {
             />
           );
         })}
-      </div> */}
+      </div>
     </div>
   );
 }

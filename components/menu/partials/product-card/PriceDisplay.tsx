@@ -25,7 +25,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
         {currency} {currentPrice}
       </span>
 
-      {hasDiscount && (
+      {/* {hasDiscount && (
         <>
           <span className="text-sm text-gray-400 line-through font-medium">
             {currency} {originalPrice}
@@ -34,7 +34,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
             {discountPercentage}% OFF
           </span>
         </>
-      )}
+      )} */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { AlertCircle } from 'lucide-react';
-// import { useProductModal } from '../product-modal-context';
+import { useProductModal } from '../ProductModalContext';
 
 interface ConfigurationSectionProps {
   title: string;
@@ -17,15 +17,15 @@ export function ConfigurationSection({
   children,
   choiceId,
 }: ConfigurationSectionProps) {
-//   const { errors } = useProductModal();
+  const { errors } = useProductModal();
   
   // Find error for this choice
-//   const error = choiceId 
-//     ? errors.find(e => e.choiceId === choiceId) 
-//     : null;
+  const error = choiceId 
+    ? errors.find(e => e.choiceId === choiceId) 
+    : null;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 py-3">
       {/* Header */}
       <div>
         <div className="flex items-center gap-2">
@@ -46,12 +46,12 @@ export function ConfigurationSection({
       <div>{children}</div>
 
       {/* Error Message */}
-      {/* {error && (
+      {error && (
         <div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 px-3 py-2 rounded-md">
           <AlertCircle className="h-4 w-4 flex-shrink-0" />
           <span>{error.message}</span>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
