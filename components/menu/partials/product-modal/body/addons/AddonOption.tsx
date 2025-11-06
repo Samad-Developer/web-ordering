@@ -31,10 +31,9 @@ export function AddonOption({
   if (!isMultiSelect && maxChoice === 1) {
     return (
       <button
-        // onClick={() => setChoiceOption(choiceId, option.Id, option.Name, option.Price)}
-        onClick={() => {}}
+        onClick={() => setChoiceOption(choiceId, option.Id, option.Name, option.Price)}
         className={cn(
-          "w-full p-4 rounded-lg border-2 text-left transition-all",
+          "w-full px-4 py-3 rounded-lg border-2 text-left transition-all cursor-pointer",
           isSelected
             ? "border-red-500 bg-red-50"
             : "border-gray-100 hover:border-gray-300 hover:bg-gray-50 bg-white"
@@ -63,13 +62,13 @@ export function AddonOption({
   }
 
   // Multi-select mode (Quantity > 1)
-  return (
+return (
     <div
       className={cn(
-        "w-full p-4 rounded-lg border-2 transition-all",
+        "w-full px-4 py-3 rounded-lg border-2 transition-all",
         isSelected
           ? "border-red-500 bg-red-50"
-          : "border-gray-200 bg-white"
+          : "border-gray-100 hover:border-gray-300 bg-white"
       )}
     >
       <div className="flex items-center justify-between gap-4">
@@ -83,35 +82,54 @@ export function AddonOption({
           )}
         </div>
 
-        {/* Quantity Controls */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+        {/* Toggle between Add Button and Counter */}
+        {!isSelected ? (
+          // ===== ADD BUTTON (Not Selected) =====
           <Button
             variant="outline"
-            size="icon"
-            className="h-8 w-8"
-            // onClick={() => removeChoiceQuantity(choiceId, option.Id)}
-            onClick={() => {}}
-            disabled={selectedQuantity === 0}
-          >
-            <Minus className="h-4 w-4" />
-          </Button>
-
-          <div className="w-8 text-center font-medium text-gray-900">
-            {selectedQuantity}
-          </div>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-8 w-8"
-            // onClick={() => addChoiceQuantity(choiceId, option.Id, option.Name, option.Price)}
-            onClick={() => {}}
+            size="sm"
+            className="h-8 px-3 gap-1.5"
+            onClick={() => addChoiceQuantity(choiceId, option.Id, option.Name, option.Price)}
             disabled={!canAddMore}
           >
             <Plus className="h-4 w-4" />
+            <span className="text-sm font-medium">Add</span>
           </Button>
-        </div>
+        ) : (
+          // ===== QUANTITY COUNTER (Selected) =====
+          <div className="flex items-center gap-0 flex-shrink-0">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-9 w-9 rounded-full hover:bg-red-100 hover:border-red-300"
+              onClick={() => removeChoiceQuantity(choiceId, option.Id)}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+
+            <div className="w-8 text-center font-semibold text-gray-900">
+              {selectedQuantity}
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              className={cn(
+                "h-9 w-9 rounded-full",
+                canAddMore 
+                  ? "hover:bg-red-100 hover:border-red-300" 
+                  : "opacity-50 cursor-not-allowed"
+              )}
+              onClick={() => addChoiceQuantity(choiceId, option.Id, option.Name, option.Price)}
+              disabled={!canAddMore}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
+
+  
 }

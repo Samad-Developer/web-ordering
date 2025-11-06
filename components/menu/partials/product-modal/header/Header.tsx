@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
 import React from "react";
 import { X, Share2 } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useProductModal } from "../ProductModalContext";
 import { closeProductModal } from "@/store/slices/productModalSlice";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
 
 export function ProductModalHeader() {
-    const { product } = useProductModal();
+  const { product } = useProductModal();
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ export function ProductModalHeader() {
           url: window.location.href,
         });
       } catch (err) {
-        console.log('Share failed:', err);
+        console.log("Share failed:", err);
       }
     }
   };

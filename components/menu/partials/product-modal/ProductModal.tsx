@@ -1,16 +1,15 @@
 "use client";
 
 import { RootState } from "@/store/store";
-import { useSelector, useDispatch } from "react-redux";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { closeProductModal } from "@/store/slices/productModalSlice";
 import { useRouter } from "next/navigation";
-import { ProductImage } from "./gallery/ProductImage";
 import { ProductModalHeader } from "./header/Header";
 import { ProductModalFooter } from "./footer/Footer";
-import { ProductModalProvider } from "./ProductModalContext";
+import { ProductImage } from "./gallery/ProductImage";
 import ProductModalBody from "./body/ProductModalBody";
-
+import { useSelector, useDispatch } from "react-redux";
+import { ProductModalProvider } from "./ProductModalContext";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { closeProductModal } from "@/store/slices/productModalSlice";
 
 export const ProductModal = () => {
   const router = useRouter();
@@ -31,9 +30,9 @@ export const ProductModal = () => {
         showCloseButton={false}
       >
         <ProductModalProvider product={currentProduct}>
-
           {/* Two Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] h-full max-h-[90vh]">
+
             {/* LEFT COLUMN - Image Only (No Header/Footer) */}
             <div className="hidden lg:block md:p-5">
               <ProductImage
@@ -46,13 +45,12 @@ export const ProductModal = () => {
             <div className="lg:border-l flex flex-col h-full max-h-[90vh]">
               {/* Fixed Header */}
               <ProductModalHeader />
-
               {/* Scrollable Body */}
-              <ProductModalBody/>
-
+              <ProductModalBody />
               {/* Fixed Footer */}
               <ProductModalFooter />
             </div>
+            
           </div>
         </ProductModalProvider>
       </DialogContent>

@@ -1,11 +1,11 @@
 import React from 'react'
 import { ProductInfo } from './ProductInfo'
-import { ProductImage } from '../gallery/ProductImage'
-import { ConfigurationSection } from './ConfigurationSection'
 import { SizeWrapper } from './sizes/SizeWrapper'
 import { AddonWrapper } from './addons/AddonWrapper'
-import { SpecialInstructions } from './SpecialInstructions'
+import { ProductImage } from '../gallery/ProductImage'
 import { useProductModal } from '../ProductModalContext'
+import { SpecialInstructions } from './SpecialInstructions'
+import { ConfigurationSection } from './ConfigurationSection'
 
 const ProductModalBody = () => {
       const { currentVariation, product } = useProductModal();

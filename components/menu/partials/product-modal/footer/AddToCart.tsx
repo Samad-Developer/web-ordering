@@ -1,5 +1,3 @@
-// components/product-modal/footer/add-to-cart-button.tsx
-
 import React, { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { formatPrice } from '@/lib/product/productHelper';

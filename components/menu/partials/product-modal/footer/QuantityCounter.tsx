@@ -1,5 +1,3 @@
-// components/product-modal/footer/quantity-counter.tsx
-
 import React from 'react';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -30,7 +28,7 @@ export function QuantityCounter() {
         <Minus className="h-4 w-4" />
       </Button>
 
-      <div className="min-w-[40px] text-center">
+      <div className="min-w-[40px] border-l border-gray-300 border-r  text-center">
         <span className="text-lg font-semibold text-gray-900">
           {configuration.quantity}
         </span>

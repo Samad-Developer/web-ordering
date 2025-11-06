@@ -3,7 +3,7 @@ import { useProductModal } from '../ProductModalContext';
 import { formatPrice } from '@/lib/product/productHelper';
 
 export function ProductInfo() {
-  const { product, priceBreakdown, currentVariation } = useProductModal();
+  const { product, priceBreakdown } = useProductModal();
 
   return (
     <div className="px-6 py-4 space-y-3">

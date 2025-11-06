@@ -1,5 +1,3 @@
-// components/product-modal/footer/product-modal-footer.tsx
-
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useProductModal } from '../ProductModalContext';

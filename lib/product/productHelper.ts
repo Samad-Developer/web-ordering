@@ -32,6 +32,9 @@ export function calculatePrice(
     0
   );
 
+  console.log("Variation Price:", variationPrice);
+  console.log("Choices Total:", choicesTotal);
+
   const subtotal = variationPrice + choicesTotal;
   const total = subtotal * configuration.quantity;
 
