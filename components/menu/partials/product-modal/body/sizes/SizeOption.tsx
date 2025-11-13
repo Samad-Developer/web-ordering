@@ -1,47 +1,35 @@
 import React from 'react';
 import { Check } from 'lucide-react';
-import { ProductVariation } from '@/types/product.types';
 import { useProductModal } from '../../ProductModalContext';
-import { formatPrice } from '@/lib/product/productHelper';
 import { cn } from '@/lib/utils';
 
 interface SizeOptionProps {
-  variation: ProductVariation;
+  size: { id: number; name: string };
   isSelected: boolean;
 }
 
-export function SizeOption({ variation, isSelected }: SizeOptionProps) {
-  const { setVariation } = useProductModal();
+export function SizeOption({ size, isSelected }: SizeOptionProps) {
+  const { setSize } = useProductModal();
 
   return (
     <button
-      onClick={() => setVariation(variation.Id)}
+      onClick={() => setSize(size.id)}
       className={cn(
-        "relative w-full px-4 py-3 rounded-lg border-2 text-left transition-all cursor-pointer",
+        "relative p-4 rounded-lg border-2 text-center transition-all font-medium",
         isSelected
-          ? "border-red-500 bg-red-50"
-          : "border-gray-200 hover:border-gray-300 bg-white hover:bg-gray-50"
+          ? "border-red-500 bg-red-50 text-red-700"
+          : "border-gray-200 hover:border-gray-300 bg-white text-gray-900"
       )}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex flex-1 justify-between items-center">
-          <div className="font-medium text-gray-900">
-            {variation.Size.Name} - {variation.Flavour.Name}
-          </div>
-          <div className="text-sm text-gray-600 flex items-center">
-            {formatPrice(variation.Price)}
+      {size.name}
+      
+      {isSelected && (
+        <div className="absolute -top-2 -right-2">
+          <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
+            <Check className="w-4 h-4 text-white" />
           </div>
         </div>
-
-        {/* Checkmark */}
-        {isSelected && (
-          <div className="flex-shrink-0 ml-3">
-            <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-              <Check className="w-4 h-4 text-white" />
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </button>
   );
 }

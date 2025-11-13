@@ -1,17 +1,25 @@
+// components/product-modal/body/size-selector/size-selector.tsx
+
 import React from 'react';
 import { useProductModal } from '../../ProductModalContext';
+import { getUniqueSizes } from '@/lib/product/productHelper';
 import { SizeOption } from './SizeOption';
 
 export function SizeWrapper() {
-  const { product, configuration } = useProductModal();
+  const { product, customization } = useProductModal();
+  
+  
+  // Get all unique sizes - ALWAYS show all
+  const sizes = getUniqueSizes(product);
 
   return (
-    <div className="grid grid-cols-1 gap-3">
-      {product.Variations.map((variation) => (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {sizes.map((size) => (
         <SizeOption
-          key={variation.Id}
-          variation={variation}
-          isSelected={configuration.selectedVariationId === variation.Id}
+          key={size.id}
+          size={size}
+          isSelected={customization.selectedSizeId === size.id}
+          // NO isDisabled prop - all sizes are always clickable
         />
       ))}
     </div>

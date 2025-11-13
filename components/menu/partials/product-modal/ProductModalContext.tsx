@@ -1,110 +1,93 @@
-import { ProductItem, ProductVariation } from "@/types/product.types";
-import {
-  calculatePrice,
-  validateConfiguration,
-} from "@/lib/product/productHelper";
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useMemo,
-  ReactNode,
-} from "react";
-import {
-  ProductConfiguration,
-  SelectedChoice,
-  SelectedOption,
-  ConfigurationError,
-  PriceBreakdown,
-} from "@/types/configuration.types";
+// components/product-modal/ProductModalContext.tsx
 
-// ============= STATE TYPES =============
+import React, { createContext, useContext, useReducer, useMemo, ReactNode } from 'react';
+import { ProductItem, ProductVariation } from '@/types/product.types';
+import { getAvailableFlavorsForSize } from '@/lib/product/productHelper';
+import { 
+  ProductCustomization, 
+  SelectedAddonGroup,
+  SelectedAddonOption,
+  CustomizationError,
+  PriceBreakdown 
+} from '@/types/customization.types';
 
-interface ProductModalState {
-  configuration: ProductConfiguration;
-  errors: ConfigurationError[];
-}
+
+import { 
+  calculatePrice, 
+  validateCustomization,
+  findVariationByCombo,
+  getDefaultSize,
+  getDefaultFlavor,
+} from '@/lib/product/productHelper';
+
 
 // ============= ACTION TYPES =============
 
 type ProductModalAction =
-  | { type: "SET_VARIATION"; payload: number }
-  | {
-      type: "SET_CHOICE_OPTION";
-      payload: {
-        choiceId: number;
-        optionId: number;
+  | { type: 'SET_SIZE'; payload: number }
+  | { type: 'SET_FLAVOR'; payload: number }
+  | { 
+      type: 'SET_ADDON_OPTION'; 
+      payload: { 
+        groupId: number; 
+        optionId: number; 
         optionName: string;
         price: number;
-      };
+      } 
     }
-  | {
-      type: "ADD_CHOICE_QUANTITY";
-      payload: {
-        choiceId: number;
-        optionId: number;
+  | { 
+      type: 'ADD_ADDON_QUANTITY'; 
+      payload: { 
+        groupId: number; 
+        optionId: number; 
         optionName: string;
         price: number;
-      };
+      } 
     }
-  | {
-      type: "REMOVE_CHOICE_QUANTITY";
-      payload: {
-        choiceId: number;
-        optionId: number;
-      };
+  | { 
+      type: 'REMOVE_ADDON_QUANTITY'; 
+      payload: { 
+        groupId: number; 
+        optionId: number; 
+      } 
     }
-  | { type: "SET_QUANTITY"; payload: number }
-  | { type: "SET_INSTRUCTIONS"; payload: string }
-  | { type: "RESET" };
+  | { type: 'SET_QUANTITY'; payload: number }
+  | { type: 'SET_INSTRUCTIONS'; payload: string }
+  | { type: 'RESET' };
 
-// ============= CONTEXT TYPES =============
+// ============= STATE TYPES =============
 
-interface ProductModalContextValue {
-  // State
-  product: ProductItem;
-  configuration: ProductConfiguration;
-  currentVariation: ProductVariation | null;
-  priceBreakdown: PriceBreakdown;
-  errors: ConfigurationError[];
-  isValid: boolean;
-
-  // Actions
-  setVariation: (variationId: number) => void;
-  setChoiceOption: (
-    choiceId: number,
-    optionId: number,
-    optionName: string,
-    price: number
-  ) => void;
-  addChoiceQuantity: (
-    choiceId: number,
-    optionId: number,
-    optionName: string,
-    price: number
-  ) => void;
-  removeChoiceQuantity: (choiceId: number, optionId: number) => void;
-  setQuantity: (quantity: number) => void;
-  setInstructions: (instructions: string) => void;
-  reset: () => void;
+interface ProductModalState {
+  customization: ProductCustomization;
+  errors: CustomizationError[];
 }
-
-const ProductModalContext = createContext<ProductModalContextValue | null>(
-  null
-);
 
 // ============= INITIAL STATE =============
 
 function getInitialState(product: ProductItem): ProductModalState {
-  // If only one variation, pre-select it
-  const defaultVariation = product.Variations.length === 1 ? product.Variations[0].Id : null;
+  // Auto-select if only one size exists
+  const defaultSizeId = product.Variations.length === 1 
+    ? product.Variations[0].Size.Id 
+    : getDefaultSize(product);
+
+  // Auto-select if only one flavor exists for that size
+  const defaultFlavorId = defaultSizeId && product.Variations.length === 1
+    ? product.Variations[0].Flavour.Id
+    : product.Variations[0].Flavour.Id;
+
+  // Find variation ID from combination
+  const defaultVariationId = defaultSizeId && defaultFlavorId
+    ? findVariationByCombo(product, defaultSizeId, defaultFlavorId)?.Id || null
+    : null;
 
   return {
-    configuration: {
-      selectedVariationId: defaultVariation,
-      selectedChoices: {},
+    customization: {
+      selectedSizeId: defaultSizeId,
+      selectedFlavorId: defaultFlavorId,
+      selectedVariationId: defaultVariationId,
+      selectedAddons: {},
       quantity: 1,
-      specialInstructions: "",
+      specialInstructions: '',
     },
     errors: [],
   };
@@ -117,113 +100,143 @@ function productModalReducer(
   action: ProductModalAction,
   product: ProductItem
 ): ProductModalState {
-
   switch (action.type) {
-    case "SET_VARIATION": {
-      // When variation changes, reset all choices
+    case 'SET_SIZE': {
+      const newSizeId = action.payload;
+      
+      // Get available flavors for this size
+      const availableFlavors = getAvailableFlavorsForSize(product, newSizeId);
+      
+      let newFlavorId: number | null = null;
+      
+      // Auto-select if only ONE flavor available
+      if (availableFlavors.length === 1) {
+        newFlavorId = availableFlavors[0].id;
+      } 
+      // Check if current flavor is still available
+      else if (availableFlavors.length > 1) {
+        const currentFlavorId = state.customization.selectedFlavorId;
+        const isCurrentFlavorAvailable = availableFlavors.some(f => f.id === currentFlavorId);
+        
+        // Keep current flavor if available, otherwise clear it
+        newFlavorId = isCurrentFlavorAvailable ? currentFlavorId : null;
+      }
+      
+      // Find variation ID
+      const newVariationId = newFlavorId 
+        ? findVariationByCombo(product, newSizeId, newFlavorId)?.Id || null
+        : null;
+      
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
-          selectedVariationId: action.payload,
-          selectedChoices: {}, // Clear all choices
+        customization: {
+          ...state.customization,
+          selectedSizeId: newSizeId,
+          selectedFlavorId: newFlavorId,
+          selectedVariationId: newVariationId,
+          // Clear addons when size changes (they might be different)
+          selectedAddons: {},
         },
       };
     }
 
-    case "SET_CHOICE_OPTION": {
-      const { choiceId, optionId, optionName, price } = action.payload;
+    case 'SET_FLAVOR': {
+      const newFlavorId = action.payload;
+      const currentSizeId = state.customization.selectedSizeId;
+      
+      // Can't select flavor without size
+      if (!currentSizeId) return state;
+      
+      // Find variation ID
+      const newVariationId = findVariationByCombo(product, currentSizeId, newFlavorId)?.Id || null;
+      
+      return {
+        ...state,
+        customization: {
+          ...state.customization,
+          selectedFlavorId: newFlavorId,
+          selectedVariationId: newVariationId,
+          selectedAddons: {},
+        },
+      };
+    }
 
-      // Find the choice definition
+    case 'SET_ADDON_OPTION': {
+      const { groupId, optionId, optionName, price } = action.payload;
+      
       const variation = product.Variations.find(
-        (v) => v.Id === state.configuration.selectedVariationId
+        v => v.Id === state.customization.selectedVariationId
       );
-      const choice = variation?.ItemChoices.find((c) => c.Id === choiceId);
+      const group = variation?.ItemChoices.find(g => g.Id === groupId);
+      
+      if (!group) return state;
 
-      if (!choice) return state;
-
-      // For MaxChoice = 1, replace the selection
-      // For multi-quantity choices (Quantity > 1), need different logic
-      const newSelectedChoice: SelectedChoice = {
-        choiceId,
-        choiceName: choice.Name,
-        requiredQuantity: choice.Quantity,
-        selectedOptions: [
-          {
-            optionId,
-            optionName,
-            quantity: 1,
-            price,
-          },
-        ],
+      const newSelectedGroup: SelectedAddonGroup = {
+        groupId,
+        groupName: group.Name,
+        requiredQuantity: group.Quantity,
+        selectedOptions: [{
+          optionId,
+          optionName,
+          quantity: 1,
+          price,
+        }],
       };
 
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
-          selectedChoices: {
-            ...state.configuration.selectedChoices,
-            [choiceId]: newSelectedChoice,
+        customization: {
+          ...state.customization,
+          selectedAddons: {
+            ...state.customization.selectedAddons,
+            [groupId]: newSelectedGroup,
           },
         },
       };
     }
 
-    case "ADD_CHOICE_QUANTITY": {
-      const { choiceId, optionId, optionName, price } = action.payload;
-
-      const currentChoice = state.configuration.selectedChoices[choiceId];
+    case 'ADD_ADDON_QUANTITY': {
+      const { groupId, optionId, optionName, price } = action.payload;
+      
+      const currentGroup = state.customization.selectedAddons[groupId];
       const variation = product.Variations.find(
-        (v) => v.Id === state.configuration.selectedVariationId
+        v => v.Id === state.customization.selectedVariationId
       );
-      const choiceDefinition = variation?.ItemChoices.find(
-        (c) => c.Id === choiceId
-      );
+      const groupDefinition = variation?.ItemChoices.find(g => g.Id === groupId);
+      
+      if (!groupDefinition) return state;
 
-      if (!choiceDefinition) return state;
+      const totalSelected = currentGroup?.selectedOptions.reduce(
+        (sum, opt) => sum + opt.quantity, 0
+      ) || 0;
 
-      // Calculate total selected quantity for this choice
-      const totalSelected =
-        currentChoice?.selectedOptions.reduce(
-          (sum, opt) => sum + opt.quantity,
-          0
-        ) || 0;
-
-      // Check if we can add more
-      if (totalSelected >= choiceDefinition.Quantity) {
-        return state; // Already at max
+      if (totalSelected >= groupDefinition.Quantity) {
+        return state;
       }
 
-      let updatedOptions: SelectedOption[];
+      let updatedOptions: SelectedAddonOption[];
 
-      if (!currentChoice) {
-        // First selection
-        updatedOptions = [
-          {
-            optionId,
-            optionName,
-            quantity: 1,
-            price,
-          },
-        ];
+      if (!currentGroup) {
+        updatedOptions = [{
+          optionId,
+          optionName,
+          quantity: 1,
+          price,
+        }];
       } else {
-        // Check if this option already exists
-        const existingOptionIndex = currentChoice.selectedOptions.findIndex(
-          (opt) => opt.optionId === optionId
+        const existingOptionIndex = currentGroup.selectedOptions.findIndex(
+          opt => opt.optionId === optionId
         );
 
         if (existingOptionIndex >= 0) {
-          // Increment existing option
-          updatedOptions = [...currentChoice.selectedOptions];
+          updatedOptions = [...currentGroup.selectedOptions];
           updatedOptions[existingOptionIndex] = {
             ...updatedOptions[existingOptionIndex],
             quantity: updatedOptions[existingOptionIndex].quantity + 1,
           };
         } else {
-          // Add new option
           updatedOptions = [
-            ...currentChoice.selectedOptions,
+            ...currentGroup.selectedOptions,
             { optionId, optionName, quantity: 1, price },
           ];
         }
@@ -231,14 +244,14 @@ function productModalReducer(
 
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
-          selectedChoices: {
-            ...state.configuration.selectedChoices,
-            [choiceId]: {
-              choiceId,
-              choiceName: choiceDefinition.Name,
-              requiredQuantity: choiceDefinition.Quantity,
+        customization: {
+          ...state.customization,
+          selectedAddons: {
+            ...state.customization.selectedAddons,
+            [groupId]: {
+              groupId,
+              groupName: groupDefinition.Name,
+              requiredQuantity: groupDefinition.Quantity,
               selectedOptions: updatedOptions,
             },
           },
@@ -246,55 +259,52 @@ function productModalReducer(
       };
     }
 
-    case "REMOVE_CHOICE_QUANTITY": {
-      const { choiceId, optionId } = action.payload;
+    case 'REMOVE_ADDON_QUANTITY': {
+      const { groupId, optionId } = action.payload;
+      
+      const currentGroup = state.customization.selectedAddons[groupId];
+      if (!currentGroup) return state;
 
-      const currentChoice = state.configuration.selectedChoices[choiceId];
-      if (!currentChoice) return state;
-
-      const optionIndex = currentChoice.selectedOptions.findIndex(
-        (opt) => opt.optionId === optionId
+      const optionIndex = currentGroup.selectedOptions.findIndex(
+        opt => opt.optionId === optionId
       );
-
+      
       if (optionIndex < 0) return state;
 
-      const option = currentChoice.selectedOptions[optionIndex];
-      let updatedOptions: SelectedOption[];
+      const option = currentGroup.selectedOptions[optionIndex];
+      let updatedOptions: SelectedAddonOption[];
 
       if (option.quantity > 1) {
-        // Decrement quantity
-        updatedOptions = [...currentChoice.selectedOptions];
+        updatedOptions = [...currentGroup.selectedOptions];
         updatedOptions[optionIndex] = {
           ...option,
           quantity: option.quantity - 1,
         };
       } else {
-        // Remove option entirely
-        updatedOptions = currentChoice.selectedOptions.filter(
-          (opt) => opt.optionId !== optionId
+        updatedOptions = currentGroup.selectedOptions.filter(
+          opt => opt.optionId !== optionId
         );
       }
 
-      // If no options left, remove the choice
       if (updatedOptions.length === 0) {
-        const { [choiceId]: removed, ...remainingChoices } = state.configuration.selectedChoices;
+        const { [groupId]: removed, ...remainingGroups } = state.customization.selectedAddons;
         return {
           ...state,
-          configuration: {
-            ...state.configuration,
-            selectedChoices: remainingChoices,
+          customization: {
+            ...state.customization,
+            selectedAddons: remainingGroups,
           },
         };
       }
 
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
-          selectedChoices: {
-            ...state.configuration.selectedChoices,
-            [choiceId]: {
-              ...currentChoice,
+        customization: {
+          ...state.customization,
+          selectedAddons: {
+            ...state.customization.selectedAddons,
+            [groupId]: {
+              ...currentGroup,
               selectedOptions: updatedOptions,
             },
           },
@@ -302,27 +312,27 @@ function productModalReducer(
       };
     }
 
-    case "SET_QUANTITY": {
+    case 'SET_QUANTITY': {
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
+        customization: {
+          ...state.customization,
           quantity: Math.max(1, action.payload),
         },
       };
     }
 
-    case "SET_INSTRUCTIONS": {
+    case 'SET_INSTRUCTIONS': {
       return {
         ...state,
-        configuration: {
-          ...state.configuration,
+        customization: {
+          ...state.customization,
           specialInstructions: action.payload,
         },
       };
     }
 
-    case "RESET": {
+    case 'RESET': {
       return getInitialState(product);
     }
 
@@ -331,6 +341,29 @@ function productModalReducer(
   }
 }
 
+// ============= CONTEXT =============
+
+interface ProductModalContextValue {
+  product: ProductItem;
+  customization: ProductCustomization;
+  currentVariation: ProductVariation | null;
+  priceBreakdown: PriceBreakdown;
+  errors: CustomizationError[];
+  isValid: boolean;
+  
+  // Actions
+  setSize: (sizeId: number) => void;
+  setFlavor: (flavorId: number) => void;
+  setAddonOption: (groupId: number, optionId: number, optionName: string, price: number) => void;
+  addAddonQuantity: (groupId: number, optionId: number, optionName: string, price: number) => void;
+  removeAddonQuantity: (groupId: number, optionId: number) => void;
+  setQuantity: (quantity: number) => void;
+  setInstructions: (instructions: string) => void;
+  reset: () => void;
+}
+
+const ProductModalContext = createContext<ProductModalContextValue | null>(null);
+
 // ============= PROVIDER =============
 
 interface ProductModalProviderProps {
@@ -338,104 +371,65 @@ interface ProductModalProviderProps {
   children: ReactNode;
 }
 
-export function ProductModalProvider({
-  product,
-  children,
-}: ProductModalProviderProps) {
+export function ProductModalProvider({ product, children }: ProductModalProviderProps) {
   const [state, dispatch] = useReducer(
-    (state: ProductModalState, action: ProductModalAction) => productModalReducer(state, action, product),
+    (state: ProductModalState, action: ProductModalAction) => 
+      productModalReducer(state, action, product),
     product,
     getInitialState
   );
 
-
-
-  // Get current variation
+  // Get current variation from size + flavor combo
   const currentVariation = useMemo(() => {
-    if (!state.configuration.selectedVariationId) return null;
-    return (
-      product.Variations.find(
-        (v) => v.Id === state.configuration.selectedVariationId
-      ) || null
+    return findVariationByCombo(
+      product,
+      state.customization.selectedSizeId,
+      state.customization.selectedFlavorId
     );
-  }, [product, state.configuration.selectedVariationId]);
-
-
+  }, [product, state.customization.selectedSizeId, state.customization.selectedFlavorId]);
 
   // Calculate price
   const priceBreakdown = useMemo(() => {
-    return calculatePrice(currentVariation, state.configuration);
-  }, [currentVariation, state.configuration]);
+    return calculatePrice(currentVariation, state.customization);
+  }, [currentVariation, state.customization]);
 
-
-
-  // Validate configuration
+  // Validate
   const { errors, isValid } = useMemo(() => {
-    return validateConfiguration(currentVariation, state.configuration);
-  }, [currentVariation, state.configuration]);
-
-
+    return validateCustomization(currentVariation, state.customization);
+  }, [currentVariation, state.customization]);
 
   // Action creators
   const actions = useMemo(
     () => ({
-      setVariation: (variationId: number) => 
-        dispatch({ 
-          type: "SET_VARIATION", 
-          payload: variationId 
-        }),
-
-      setChoiceOption: (
-        choiceId: number,
-        optionId: number,
-        optionName: string,
-        price: number
-      ) =>
-        dispatch({
-          type: "SET_CHOICE_OPTION",
-          payload: { choiceId, optionId, optionName, price },
-        }),
-
-      addChoiceQuantity: (
-        choiceId: number,
-        optionId: number,
-        optionName: string,
-        price: number
-      ) =>
-        dispatch({
-          type: "ADD_CHOICE_QUANTITY",
-          payload: { choiceId, optionId, optionName, price },
-        }),
-
-      removeChoiceQuantity: (choiceId: number, optionId: number) =>
-        dispatch({
-          type: "REMOVE_CHOICE_QUANTITY",
-          payload: { choiceId, optionId },
-        }),
-
+      setSize: (sizeId: number) => 
+        dispatch({ type: 'SET_SIZE', payload: sizeId }),
+      
+      setFlavor: (flavorId: number) =>
+        dispatch({ type: 'SET_FLAVOR', payload: flavorId }),
+      
+      setAddonOption: (groupId: number, optionId: number, optionName: string, price: number) =>
+        dispatch({ type: 'SET_ADDON_OPTION', payload: { groupId, optionId, optionName, price } }),
+      
+      addAddonQuantity: (groupId: number, optionId: number, optionName: string, price: number) =>
+        dispatch({ type: 'ADD_ADDON_QUANTITY', payload: { groupId, optionId, optionName, price } }),
+      
+      removeAddonQuantity: (groupId: number, optionId: number) =>
+        dispatch({ type: 'REMOVE_ADDON_QUANTITY', payload: { groupId, optionId } }),
+      
       setQuantity: (quantity: number) =>
-        dispatch({ 
-          type: "SET_QUANTITY", 
-          payload: quantity 
-        }),
-
+        dispatch({ type: 'SET_QUANTITY', payload: quantity }),
+      
       setInstructions: (instructions: string) =>
-        dispatch({ 
-          type: "SET_INSTRUCTIONS", 
-          payload: instructions 
-        }),
-
-      reset: () => dispatch({ 
-        type: "RESET" 
-      }),
-
+        dispatch({ type: 'SET_INSTRUCTIONS', payload: instructions }),
+      
+      reset: () => dispatch({ type: 'RESET' }),
     }),
     []
   );
 
   const value: ProductModalContextValue = {
     product,
-    configuration: state.configuration,
+    customization: state.customization,
     currentVariation,
     priceBreakdown,
     errors,
@@ -455,7 +449,7 @@ export function ProductModalProvider({
 export function useProductModal() {
   const context = useContext(ProductModalContext);
   if (!context) {
-    throw new Error("useProductModal must be used within ProductModalProvider");
+    throw new Error('useProductModal must be used within ProductModalProvider');
   }
   return context;
 }

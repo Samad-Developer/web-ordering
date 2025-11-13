@@ -14,7 +14,7 @@ interface ProductModalFooterProps {
 export function ProductModalFooter () {
   const {
     product,
-    configuration,
+    customization,
     currentVariation,
     priceBreakdown,
     isValid,
@@ -28,13 +28,13 @@ export function ProductModalFooter () {
       productName: product.Name,
       // variationId: currentVariation.Id,
       variationName: getVariationDisplayName(currentVariation),
-      configuration : configuration,
+      customization : customization,
       // priceBreakdown,
       size: currentVariation.Size.Name,
-      quantity: configuration.quantity,
+      quantity: customization.quantity,
       price: priceBreakdown.total,
       image: product.Image,
-      specialInstructions: configuration.specialInstructions,
+      specialInstructions: customization.specialInstructions,
       timestamp: Date.now(),
     };
 

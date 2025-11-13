@@ -22,7 +22,7 @@ export interface CartItem {
   productId: number;
   productName: string;
   variationName: string;
-  configuration: any;
+  customization: any;
   specialInstructions?: string;
   timestamp: number;
   size: string;

@@ -21,7 +21,7 @@ export function ConfigurationSection({
   
   // Find error for this choice
   const error = choiceId 
-    ? errors.find(e => e.choiceId === choiceId) 
+    ? errors.find(e => e.groupId === choiceId) 
     : null;
 
   return (

@@ -8,9 +8,9 @@ interface ChoiceSelectorProps {
 }
 
 export function AddonWrapper({ choice }: ChoiceSelectorProps) {
-  const { configuration } = useProductModal();
+  const { customization } = useProductModal();
   
-  const selectedChoice = configuration.selectedChoices[choice.Id];
+  const selectedChoice = customization.selectedAddons[choice.Id];
   
   // Calculate total selected quantity
   const totalSelected = selectedChoice?.selectedOptions.reduce(

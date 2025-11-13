@@ -4,16 +4,16 @@ import { Button } from '@/components/ui/button';
 import { useProductModal } from '../ProductModalContext';
 
 export function QuantityCounter() {
-  const { configuration, setQuantity } = useProductModal();
+  const { customization, setQuantity } = useProductModal();
 
   const handleDecrement = () => {
-    if (configuration.quantity > 1) {
-      setQuantity(configuration.quantity - 1);
+    if (customization.quantity > 1) {
+      setQuantity(customization.quantity - 1);
     }
   };
 
   const handleIncrement = () => {
-    setQuantity(configuration.quantity + 1);
+    setQuantity(customization.quantity + 1);
   };
 
   return (
@@ -22,7 +22,7 @@ export function QuantityCounter() {
         variant="ghost"
         size="icon"
         onClick={handleDecrement}
-        disabled={configuration.quantity <= 1}
+        disabled={customization.quantity <= 1}
         className="h-10 w-10 hover:bg-white rounded-lg"
       >
         <Minus className="h-4 w-4" />
@@ -30,7 +30,7 @@ export function QuantityCounter() {
 
       <div className="min-w-[40px] border-l border-gray-300 border-r  text-center">
         <span className="text-lg font-semibold text-gray-900">
-          {configuration.quantity}
+          {customization.quantity}
         </span>
       </div>
 

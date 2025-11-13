@@ -18,6 +18,9 @@ interface MenuProviderProps {
 }
 
 export function MenuProvider({ children }: MenuProviderProps) {
+  // await conn.invoke("SendRequest", route, JSON.stringify(payload));
+  // loading state can be handled here
+  // connection.on("Response", (payload) => {});
   return (
     <MenuContext.Provider value={{ menu: menuData as MenuCategory[] }}>
       {children}

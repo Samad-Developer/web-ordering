@@ -1,61 +1,85 @@
-import React from 'react'
-import { ProductInfo } from './ProductInfo'
-import { SizeWrapper } from './sizes/SizeWrapper'
-import { AddonWrapper } from './addons/AddonWrapper'
-import { ProductImage } from '../gallery/ProductImage'
-import { useProductModal } from '../ProductModalContext'
-import { SpecialInstructions } from './SpecialInstructions'
-import { ConfigurationSection } from './ConfigurationSection'
+import React from "react";
+import { ProductInfo } from "./ProductInfo";
+import { SizeWrapper } from "./sizes/SizeWrapper";
+import { AddonWrapper } from "./addons/AddonWrapper";
+import { ProductImage } from "../gallery/ProductImage";
+import { useProductModal } from "../ProductModalContext";
+import { SpecialInstructions } from "./SpecialInstructions";
+import { ConfigurationSection } from "./ConfigurationSection";
+import { getUniqueFlavors, getUniqueSizes } from "@/lib/product/productHelper";
+import { FlavorWrapper } from "./flavors/FlavorsWrapper";
 
 const ProductModalBody = () => {
-      const { currentVariation, product } = useProductModal();
+  const { currentVariation, product } = useProductModal();
 
-    return (
-        <div className="flex-1 overflow-y-auto">
-            {/* Product Info (Price, Description) */}
-            <ProductInfo />
+  const uniqueSizes = getUniqueSizes(product);
+  const uniqueFlavors = getUniqueFlavors(product);
 
-            {/* Mobile Image (show on small screens) */}
-            <div className="lg:hidden pb-0">
-                <ProductImage
-                    image={product.Image}
-                    alt={product.Name}
-                />
-            </div>
+  return (
+    <div className="flex-1 overflow-y-auto">
+      {/* Product Info (Price, Description) */}
+      <ProductInfo />
 
-            <div className="px-6 py-2">
-                {/* Variation Selector (Size + Flavor) */}
-                {/* {currentProduct.Variations.length > 1 && ( */}
-                <ConfigurationSection
-                    title="Select Size & Flavor"
-                    required={true}
-                >
-                    <SizeWrapper />
-                </ConfigurationSection>
-                {/* )} */}
+      {/* Mobile Image (show on small screens) */}
+      <div className="lg:hidden pb-0">
+        <ProductImage image={product.Image} alt={product.Name} />
+      </div>
 
-                {/* Item Choices */}
-                {currentVariation && currentVariation.ItemChoices.length > 0 && (
-                    <>
-                        {currentVariation.ItemChoices.map((choice) => (
-                            <ConfigurationSection
-                                key={choice.Id}
-                                title={choice.Name}
-                                required={true}
-                                subtitle={`Select ${choice.Quantity} item${choice.Quantity > 1 ? 's' : ''}`}
-                            >
-                                <AddonWrapper choice={choice} />
-                            </ConfigurationSection>
-                        ))}
-                    </>
-                )}
+      <div className="px-6 py-2">
+        {/* Size Selection */}
+        {/* {uniqueSizes.length > 1 && ( */}
+        <ConfigurationSection title="Select Size" required={true}>
+          <SizeWrapper />
+        </ConfigurationSection>
+        {/* )} */}
 
-            </div>
+        {/* Flavor Selection */}
+        {/* {uniqueFlavors.length > 1 && ( */}
+        <ConfigurationSection title="Select Crust Type" required={true}>
+          <FlavorWrapper />
+        </ConfigurationSection>
+        {/* )}  */}
 
-            {/* Special Instructions */}
-            <SpecialInstructions />
-        </div>
-    )
-}
+        {/* Item Choices */}
+        {currentVariation && currentVariation.ItemChoices.length > 0 && (
+          <>
+            {currentVariation.ItemChoices.map((choice) => (
+              <ConfigurationSection
+                key={choice.Id}
+                title={choice.Name}
+                required={true}
+                subtitle={`Select ${choice.Quantity} item${
+                  choice.Quantity > 1 ? "s" : ""
+                }`}
+              >
+                <AddonWrapper choice={choice} />
+              </ConfigurationSection>
+            ))}
+          </>
+        )}
 
-export default ProductModalBody
+        {/* Addon Groups
+      {currentVariation && currentVariation.AddonGroups?.length > 0 && (
+        <>
+          {currentVariation.AddonGroups.map((group) => (
+            <CustomizationSection
+              key={group.Id}
+              title={group.Name}
+              required={true}
+              subtitle={`Select ${group.Quantity} item${group.Quantity > 1 ? 's' : ''}`}
+              groupId={group.Id}
+            >
+              <AddonSelector group={group} />
+            </CustomizationSection>
+          ))}
+        </>
+      )} */}
+      </div>
+
+      {/* Special Instructions */}
+      <SpecialInstructions />
+    </div>
+  );
+};
+
+export default ProductModalBody;

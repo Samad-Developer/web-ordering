@@ -13,10 +13,10 @@ export function ProductInfo() {
           {formatPrice(priceBreakdown.subtotal)}
         </span>
         
-        {priceBreakdown.choicesTotal > 0 && (
+        {priceBreakdown.addonsTotal > 0 && (
           <span className="text-sm text-gray-500">
-            (Base: {formatPrice(priceBreakdown.variationPrice)} + 
-            Extras: {formatPrice(priceBreakdown.choicesTotal)})
+            (Base: {formatPrice(priceBreakdown.basePrice)} + 
+            Extras: {formatPrice(priceBreakdown.addonsTotal)})
           </span>
         )}
       </div>

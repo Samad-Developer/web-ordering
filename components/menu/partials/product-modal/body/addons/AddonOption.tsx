@@ -23,7 +23,8 @@ export function AddonOption({
   canAddMore,
   maxChoice,
 }: ChoiceOptionProps) {
-  const { setChoiceOption, addChoiceQuantity, removeChoiceQuantity } = useProductModal();
+  
+  const { setAddonOption, addAddonQuantity, removeAddonQuantity } = useProductModal();
 
   const isSelected = selectedQuantity > 0;
 
@@ -31,7 +32,7 @@ export function AddonOption({
   if (!isMultiSelect && maxChoice === 1) {
     return (
       <button
-        onClick={() => setChoiceOption(choiceId, option.Id, option.Name, option.Price)}
+        onClick={() => setAddonOption(choiceId, option.Id, option.Name, option.Price)}
         className={cn(
           "w-full px-4 py-3 rounded-lg border-2 text-left transition-all cursor-pointer",
           isSelected
@@ -89,7 +90,7 @@ return (
             variant="outline"
             size="sm"
             className="h-8 px-3 gap-1.5"
-            onClick={() => addChoiceQuantity(choiceId, option.Id, option.Name, option.Price)}
+            onClick={() => addAddonQuantity(choiceId, option.Id, option.Name, option.Price)}
             disabled={!canAddMore}
           >
             <Plus className="h-4 w-4" />
@@ -102,7 +103,7 @@ return (
               variant="outline"
               size="icon"
               className="h-9 w-9 rounded-full hover:bg-red-100 hover:border-red-300"
-              onClick={() => removeChoiceQuantity(choiceId, option.Id)}
+              onClick={() => removeAddonQuantity(choiceId, option.Id)}
             >
               <Minus className="h-4 w-4" />
             </Button>
@@ -120,7 +121,7 @@ return (
                   ? "hover:bg-red-100 hover:border-red-300" 
                   : "opacity-50 cursor-not-allowed"
               )}
-              onClick={() => addChoiceQuantity(choiceId, option.Id, option.Name, option.Price)}
+              onClick={() => addAddonQuantity(choiceId, option.Id, option.Name, option.Price)}
               disabled={!canAddMore}
             >
               <Plus className="h-4 w-4" />
