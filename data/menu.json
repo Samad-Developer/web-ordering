@@ -1,156 +1,99 @@
 [
   {
     "Order": 0,
-    "Id": "1207",
-    "Name": "ADD ONS",
-    "Image": "",
+    "Id": "2589",
+    "Name": "Beef Burgers",
+    "Image": "/CategoryImages/111ef929-c5f9-4592-a681-bbbbefb98f6f.png",
     "Items": [
       {
-        "Id": 6806,
-        "CategoryId": "0",
+        "Id": 9491,
+        "CategoryId": "2589",
         "Code": "",
-        "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-        "DepartmentName": "KITCHEN",
+        "Name": "Classic",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/909bc640-ef7b-4a12-af3f-8e5a658f6932.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10349,
+            "Id": 13407,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 961,
+              "Name": "Ala Carte"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 80,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6807,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "BUFFALO SAUCE DIP",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10346,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 80,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6808,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "GARLIC MAYO DIP",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10347,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 80,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6809,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "MAKE IT MEAL",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10350,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 250,
+            "Price": 730,
             "ItemChoices": [
               {
-                "Id": 2888,
-                "Name": "French Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
+                "Id": 4599,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
                 "ItemOptions": [
                   {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
                   },
                   {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
                   }
                 ]
               },
               {
-                "Id": 2897,
-                "Name": "French Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
+                "Id": 4600,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
                 "ItemOptions": [
                   {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
                   },
                   {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
                   }
                 ]
               }
@@ -159,89 +102,976 @@
         ]
       },
       {
-        "Id": 6810,
-        "CategoryId": "0",
+        "Id": 9492,
+        "CategoryId": "2589",
         "Code": "",
-        "Name": "PERI PERI DIP",
-        "DepartmentName": "KITCHEN",
+        "Name": "Cheese Burger",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/9694b635-abee-402c-bcd5-457e696f73ca.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10345,
+            "Id": 13410,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 80,
+            "Price": 710,
+            "ItemChoices": [
+              {
+                "Id": 4601,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4602,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9493,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Builder Smash",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/612984e5-b565-4596-90e0-17ab24b2e7d5.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13413,
+            "Size": {
+              "Id": 961,
+              "Name": "Ala Carte"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 770,
+            "ItemChoices": [
+              {
+                "Id": 4603,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4604,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9494,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "The One With BBQ",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/dbf3e3f0-512b-4e55-b57c-c2ee949d9277.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13416,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 770,
+            "ItemChoices": [
+              {
+                "Id": 4605,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13469,
+                    "Name": "Cheese Sauce",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4606,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9495,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Magma Builder",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/9b225b74-bc33-4451-a245-38f4edf2f53b.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13419,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 770,
+            "ItemChoices": [
+              {
+                "Id": 4607,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4608,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9496,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Shroom Builder",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/062e2d07-d063-4dec-b4ad-2b287e4262e8.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13422,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 790,
+            "ItemChoices": [
+              {
+                "Id": 4609,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4610,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9497,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Cheddar Ranch",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/abb41581-2c33-4425-8060-2edb4e756bd7.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13425,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 830,
+            "ItemChoices": [
+              {
+                "Id": 4611,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4612,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9498,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Brisket Builder",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/769a7116-192f-4cb0-b96e-2d32a0fb4353.jpeg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13428,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 1190,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6811,
-        "CategoryId": "0",
+        "Id": 9499,
+        "CategoryId": "2589",
         "Code": "",
-        "Name": "SPICY RANCH DIP",
-        "DepartmentName": "KITCHEN",
+        "Name": "CheeseSteak Builder",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/f26f819b-5b9a-428b-8cd4-58c807084e91.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10344,
+            "Id": 13429,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 961,
+              "Name": "Ala Carte"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 80,
-            "ItemChoices": []
+            "Price": 1020,
+            "ItemChoices": [
+              {
+                "Id": 4613,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              },
+              {
+                "Id": 4614,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "Id": 6812,
-        "CategoryId": "0",
+        "Id": 9500,
+        "CategoryId": "2589",
         "Code": "",
-        "Name": "TIKKA EXTRAVAGANZA DIP",
-        "DepartmentName": "KITCHEN",
+        "Name": "Double Nirvana",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/004f05f0-caae-463e-9d43-921e4cb7cb32.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10348,
+            "Id": 13432,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 80,
-            "ItemChoices": []
+            "Price": 1050,
+            "ItemChoices": [
+              {
+                "Id": 4615,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              },
+              {
+                "Id": 4616,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13469,
+                    "Name": "Cheese Sauce",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9501,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Black Truffle Builder",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/2eb29710-7a76-4624-8381-f743bc625ece.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13433,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 1050,
+            "ItemChoices": [
+              {
+                "Id": 4617,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4618,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9502,
+        "CategoryId": "2589",
+        "Code": "",
+        "Name": "Tuscan Treasure",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/721ee2be-6ffe-4e4a-9cb7-0e948c182793.jpeg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13436,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 1290,
+            "ItemChoices": [
+              {
+                "Id": 4619,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4620,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -249,206 +1079,643 @@
   },
   {
     "Order": 0,
-    "Id": "1208",
-    "Name": "APPE-TEASERS",
-    "Image": "",
+    "Id": "2590",
+    "Name": "Chicken Sandos",
+    "Image": "/CategoryImages/fac3ff53-4d10-42f8-99c5-6d3a85819f30.png",
     "Items": [
       {
-        "Id": 6813,
-        "CategoryId": "0",
+        "Id": 9503,
+        "CategoryId": "2590",
         "Code": "",
-        "Name": "BEHARI SPIN ROLL",
-        "DepartmentName": "KITCHEN",
+        "Name": "Builder Style",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/d7248de5-e065-43c3-9645-9eecfded7b21.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10359,
+            "Id": 13437,
             "Size": {
-              "Id": 800,
-              "Name": "4ROLLS"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 490,
-            "ItemChoices": []
+            "Price": 770,
+            "ItemChoices": [
+              {
+                "Id": 4621,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4622,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "Id": 6814,
-        "CategoryId": "0",
+        "Id": 9504,
+        "CategoryId": "2590",
         "Code": "",
-        "Name": "CALAZON CHUNKS",
-        "DepartmentName": "KITCHEN",
+        "Name": "Crispy Magma",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/558eafdb-0cf2-403e-9dc3-5a09ada75ce2.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10355,
+            "Id": 13440,
             "Size": {
-              "Id": 797,
-              "Name": "4 CHUNKS"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 850,
-            "ItemChoices": []
+            "Price": 790,
+            "ItemChoices": [
+              {
+                "Id": 4623,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4624,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "Id": 6815,
-        "CategoryId": "0",
+        "Id": 9505,
+        "CategoryId": "2590",
         "Code": "",
-        "Name": "CHEESE STICKS",
-        "DepartmentName": "KITCHEN",
+        "Name": "Hot Honey Mustard",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/8d0d52d2-a8fa-4cdb-a046-f93a1a2bfc6e.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10354,
+            "Id": 13446,
             "Size": {
-              "Id": 799,
-              "Name": "4 STICKS"
+              "Id": 961,
+              "Name": "Ala Carte"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 490,
-            "ItemChoices": []
+            "Price": 810,
+            "ItemChoices": [
+              {
+                "Id": 4625,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4626,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "Id": 6816,
-        "CategoryId": "0",
+        "Id": 9506,
+        "CategoryId": "2590",
         "Code": "",
-        "Name": "CHIPOTLE LOADED FRIES",
-        "DepartmentName": "KITCHEN",
+        "Name": "Truffle Chicken",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/0ffe0aed-f6fe-4729-9127-73305b78f69f.jpeg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10360,
+            "Id": 13449,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 961,
+              "Name": "Ala Carte"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 650,
-            "ItemChoices": []
+            "Price": 1030,
+            "ItemChoices": [
+              {
+                "Id": 4627,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4628,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       {
-        "Id": 6817,
-        "CategoryId": "0",
+        "Id": 9526,
+        "CategoryId": "2590",
         "Code": "",
-        "Name": "FLAMING WINGS",
-        "DepartmentName": "KITCHEN",
+        "Name": "Crispy Cheddar Ranch",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/b412c1f0-265a-4cf8-a12b-a8ab59feeba5.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10356,
+            "Id": 13443,
             "Size": {
-              "Id": 802,
-              "Name": "6 WINGS"
+              "Id": 961,
+              "Name": "Ala Carte"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 810,
+            "ItemChoices": [
+              {
+                "Id": 4629,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 150
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  }
+                ]
+              },
+              {
+                "Id": 4630,
+                "Name": "Upgrades",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  },
+                  {
+                    "Id": 13459,
+                    "Name": "Tenders & Drink Combo",
+                    "Price": 410
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Order": 0,
+    "Id": "2591",
+    "Name": "Fries",
+    "Image": "/CategoryImages/8c6ef78a-0da2-4932-96f6-9687709ed4ce.png",
+    "Items": [
+      {
+        "Id": 9507,
+        "CategoryId": "2591",
+        "Code": "",
+        "Name": "Plain Fries",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/e9abfab5-24f8-4006-a776-aaedd1ce1079.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13452,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
             },
             "Price": 450,
             "ItemChoices": []
-          },
-          {
-            "Id": 10357,
-            "Size": {
-              "Id": 792,
-              "Name": "12 WINGS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 880,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10385,
-            "Size": {
-              "Id": 789,
-              "Name": "1 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 0,
-            "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6818,
-        "CategoryId": "0",
+        "Id": 9508,
+        "CategoryId": "2591",
         "Code": "",
-        "Name": "MALAI BOTI SPIC ROLL",
-        "DepartmentName": "KITCHEN",
+        "Name": "Cheese Fries",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/51737874-3e2e-419b-9896-7fb6db9b5f41.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10358,
+            "Id": 13453,
             "Size": {
-              "Id": 798,
-              "Name": "4 ROLLS"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 490,
+            "Price": 610,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9509,
+        "CategoryId": "2591",
+        "Code": "",
+        "Name": "Chicken Tender Fries",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/45f4c8a2-7ed9-4e61-85c8-81421c310138.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13454,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 750,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9510,
+        "CategoryId": "2591",
+        "Code": "",
+        "Name": "Hot Honey Tender Fries",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/0cb2b53f-06fd-4d0d-aaa2-9c9be863fd8f.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13455,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 790,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9511,
+        "CategoryId": "2591",
+        "Code": "",
+        "Name": "Cheese Burger Fries",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/35ebf11e-e04c-4aec-8e09-046bf9b12a65.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13456,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 790,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9512,
+        "CategoryId": "2591",
+        "Code": "",
+        "Name": "Shroom Cheese Fries",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/6c143dab-bd79-45f0-b916-ff6ad95564ed.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13457,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 890,
             "ItemChoices": []
           }
         ]
@@ -457,486 +1724,477 @@
   },
   {
     "Order": 0,
-    "Id": "1209",
-    "Name": "BEEF FLAVORS",
-    "Image": "",
+    "Id": "2592",
+    "Name": "Upgrades",
+    "Image": "/CategoryImages/6a028219-f605-45ef-b969-2d75e8694d31.png",
     "Items": [
       {
-        "Id": 6819,
-        "CategoryId": "0",
+        "Id": 9513,
+        "CategoryId": "2592",
         "Code": "",
-        "Name": "HOT & SPICY",
-        "DepartmentName": "PIZZA",
+        "Name": "Fries & Drink Combo",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/86bea8e8-025a-49d0-8e05-132b295a4c86.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10324,
+            "Id": 13458,
             "Size": {
-              "Id": 803,
-              "Name": "6\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 590,
-            "ItemChoices": []
-          },
+            "Price": 350,
+            "ItemChoices": [
+              {
+                "Id": 4433,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9514,
+        "CategoryId": "2592",
+        "Code": "",
+        "Name": "Tenders & Drink Combo",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/a42830be-0e8c-46f9-9e0b-9890fee75166.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
           {
-            "Id": 10325,
+            "Id": 13459,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 990,
-            "ItemChoices": []
-          },
+            "Price": 410,
+            "ItemChoices": [
+              {
+                "Id": 4434,
+                "Name": "Choose your Drink",
+                "Quantity": 1,
+                "MaxChoice": 1,
+                "ItemOptions": [
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13465,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13467,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13467,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13467,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  }
+                ]
+              },
+              {
+                "Id": 4435,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Order": 0,
+    "Id": "2593",
+    "Name": "Sides ",
+    "Image": "/CategoryImages/4b993caa-7055-4bb3-ad9c-d66758f9366e.png",
+    "Items": [
+      {
+        "Id": 9515,
+        "CategoryId": "2593",
+        "Code": "",
+        "Name": "Chicken Tender Strips",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/b705c66a-f491-4930-8e65-a584a78ac2a1.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
           {
-            "Id": 10326,
+            "Id": 13460,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 990,
-            "ItemChoices": []
-          },
+            "Price": 690,
+            "ItemChoices": [
+              {
+                "Id": 4436,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": 9516,
+        "CategoryId": "2593",
+        "Code": "",
+        "Name": "Stacked Nachos",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/0e57bcc7-74b8-4f47-88ee-7b00815401a0.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
           {
-            "Id": 10327,
+            "Id": 13461,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 1200,
-            "ItemChoices": []
-          },
+            "Price": 890,
+            "ItemChoices": [
+              {
+                "Id": 4437,
+                "Name": "Add Ons (optional)",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13473,
+                    "Name": "Chicken Fillet",
+                    "Price": 300
+                  },
+                  {
+                    "Id": 13472,
+                    "Name": "Extra American Cheese",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13468,
+                    "Name": "Large Dip",
+                    "Price": 120
+                  },
+                  {
+                    "Id": 13471,
+                    "Name": "Sauteed Mushrooms",
+                    "Price": 200
+                  },
+                  {
+                    "Id": 13470,
+                    "Name": "Small Plain Fries",
+                    "Price": 250
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  },
+                  {
+                    "Id": 13476,
+                    "Name": "Beef Bacon",
+                    "Price": 270
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Order": 0,
+    "Id": "2594",
+    "Name": "Drinks",
+    "Image": "/CategoryImages/3f51229c-d11c-49f6-b9ff-46f58a5cda66.png",
+    "Items": [
+      {
+        "Id": 9517,
+        "CategoryId": "2594",
+        "Code": "",
+        "Name": "Water",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "/ProductImages/8531a068-f13a-45e7-98ec-bb58b33a511c.jpg",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
           {
-            "Id": 10328,
+            "Id": 13462,
             "Size": {
-              "Id": 793,
-              "Name": "12\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10329,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10330,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10331,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
+            "Price": 100,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6820,
-        "CategoryId": "0",
+        "Id": 9518,
+        "CategoryId": "2594",
         "Code": "",
-        "Name": "MEAT LOVERS",
-        "DepartmentName": "PIZZA",
+        "Name": "Soft Drink Of Choice",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/c2b2dcc9-90d7-4f0e-a7e3-7286c7cc4164.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10316,
+            "Id": 13463,
             "Size": {
-              "Id": 803,
-              "Name": "6\""
+              "Id": 964,
+              "Name": "7up"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 590,
+            "Price": 150,
             "ItemChoices": []
           },
           {
-            "Id": 10317,
+            "Id": 13464,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 967,
+              "Name": "Diet 7up"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 990,
+            "Price": 150,
             "ItemChoices": []
           },
           {
-            "Id": 10318,
+            "Id": 13465,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 965,
+              "Name": "Pepsi"
             },
             "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 990,
+            "Price": 150,
             "ItemChoices": []
           },
           {
-            "Id": 10319,
+            "Id": 13466,
             "Size": {
-              "Id": 804,
-              "Name": "9\""
+              "Id": 968,
+              "Name": "Diet Pepsi"
             },
             "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 1200,
+            "Price": 150,
             "ItemChoices": []
           },
           {
-            "Id": 10320,
+            "Id": 13467,
             "Size": {
-              "Id": 793,
-              "Name": "12\""
+              "Id": 966,
+              "Name": "Marinda"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10321,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10322,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10323,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6821,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "PEPPERONI",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10308,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10309,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10310,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10311,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10312,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10313,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10314,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10315,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6822,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "SUPER SUPREME",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10332,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10333,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10334,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10335,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10336,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10337,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10338,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10339,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
+            "Price": 150,
             "ItemChoices": []
           }
         ]
@@ -945,1304 +2203,178 @@
   },
   {
     "Order": 0,
-    "Id": "1210",
-    "Name": "BURGERS",
-    "Image": "",
+    "Id": "2595",
+    "Name": "Add Ons",
+    "Image": "/CategoryImages/0587bf6f-f2fc-46f8-bd30-228511d8e44b.png",
     "Items": [
       {
-        "Id": 6823,
-        "CategoryId": "0",
+        "Id": 9519,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "CISPER BURGER",
-        "DepartmentName": "KITCHEN",
+        "Name": "Large Dip",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/40b8ae9a-3566-4178-b5cf-6209348456d6.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10364,
+            "Id": 13468,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 450,
+            "Price": 150,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6824,
-        "CategoryId": "0",
+        "Id": 9520,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "MIGHTY CISPER SUPREME",
-        "DepartmentName": "KITCHEN",
+        "Name": "Cheese Sauce",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/a83a7710-aebf-4b10-a958-542cddbd7437.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10365,
+            "Id": 13469,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 630,
+            "Price": 200,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6825,
-        "CategoryId": "0",
+        "Id": 9521,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "REGGY PATTY",
-        "DepartmentName": "KITCHEN",
+        "Name": "Small Plain Fries",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "/ProductImages/924ecdd0-8d8f-4ada-a969-d3bf3956dadb.jpg",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10363,
+            "Id": 13470,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 290,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1211",
-    "Name": "CHICKEN SPECIALS",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6826,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "AFGHANI",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10163,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10164,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10165,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10166,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10167,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10168,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10169,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10170,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
+            "Price": 250,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6827,
-        "CategoryId": "0",
+        "Id": 9522,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "BEHARI CHICKEN",
-        "DepartmentName": "KITCHEN",
+        "Name": "Sauteed Mushrooms",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10171,
+            "Id": 13471,
             "Size": {
-              "Id": 803,
-              "Name": "6\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10172,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10173,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10174,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10175,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10176,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10177,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10178,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
+            "Price": 250,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6828,
-        "CategoryId": "0",
+        "Id": 9523,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "CHICKEN SUPREME",
-        "DepartmentName": "KITCHEN",
+        "Name": "Extra American Cheese",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10179,
+            "Id": 13472,
             "Size": {
-              "Id": 803,
-              "Name": "6\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10180,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10181,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10182,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10183,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10184,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10185,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10186,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10203,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10204,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10205,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10206,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10207,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10208,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10209,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10210,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
+            "Price": 150,
             "ItemChoices": []
           }
         ]
       },
       {
-        "Id": 6829,
-        "CategoryId": "0",
+        "Id": 9524,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "CHICKEN TIKKA",
-        "DepartmentName": "KITCHEN",
+        "Name": "Chicken Fillet",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10147,
+            "Id": 13473,
             "Size": {
-              "Id": 803,
-              "Name": "6\""
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10148,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10149,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10150,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10151,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10152,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10153,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10154,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6830,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "EURO FUSION",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10187,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10188,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10189,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10190,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10191,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10192,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10193,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10194,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10211,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10212,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10213,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10214,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10215,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10216,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10217,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10387,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6831,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "FAJITA SICILIAN",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10155,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10156,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10157,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10158,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10159,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10160,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10161,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10162,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6832,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "FAJITA SUPREME",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10195,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10196,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10197,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10198,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10199,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10200,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10201,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10202,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6833,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "TIKKA SUPREME",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10220,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10221,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10222,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10223,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10224,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10225,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10226,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10227,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1212",
-    "Name": "CRISPY CHICKEN",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6834,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CHICKEN NUGGETS",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10374,
-            "Size": {
-              "Id": 801,
-              "Name": "5 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
             "Price": 300,
             "ItemChoices": []
@@ -2250,2962 +2382,274 @@
         ]
       },
       {
-        "Id": 6835,
-        "CategoryId": "0",
+        "Id": 9525,
+        "CategoryId": "2595",
         "Code": "",
-        "Name": "CRISPY FRIES",
-        "DepartmentName": "KITCHEN",
+        "Name": "Beef Patty",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10373,
+            "Id": 13474,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 310,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9527,
+        "CategoryId": "2595",
+        "Code": "",
+        "Name": "Potato Bun",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13475,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 150,
+            "ItemChoices": []
+          },
+          {
+            "Id": 16319,
+            "Size": {
+              "Id": 1125,
+              "Name": "Pcs"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
+            },
+            "Price": 180,
+            "ItemChoices": []
+          }
+        ]
+      },
+      {
+        "Id": 9528,
+        "CategoryId": "2595",
+        "Code": "",
+        "Name": "Beef Bacon",
+        "DepartmentName": "430",
+        "Price": 0,
+        "TaxAmount": 0,
+        "Quantity": 0,
+        "Image": "",
+        "Comment": "",
+        "IsKot": false,
+        "ItemFOC": false,
+        "Variations": [
+          {
+            "Id": 13476,
+            "Size": {
+              "Id": 960,
+              "Name": "-"
+            },
+            "Flavour": {
+              "Id": 609,
+              "Name": "-"
             },
             "Price": 270,
             "ItemChoices": []
           }
         ]
-      },
-      {
-        "Id": 6836,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CRISPY WINGS",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10370,
-            "Size": {
-              "Id": 791,
-              "Name": "10 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10386,
-            "Size": {
-              "Id": 789,
-              "Name": "1 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 0,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6837,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "VALUE HOT FRIED CRISPY CHICKEN",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10371,
-            "Size": {
-              "Id": 789,
-              "Name": "1 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 220,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10372,
-            "Size": {
-              "Id": 795,
-              "Name": "3 PCS"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 660,
-            "ItemChoices": []
-          }
-        ]
       }
     ]
   },
   {
     "Order": 0,
-    "Id": "1213",
-    "Name": "DRINKS",
+    "Id": "3858",
+    "Name": "test samad",
     "Image": "",
-    "Items": [
-      {
-        "Id": 6838,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "COLD DRINKS",
-        "DepartmentName": "BAR",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10351,
-            "Size": {
-              "Id": 796,
-              "Name": "345 ML"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10352,
-            "Size": {
-              "Id": 788,
-              "Name": "1 LTR"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10388,
-            "Size": {
-              "Id": 808,
-              "Name": "1.5 LTR"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 0,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6839,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "JUICE",
-        "DepartmentName": "BAR",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10353,
-            "Size": {
-              "Id": 790,
-              "Name": "1 PKT"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 0,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
+    "Items": []
   },
   {
     "Order": 0,
-    "Id": "1214",
-    "Name": "FAVORITE KIDS MEAL",
+    "Id": "3865",
+    "Name": "Deals",
     "Image": "",
     "Items": [
       {
-        "Id": 6840,
-        "CategoryId": "0",
+        "Id": 11932,
+        "CategoryId": "3865",
         "Code": "",
-        "Name": "KIDS MEAL 04",
-        "DepartmentName": "KITCHEN",
+        "Name": "Deal 1",
+        "DepartmentName": "430",
         "Price": 0,
         "TaxAmount": 0,
         "Quantity": 0,
-        "Image": "N/A",
+        "Image": "",
         "Comment": "",
         "IsKot": false,
         "ItemFOC": false,
         "Variations": [
           {
-            "Id": 10375,
+            "Id": 16323,
             "Size": {
-              "Id": 806,
-              "Name": "REG"
+              "Id": 960,
+              "Name": "-"
             },
             "Flavour": {
-              "Id": 570,
-              "Name": "STD"
+              "Id": 609,
+              "Name": "-"
             },
-            "Price": 450,
+            "Price": 1000,
             "ItemChoices": [
               {
-                "Id": 2898,
-                "Name": "Reggy Patty Burger",
+                "Id": 5087,
+                "Name": "Choose 1 - 1",
                 "Quantity": 1,
                 "MaxChoice": 1,
                 "ItemOptions": [
                   {
-                    "Id": 10363,
-                    "Name": "REGGY PATTY",
+                    "Id": 13464,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13464,
+                    "Name": "Soft Drink Of Choice",
                     "Price": 0
                   }
                 ]
               },
               {
-                "Id": 2899,
-                "Name": "Regular Crispy Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2900,
-                "Name": "Small Juice",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10353,
-                    "Name": "JUICE",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6841,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "KIDS MEAL 05",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10376,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 450,
-            "ItemChoices": [
-              {
-                "Id": 2901,
-                "Name": "Nuggets",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10374,
-                    "Name": "CHICKEN NUGGETS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2902,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2903,
-                "Name": "Juice",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10353,
-                    "Name": "JUICE",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1215",
-    "Name": "PASTA'S CORNER",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6842,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "FETTUCCINE ALFREDO PASTA",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10369,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 700,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6843,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "MINCED BEEF LASGNA",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10368,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 700,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1216",
-    "Name": "PIZZA COMBOS",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6844,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 001",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10380,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 750,
-            "ItemChoices": [
-              {
-                "Id": 2918,
-                "Name": "Small Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10163,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10171,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10228,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10260,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10179,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10147,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10236,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10292,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10316,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10308,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10332,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10220,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10236,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10244,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10211,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10155,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10195,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10324,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10276,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2919,
-                "Name": "Small Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10163,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10171,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10228,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10260,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10179,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10147,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10276,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10236,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10244,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10211,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10155,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10195,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10324,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10236,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10292,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10316,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10308,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10332,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10220,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2920,
-                "Name": "Wings",
-                "Quantity": 4,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10385,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10386,
-                    "Name": "CRISPY WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2921,
-                "Name": "Drinks",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6845,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 002",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10381,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1300,
-            "ItemChoices": [
-              {
-                "Id": 2922,
-                "Name": "Regular Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10164,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10172,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10229,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10262,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10180,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10149,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10294,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10317,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10309,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10333,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10221,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10237,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10246,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10212,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10156,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10196,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10325,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10278,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2923,
-                "Name": "Wings",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10385,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10386,
-                    "Name": "CRISPY WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2924,
-                "Name": "Drinks",
+                "Id": 5088,
+                "Name": "Choose 2 - 2",
                 "Quantity": 2,
-                "MaxChoice": 1,
+                "MaxChoice": 2,
                 "ItemOptions": [
                   {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
+                    "Id": 13467,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  }
+                ]
+              },
+              {
+                "Id": 5089,
+                "Name": "Choose 0 - 0",
+                "Quantity": 0,
+                "MaxChoice": 0,
+                "ItemOptions": [
+                  {
+                    "Id": 13463,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13462,
+                    "Name": "Water",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13463,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13464,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13463,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13463,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  }
+                ]
+              },
+              {
+                "Id": 5090,
+                "Name": "Choose 1 - 4",
+                "Quantity": 1,
+                "MaxChoice": 4,
+                "ItemOptions": [
+                  {
+                    "Id": 13466,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13467,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13465,
+                    "Name": "Soft Drink Of Choice",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13462,
+                    "Name": "Water",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13462,
+                    "Name": "Water",
+                    "Price": 0
+                  },
+                  {
+                    "Id": 13462,
+                    "Name": "Water",
                     "Price": 0
                   }
                 ]
               }
             ]
-          }
-        ]
-      },
-      {
-        "Id": 6846,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 003",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10382,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1700,
-            "ItemChoices": [
-              {
-                "Id": 2925,
-                "Name": "Large Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10167,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10175,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10232,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10268,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10183,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10151,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10300,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10320,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10312,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10336,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10224,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10240,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10252,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10215,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10159,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10199,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10328,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10284,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2926,
-                "Name": "Wings",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10385,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10386,
-                    "Name": "CRISPY WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2927,
-                "Name": "Signature Dips",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10344,
-                    "Name": "SPICY RANCH DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10345,
-                    "Name": "PERI PERI DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10346,
-                    "Name": "BUFFALO SAUCE DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10347,
-                    "Name": "GARLIC MAYO DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10348,
-                    "Name": "TIKKA EXTRAVAGANZA DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10349,
-                    "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2928,
-                "Name": "Drinks",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10352,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6847,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 004",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10383,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 2700,
-            "ItemChoices": [
-              {
-                "Id": 2929,
-                "Name": "Large Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10167,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10175,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10232,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10268,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10183,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10151,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10300,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10320,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10312,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10336,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10224,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10240,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10252,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10215,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10159,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10199,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10328,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10284,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2930,
-                "Name": "Regular Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10164,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10172,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10229,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10262,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10180,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10148,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10317,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10309,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10333,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10221,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10237,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10246,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10156,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10196,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10325,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10278,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10294,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2931,
-                "Name": "WINGS",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10385,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10386,
-                    "Name": "CRISPY WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2932,
-                "Name": "DIP",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10344,
-                    "Name": "SPICY RANCH DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10345,
-                    "Name": "PERI PERI DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10346,
-                    "Name": "BUFFALO SAUCE DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10347,
-                    "Name": "GARLIC MAYO DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10348,
-                    "Name": "TIKKA EXTRAVAGANZA DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10349,
-                    "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2933,
-                "Name": "Drinks",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10388,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6848,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 005",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10384,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 3400,
-            "ItemChoices": [
-              {
-                "Id": 2934,
-                "Name": "Large Pizza",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10167,
-                    "Name": "AFGHANI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10175,
-                    "Name": "BEHARI CHICKEN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10232,
-                    "Name": "CHEESE LOVER",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10268,
-                    "Name": "CHICKEN DELUXE",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10183,
-                    "Name": "CHICKEN SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10151,
-                    "Name": "CHICKEN TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10300,
-                    "Name": "MALAI SOFT",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10320,
-                    "Name": "MEAT LOVERS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10312,
-                    "Name": "PEPPERONI",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10336,
-                    "Name": "SUPER SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10224,
-                    "Name": "TIKKA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10240,
-                    "Name": "VEGGIE SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10252,
-                    "Name": "CREAMY TIKKA",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10215,
-                    "Name": "EURO FUSION",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10159,
-                    "Name": "FAJITA SICILIAN",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10199,
-                    "Name": "FAJITA SUPREME",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10328,
-                    "Name": "HOT & SPICY",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10284,
-                    "Name": "KABAB DELIGHT",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2935,
-                "Name": "Wings",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10385,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10386,
-                    "Name": "CRISPY WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2936,
-                "Name": "Dips",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10344,
-                    "Name": "SPICY RANCH DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10345,
-                    "Name": "PERI PERI DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10346,
-                    "Name": "BUFFALO SAUCE DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10347,
-                    "Name": "GARLIC MAYO DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10348,
-                    "Name": "TIKKA EXTRAVAGANZA DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10349,
-                    "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2937,
-                "Name": "Drinks",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10388,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1217",
-    "Name": "PLATTER",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6849,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "SPECIAL MIX PLATTER",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10366,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 900,
-            "ItemChoices": [
-              {
-                "Id": 2889,
-                "Name": "Spin Roll",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10359,
-                    "Name": "BEHARI SPIN ROLL",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2890,
-                "Name": "Oven Baked Wings",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10356,
-                    "Name": "FLAMING WINGS",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2891,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2892,
-                "Name": "Dips",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10346,
-                    "Name": "BUFFALO SAUCE DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10344,
-                    "Name": "SPICY RANCH DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10345,
-                    "Name": "PERI PERI DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10347,
-                    "Name": "GARLIC MAYO DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10348,
-                    "Name": "TIKKA EXTRAVAGANZA DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10349,
-                    "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6850,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "SPIN ROLLS MIX PLATTER",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10367,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 900,
-            "ItemChoices": [
-              {
-                "Id": 2893,
-                "Name": "Behari Spin Roll",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10359,
-                    "Name": "BEHARI SPIN ROLL",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2894,
-                "Name": "Malai Boti Spin Roll",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10358,
-                    "Name": "MALAI BOTI SPIC ROLL",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2895,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2896,
-                "Name": "Dips",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10344,
-                    "Name": "SPICY RANCH DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10345,
-                    "Name": "PERI PERI DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10346,
-                    "Name": "BUFFALO SAUCE DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10347,
-                    "Name": "GARLIC MAYO DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10348,
-                    "Name": "TIKKA EXTRAVAGANZA DIP",
-                    "Price": 0
-                  },
-                  {
-                    "Id": 10349,
-                    "Name": "ABBOTTS'S SPECIAL SAUCE DIP",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1218",
-    "Name": "SANDWICHES",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6851,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "MEXICAN SANDWICH",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10361,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 650,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6852,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "PIZZA STACKER",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10362,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 700,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1219",
-    "Name": "SPECIAL",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6853,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CAESER SALAD",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10343,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 750,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6854,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DELICIOUS CROWNZA",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10340,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10341,
-            "Size": {
-              "Id": 805,
-              "Name": "LARGE"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10342,
-            "Size": {
-              "Id": 807,
-              "Name": "X-LARGE"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1850,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1220",
-    "Name": "ULTIMATE FLAVORS",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6855,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "EURO FUSIONnnnn",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10218,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6856,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CHICKEN DELUXE",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10260,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10262,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10264,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10266,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10268,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10270,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10272,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10274,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6857,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CREAMY TIKKA",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10244,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10246,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10248,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10250,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10252,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10254,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10256,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10258,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6858,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "KABAB DELIGHT",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10276,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10278,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10280,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10282,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10284,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10286,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10288,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10290,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6859,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "MALAI SOFT",
-        "DepartmentName": "PIZZA",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10292,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10294,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10296,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 990,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10298,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1200,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10300,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10302,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10304,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1650,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10306,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1790,
-            "ItemChoices": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1222",
-    "Name": "VALUE FRIED DEALS",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6865,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 01",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10377,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1050,
-            "ItemChoices": [
-              {
-                "Id": 2904,
-                "Name": "Cisper Burgers",
-                "Quantity": 2,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10364,
-                    "Name": "CISPER BURGER",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2905,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2906,
-                "Name": "ColeSlaw",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10343,
-                    "Name": "CAESER SALAD",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2907,
-                "Name": "Drinks",
-                "Quantity": 2,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6866,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 02",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10378,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1400,
-            "ItemChoices": [
-              {
-                "Id": 2908,
-                "Name": "Cisper Burgers",
-                "Quantity": 2,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10364,
-                    "Name": "CISPER BURGER",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2909,
-                "Name": "Crispy Chicken",
-                "Quantity": 2,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10371,
-                    "Name": "VALUE HOT FRIED CRISPY CHICKEN",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2910,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2911,
-                "Name": "ColeSlaw",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10343,
-                    "Name": "CAESER SALAD",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2912,
-                "Name": "Drinks",
-                "Quantity": 2,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10351,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "Id": 6867,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "DEAL 03",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10379,
-            "Size": {
-              "Id": 806,
-              "Name": "REG"
-            },
-            "Flavour": {
-              "Id": 570,
-              "Name": "STD"
-            },
-            "Price": 1800,
-            "ItemChoices": [
-              {
-                "Id": 2913,
-                "Name": "Cisper Burgers",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10364,
-                    "Name": "CISPER BURGER",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2914,
-                "Name": "Crispy Chicekn",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10372,
-                    "Name": "VALUE HOT FRIED CRISPY CHICKEN",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2915,
-                "Name": "Fries",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10373,
-                    "Name": "CRISPY FRIES",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2916,
-                "Name": "ColeSlaw",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10343,
-                    "Name": "CAESER SALAD",
-                    "Price": 0
-                  }
-                ]
-              },
-              {
-                "Id": 2917,
-                "Name": "Drink",
-                "Quantity": 1,
-                "MaxChoice": 1,
-                "ItemOptions": [
-                  {
-                    "Id": 10352,
-                    "Name": "COLD DRINKS",
-                    "Price": 0
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "Order": 0,
-    "Id": "1223",
-    "Name": "VEGGIE TREATS",
-    "Image": "",
-    "Items": [
-      {
-        "Id": 6868,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "CHEESE LOVER",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10228,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10229,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10230,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10231,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10232,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10233,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10234,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10235,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
-          }
-        ]
-      },
-      {
-        "Id": 6869,
-        "CategoryId": "0",
-        "Code": "",
-        "Name": "VEGGIE SUPREME",
-        "DepartmentName": "KITCHEN",
-        "Price": 0,
-        "TaxAmount": 0,
-        "Quantity": 0,
-        "Image": "N/A",
-        "Comment": "",
-        "IsKot": false,
-        "ItemFOC": false,
-        "Variations": [
-          {
-            "Id": 10236,
-            "Size": {
-              "Id": 803,
-              "Name": "6\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 490,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10237,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10238,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 890,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10239,
-            "Size": {
-              "Id": 804,
-              "Name": "9\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1100,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10240,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10241,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 572,
-              "Name": "THIN CRUST"
-            },
-            "Price": 1390,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10242,
-            "Size": {
-              "Id": 793,
-              "Name": "12\""
-            },
-            "Flavour": {
-              "Id": 571,
-              "Name": "STUFFED CRUST"
-            },
-            "Price": 1550,
-            "ItemChoices": []
-          },
-          {
-            "Id": 10243,
-            "Size": {
-              "Id": 794,
-              "Name": "15\""
-            },
-            "Flavour": {
-              "Id": 569,
-              "Name": "DEEP PAN"
-            },
-            "Price": 1590,
-            "ItemChoices": []
           }
         ]
       }

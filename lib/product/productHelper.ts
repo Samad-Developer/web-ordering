@@ -53,13 +53,15 @@ export function calculatePrice(
 // VALIDATION
 // ============================================================================
 
+// lib/product/productHelper.ts
+
 export function validateCustomization(
   variation: ProductVariation | null,
   customization: ProductCustomization
 ): { errors: CustomizationError[]; isValid: boolean } {
   const errors: CustomizationError[] = [];
 
-  // MUST select size first
+  // Check size selection
   if (!customization.selectedSizeId) {
     errors.push({
       groupId: -1,
@@ -68,7 +70,7 @@ export function validateCustomization(
     return { errors, isValid: false };
   }
 
-  // Flavor is required (should be auto-selected if only one)
+  // Check flavor selection
   if (!customization.selectedFlavorId) {
     errors.push({
       groupId: -2,
@@ -85,36 +87,40 @@ export function validateCustomization(
     return { errors, isValid: false };
   }
 
-  // Validate addons...
+  // Validate addon groups - ONLY CHECK MaxChoice
   if (variation.ItemChoices) {
     for (const group of variation.ItemChoices) {
       const selectedGroup = customization.selectedAddons[group.Id];
       
+      // MaxChoice = 0 → Optional (skip validation)
+      if (group.MaxChoice === 0) {
+        continue;
+      }
+      
+      // MaxChoice > 0 → Required selection
       if (!selectedGroup) {
         errors.push({
           groupId: group.Id,
-          message: `Please select ${group.Quantity} ${group.Name}`,
+          message: `Please select ${group.Name}`,
         });
         continue;
       }
 
-      const totalSelected = selectedGroup.selectedOptions.reduce(
-        (sum, opt) => sum + opt.quantity,
-        0
-      );
+      // Count how many DIFFERENT options are selected
+      const totalSelectedOptions = selectedGroup.selectedOptions.length;
 
-      if (totalSelected < group.Quantity) {
-        const remaining = group.Quantity - totalSelected;
+      // Validate against MaxChoice
+      if (totalSelectedOptions < 1) {
         errors.push({
           groupId: group.Id,
-          message: `Please select ${remaining} more ${group.Name}`,
+          message: `Please select at least 1 ${group.Name}`,
         });
       }
 
-      if (totalSelected > group.Quantity) {
+      if (totalSelectedOptions > group.MaxChoice) {
         errors.push({
           groupId: group.Id,
-          message: `Too many ${group.Name} selected`,
+          message: `You can select maximum ${group.MaxChoice} ${group.Name}`,
         });
       }
     }
@@ -125,7 +131,6 @@ export function validateCustomization(
     isValid: errors.length === 0,
   };
 }
-
 // ============================================================================
 // DISPLAY & FORMATTING
 // ============================================================================

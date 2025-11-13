@@ -20,8 +20,8 @@ export interface ProductCustomization {
 }
 
 export interface SelectedAddonGroup {
-  groupId: number;           // AddonGroup.Id (renamed from choiceId)
-  groupName: string;         // For display (e.g., "Burgers", "Drinks")
+  choiceId: number;           // AddonGroup.Id (renamed from choiceId)
+  choiceName: string;         // For display (e.g., "Burgers", "Drinks")
   requiredQuantity: number;  // How many must be selected
   selectedOptions: SelectedAddonOption[]; // What user selected
 }

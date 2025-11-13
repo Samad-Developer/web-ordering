@@ -1,45 +1,60 @@
 import React from 'react';
 import { ItemChoice } from '@/types/menu.types';
-import { AddonOption } from './AddonOption';
 import { useProductModal } from '../../ProductModalContext';
+import { AddonOption } from './AddonOption';
 
-interface ChoiceSelectorProps {
+interface AddonSelectorProps {
   choice: ItemChoice;
 }
 
-export function AddonWrapper({ choice }: ChoiceSelectorProps) {
+export function AddonWrapper({ choice }: AddonSelectorProps) {
   const { customization } = useProductModal();
   
-  const selectedChoice = customization.selectedAddons[choice.Id];
+  const selectedGroup = customization.selectedAddons[choice.Id];
   
-  // Calculate total selected quantity
-  const totalSelected = selectedChoice?.selectedOptions.reduce(
-    (sum, opt) => sum + opt.quantity,
-    0
-  ) || 0;
+  // Count how many DIFFERENT options are selected
+  const selectedOptionsCount = selectedGroup?.selectedOptions?.reduce(
+          (total, option) => total + option.quantity, 0
+        ) || 0;
 
-  // Determine selection mode
-  const isMultiSelect = choice.Quantity > 1;
-  const canAddMore = totalSelected < choice.Quantity;
+  // Determine if optional
+  const isOptional = choice.MaxChoice === 0;
+  
+  // For multi-select (MaxChoice > 1 or optional)
+  const isMultiSelect = choice.MaxChoice !== 1;
+
+  // Calculate if user can add more DIFFERENT options
+  let canAddMore = true;
+  
+  if (!isOptional && choice.MaxChoice > 0) {
+    canAddMore = selectedOptionsCount < choice.MaxChoice;
+  }
 
   return (
     <div className="space-y-3">
-      {/* Progress Indicator */}
-      {isMultiSelect && (
+      {/* Progress Indicator - Only for MaxChoice > 1 */}
+      {choice.MaxChoice > 1 && !isOptional && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">
-            Selected: {totalSelected} / {choice.Quantity}
+            Selected: {selectedOptionsCount} / {choice.MaxChoice}
           </span>
-          {totalSelected === choice.Quantity && (
+          {selectedOptionsCount === choice.MaxChoice && (
             <span className="text-green-600 font-medium">✓ Complete</span>
           )}
+        </div>
+      )}
+
+      {/* Optional Badge */}
+      {isOptional && (
+        <div className="text-xs text-gray-500 bg-gray-50 px-3 py-1 rounded-full inline-block">
+          Optional - Select as many as you like
         </div>
       )}
 
       {/* Options Grid */}
       <div className="grid grid-cols-1 gap-2">
         {choice.ItemOptions.map((option) => {
-          const selectedOption = selectedChoice?.selectedOptions.find(
+          const selectedOption = selectedGroup?.selectedOptions.find(
             opt => opt.optionId === option.Id
           );
           

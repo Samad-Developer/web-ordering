@@ -10,7 +10,9 @@ import { getUniqueFlavors, getUniqueSizes } from "@/lib/product/productHelper";
 import { FlavorWrapper } from "./flavors/FlavorsWrapper";
 
 const ProductModalBody = () => {
-  const { currentVariation, product } = useProductModal();
+  const { currentVariation, product, customization } = useProductModal();
+
+  console.log("Customization Data in ProductModalBody:", customization);
 
   const uniqueSizes = getUniqueSizes(product);
   const uniqueFlavors = getUniqueFlavors(product);
@@ -27,18 +29,18 @@ const ProductModalBody = () => {
 
       <div className="px-6 py-2">
         {/* Size Selection */}
-        {/* {uniqueSizes.length > 1 && ( */}
+        {uniqueSizes.length > 1 && (
         <ConfigurationSection title="Select Size" required={true}>
           <SizeWrapper />
         </ConfigurationSection>
-        {/* )} */}
+        )} 
 
         {/* Flavor Selection */}
-        {/* {uniqueFlavors.length > 1 && ( */}
+        {uniqueFlavors.length > 1 && ( 
         <ConfigurationSection title="Select Crust Type" required={true}>
           <FlavorWrapper />
         </ConfigurationSection>
-        {/* )}  */}
+         )}  
 
         {/* Item Choices */}
         {currentVariation && currentVariation.ItemChoices.length > 0 && (
@@ -47,9 +49,9 @@ const ProductModalBody = () => {
               <ConfigurationSection
                 key={choice.Id}
                 title={choice.Name}
-                required={true}
-                subtitle={`Select ${choice.Quantity} item${
-                  choice.Quantity > 1 ? "s" : ""
+                required={choice.MaxChoice > 0}
+                subtitle={`Select ${choice.MaxChoice} item${
+                  choice.MaxChoice > 1 ? "s" : ""
                 }`}
               >
                 <AddonWrapper choice={choice} />
