@@ -3,15 +3,18 @@ import { ShoppingCart } from 'lucide-react';
 import { useProductModal } from '../ProductModalContext';
 import { QuantityCounter } from './QuantityCounter';
 import { AddToCartButton } from './AddToCart';
-import { formatPrice } from '@/lib/product/productHelper';
 import { CartItem } from '@/types/product.types';
-import { getVariationDisplayName } from '@/lib/product/productHelper';
+import { toast } from "sonner"
+import { useAppDispatch } from '@/store/hooks';
+import { addToCart } from '@/store/slices/cartSlice';
+import { closeProductModal } from '@/store/slices/productModalSlice';
 
 interface ProductModalFooterProps {
   onAddToCart?: (cartItem: CartItem) => void;
 }
 
-export function ProductModalFooter () {
+export function ProductModalFooter() {
+  const dispatch = useAppDispatch();
   const {
     product,
     customization,
@@ -20,28 +23,36 @@ export function ProductModalFooter () {
     isValid,
   } = useProductModal();
 
+
   const handleAddToCart = () => {
-    if (!isValid || !currentVariation) return;
+    if (!isValid || !currentVariation) {
+      toast.error('Please complete your selection');
+      return;
+    }
 
-    const cartItem: CartItem = {
-      productId: product.Id,
-      productName: product.Name,
-      // variationId: currentVariation.Id,
-      variationName: getVariationDisplayName(currentVariation),
-      customization : customization,
-      // priceBreakdown,
-      size: currentVariation.Size.Name,
-      quantity: customization.quantity,
-      price: priceBreakdown.total,
-      image: product.Image,
-      specialInstructions: customization.specialInstructions,
-      timestamp: Date.now(),
-    };
+    // Dispatch to Redux
+    dispatch(
+      addToCart({
+        productId: product.Id,
+        productName: product.Name,
+        productImage: product.Image !== 'N/A' ? product.Image : '/placeholder-food.jpg',
+        variationId: currentVariation.Id,
+        sizeName: currentVariation.Size.Name,
+        flavorName: currentVariation.Flavour.Name,
+        customization,
+        priceBreakdown,
+        specialInstructions: customization.specialInstructions,
+      })
+    );
 
-    console.log('Adding to cart:', cartItem);
+    // Show success message
+    toast.success(`${product.Name} added to your cart!`);
 
-    // onAddToCart?.(cartItem);
+
+    // Close modal
+    dispatch(closeProductModal());
   };
+
 
   return (
     <div className="sticky bottom-0 z-10 bg-white border-t">

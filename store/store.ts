@@ -7,6 +7,13 @@ export const store = configureStore({
     cart: cartReducer,
     productModal: productModalReducer,
   },
+   middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore these action types
+        ignoredActions: ['cart/initializeCart'],
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

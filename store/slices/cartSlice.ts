@@ -1,102 +1,185 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartItem } from '@/types/product.types';
-
-interface CartState {
-  items: CartItem[];
-  isOpen: boolean;
-}
+import { CartItem, CartState } from '@/types/cart.types';
+import { 
+  generateCartItemId, 
+  findMatchingCartItem, 
+  areCustomizationsEqual 
+} from '@/lib/cart/cartComparison';
+import {
+  saveCartToLocalStorage,
+  loadCartFromLocalStorage,
+  clearCartFromLocalStorage,
+} from '@/lib/cart/cartHelpers';
+import { PriceBreakdown, ProductCustomization } from '@/types/customization.types';
 
 const initialState: CartState = {
   items: [],
-  isOpen: false,
+  isLoading: false,
+  lastUpdated: Date.now(),
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<CartItem>) => {
-      const existingItemIndex = state.items.findIndex(
-        (item) =>
-          item.productId === action.payload.productId &&
-          item.size === action.payload.size
+    // Initialize cart from localStorage
+    initializeCart: (state) => {
+      const savedItems = loadCartFromLocalStorage();
+      state.items = savedItems;
+      state.lastUpdated = Date.now();
+    },
+
+    // Add item to cart or increment if exists
+    addToCart: (
+      state,
+      action: PayloadAction<{
+        productId: number;
+        productName: string;
+        productImage: string;
+        variationId: number;
+        sizeName: string;
+        flavorName: string;
+        customization: ProductCustomization;
+        priceBreakdown: PriceBreakdown;
+        specialInstructions?: string;
+      }>
+    ) => {
+      const {
+        productId,
+        productName,
+        productImage,
+        variationId,
+        sizeName,
+        flavorName,
+        customization,
+        priceBreakdown,
+        specialInstructions,
+      } = action.payload;
+
+      // Check if exact same item exists
+      const existingItem = findMatchingCartItem(
+        state.items,
+        productId,
+        variationId,
+        customization
       );
 
-      if (existingItemIndex > -1) {
-        state.items[existingItemIndex].quantity += action.payload.quantity;
-      } else {
-        state.items.push(action.payload);
-      }
-    },
-    
-    updateQuantity: (
-      state,
-      action: PayloadAction<{ productId: number; size: string; quantity: number }>
-    ) => {
-      const { productId, size, quantity } = action.payload;
-      
-      if (quantity <= 0) {
-        state.items = state.items.filter(
-          (item) => !(item.productId === productId && item.size === size)
-        );
-      } else {
-        const itemIndex = state.items.findIndex(
-          (item) => item.productId === productId && item.size === size
-        );
+      if (existingItem) {
+        // Increment quantity of existing item
+        existingItem.customization.quantity += customization.quantity;
         
-        if (itemIndex > -1) {
-          state.items[itemIndex].quantity = quantity;
-        }
+        // Recalculate price
+        existingItem.priceBreakdown.total = existingItem.priceBreakdown.subtotal * existingItem.customization.quantity;
+      } else {
+        // Add new item
+        const newItem: CartItem = {
+          cartItemId: generateCartItemId(),
+          productId,
+          productName,
+          productImage,
+          variationId,
+          sizeName,
+          flavorName,
+          customization,
+          priceBreakdown,
+          specialInstructions,
+          addedAt: Date.now(),
+        };
+
+        state.items.push(newItem);
+      }
+
+      state.lastUpdated = Date.now();
+      saveCartToLocalStorage(state.items);
+    },
+
+    // Increment item quantity
+    incrementItem: (state, action: PayloadAction<string>) => {
+      const item = state.items.find((i) => i.cartItemId === action.payload);
+      
+      if (item) {
+        item.customization.quantity += 1;
+        item.priceBreakdown.total = 
+          item.priceBreakdown.subtotal * item.customization.quantity;
+        
+        state.lastUpdated = Date.now();
+        saveCartToLocalStorage(state.items);
       }
     },
-    
-    removeItem: (
-      state,
-      action: PayloadAction<{ productId: number; size: string }>
-    ) => {
-      const { productId, size } = action.payload;
-      state.items = state.items.filter(
-        (item) => !(item.productId === productId && item.size === size)
-      );
+
+    // Decrement item quantity
+    decrementItem: (state, action: PayloadAction<string>) => {
+      const item = state.items.find((i) => i.cartItemId === action.payload);
+      
+      if (item) {
+        if (item.customization.quantity > 1) {
+          item.customization.quantity -= 1;
+          item.priceBreakdown.total = 
+            item.priceBreakdown.subtotal * item.customization.quantity;
+        } else {
+          // Remove item if quantity becomes 0
+          state.items = state.items.filter((i) => i.cartItemId !== action.payload);
+        }
+        
+        state.lastUpdated = Date.now();
+        saveCartToLocalStorage(state.items);
+      }
     },
-    
+
+    // Remove item from cart
+    removeItem: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((i) => i.cartItemId !== action.payload);
+      state.lastUpdated = Date.now();
+      saveCartToLocalStorage(state.items);
+    },
+
+    // Update item quantity directly
+    updateItemQuantity: (
+      state,
+      action: PayloadAction<{ cartItemId: string; quantity: number }>
+    ) => {
+      const { cartItemId, quantity } = action.payload;
+      const item = state.items.find((i) => i.cartItemId === cartItemId);
+      
+      if (item) {
+        if (quantity > 0) {
+          item.customization.quantity = quantity;
+          item.priceBreakdown.total = 
+            item.priceBreakdown.subtotal * item.customization.quantity;
+        } else {
+          // Remove if quantity is 0
+          state.items = state.items.filter((i) => i.cartItemId !== cartItemId);
+        }
+        
+        state.lastUpdated = Date.now();
+        saveCartToLocalStorage(state.items);
+      }
+    },
+
+    // Clear entire cart
     clearCart: (state) => {
       state.items = [];
-    },
-    
-    toggleCart: (state) => {
-      state.isOpen = !state.isOpen;
-    },
-    
-    setCartOpen: (state, action: PayloadAction<boolean>) => {
-      state.isOpen = action.payload;
+      state.lastUpdated = Date.now();
+      clearCartFromLocalStorage();
     },
   },
 });
 
 export const {
-  addItem,
-  updateQuantity,
+  initializeCart,
+  addToCart,
+  incrementItem,
+  decrementItem,
   removeItem,
+  updateItemQuantity,
   clearCart,
-  toggleCart,
-  setCartOpen,
 } = cartSlice.actions;
+
+export default cartSlice.reducer;
 
 // Selectors
 export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
-export const selectCartIsOpen = (state: { cart: CartState }) => state.cart.isOpen;
-export const selectCartTotal = (state: { cart: CartState }) =>
-  state.cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
-export const selectCartItemsCount = (state: { cart: CartState }) =>
-  state.cart.items.reduce((count, item) => count + item.quantity, 0);
-export const selectCartItemQuantity = (
-  state: { cart: CartState },
-  productId: number,
-  size: string
-) =>
-  state.cart.items.find(
-    (item) => item.productId === productId && item.size === size
-  )?.quantity || 0;
-
-export default cartSlice.reducer;
+export const selectCartItemCount = (state: { cart: CartState }) =>
+  state.cart.items.reduce((sum, item) => sum + item.customization.quantity, 0);
+export const selectCartSubtotal = (state: { cart: CartState }) =>
+  state.cart.items.reduce((sum, item) => sum + item.priceBreakdown.total, 0);

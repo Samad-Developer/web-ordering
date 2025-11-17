@@ -26,7 +26,7 @@ export function AddToCartButton({
       disabled={disabled}
       size="lg"
       className={cn(
-        "flex-1 h-12 text-base font-semibold",
+        "flex-1 h-12 text-base font-semibold cursor-pointer",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}

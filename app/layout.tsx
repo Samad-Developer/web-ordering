@@ -6,6 +6,7 @@ import Footer1 from "@/components/shared/footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MenuProvider } from "@/contexts/MenuContext"
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
           <MenuProvider>
             <Header1 />
             {children}
+            <Toaster position="top-center" richColors/>
             <ProductModal/>
             <Footer1 />
           </MenuProvider>
