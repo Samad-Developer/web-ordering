@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import { useAppDispatch } from '@/store/hooks';
 import { addToCart } from '@/store/slices/cartSlice';
 import { closeProductModal } from '@/store/slices/productModalSlice';
+import { useRouter } from "next/navigation";
 
 interface ProductModalFooterProps {
   onAddToCart?: (cartItem: CartItem) => void;
@@ -15,6 +16,7 @@ interface ProductModalFooterProps {
 
 export function ProductModalFooter() {
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const {
     product,
     customization,
@@ -51,6 +53,7 @@ export function ProductModalFooter() {
 
     // Close modal
     dispatch(closeProductModal());
+    router.back();
   };
 
 

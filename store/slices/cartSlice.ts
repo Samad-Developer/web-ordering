@@ -15,6 +15,7 @@ import { PriceBreakdown, ProductCustomization } from '@/types/customization.type
 const initialState: CartState = {
   items: [],
   isLoading: false,
+  isCartOpen: false,
   lastUpdated: Date.now(),
 };
 
@@ -156,6 +157,11 @@ const cartSlice = createSlice({
       }
     },
 
+    // cart handle open/close
+    toggleCart: (state, action: PayloadAction<boolean>) => {
+      state.isCartOpen = action.payload;
+    },
+
     // Clear entire cart
     clearCart: (state) => {
       state.items = [];
@@ -173,13 +179,13 @@ export const {
   removeItem,
   updateItemQuantity,
   clearCart,
+  toggleCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
 
 // Selectors
 export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
-export const selectCartItemCount = (state: { cart: CartState }) =>
-  state.cart.items.reduce((sum, item) => sum + item.customization.quantity, 0);
-export const selectCartSubtotal = (state: { cart: CartState }) =>
-  state.cart.items.reduce((sum, item) => sum + item.priceBreakdown.total, 0);
+export const selectCartItemCount = (state: { cart: CartState }) => state.cart.items.reduce((sum, item) => sum + item.customization.quantity, 0);
+export const selectCartSubtotal = (state: { cart: CartState }) => state.cart.items.reduce((sum, item) => sum + item.priceBreakdown.total, 0);
+export const selectIsCartOpen = (state: { cart: CartState }) => state.cart.isCartOpen;

@@ -30,6 +30,7 @@ export interface CartItem {
 export interface CartState {
   items: CartItem[];
   isLoading: boolean;
+  isCartOpen: boolean;
   lastUpdated: number;
 }
 
