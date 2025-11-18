@@ -30,7 +30,9 @@ export function EmptyCart() {
         Your cart is empty
       </h3>
       <p className="text-sm text-gray-500 text-center mb-8 max-w-xs">
-        Looks like you haven't added anything to your cart yet. Start exploring our delicious menu!
+        {
+          `Looks like you haven't added anything to your cart yet. Start exploring our delicious menu!`
+        }
       </p>
 
       {/* CTA Button */}
