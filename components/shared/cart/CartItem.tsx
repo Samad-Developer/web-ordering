@@ -18,7 +18,6 @@ import {
   getCartItemAddonsText,
 } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 interface CartItemProps {
   item: CartItemType;
@@ -122,7 +121,7 @@ export function CartItem({ item }: CartItemProps) {
       </div>
 
       {/* Addons & Special Instructions */}
-      {(hasAddons || item.specialInstructions) && (
+      {hasAddons && (
         <div className="border-t border-gray-100 px-3 py-2 bg-gray-50">
           {/* Toggle Button */}
           <button
@@ -130,10 +129,7 @@ export function CartItem({ item }: CartItemProps) {
             className="flex items-center justify-between w-full text-sm text-gray-600 hover:text-gray-900"
           >
             <span className="font-medium">
-              {hasAddons &&
-                `${addons.length} add-on${addons.length > 1 ? "s" : ""}`}
-              {hasAddons && item.specialInstructions && " • "}
-              {item.specialInstructions && "Special instructions"}
+              {hasAddons && `${addons.length} add-on${addons.length > 1 ? "s" : ""}`}
             </span>
             {showAddons ? (
               <ChevronUp className="h-4 w-4" />
@@ -157,15 +153,6 @@ export function CartItem({ item }: CartItemProps) {
                       <span>{addon}</span>
                     </div>
                   ))}
-                </div>
-              )}
-
-              {/* Special Instructions */}
-              {item.specialInstructions && (
-                <div className="mt-2 pt-2 border-t border-gray-200">
-                  <p className="text-xs text-gray-600 italic">
-                    "{item.specialInstructions}"
-                  </p>
                 </div>
               )}
             </div>
