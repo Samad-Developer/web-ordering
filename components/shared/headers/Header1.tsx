@@ -5,7 +5,7 @@ import { ChangeLocation } from "./partials/LocationButton";
 import { PhoneNumber } from "./partials/PhoneButton";
 import { Logo } from "./partials/Logo";
 import { ActionButton } from "./partials/Extra";
-import { Cart } from "./partials/CartButton";
+import { CartButton } from "./partials/CartButton";
 import { UserProfile } from "./partials/UserProfileButton";
 import { HamburgerMenu } from "./partials/HamburgerMenu";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -52,7 +52,7 @@ const Header1 = () => {
               <ActionButton {...headerConfig.actionButton} />
             </div>
 
-            <Cart
+            <CartButton
               cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}
               href={headerConfig.cartHref}
             />

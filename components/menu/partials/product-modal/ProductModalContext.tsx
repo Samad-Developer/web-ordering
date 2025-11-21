@@ -430,6 +430,7 @@ export function ProductModalProvider({
   product,
   children,
 }: ProductModalProviderProps) {
+
   const [state, dispatch] = useReducer(
     (state: ProductModalState, action: ProductModalAction) =>
       productModalReducer(state, action, product),
@@ -459,6 +460,9 @@ export function ProductModalProvider({
   const { errors, isValid } = useMemo(() => {
     return validateCustomization(currentVariation, state.customization);
   }, [currentVariation, state.customization]);
+
+  console.log("Current Variation:", currentVariation);
+  console.log("State.Customization:", state.customization);
 
   // Action creators
   const actions = useMemo(

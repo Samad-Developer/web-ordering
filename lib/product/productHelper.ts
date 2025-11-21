@@ -98,7 +98,7 @@ export function validateCustomization(
       }
       
       // MaxChoice > 0 → Required selection
-      if (!selectedGroup) {
+      if (group.MaxChoice >= 1 && !selectedGroup) {
         errors.push({
           groupId: group.Id,
           message: `Please select ${group.Name}`,
@@ -107,13 +107,23 @@ export function validateCustomization(
       }
 
       // Count how many DIFFERENT options are selected
-      const totalSelectedOptions = selectedGroup.selectedOptions.length;
+      const totalSelectedOptions = selectedGroup.selectedOptions.reduce(
+          (total, option) => total + option.quantity, 0
+        ) || 0;
+
 
       // Validate against MaxChoice
-      if (totalSelectedOptions < 1) {
+      if (group.MaxChoice == 1 && totalSelectedOptions < 1) {
         errors.push({
           groupId: group.Id,
           message: `Please select at least 1 ${group.Name}`,
+        });
+      }
+
+       if (totalSelectedOptions < group.MaxChoice) {
+        errors.push({
+          groupId: group.Id,
+          message: `Plz select maximum ${group.MaxChoice} ${group.Name}`,
         });
       }
 

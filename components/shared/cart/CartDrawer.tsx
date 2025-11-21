@@ -1,5 +1,3 @@
-// components/cart/CartDrawer.tsx
-
 "use client";
 
 import React, { useState } from "react";
@@ -27,7 +25,8 @@ export function CartDrawer() {
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
   const summary = calculateCartSummary(cartItems);
-  console.log("Cart Items in Drawer:", selectCartItems);
+
+  console.log("Cart Items in Drawer:", cartItems);
 
   const handleCheckout = () => {
     dispatch(toggleCart(false));
@@ -41,7 +40,7 @@ export function CartDrawer() {
     >
       <SheetContent
         side="right"
-        className="w-full sm:max-w-md p-0 flex flex-col"
+        className="w-full sm:max-w-sm p-0 flex flex-col"
       >
         {/* Header */}
         <SheetHeader className="px-6 py-4 border-b">
@@ -85,7 +84,6 @@ export function CartDrawer() {
                 className="w-full mt-4"
                 onClick={() => {
                   dispatch(toggleCart(false));
-                  router.push("/");
                 }}
               >
                 + Add more items

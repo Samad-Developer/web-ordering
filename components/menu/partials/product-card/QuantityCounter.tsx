@@ -5,9 +5,9 @@ import { Minus, Plus, Trash2 } from 'lucide-react';
 
 interface QuantityCounterProps {
   quantity: number;
-  onIncrease: () => void;
-  onDecrease: () => void;
-  onRemove?: () => void;
+  onIncrease: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onDecrease: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onRemove?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   min?: number;
   max?: number;
   className?: string;

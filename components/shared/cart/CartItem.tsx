@@ -79,29 +79,30 @@ export function CartItem({ item }: CartItemProps) {
               {formatPrice(item.priceBreakdown.basePrice)}
             </span>
 
-            {/* Remove Button */}
-            <div className="border-t border-gray-100 px-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full text-red-600 hover:text-red-700 hover:bg-red-50"
-                onClick={handleRemove}
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Remove
-              </Button>
-            </div>
+      
 
             {/* Quantity Controls */}
-            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-0.5">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-7 w-7 hover:bg-white"
-                onClick={handleDecrement}
-              >
-                <Minus className="h-3.5 w-3.5" />
-              </Button>
+            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1 border">
+              {item.customization.quantity === 1 ? (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-7 w-7 text-red-600 hover:text-red-700 hover:bg-red-50"
+                  onClick={handleRemove}
+                >
+                  <Trash2 className="h-3.5 w-3.5s" />
+
+                </Button>
+              ) : (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-7 w-7 hover:bg-gray-200 rounded-full"
+                  onClick={handleDecrement}
+                >
+                  <Minus className="h-3.5 w-3.5" />
+                </Button>
+              )}
 
               <span className="text-sm font-semibold text-gray-900 min-w-[20px] text-center">
                 {item.customization.quantity}
@@ -110,7 +111,7 @@ export function CartItem({ item }: CartItemProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7 hover:bg-white"
+                className="h-7 w-7 hover:bg-white rounded-full"
                 onClick={handleIncrement}
               >
                 <Plus className="h-3.5 w-3.5" />
@@ -129,7 +130,8 @@ export function CartItem({ item }: CartItemProps) {
             className="flex items-center justify-between w-full text-sm text-gray-600 hover:text-gray-900"
           >
             <span className="font-medium">
-              {hasAddons && `${addons.length} add-on${addons.length > 1 ? "s" : ""}`}
+              {hasAddons &&
+                `${addons.length} add-on${addons.length > 1 ? "s" : ""}`}
             </span>
             {showAddons ? (
               <ChevronUp className="h-4 w-4" />

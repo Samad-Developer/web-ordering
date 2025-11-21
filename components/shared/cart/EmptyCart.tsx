@@ -15,7 +15,6 @@ export function EmptyCart() {
 
   const handleBrowseMenu = () => {
     dispatch(toggleCart(false));
-    router.push('/');
   };
 
   return (

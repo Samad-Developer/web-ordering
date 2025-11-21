@@ -38,9 +38,9 @@ export default function RootLayout({
           <MenuProvider>
             <Header1 />
             {children}
-            <Toaster position="top-center" richColors/>
-            <CartDrawer />
+            <Toaster position="top-center"/>
             <ProductModal/>
+            <CartDrawer />
             <Footer1 />
           </MenuProvider>
         </Providers>
