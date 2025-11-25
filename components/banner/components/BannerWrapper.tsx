@@ -8,11 +8,11 @@ import { CarouselBanner } from './CarouselBanner';
 
 const BANNER_CONFIG = {
   images: [
-    {
-      id: '1',
-      src: '/assets/images/banner/banner1.webp',
-      alt: 'Banner 1',
-    },
+    // {
+    //   id: '1',
+    //   src: '/assets/images/banner/banner1.webp',
+    //   alt: 'Banner 1',
+    // },
     {
       id: '2',
       src: '/assets/images/banner/banner2.webp',
