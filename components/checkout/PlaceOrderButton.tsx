@@ -31,9 +31,9 @@ export function PlaceOrderButton({
             Processing Order...
           </>
         ) : (
-          <div className="flex items-center justify-between w-full">
+          <div className="flex items-center justify-center w-full">
             <span className="flex items-center gap-2">
-              <ShoppingCart className="w-5 h-5" />
+              {/* <ShoppingCart className="w-5 h-5" /> */}
               Place Order
             </span>
             {/* <span className="font-bold">Rs. {totalAmount.toLocaleString()}</span> */}
