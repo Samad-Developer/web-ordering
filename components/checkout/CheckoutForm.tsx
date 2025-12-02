@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
@@ -40,7 +40,7 @@ export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps)
   const schema = createCheckoutSchema(orderMode, isGift, paymentMethod);
 
   const form = useForm<CheckoutFormData>({
-    resolver: zodResolver(schema) as any,
+    resolver: zodResolver(schema) as unknown as Resolver<CheckoutFormData>,
     defaultValues: getDefaultFormValues(),
     mode: "onBlur",
   });
