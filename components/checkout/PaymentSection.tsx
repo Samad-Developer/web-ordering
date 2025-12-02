@@ -89,7 +89,7 @@ export function PaymentSection({
             />
           </div>
           <p className="text-xs text-gray-500">
-            Enter the amount you'll pay for change preparation
+            Enter the amount you&apos;ll pay for change preparation
           </p>
         </div>
       )}
