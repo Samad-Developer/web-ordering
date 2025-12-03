@@ -22,7 +22,7 @@ export function PlaceOrderButton({
       <Button
         type="button"
         onClick={onPlaceOrder}
-        className="w-full rounded-lg h-14 bg-red-600 hover:bg-red-700 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+        className="w-full cursor-pointer rounded-lg h-14 bg-red-600 hover:bg-red-700 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
         disabled={isSubmitting || isDisabled}
       >
         {isSubmitting ? (

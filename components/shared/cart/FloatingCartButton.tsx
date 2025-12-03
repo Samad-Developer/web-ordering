@@ -33,7 +33,7 @@ export function FloatingCartButton() {
             "hover:from-red-700 hover:to-red-600",
             "shadow-2xl hover:shadow-red-500/50",
             "transition-all duration-300 ease-out",
-            "border-2 border-white",
+            "border border-white",
             "group",
             "max-w-[95vw]" // ensures full button stays visible on small screens
           )}

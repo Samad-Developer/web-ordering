@@ -37,6 +37,7 @@ export interface CartState {
 export interface CartSummary {
   subtotal: number;
   deliveryFee: number;
+  tax: number;
   total: number;
   itemCount: number;
 }

@@ -4,22 +4,39 @@ import { CartItem, CartSummary } from "@/types/cart.types";
  * Calculate cart summary
  */
 export function calculateCartSummary(items: CartItem[]): CartSummary {
-  const subtotal = items.reduce((sum, item) => sum + item.priceBreakdown.total, 0);
-  
+  const TAX_RATE = 0.16; // 16% GST (change as needed)
+
+  // Subtotal (total of item prices)
+  const subtotal = items.reduce(
+    (sum, item) => sum + item.priceBreakdown.total,
+    0
+  );
+
+  // tax
+  const rawTax = subtotal * TAX_RATE;
+  const tax = Math.round(rawTax);
+
   // Delivery fee logic (customize as needed)
   const deliveryFee = subtotal > 0 ? 100 : 0; // Rs. 100 flat rate
-  
-  const total = subtotal + deliveryFee;
-  
-  const itemCount = items.reduce((sum, item) => sum + item.customization.quantity, 0);
+
+  // Grand total
+  const total = subtotal + tax + deliveryFee;
+
+  // Item count
+  const itemCount = items.reduce(
+    (sum, item) => sum + item.customization.quantity,
+    0
+  );
 
   return {
     subtotal,
+    tax,
     deliveryFee,
     total,
     itemCount,
   };
 }
+
 
 /**
  * Format cart item display name

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { X, ShoppingBag, ArrowRight } from "lucide-react";
+import React from "react";
 import { useAppSelector } from "@/store/hooks";
-import { selectCartItems, selectIsCartOpen } from "@/store/slices/cartSlice";
+import { X, ShoppingBag, ArrowRight } from "lucide-react";
 import { calculateCartSummary } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
+import { selectCartItems, selectIsCartOpen } from "@/store/slices/cartSlice";
 import {
   Sheet,
   SheetContent,
@@ -13,11 +13,11 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { CartItem } from "./CartItem";
-import { CartSummary } from "./CartSummary";
 import { EmptyCart } from "./EmptyCart";
+import { CartSummary } from "./CartSummary";
 import { useRouter } from "next/navigation";
-import { toggleCart } from "@/store/slices/cartSlice";
 import { useAppDispatch } from "@/store/hooks";
+import { toggleCart } from "@/store/slices/cartSlice";
 
 export function CartDrawer() {
   const router = useRouter();
@@ -25,8 +25,6 @@ export function CartDrawer() {
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
   const summary = calculateCartSummary(cartItems);
-
-  console.log("Cart Items in Drawer:", cartItems);
 
   const handleCheckout = () => {
     dispatch(toggleCart(false));
@@ -49,19 +47,12 @@ export function CartDrawer() {
               <ShoppingBag className="h-6 w-6" />
               Your Cart{" "}
             </SheetTitle>
-            {/* <Button
-              variant="ghost"
-              className="bg-red-600 text-white rounded-full hover:bg-red-700 hover:text-shadow-header-profile-text cursor-pointer"
-              size="icon-lg"
-              onClick={() => dispatch(toggleCart(false))}
-            > */}
             <button
               className="bg-red-600 text-white font-extrabold rounded-full hover:bg-red-700 hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
               onClick={() => dispatch(toggleCart(false))}
             >
               <X className="h-4 w-4 font-extrabold" />
             </button>
-            {/* </Button> */}
           </div>
         </SheetHeader>
 
@@ -92,7 +83,7 @@ export function CartDrawer() {
 
             {/* Footer - Summary & Checkout */}
             <div className="border-t bg-white px-6 py-4 space-y-4">
-              <CartSummary summary={summary} />
+              <CartSummary summary={summary} showDetails={true} />
 
               <Button
                 size="lg"

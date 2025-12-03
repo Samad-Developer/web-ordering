@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -28,7 +27,10 @@ interface CheckoutFormProps {
   setIsSubmitting: (loading: boolean) => void;
 }
 
-export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps) {
+export function CheckoutForm({
+  setFormRef,
+  setIsSubmitting,
+}: CheckoutFormProps) {
   const router = useRouter();
   const cartItems = useAppSelector(selectCartItems);
 
@@ -91,13 +93,10 @@ export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps)
     setIsSubmitting(true);
 
     try {
-
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      console.log("Form Data:", data);
-      console.log("Order Mode:", orderMode);
-      console.log("Cart Items:", cartItems);
-
+      // Save customer info for success page
+      localStorage.setItem("orderCustomerInfo", JSON.stringify(data));
 
       toast.success("Order placed successfully!", {
         description: (
@@ -108,11 +107,10 @@ export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps)
       });
 
       form.reset(getDefaultFormValues());
-
       setIsGift(false);
       setPaymentMethod("cash");
 
-
+      router.push(`/order-success?orderNumber=123124235`);
     } catch (error) {
       console.error("Checkout error:", error);
       toast.error("Failed to place order", {
@@ -146,7 +144,11 @@ export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps)
       </CardHeader>
 
       <CardContent>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" ref={setFormRef}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6"
+          ref={setFormRef}
+        >
           {/* Form Fields */}
           <CheckoutFormFields
             form={form}
@@ -163,7 +165,6 @@ export function CheckoutForm({ setFormRef, setIsSubmitting }: CheckoutFormProps)
             paymentMethod={paymentMethod}
             onPaymentMethodChange={handlePaymentMethodChange}
           />
-
         </form>
       </CardContent>
     </Card>

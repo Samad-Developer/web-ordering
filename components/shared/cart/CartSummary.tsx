@@ -1,10 +1,6 @@
-// components/cart/CartSummary.tsx
-
-'use client';
-
-import React from 'react';
-import { CartSummary as CartSummaryType } from '@/types/cart.types';
-import { formatPrice } from '@/lib/product/productHelper';
+import React from "react";
+import { CartSummary as CartSummaryType } from "@/types/cart.types";
+import { formatPrice } from "@/lib/product/productHelper";
 
 interface CartSummaryProps {
   summary: CartSummaryType;
@@ -12,6 +8,8 @@ interface CartSummaryProps {
 }
 
 export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
+
+
   return (
     <div className="space-y-2">
       {showDetails && (
@@ -21,6 +19,14 @@ export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
             <span className="text-gray-600">Subtotal</span>
             <span className="font-medium text-gray-900">
               {formatPrice(summary.subtotal)}
+            </span>
+          </div>
+
+          {/* Tax */}
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-gray-600">Tax (15%)</span>
+            <span className="font-medium text-gray-900">
+              {formatPrice(summary.tax)}
             </span>
           </div>
 
@@ -45,10 +51,6 @@ export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
         </span>
       </div>
 
-      {/* Item Count */}
-      <p className="text-xs text-gray-500 text-center">
-        {summary.itemCount} {summary.itemCount === 1 ? 'item' : 'items'} in cart
-      </p>
     </div>
   );
 }
