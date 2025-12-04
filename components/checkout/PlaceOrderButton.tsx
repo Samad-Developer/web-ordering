@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Loader2, ShoppingCart } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
   isSubmitting: boolean;
-  totalAmount: number; // Optional: show total on button
+  totalAmount: number;
   isDisabled?: boolean;
 }
 
@@ -33,7 +33,6 @@ export function PlaceOrderButton({
         ) : (
           <div className="flex items-center justify-center w-full">
             <span className="flex items-center gap-2">
-              {/* <ShoppingCart className="w-5 h-5" /> */}
               Place Order
             </span>
             {/* <span className="font-bold">Rs. {totalAmount.toLocaleString()}</span> */}

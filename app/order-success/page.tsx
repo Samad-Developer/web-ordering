@@ -8,9 +8,9 @@ import { Home, ShoppingBag, Phone } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { CustomerInfo } from "@/components/order-success/CustomerInfo";
-import { DeliveryInfo } from "@/components/order-success/DeliveryInfo";
 import { OrderDetails } from "@/components/order-success/OrderDetails";
 import { SuccessAnimation } from "@/components/order-success/SuccessAnimation";
+
 
 export default function OrderSuccessPage() {
   const router = useRouter();
@@ -71,27 +71,28 @@ export default function OrderSuccessPage() {
 
   return (
     <div className="min-h-screen ">
-
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto space-y-8">
-      <SuccessAnimation />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <SuccessAnimation
+            orderNumber={orderData.orderNumber}
+            orderTime={orderData.orderDate}
+            estimatedTime={orderData.delivery.estimatedTime}
+          />
+
+          <div className="grid grid-cols-1  gap-6">
             <div className="space-y-6">
-              <CustomerInfo customerData={orderData.customer} />
-              <DeliveryInfo deliveryData={orderData.delivery} />
+              <CustomerInfo
+                customerData={orderData.customer}
+                deliveryData={orderData.delivery}
+              />
             </div>
 
             <div className="space-y-6">
-              <OrderDetails
-                orderNumber={orderData.orderNumber}
-                orderDate={orderData.orderDate}
-                paymentMethod={orderData.paymentMethod}
-                changeAmount={orderData.changeAmount}
-              />
+              <OrderDetails paymentMethod={orderData.paymentMethod} />
             </div>
           </div>
 
-          <OrderSummary showPaymentDetails={false}/>
+          <OrderSummary showPaymentDetails={false} variant="success" />
 
           <div className="flex flex-wrap justify-center gap-4">
             <Button

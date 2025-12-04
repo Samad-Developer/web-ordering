@@ -16,7 +16,7 @@ export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
         <>
           {/* Subtotal */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">Subtotal</span>
+            <span className="text-gray-600">Total</span>
             <span className="font-medium text-gray-900">
               {formatPrice(summary.subtotal)}
             </span>
@@ -45,8 +45,8 @@ export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
 
       {/* Total */}
       <div className="flex items-center justify-between">
-        <span className="text-lg font-semibold text-gray-900">Total</span>
-        <span className="text-2xl font-bold text-gray-900">
+        <span className="text-lg font-semibold text-gray-900">Grand Total</span>
+        <span className="text-2xl font-bold text-red-700">
           {formatPrice(summary.total)}
         </span>
       </div>

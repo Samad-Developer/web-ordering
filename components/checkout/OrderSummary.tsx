@@ -1,5 +1,3 @@
-// components/checkout/OrderSummary.tsx
-
 "use client";
 
 import React from "react";
@@ -8,11 +6,7 @@ import { selectCartItems } from "@/store/slices/cartSlice";
 import { calculateCartSummary } from "@/lib/cart/cartHelpers";
 import { calculateTax } from "@/lib/checkout/checkoutHelpers";
 import { formatPrice } from "@/lib/product/productHelper";
-import {
-  getCartItemDisplayName,
-  getCartItemAddonsText,
-} from "@/lib/cart/cartHelpers";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { Separator } from "@/components/ui/separator";
 import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
@@ -20,9 +14,13 @@ import { CartSummary } from "../shared/cart/CartSummary";
 
 interface OrderSummaryProps {
   showPaymentDetails?: boolean;
+  variant?: "checkout" | "success";
 }
 
-export function OrderSummary({ showPaymentDetails = true }: OrderSummaryProps) {
+export function OrderSummary({
+  showPaymentDetails = true,
+  variant = "checkout",
+}: OrderSummaryProps) {
   const cartItems = useAppSelector(selectCartItems);
   const summary = calculateCartSummary(cartItems);
   const tax = calculateTax(summary.subtotal);
@@ -40,91 +38,102 @@ export function OrderSummary({ showPaymentDetails = true }: OrderSummaryProps) {
     });
   };
 
+  // Dynamic border styling based on variant
+  const containerBorderClass =
+    variant === "checkout"
+      ? " shadow-md"
+      : variant === "success"
+      ? "border-2 "
+      : "border"; // fallback
+
   return (
-    <Card className="">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <ShoppingBag className="w-5 h-5" />
+    <div className={`rounded-xl ${containerBorderClass}`}>
+      <div className="flex items-center gap-2 bg-gray-200 p-4 rounded-t-xl border-b">
+        <ShoppingBag className="w-6 h-6 text-gray-600" />
+        <h2 className="text-lg font-semibold text-gray-800 tracking-wide">
           Order Summary
-        </CardTitle>
-      </CardHeader>
+        </h2>
+      </div>
 
-      <CardContent className="space-y-4">
-        {/* Cart Items */}
-        <div className="space-y-3 max-h-[400px] overflow-y-auto">
-          {cartItems.map((item) => {
-            const addons = getCartItemAddonsText(item);
-            const isExpanded = expandedItems.has(item.cartItemId);
+      <div className="p-6">
+        <div className="space-y-4">
+          {/* Cart Items */}
+          <div className="space-y-3 max-h-[400px] overflow-y-auto">
+            {cartItems.map((item) => {
+              const addons = getCartItemAddonsText(item);
+              const isExpanded = expandedItems.has(item.cartItemId);
 
-            return (
-              <div
-                key={item.cartItemId}
-                className="border-b border-gray-100 pb-3 last:border-0"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 text-red-600 text-xs font-semibold flex items-center justify-center">
-                        {item.customization.quantity}×
-                      </span>
-                      <h4 className="font-medium text-sm text-gray-900 line-clamp-1">
-                        {item.productName}
-                      </h4>
+              return (
+                <div
+                  key={item.cartItemId}
+                  className="border-b border-gray-100 pb-3 last:border-0"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 text-red-600 text-xs font-semibold flex items-center justify-center">
+                          {item.customization.quantity}×
+                        </span>
+                        <h4 className="font-medium text-sm text-gray-900 line-clamp-1">
+                          {item.productName}
+                        </h4>
+                      </div>
+
+                      <div className="ml-8 mt-1 space-y-1">
+                        <p className="text-xs text-gray-500">
+                          {item.sizeName} • {item.flavorName}
+                        </p>
+
+                        {/* Addons Toggle */}
+                        {addons.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={() => toggleItem(item.cartItemId)}
+                            className="flex items-center gap-1 text-xs text-red-600 hover:text-red-700"
+                          >
+                            <span>
+                              {addons.length} add-on
+                              {addons.length > 1 ? "s" : ""}
+                            </span>
+                            {isExpanded ? (
+                              <ChevronUp className="w-3 h-3" />
+                            ) : (
+                              <ChevronDown className="w-3 h-3" />
+                            )}
+                          </button>
+                        )}
+
+                        {/* Expanded Addons */}
+                        {isExpanded && addons.length > 0 && (
+                          <div className="space-y-0.5 pl-2 border-l-2 border-red-200">
+                            {addons.map((addon, idx) => (
+                              <p key={idx} className="text-xs text-gray-600">
+                                + {addon}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="ml-8 mt-1 space-y-1">
-                      <p className="text-xs text-gray-500">
-                        {item.sizeName} • {item.flavorName}
-                      </p>
-
-                      {/* Addons Toggle */}
-                      {addons.length > 0 && (
-                        <button
-                          type="button"
-                          onClick={() => toggleItem(item.cartItemId)}
-                          className="flex items-center gap-1 text-xs text-red-600 hover:text-red-700"
-                        >
-                          <span>
-                            {addons.length} add-on{addons.length > 1 ? "s" : ""}
-                          </span>
-                          {isExpanded ? (
-                            <ChevronUp className="w-3 h-3" />
-                          ) : (
-                            <ChevronDown className="w-3 h-3" />
-                          )}
-                        </button>
-                      )}
-
-                      {/* Expanded Addons */}
-                      {isExpanded && addons.length > 0 && (
-                        <div className="space-y-0.5 pl-2 border-l-2 border-red-200">
-                          {addons.map((addon, idx) => (
-                            <p key={idx} className="text-xs text-gray-600">
-                              + {addon}
-                            </p>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                    <span className="font-semibold text-sm text-gray-900 flex-shrink-0">
+                      {formatPrice(item.priceBreakdown.total)}
+                    </span>
                   </div>
-
-                  <span className="font-semibold text-sm text-gray-900 flex-shrink-0">
-                    {formatPrice(item.priceBreakdown.total)}
-                  </span>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {/* Show cart summary and separator only if showCartDetails is true */}
+          {showPaymentDetails && (
+            <>
+              <Separator />
+              <CartSummary summary={summary} showDetails={true} />
+            </>
+          )}
         </div>
-        
-        {/* Show cart summary and separator only if showCartDetails is true */}
-        {showPaymentDetails && (
-          <>
-            <Separator />
-            <CartSummary summary={summary} showDetails={true} />
-          </>
-        )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

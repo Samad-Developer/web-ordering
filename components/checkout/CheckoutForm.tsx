@@ -8,7 +8,6 @@ import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/slices/cartSlice";
 import { createCheckoutSchema } from "@/lib/checkout/checkoutSchema";
 import { getDefaultFormValues } from "@/lib/checkout/checkoutHelpers";
-import { PlaceOrderButton } from "./PlaceOrderButton";
 import {
   CheckoutFormData,
   OrderMode,
@@ -20,7 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { CheckoutFormFields } from "./CheckoutFormFields";
 import { PaymentSection } from "./PaymentSection";
 import { toast } from "sonner";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface CheckoutFormProps {
   setFormRef: (ref: HTMLFormElement | null) => void;
@@ -100,7 +99,7 @@ export function CheckoutForm({
 
       toast.success("Order placed successfully!", {
         description: (
-          <p className="text-gray-600">
+          <p className="text-gray-300">
             You will receive a confirmation shortly.
           </p>
         ),
