@@ -135,7 +135,7 @@ export function CustomerInfo({
 
                       {deliveryData.giftingMessage && (
                         <p className="text-xs text-gray-600 italic">
-                          "{deliveryData.giftingMessage}"
+                          {`"${deliveryData.giftingMessage}"`}
                         </p>
                       )}
                     </div>
