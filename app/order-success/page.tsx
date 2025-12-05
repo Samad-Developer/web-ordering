@@ -17,7 +17,7 @@ export default function OrderSuccessPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
-  const [customerInfo, setCustomerInfo] = useState<CustomerInfoType | any>(null);
+  const [customerInfo, setCustomerInfo] = useState<CustomerInfoType | null>(null);
 
   // Get order number from URL params
   const orderNumber = searchParams.get("orderNumber") || "ORD-12345";
@@ -49,7 +49,7 @@ export default function OrderSuccessPage() {
       recipientNumber: customerInfo?.recipientNumber || "",
       giftingMessage: customerInfo?.giftingMessage || "",
     },
-    paymentMethod: customerInfo?.paymentMethod || "Cash on Delivery",
+    paymentMethod: (customerInfo?.paymentMethod || "cash") as "cash" | "online",
     changeAmount: customerInfo?.changeAmount || 0,
   };
 
