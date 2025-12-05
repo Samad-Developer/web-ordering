@@ -10,13 +10,14 @@ import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { CustomerInfo } from "@/components/order-success/CustomerInfo";
 import { OrderDetails } from "@/components/order-success/OrderDetails";
 import { SuccessAnimation } from "@/components/order-success/SuccessAnimation";
+import { CustomerInfoType } from "@/types/customerInfo.types";
 
 
 export default function OrderSuccessPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const searchParams = useSearchParams();
-  const [customerInfo, setCustomerInfo] = useState<any>(null);
+  const [customerInfo, setCustomerInfo] = useState<CustomerInfoType | any>(null);
 
   // Get order number from URL params
   const orderNumber = searchParams.get("orderNumber") || "ORD-12345";
