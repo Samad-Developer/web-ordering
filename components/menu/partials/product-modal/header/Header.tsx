@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useProductModal } from "../ProductModalContext";
 import { closeProductModal } from "@/store/slices/productModalSlice";
+import { DialogClose } from "@/components/ui/dialog";
 
 export function ProductModalHeader() {
   const { product } = useProductModal();
@@ -47,13 +48,19 @@ export function ProductModalHeader() {
           <Share2 className="h-5 w-5" />
         </Button>
 
-        <Button
+        {/* <Button
           size="icon"
           onClick={handleClose}
           className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer"
         >
           <X className="h-5 w-5" />
-        </Button>
+        </Button> */}
+
+        <DialogClose asChild>
+            <Button type="button" size="icon" className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer">
+            <X className="h-5 w-5" />
+            </Button>
+          </DialogClose>
       </div>
     </div>
   );

@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { openAddressModal } from "@/store/slices/addressSlice";
+import { useAppDispatch } from "@/store/hooks";
+import addressData from "@/data/address.json"
+import { setOrderModesData } from "@/store/slices/addressSlice";
 
 interface ChangeLocationProps {
   locationIcon: React.ReactNode;
@@ -7,13 +11,19 @@ interface ChangeLocationProps {
 export const ChangeLocation: React.FC<ChangeLocationProps> = ({
   locationIcon,
 }) => {
-  
-  const handleLocationChange = () => {};
+  const dispatch = useAppDispatch();
+  const handleLocationChange = () => {
+    dispatch(openAddressModal());
+  };
+
+  useEffect(() => {
+    dispatch(setOrderModesData(addressData));
+  }, [dispatch]);
 
   return (
     <button
       onClick={handleLocationChange}
-      className="flex items-center lg:gap-2 px-1 py-1 lg:px-2 rounded-lg transition bg-header-location-bg text-header-location-text hover:opacity-80"
+      className="cursor-pointer flex items-center lg:gap-2 px-1 py-1 lg:px-2 rounded-lg transition bg-header-location-bg text-header-location-text hover:opacity-80"
     >
       <span className="">{locationIcon}</span>
       <div className="flex flex-col items-start">

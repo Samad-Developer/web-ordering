@@ -101,15 +101,6 @@ export default function OrderSuccessContent() {
               className="gap-2"
               size="lg"
             >
-              <Home className="w-4 h-4" />
-              Back to Home
-            </Button>
-            <Button
-              onClick={() => handleNavigation("/")}
-              variant="outline"
-              className="gap-2"
-              size="lg"
-            >
               <ShoppingBag className="w-4 h-4" />
               Continue Shopping
             </Button>

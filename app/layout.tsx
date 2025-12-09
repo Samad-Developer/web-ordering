@@ -8,6 +8,7 @@ import { MenuProvider } from "@/contexts/MenuContext"
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { Toaster } from "@/components/ui/sonner"
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
+import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
             <Header1 />
             {children}
             <Toaster position="top-center" richColors/>
+            <AddressSelectionModal/>
             <ProductModal/>
             <CartDrawer />
             <Footer1 />

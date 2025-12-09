@@ -20,7 +20,7 @@ export function OrderDetails({
   return (
     <div className="border-2 rounded-xl">
       {/* HEADER WITH PAYMENT METHOD ON RIGHT */}
-      <div className="flex items-center justify-between bg-gray-200 p-4 rounded-t-xl border-b">
+      <div className="flex items-center justify-between bg-gray-200 p-4 rounded-t-lg border-b">
         {/* LEFT SIDE TITLE */}
         <div className="flex items-center gap-2">
           <BadgeDollarSignIcon className="w-7 h-7 text-gray-600" />

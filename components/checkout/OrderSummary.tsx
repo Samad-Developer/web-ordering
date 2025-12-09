@@ -48,7 +48,7 @@ export function OrderSummary({
 
   return (
     <div className={`rounded-xl ${containerBorderClass}`}>
-      <div className="flex items-center gap-2 bg-gray-200 p-4 rounded-t-xl border-b">
+      <div className="flex items-center gap-2 bg-gray-200 p-4 rounded-t-lg border-b">
         <ShoppingBag className="w-6 h-6 text-gray-600" />
         <h2 className="text-lg font-semibold text-gray-800 tracking-wide">
           Order Summary

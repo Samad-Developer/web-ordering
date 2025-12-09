@@ -1,0 +1,105 @@
+{
+  "orderModes": {
+    "delivery": {
+      "1223": {
+        "cityName": "Karachi",
+        "areas": [
+          { "AreaId": 101, "AreaName": "Clifton" },
+          { "AreaId": 102, "AreaName": "PECHS" },
+          { "AreaId": 103, "AreaName": "Korangi" },
+          { "AreaId": 104, "AreaName": "Saddar" },
+          { "AreaId": 105, "AreaName": "Gulshan-e-Iqbal" }
+        ]
+      },
+      "1224": {
+        "cityName": "Lahore",
+        "areas": [
+          { "AreaId": 201, "AreaName": "Gulberg" },
+          { "AreaId": 202, "AreaName": "DHA" },
+          { "AreaId": 203, "AreaName": "Model Town" },
+          { "AreaId": 204, "AreaName": "Johar Town" },
+          { "AreaId": 205, "AreaName": "Shalimar" }
+        ]
+      }
+    },
+    "pickup": {
+      "1323": {
+        "cityName": "Islamabad",
+        "branches": [
+          {
+            "BranchId": 301,
+            "BranchName": "F-6 Branch",
+            "BranchAddress": "F-6 Markaz, Islamabad </BR> Call: 0311-5555555",
+            "BranchPhoneNumber": "0311-5555555",
+            "BusinessDayStartTime": "09:00:00",
+            "BusinessDayEndTime": "18:00:00"
+          },
+          {
+            "BranchId": 302,
+            "BranchName": "Blue Area Branch",
+            "BranchAddress": "Blue Area, Islamabad </BR> Call: 0311-6666666",
+            "BranchPhoneNumber": "0311-6666666",
+            "BusinessDayStartTime": "09:00:00",
+            "BusinessDayEndTime": "18:00:00"
+          }
+        ]
+      },
+
+      "1325": {
+        "cityName": "Bahawalpur",
+        "branches": [
+          {
+            "BranchId": 501,
+            "BranchName": "Model Town A Branch",
+            "BranchAddress": "Model Town A, Bahawalpur </BR> Call: 0300-1111111",
+            "BranchPhoneNumber": "0300-1111111",
+            "BusinessDayStartTime": "09:00:00",
+            "BusinessDayEndTime": "18:00:00"
+          }
+        ]
+      },
+
+      "1326": {
+        "cityName": "Faisalabad",
+        "branches": [
+          {
+            "BranchId": 601,
+            "BranchName": "D-Ground Branch",
+            "BranchAddress": "D-Ground, Faisalabad </BR> Call: 0300-2222222",
+            "BranchPhoneNumber": "0300-2222222",
+            "BusinessDayStartTime": "09:00:00",
+            "BusinessDayEndTime": "18:00:00"
+          }
+        ]
+      },
+
+      "1327": {
+        "cityName": "Hyderabad",
+        "branches": [
+          {
+            "BranchId": 701,
+            "BranchName": "Qasimabad Branch",
+            "BranchAddress": "Qasimabad, Hyderabad </BR> Call: 0300-3333333",
+            "BranchPhoneNumber": "0300-3333333",
+            "BusinessDayStartTime": "10:00:00",
+            "BusinessDayEndTime": "20:00:00"
+          }
+        ]
+      },
+
+      "1328": {
+        "cityName": "Sialkot",
+        "branches": [
+          {
+            "BranchId": 801,
+            "BranchName": "Cantonment Branch",
+            "BranchAddress": "Cantt Area, Sialkot </BR> Call: 0300-4444444",
+            "BranchPhoneNumber": "0300-4444444",
+            "BusinessDayStartTime": "09:00:00",
+            "BusinessDayEndTime": "18:00:00"
+          }
+        ]
+      }
+    }
+  }
+}
