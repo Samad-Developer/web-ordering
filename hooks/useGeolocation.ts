@@ -17,16 +17,18 @@ export function useGeolocation() {
       const coordinates = await getCurrentLocation();
       
       if (!coordinates) {
-        throw new Error('Unable to get location');
+        toast.error(
+          'Unable to get your coordinates'
+        )
       }
 
-      const address = await reverseGeocode(coordinates.lat, coordinates.lng);
+      // const address = await reverseGeocode(coordinates.lat, coordinates.lng);
 
       dispatch(setLoadingLocation(false));
 
       return {
         coordinates,
-        address,
+        // address,
       };
     } catch (err: any) {
       const errorMessage = err.message || 'Failed to get location';

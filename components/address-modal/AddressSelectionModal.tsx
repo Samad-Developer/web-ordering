@@ -106,8 +106,9 @@ export function AddressSelectionModal() {
     
     if (result) {
       toast.success('Location detected!', {
-        description: result.address,
+        description: `Lat: ${result?.coordinates?.lat}, Lng: ${result?.coordinates?.lng}`,
       });
+      
       
       // TODO: i have to get the user current location and than check which city or area he belongs so i will automaticly select that area or branch for him/her.
     }
