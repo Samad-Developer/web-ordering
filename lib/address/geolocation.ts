@@ -18,7 +18,7 @@ export async function getCurrentLocation(): Promise<{ lat: number; lng: number }
         reject(error);
       },
       {
-        enableHighAccuracy: true,
+        enableHighAccuracy: false,
         timeout: 10000,
         maximumAge: 0,
       }
