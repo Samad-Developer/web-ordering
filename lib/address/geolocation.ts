@@ -1,4 +1,5 @@
 import { GeolocationResult } from '@/types/address.types';
+import { OrderModesResponse } from '@/types/address.types';
 
 export async function getCurrentLocation(): Promise<{ lat: number; lng: number } | null> {
   if (!navigator.geolocation) {
@@ -52,7 +53,7 @@ export async function reverseGeocode(
  */
 export async function findCityAndAreaFromLocation(
   coordinates: { lat: number; lng: number },
-  orderModesData: any
+  orderModesData: OrderModesResponse
 ): Promise<{ cityId: string; areaId: number } | null> {
   // TODO: Implement logic to match coordinates with your cities/areas
   // This could involve:
