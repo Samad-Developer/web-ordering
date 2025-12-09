@@ -17,10 +17,10 @@ const CITY_IMAGES: Record<string, string> = {
     '1223': '/assets/images/cities-pics/karachi.svg',
     '1224': '/assets/images/cities-pics/lahore.svg',
     '1323': '/assets/images/cities-pics/islamabad.svg',
-    '1325': '/assets/images/cities-pics/bahawalpur.svg',
+    '1325': '/assets/images/cities-pics/bahawalpurr.svg',
     '1326': '/assets/images/cities-pics/faisalabad.svg',
     '1327': '/assets/images/cities-pics/hyderabad.svg',
-    '1328': '/assets/images/cities-pics/sialkot.svg',
+    '1328': '/assets/images/cities-pics/sialkott.svg',
 };
 
 export function CitySelector({
