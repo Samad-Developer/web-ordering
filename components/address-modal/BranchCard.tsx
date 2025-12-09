@@ -38,10 +38,10 @@ export function BranchCard({ branch, isSelected, onSelect, index }: BranchCardPr
         )}
         onClick={onSelect}
       >
-        <div className="p-4 space-y-3">
+        <div className="p-2 sm:p-4 space-y-3">
           {/* Branch Name */}
           <div className="flex items-start justify-between gap-2">
-            <h4 className="font-semibold text-lg text-gray-900">
+            <h4 className="text-lg text-gray-900">
               {branch.BranchName}
             </h4>
             {isSelected && (
@@ -54,7 +54,7 @@ export function BranchCard({ branch, isSelected, onSelect, index }: BranchCardPr
           {/* Address */}
           <div className="flex items-start gap-2 text-sm text-gray-600">
             <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-            <span className="flex-1">{mainAddress}</span>
+            <span className="flex-1 font-semibold">{mainAddress}</span>
           </div>
 
           {/* Phone Number */}
