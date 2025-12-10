@@ -39,7 +39,7 @@ const CategoryPage = () => {
             Category Not Found
           </h2>
           <p className="text-gray-600">
-            The category you're looking for doesn't exist.
+          {"The category you're looking for doesn't exist."}
           </p>
         </div>
       </div>
