@@ -21,7 +21,7 @@ const CategoryBannerWrapper: React.FC<CategoryBannerProps> = ({
 
   switch (layout) {
     case "image":
-      return <CategoryImageBanner categoryImage={Image} alt={Name} />;
+      return <CategoryImageBanner categoryImage={Image} categoryName={Name} />;
     case "text":
       return <CategoryTextBanner categoryName={Name} alignment="center" />;
     case "video":
