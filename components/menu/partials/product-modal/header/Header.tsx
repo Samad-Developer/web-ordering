@@ -57,10 +57,10 @@ export function ProductModalHeader() {
         </Button> */}
 
         <DialogClose asChild>
-            <Button type="button" size="icon" className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer">
+          <Button type="button" size="icon" className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer">
             <X className="h-5 w-5" />
-            </Button>
-          </DialogClose>
+          </Button>
+        </DialogClose>
       </div>
     </div>
   );

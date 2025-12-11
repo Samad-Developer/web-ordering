@@ -5,12 +5,14 @@ interface ProductModalState {
   isOpen: boolean;
   currentProduct: ProductItem | null;
   productId: number | null;
+  openedFromUrl: boolean;
 }
 
 const initialState: ProductModalState = {
   isOpen: false,
   currentProduct: null,
   productId: null,
+  openedFromUrl: false,
 };
 
 const productModalSlice = createSlice({
@@ -21,33 +23,26 @@ const productModalSlice = createSlice({
       state.isOpen = true;
       state.currentProduct = action.payload;
       state.productId = action.payload.Id;
+      state.openedFromUrl = false;
     },
-    
     closeProductModal: (state) => {
       state.isOpen = false;
-      // Keep product data for exit animation
-      // Clear after delay in component
-    },
-    
-    clearProductData: (state) => {
       state.currentProduct = null;
       state.productId = null;
     },
-
-    // For URL-based loading
-    // i have to add (, action: PayloadAction<ProductItem>) into props after real api call start
-    // nad i have to add       state.currentProduct = action.payload; state.productId = action.payload.Id; to body of this function
-    setProductFromUrl: (state) => {
+    setProductFromUrl: (state, action: PayloadAction<ProductItem>) => {
       state.isOpen = true;
+      state.currentProduct = action.payload;
+      state.productId = action.payload.Id;
+      state.openedFromUrl = true;
     },
   },
 });
 
-export const { 
-  openProductModal, 
-  closeProductModal, 
-  clearProductData,
-  setProductFromUrl 
+export const {
+  openProductModal,
+  closeProductModal,
+  setProductFromUrl
 } = productModalSlice.actions;
 
 export default productModalSlice.reducer;
@@ -56,3 +51,4 @@ export default productModalSlice.reducer;
 export const selectProductModal = (state: { productModal: ProductModalState }) => state.productModal;
 export const selectCurrentProduct = (state: { productModal: ProductModalState }) => state.productModal.currentProduct;
 export const selectIsModalOpen = (state: { productModal: ProductModalState }) => state.productModal.isOpen;
+export const selectOpenedFromUrl = (state: { productModal: ProductModalState }) => state.productModal.openedFromUrl;

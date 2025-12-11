@@ -1,18 +1,15 @@
 import React from 'react';
-import { ShoppingCart } from 'lucide-react';
-import { useProductModal } from '../ProductModalContext';
-import { QuantityCounter } from './QuantityCounter';
-import { AddToCartButton } from './AddToCart';
-import { CartItem } from '@/types/product.types';
 import { toast } from "sonner"
-import { useAppDispatch } from '@/store/hooks';
-import { addToCart } from '@/store/slices/cartSlice';
-import { closeProductModal } from '@/store/slices/productModalSlice';
 import { useRouter } from "next/navigation";
+import { ShoppingCart } from 'lucide-react';
+import { AddToCartButton } from './AddToCart';
+import { QuantityCounter } from './QuantityCounter';
+import { addToCart } from '@/store/slices/cartSlice';
+import { useProductModal } from '../ProductModalContext';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { closeProductModal } from '@/store/slices/productModalSlice';
+import { selectOpenedFromUrl } from '@/store/slices/productModalSlice';
 
-interface ProductModalFooterProps {
-  onAddToCart?: (cartItem: CartItem) => void;
-}
 
 export function ProductModalFooter() {
   const dispatch = useAppDispatch();
@@ -24,7 +21,7 @@ export function ProductModalFooter() {
     priceBreakdown,
     isValid,
   } = useProductModal();
-
+  const openedFromUrl = useAppSelector(selectOpenedFromUrl)
 
   const handleAddToCart = () => {
     if (!isValid || !currentVariation) {
@@ -46,14 +43,15 @@ export function ProductModalFooter() {
         specialInstructions: customization.specialInstructions,
       })
     );
-
-    // Show success message
     toast.success(`${product.Name} added to your cart!`);
-
 
     // Close modal
     dispatch(closeProductModal());
-    router.back();
+    if (openedFromUrl) {
+      router.push('/');
+    } else {
+      router.back();
+    }
   };
 
 

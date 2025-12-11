@@ -1,24 +1,31 @@
 "use client";
 
-import { RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { ProductModalHeader } from "./header/Header";
 import { ProductModalFooter } from "./footer/Footer";
 import { ProductImage } from "./gallery/ProductImage";
 import ProductModalBody from "./body/ProductModalBody";
-import { useSelector, useDispatch } from "react-redux";
 import { ProductModalProvider } from "./ProductModalContext";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { closeProductModal } from "@/store/slices/productModalSlice";
+import { selectProductModal } from "@/store/slices/productModalSlice";
+import { selectOpenedFromUrl } from "@/store/slices/productModalSlice";
 
 export const ProductModal = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const { isOpen, currentProduct } = useSelector((state: RootState) => state.productModal);
+  const dispatch = useAppDispatch();
+  const openedFromUrl = useAppSelector(selectOpenedFromUrl)
+  const { isOpen, currentProduct } = useAppSelector(selectProductModal);
 
   const handleClose = () => {
     dispatch(closeProductModal());
-    router.back();
+
+    if (openedFromUrl) {
+      router.push('/');       
+    } else {
+      router.back();        
+    }
   };
 
   if (!currentProduct) return null;
@@ -50,7 +57,7 @@ export const ProductModal = () => {
               {/* Fixed Footer */}
               <ProductModalFooter />
             </div>
-            
+
           </div>
         </ProductModalProvider>
       </DialogContent>
