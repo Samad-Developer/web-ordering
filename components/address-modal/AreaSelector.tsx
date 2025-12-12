@@ -47,7 +47,7 @@ export function AreaSelector({
       >
         <SelectTrigger
           id="area-select"
-          className="w-full !h-10 text-base border border-gray-300 transition-colors"
+          className="!h-10 text-base border-2 hover:border-gray-300 transition-colors w-full"
         >
           <SelectValue placeholder="Select your area" />
         </SelectTrigger>

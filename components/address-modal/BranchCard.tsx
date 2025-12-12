@@ -1,93 +1,120 @@
+// components/address-selection/BranchDetailsCard.tsx
+
 'use client';
 
 import React from 'react';
 import { Branch } from '@/types/address.types';
-import { MapPin, Phone, Clock, Navigation } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { MapPin, Phone, Clock, Navigation, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import { parseBranchAddress, formatBusinessHours } from '@/lib/address/addressHelpers';
+import { motion } from 'framer-motion';
 
-interface BranchCardProps {
+interface BranchDetailsCardProps {
   branch: Branch;
-  isSelected: boolean;
-  onSelect: () => void;
-  index: number;
 }
 
-export function BranchCard({ branch, isSelected, onSelect, index }: BranchCardProps) {
+export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
   const { mainAddress, phoneNumber } = parseBranchAddress(branch.BranchAddress);
   const businessHours = formatBusinessHours(
     branch.BusinessDayStartTime,
     branch.BusinessDayEndTime
   );
 
-  const handleGetDirections = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleGetDirections = () => {
     const encodedAddress = encodeURIComponent(mainAddress);
     window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, '_blank');
   };
 
+  const handleCall = () => {
+    window.location.href = `tel:${branch.BranchPhoneNumber}`;
+  };
+
   return (
-    <div>
-      <div
-        className={cn(
-          'cursor-pointer rounded-lg',
-          isSelected
-            ? 'border border-red-500 bg-red-50 shadow-lg'
-            : 'border border-gray-200 hover:border-gray-300'
-        )}
-        onClick={onSelect}
-      >
-        <div className="p-2 sm:p-4 space-y-3">
-          {/* Branch Name */}
-          <div className="flex items-start justify-between gap-2">
-            <h4 className="text-lg text-gray-900">
-              {branch.BranchName}
-            </h4>
-            {isSelected && (
-              <div className="flex-shrink-0 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
+        <CardContent className="p-4 space-y-4">
+          {/* Header with Success Icon */}
+          <div className="flex items-center gap-3">
+            <div className="flex-shrink-0 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs text-green-600 font-medium">Selected Branch</p>
+              <h4 className="font-semibold text-lg text-gray-900">
+                {branch.BranchName}
+              </h4>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-green-200" />
+
+          {/* Details */}
+          <div className="space-y-3">
+            {/* Address */}
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <MapPin className="w-4 h-4 text-green-600" />
               </div>
-            )}
+              <div className="flex-1">
+                <p className="text-xs text-gray-500 font-medium mb-1">Location</p>
+                <p className="text-sm text-gray-900">{mainAddress}</p>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <Phone className="w-4 h-4 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-gray-500 font-medium mb-1">Contact</p>
+                <p className="text-sm font-medium text-gray-900">
+                  {phoneNumber || branch.BranchPhoneNumber}
+                </p>
+              </div>
+            </div>
+
+            {/* Business Hours */}
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <Clock className="w-4 h-4 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-gray-500 font-medium mb-1">Open Hours</p>
+                <p className="text-sm font-medium text-gray-900">{businessHours}</p>
+              </div>
+            </div>
           </div>
 
-          {/* Address */}
-          <div className="flex items-start gap-2 text-sm text-gray-600">
-            <MapPin className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
-            <span className="flex-1 font-semibold">{mainAddress}</span>
-          </div>
-
-          {/* Phone Number */}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
-            <a
-              href={`tel:${branch.BranchPhoneNumber}`}
-              className="text-red-600 hover:text-red-700 font-medium"
-              onClick={(e) => e.stopPropagation()}
+          {/* Action Buttons */}
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              className="gap-2 border-green-200 bg-white hover:bg-green-50 rounded-full"
+              onClick={handleCall}
             >
-              {phoneNumber || branch.BranchPhoneNumber}
-            </a>
+              <Phone className="w-4 h-4" />
+              Call
+            </Button>
+            
+            <Button
+              type="button"
+              className="gap-2 bg-green-600 hover:bg-green-700 text-white rounded-full"
+              onClick={handleGetDirections}
+            >
+              <Navigation className="w-4 h-4" />
+              Directions
+            </Button>
           </div>
-
-          {/* Business Hours */}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
-            <span>{businessHours}</span>
-          </div>
-
-          {/* Get Directions Button */}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="w-full gap-2 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700"
-            onClick={handleGetDirections}
-          >
-            <Navigation className="w-4 h-4" />
-            Get Directions
-          </Button>
-        </div>
-      </div>
-    </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
