@@ -32,6 +32,7 @@ import { AreaSelector } from './AreaSelector';
 import { BranchSelector } from './BranchSelector';
 import { TemporarilyClosedMessage } from './TemporarilyClosedMessage';
 import { useGeolocation } from '@/hooks/useGeolocation';
+import { selectIsLoadingLocation } from '@/store/slices/addressSlice';
 import { toast } from 'sonner';
 
 export function AddressSelectionModal() {
@@ -40,6 +41,7 @@ export function AddressSelectionModal() {
   const orderModesData = useAppSelector(selectOrderModesData);
   const availableModes = useAppSelector(selectAvailableModes);
   const currentAddress = useAppSelector(selectCurrentAddress);
+  const isLocationLoading = useAppSelector(selectIsLoadingLocation)
 
   const [selectedMode, setSelectedMode] = useState<OrderMode>('delivery');
   const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
@@ -192,7 +194,7 @@ export function AddressSelectionModal() {
             <div className="flex flex-col items-center">
               <CurrentLocationButton
                 onClick={handleUseCurrentLocation}
-                isLoading={false}
+                isLoading={isLocationLoading}
               />
             </div>
 
