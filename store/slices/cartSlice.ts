@@ -115,8 +115,7 @@ const cartSlice = createSlice({
       if (item) {
         if (item.customization.quantity > 1) {
           item.customization.quantity -= 1;
-          item.priceBreakdown.total = 
-            item.priceBreakdown.subtotal * item.customization.quantity;
+          item.priceBreakdown.total = item.priceBreakdown.subtotal * item.customization.quantity;
         } else {
           // Remove item if quantity becomes 0
           state.items = state.items.filter((i) => i.cartItemId !== action.payload);

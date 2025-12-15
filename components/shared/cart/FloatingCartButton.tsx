@@ -45,6 +45,7 @@ export function FloatingCartButton() {
                 <SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Menu" />
               }
             />
+  
           </div>
 
           {/* Divider + Text + Price */}

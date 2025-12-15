@@ -5,10 +5,14 @@ import { useParams } from "next/navigation";
 import { fromSlug } from "@/lib/address/slug";
 import { useMenu } from "@/contexts/MenuContext";
 import CategorySection from "@/components/menu/partials/category-section";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 const CategoryPage = () => {
   const { slug } = useParams();
   const { menu } = useMenu();
+  const router = useRouter();
 
 
   if (!slug || Array.isArray(slug)) {
@@ -39,7 +43,7 @@ const CategoryPage = () => {
             Category Not Found
           </h2>
           <p className="text-gray-600">
-          {"The category you're looking for doesn't exist."}
+            {"The category you're looking for doesn't exist."}
           </p>
         </div>
       </div>
@@ -47,7 +51,13 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-2 sm:px-0 py-8">
+      <div className="flex items-center justify-start">
+        <Button variant='outline' onClick={() => router.push('/')} className="rounded-md cursor-pointer">
+          <ArrowLeft/>
+          Back to Menu
+        </Button>
+      </div>
       <CategorySection key={category.Id} category={category} />
     </div>
   );

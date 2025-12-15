@@ -84,16 +84,11 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   const handleOpenModal = () => {
     dispatch(openProductModal(product));
 
-    const slug = `${product.Name.toLowerCase().replace(/\s+/g, "-")}-${
-      product.Id
-    }`;
+    const slug = `${product.Name.toLowerCase().replace(/\s+/g, "-")}-${product.Id}`;
+
     if (typeof window !== "undefined") {
       window.history.pushState(null, "", `/product/${slug}`);
     }
-  };
-
-  const handleCardClick = () => {
-    handleOpenModal();
   };
 
   const handleAddToCartClick = (e: React.MouseEvent) => {
@@ -138,7 +133,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         transform hover:-translate-y-1
         ${!isSimpleProduct ? "cursor-pointer" : ""}
       `}
-      onClick={handleCardClick}
+      onClick={handleOpenModal}
     >
       <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
         <ProductImage src={product.Image} alt={product.Name} priority={true} />
