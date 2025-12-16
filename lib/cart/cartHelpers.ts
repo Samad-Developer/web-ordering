@@ -37,7 +37,6 @@ export function calculateCartSummary(items: CartItem[]): CartSummary {
   };
 }
 
-
 /**
  * Format cart item display name
  */
@@ -53,9 +52,7 @@ export function getCartItemAddonsText(item: CartItem): string[] {
 
   Object.values(item.customization.selectedAddons).forEach((group) => {
     group.selectedOptions.forEach((option) => {
-      const text = option.quantity > 1 
-        ? `${option.optionName} (×${option.quantity})`
-        : option.optionName;
+      const text = option.quantity > 1 ? `${option.optionName} (×${option.quantity})` : option.optionName;
       addons.push(text);
     });
   });
@@ -109,4 +106,53 @@ export function clearCartFromLocalStorage(): void {
   } catch (error) {
     console.error('Failed to clear cart from localStorage:', error);
   }
+}
+
+/**
+ * Get total quantity of a product across all variations
+ */
+export function getProductTotalQuantity(
+  cartItems: CartItem[],
+  productId: number
+): number {
+  return cartItems
+    .filter((item) => item.productId === productId)
+    .reduce((sum, item) => sum + item.customization.quantity, 0);
+}
+
+/**
+ * Get all cart items for a specific product
+ */
+export function getProductCartItems(
+  cartItems: CartItem[],
+  productId: number
+): CartItem[] {
+  return cartItems.filter((item) => item.productId === productId);
+}
+
+/**
+ * Check if product has multiple variations in cart
+ */
+export function hasMultipleVariations(
+  cartItems: CartItem[],
+  productId: number
+): boolean {
+  const productItems = getProductCartItems(cartItems, productId);
+  return productItems.length > 1;
+}
+
+/**
+ * this function is for checking hypens if a string contains only hypen it will
+ * return nothing other wise that string will be retunred
+ */
+export function normalizeLabel(
+  value?: string | null
+): string | null {
+  if (!value) return null;
+
+  const trimmed = value.trim();
+
+  if (trimmed === "-") return null;
+
+  return value;
 }
