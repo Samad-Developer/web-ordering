@@ -62,39 +62,39 @@ export function VariationSelectionModal({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl max-h-[80vh] p-0">
-                {/* Header */}
-                <DialogHeader className="px-6 py-4 border-b">
-                    <div className="flex items-start justify-between">
-                        <div>
-                            <DialogTitle className="text-xl font-bold text-gray-900">
-                                Select Item to Remove
-                            </DialogTitle>
-                            <DialogDescription className="mt-1">
-                                {productName} - {variations.length} variation{variations.length > 1 ? 's' : ''} in cart
-                            </DialogDescription>
-                        </div>
-                    </div>
-                </DialogHeader>
-
-                {/* Variations List */}
-                <div className="overflow-y-auto max-h-[calc(80vh-120px)] px-6 py-4">
-                    <AnimatePresence mode="popLayout">
-                        {variations.map((item, index) => (
-                            <VariationItem
-                                key={item.cartItemId}
-                                item={item}
-                                index={index}
-                                onDecrement={() => handleDecrement(item)}
-                                onRemove={() => handleRemove(item)}
-                                isLast={index === variations.length - 1}
-                            />
-                        ))}
-                    </AnimatePresence>
-                </div>
-            </DialogContent>
+          <DialogContent className="sm:max-w-2xl max-h-[60vh] p-0 overflow-hidden flex flex-col">
+            
+            {/* Header */}
+            <DialogHeader className="px-6 py-4 border-b shrink-0">
+              <DialogTitle className="text-xl font-bold text-gray-900">
+                Select Item to Remove
+              </DialogTitle>
+              <DialogDescription>
+                {productName} - {variations.length} variation
+                {variations.length > 1 ? "s" : ""} in cart
+              </DialogDescription>
+            </DialogHeader>
+      
+            {/* Variations List */}
+            <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+              <AnimatePresence mode="popLayout">
+                {variations.map((item, index) => (
+                  <VariationItem
+                    key={item.cartItemId}
+                    item={item}
+                    index={index}
+                    onDecrement={() => handleDecrement(item)}
+                    onRemove={() => handleRemove(item)}
+                    isLast={index === variations.length - 1}
+                  />
+                ))}
+              </AnimatePresence>
+            </div>
+      
+          </DialogContent>
         </Dialog>
-    );
+      );
+      
 }
 
 
