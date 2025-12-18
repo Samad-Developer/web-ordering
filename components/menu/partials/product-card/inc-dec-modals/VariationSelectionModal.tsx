@@ -62,10 +62,10 @@ export function VariationSelectionModal({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-          <DialogContent className="sm:max-w-2xl max-h-[60vh] p-0 overflow-hidden flex flex-col">
+          <DialogContent className="sm:max-w-2xl max-h-[70vh] p-0 overflow-hidden flex flex-col">
             
             {/* Header */}
-            <DialogHeader className="px-6 py-4 border-b shrink-0">
+            <DialogHeader className="px-6 py-2 border-b shrink-0">
               <DialogTitle className="text-xl font-bold text-gray-900">
                 Select Item to Remove
               </DialogTitle>

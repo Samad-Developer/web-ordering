@@ -1,19 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { 
-  UserAddress, 
-  OrderMode, 
+import {
+  UserAddress,
+  OrderMode,
   AvailableModes,
-  OrderModesResponse 
+  OrderModesResponse
 } from '@/types/address.types';
 
 interface AddressState {
   // User's selected address
   currentAddress: UserAddress | null;
-  
+
   // API Data
   orderModesData: OrderModesResponse | null;
   availableModes: AvailableModes;
-  
+
   // UI State
   isModalOpen: boolean;
   isLoadingLocation: boolean;
@@ -39,11 +39,11 @@ const addressSlice = createSlice({
     // Set Order Modes Data (from API)
     setOrderModesData: (state, action: PayloadAction<OrderModesResponse>) => {
       state.orderModesData = action.payload;
-      
+
       // Update available modes
       const hasDelivery = !!action.payload.orderModes.delivery && Object.keys(action.payload.orderModes.delivery).length > 0;
       const hasPickup = !!action.payload.orderModes.pickup && Object.keys(action.payload.orderModes.pickup).length > 0;
-      
+
       state.availableModes = {
         delivery: hasDelivery,
         pickup: hasPickup,
@@ -54,7 +54,7 @@ const addressSlice = createSlice({
     openAddressModal: (state) => {
       state.isModalOpen = true;
     },
-    
+
     closeAddressModal: (state) => {
       state.isModalOpen = false;
     },
@@ -63,7 +63,7 @@ const addressSlice = createSlice({
     setOrderMode: (state, action: PayloadAction<OrderMode>) => {
       if (state.currentAddress) {
         state.currentAddress.orderMode = action.payload;
-        
+
         // Clear opposite mode data
         if (action.payload === 'delivery') {
           state.currentAddress.branchId = undefined;
@@ -143,7 +143,7 @@ const addressSlice = createSlice({
       if (state.currentAddress) {
         state.currentAddress.cityId = action.payload.cityId;
         state.currentAddress.cityName = action.payload.cityName;
-        
+
         // Clear area/branch when city changes
         state.currentAddress.areaId = undefined;
         state.currentAddress.areaName = undefined;
@@ -152,6 +152,28 @@ const addressSlice = createSlice({
         state.currentAddress.branchAddress = undefined;
       }
     },
+
+    // Select Area (intermediate)
+    selectArea: (
+      state,
+      action: PayloadAction<{ areaId: number; areaName: string }>
+    ) => {
+      if (!state.currentAddress) return;
+
+      state.currentAddress.areaId = action.payload.areaId;
+      state.currentAddress.areaName = action.payload.areaName;
+    },
+
+    // Select Branch (intermediate)
+    selectBranch: (
+      state,
+      action: PayloadAction<{ branchId: number }>
+    ) => {
+      if (!state.currentAddress) return;
+
+      state.currentAddress.branchId = action.payload.branchId;
+    },
+
 
     // Clear Address
     clearAddress: (state) => {
@@ -162,7 +184,7 @@ const addressSlice = createSlice({
     setLoadingLocation: (state, action: PayloadAction<boolean>) => {
       state.isLoadingLocation = action.payload;
     },
-    
+
     setLoadingData: (state, action: PayloadAction<boolean>) => {
       state.isLoadingData = action.payload;
     },
@@ -180,6 +202,8 @@ export const {
   clearAddress,
   setLoadingLocation,
   setLoadingData,
+  selectArea,
+  selectBranch
 } = addressSlice.actions;
 
 export default addressSlice.reducer;

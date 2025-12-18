@@ -156,3 +156,26 @@ export function normalizeLabel(
 
   return value;
 }
+
+/**
+ * Get the most recently added item for a product
+ */
+export function getLastAddedItem(
+  cartItems: CartItem[],
+  productId: number
+): CartItem | null {
+  const productItems = cartItems
+    .filter((item) => item.productId === productId)
+    .sort((a, b) => b.addedAt - a.addedAt); // Sort by most recent first
+
+  return productItems[0] || null;
+}
+
+/**
+ * Check if product has customizations (addons or special instructions)
+ */
+export function hasCustomizations(item: CartItem): boolean {
+  const hasAddons = Object.keys(item.customization.selectedAddons).length > 0;
+  const hasInstructions = !!item.specialInstructions && item.specialInstructions.trim() !== '';
+  return hasAddons || hasInstructions;
+}

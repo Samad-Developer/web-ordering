@@ -8,7 +8,7 @@ import { ProductImage } from "./ProductImage";
 import { ProductHeader } from "./ProductHeader";
 import { AddToCartButton } from "./AddToCartButtom";
 import { QuantityCounter } from "./QuantityCounter";
-import { VariationSelectionModal } from "./variation-selection-modal/VariationSelectionModal";
+import { VariationSelectionModal } from "./inc-dec-modals/VariationSelectionModal";
 import { openProductModal } from "@/store/slices/productModalSlice";
 import {
   addToCart,
@@ -22,6 +22,8 @@ import {
   getProductCartItems,
   hasMultipleVariations,
 } from "@/lib/cart/cartHelpers";
+import { RepeatLastOrderModal } from "./inc-dec-modals/RepeatLastOrderModal";
+import { getLastAddedItem } from "@/lib/cart/cartHelpers";
 
 interface ProductProps {
   product: MenuItem;
@@ -31,6 +33,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const [showVariationModal, setShowVariationModal] = useState(false);
+  const [showRepeatModal, setShowRepeatModal] = useState(false);
 
   // Check if product can be added directly (single variation, no addons)
   const canAddDirectly = (): boolean => {
@@ -46,6 +49,12 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   // Get all cart items for this product
   const productCartItems = getProductCartItems(cartItems, product.Id);
   const hasMultipleInCart = hasMultipleVariations(cartItems, product.Id);
+  const lastAddedItem = getLastAddedItem(cartItems, product.Id);
+
+  // Check if product has multiple variations available
+  const hasMultipleVariationsAvailable = product.Variations.length > 1 ||
+    (product.Variations[0]?.ItemChoices && product.Variations[0].ItemChoices.length > 0);
+
 
   // Direct add to cart (simple products)
   const handleDirectAddToCart = (e: React.MouseEvent) => {
@@ -106,17 +115,31 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     }
   };
 
-  // Handle increase quantity
+
   const handleIncrease = (e: React.MouseEvent) => {
     e.stopPropagation();
 
-    // If simple product with single variation in cart, increment directly
+    // CASE 1: Simple product with single item in cart
     if (canAddDirectly() && productCartItems.length === 1) {
       dispatch(incrementItem(productCartItems[0].cartItemId));
-    } else {
-      // For complex products, open modal to add more
-      handleOpenModal();
+      return;
     }
+
+    // CASE 2: Product has variations AND has items in cart
+    if (hasMultipleVariationsAvailable && isInCart && lastAddedItem) {
+      // Show "Repeat Last Order" modal
+      setShowRepeatModal(true);
+      return;
+    }
+
+    // CASE 3: Product has variations but NOT in cart
+    if (hasMultipleVariationsAvailable && !isInCart) {
+      handleOpenModal();
+      return;
+    }
+
+    // CASE 4: Fallback - just open modal
+    handleOpenModal();
   };
 
   // Handle decrease quantity
@@ -126,7 +149,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     // If product has multiple variations in cart, show selection modal
     if (hasMultipleInCart) {
       setShowVariationModal(true);
-    } 
+    }
     // If single variation, decrement/remove directly
     else if (productCartItems.length === 1) {
       const item = productCartItems[0];
@@ -146,7 +169,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     // If multiple variations, show modal
     if (hasMultipleInCart) {
       setShowVariationModal(true);
-    } 
+    }
     // If single variation, remove directly
     else if (productCartItems.length === 1) {
       dispatch(removeItem(productCartItems[0].cartItemId));
@@ -170,7 +193,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
       >
         <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
           <ProductImage src={product.Image} alt={product.Name} priority={true} />
-          
+
           {/* Badge for multiple variations in cart */}
           {hasMultipleInCart && (
             <div className="absolute top-3 left-3 border bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
@@ -223,6 +246,16 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         productName={product.Name}
         variations={productCartItems}
       />
+
+      {/* Repeat Last Order Modal (for increase) */}
+      {lastAddedItem && (
+        <RepeatLastOrderModal
+          open={showRepeatModal}
+          onOpenChange={setShowRepeatModal}
+          lastOrder={lastAddedItem}
+          onChooseAgain={handleOpenModal}
+        />
+      )}
     </>
   );
 };
