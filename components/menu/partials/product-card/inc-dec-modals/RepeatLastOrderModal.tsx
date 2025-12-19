@@ -149,7 +149,7 @@ export function RepeatLastOrderModal({
                                         Special Instructions
                                     </p>
                                     <p className="text-sm text-gray-600 italic bg-gray-50 p-3 rounded-lg">
-                                        "{lastOrder.specialInstructions}"
+                                    &quot;{lastOrder.specialInstructions}&quot;
                                     </p>
                                 </div>
                             </>
@@ -185,7 +185,7 @@ export function RepeatLastOrderModal({
                                 className="rounded-lg cursor-pointer w-full h-12 text-base font-medium border-2 hover:bg-gray-50"
                             >
                                 <Package className="w-5 h-5 mr-2" />
-                                No, I'll Choose Again
+                               {` No, I'll Choose Again`}
                             </Button>
                         </motion.div>
                     </div>
