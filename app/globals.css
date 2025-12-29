@@ -65,6 +65,33 @@
   
   --color-header-hamburger-bg: var(--header-hamburger-bg);
   --color-header-hamburger-text: var(--header-hamburger-text);
+
+   /* Core */
+   --color-primary: var(--color-primary);
+   --color-secondary: var(--color-secondary);
+   --color-background: var(--color-background);
+ 
+   /* Top bar */
+   --color-topbar-bg: var(--color-topbar-bg);
+   --color-topbar-fg: var(--color-topbar-fg);
+ 
+   /* Category */
+   --color-category-bg: var(--color-category-bg);
+   --color-category-fg: var(--color-category-fg);
+   --color-category-hover: var(--color-category-hover);
+   --color-category-active: var(--color-category-active);
+ 
+   /* Product */
+   --color-product-bg: var(--color-product-bg);
+   --color-product-name: var(--color-product-name);
+   --color-product-description: var(--color-product-description);
+   --color-product-price-bg: var(--color-product-price-bg);
+   --color-product-price-fg: var(--color-product-price-fg);
+   --color-product-add-btn: var(--color-product-add-btn);
+ 
+   /* Footer */
+   --color-footer-bg: var(--color-footer-bg);
+   --color-footer-fg: var(--color-footer-fg);
 }
 
 :root {
@@ -101,26 +128,34 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* Header Colors - Light Mode */
-  --header-location-bg: #FF0000;
-  --header-location-text: #FFFFFF;
+   /* Default theme colors (will be overridden by JS) */
+   --color-primary: #E7000B;
+   --color-primary-rgb: #FFFFFF;
+   --color-secondary: #FFFFFF;
+   --color-secondary-rgb: #FF6B00;
+   --color-background: #FFFFFF;
 
-  --header-phone-bg: #FFFFFF;
-  --header-phone-text: oklch(0.205 0.2 160);
+   /* Top bar */
+   --color-topbar-bg: #111827;
+   --color-topbar-fg: #F9FAFB;
 
-  --header-button-bg: #FF0000;
-  --header-button-text: #FFFFFF;
+   /* Category */
+   --color-category-bg: #F3F4F6;
+   --color-category-fg: #111827;
+   --color-category-hover: #E5E7EB;
+   --color-category-active: #D1D5DB;
 
-  --header-cart-bg: #FFFFFF;
-  --header-cart-text: #000000;
-  --header-cart-badge: #FF0000;
-  --header-cart-badge-text: #FFFFFF;
+   /* Product */
+   --color-product-bg: #FFFFFF;
+   --color-product-name: #111827;
+   --color-product-description: #6B7280;
+   --color-product-price-bg: #111827;
+   --color-product-price-fg: #FFFFFF;
+   --color-product-add-btn: #22C55E;
 
-  --header-profile-bg: oklch(0.92 0 0);
-  --header-profile-text: oklch(0.556 0 0);
-
-  --header-hamburger-bg: oklch(0.92 0 0);
-  --header-hamburger-text: oklch(0.145 0 0);
+   /* Footer */
+   --color-footer-bg: #111827;
+   --color-footer-fg: #F9FAFB;
 }
 
 .dark {

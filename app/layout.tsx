@@ -1,14 +1,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import Header1 from "@/components/shared/headers";
-import Footer1 from "@/components/shared/footer";
-import { Geist, Geist_Mono } from "next/font/google";
-import { MenuProvider } from "@/contexts/MenuContext"
-import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { Toaster } from "@/components/ui/sonner"
+import Footer1 from "@/components/shared/footer";
+import Header1 from "@/components/shared/headers";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
+import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
+import { SignalRProvider } from "@/contexts/signalr-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,15 +37,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <MenuProvider>
-            <Header1 />
-            {children}
-            <Toaster position="top-center" richColors/>
-            <AddressSelectionModal/>
-            <ProductModal/>
-            <CartDrawer />
-            <Footer1 />
-          </MenuProvider>
+          <ThemeProvider>
+            <SignalRProvider
+              username="admin"
+              password="password"
+            >
+              <Header1 />
+              {children}
+              <Toaster position="top-center" richColors />
+              <AddressSelectionModal />
+              <ProductModal />
+              <CartDrawer />
+              <Footer1 />
+            </SignalRProvider>
+          </ThemeProvider>
         </Providers>
       </body>
     </html>

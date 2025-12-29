@@ -57,7 +57,7 @@ export function RepeatLastOrderModal({
                 {/* Animated Header Background */}
                 <DialogHeader className="relative px-6 py-2 border-b overflow-hidden">
                     <div>
-                        <DialogTitle className="text-2xl font-bold">
+                        <DialogTitle className="text-xl sm:text-2xl font-bold">
                             Repeat Previous Customization?
                         </DialogTitle>
                         <DialogDescription className=" mt-1">

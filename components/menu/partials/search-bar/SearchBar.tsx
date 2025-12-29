@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { useMenu } from "@/contexts/MenuContext";
+import { useMenu } from "@/lib/signalR/hooks/useMenu";
 import { useSearch } from "@/contexts/SearchContext";
 import { SvgIcon } from "@/components/common/SvgIcon";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
@@ -19,13 +19,13 @@ const placeHolderCategoryNames = [
 ];
 
 const AnimatedSearch = () => {
-  const { menu } = useMenu();
+  const { menuData } = useMenu();
   const { setSearchQuery } = useSearch();
 
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const debouncedSearch = useDebouncedValue(inputValue, 400);
-  const categoryNames = extractCategoryNames(menu || []).slice(0, 5) || placeHolderCategoryNames;
+  const categoryNames = extractCategoryNames(menuData || []).slice(0, 5) || placeHolderCategoryNames;
   const animatedText = useTypingAnimation(categoryNames, 80, 40, 1500);
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useMenu } from "@/contexts/MenuContext";
 import BannerWrapper from "@/components/banner";
 import CategoryBar from "./partials/category-bar";
 import AnimatedSearch from "./partials/search-bar";
@@ -10,9 +9,10 @@ import CategorySection from "./partials/category-section/CategorySection";
 import { FloatingCartButton } from "../shared/cart/FloatingCartButton";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartItemCount } from "@/store/slices/cartSlice";
+import { useMenu } from "@/lib/signalR/hooks/useMenu";
 
 const MenuWrapper = () => {
-  const { menu } = useMenu();
+  const { menuData, isLoading, error, refetch } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
 
 
@@ -23,12 +23,18 @@ const MenuWrapper = () => {
         <CategoryBar />
         <AnimatedSearch />
 
-        <div className="my-10">
-          {menu?.map((category) => (
-            <CategorySection key={category?.Id} category={category} />
-          ))}
-        </div>
-
+        {
+          isLoading ?
+            <div className="w-full h-screen flex items-center justify-center">
+              <p>Loading Menu Plz wait...</p>
+            </div>
+            :
+            <div className="my-10">
+              {menuData?.map((category) => (
+                <CategorySection key={category?.Id} category={category} />
+              ))}
+            </div>
+        }
         {itemCount > 0 && <FloatingCartButton />}
 
         {/* create a divided betweeen menu and footer */}

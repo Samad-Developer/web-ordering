@@ -33,7 +33,7 @@ const Header1 = () => {
           {/* Left Section — will be move to right side on mobile */}
           <div className="flex items-center gap-3 order-2 md:order-1 mr-3 md:mr-0">
             <ChangeLocation
-              locationIcon={<SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location" />}
+              locationIcon={<SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location"/>}
             />
             <PhoneNumber
               phoneIcon={<SvgIcon src="/assets/images/svgIcons/phone-call.svg" alt="Phone" />}

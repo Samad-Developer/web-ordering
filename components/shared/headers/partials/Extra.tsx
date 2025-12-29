@@ -16,7 +16,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       href={href}
       target={openInNewTab ? '_blank' : '_self'}
       rel={openInNewTab ? 'noopener noreferrer' : ''}
-      className="px-4 py-2 rounded-lg font-medium transition bg-header-button-bg text-header-button-text hover:opacity-90"
+      className="px-4 py-2 rounded-lg font-medium transition bg-primary text-secondary hover:opacity-90"
     >
       {text}
     </a>

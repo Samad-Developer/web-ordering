@@ -23,7 +23,7 @@ export const ChangeLocation: React.FC<ChangeLocationProps> = ({
   return (
     <button
       onClick={handleLocationChange}
-      className="cursor-pointer flex items-center lg:gap-2 px-1 py-1 lg:px-2 rounded-lg transition bg-header-location-bg text-header-location-text hover:opacity-80"
+      className="cursor-pointer flex items-center lg:gap-2 px-1 py-1 lg:px-2 rounded-lg transition bg-primary text-secondary hover:opacity-80"
     >
       <span className="">{locationIcon}</span>
       <div className="flex flex-col items-start">

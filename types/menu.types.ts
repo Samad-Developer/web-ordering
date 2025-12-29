@@ -59,3 +59,15 @@ export interface CategoryInfo {
   Image: string;
   Order: number;
 }
+
+// Menu Response from API (the actual response structure)
+export interface MenuResponse {
+  menu: MenuCategory[];
+  correlationId: string;
+  connectionId: string;
+  userId: string;
+  restaurantId: number;
+  branchId: number;
+  branchIdToString: string;
+  restaurantIdToString: string;
+}

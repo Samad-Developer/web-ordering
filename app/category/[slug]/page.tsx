@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { fromSlug } from "@/lib/address/slug";
-import { useMenu } from "@/contexts/MenuContext";
+import { useMenu } from "@/lib/signalR/hooks/useMenu";
 import CategorySection from "@/components/menu/partials/category-section";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import { ArrowLeft } from "lucide-react";
 
 const CategoryPage = () => {
   const { slug } = useParams();
-  const { menu } = useMenu();
+  const { menuData } = useMenu();
   const router = useRouter();
 
 
@@ -31,7 +31,7 @@ const CategoryPage = () => {
   }
 
   const categoryName = fromSlug(slug);
-  const category = menu.find(
+  const category = menuData?.find(
     (cat) => cat.Name.toLowerCase() === categoryName.toLowerCase()
   );
 

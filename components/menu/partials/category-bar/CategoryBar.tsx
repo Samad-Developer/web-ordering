@@ -1,4 +1,4 @@
-import { useMenu } from '@/contexts/MenuContext';
+import { useMenu } from '@/lib/signalR/hooks/useMenu';
 import { useMemo, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { CategoryData, MenuAPIData } from '@/types/category.types';
 import { toTitleCase } from '@/lib/string/toTitleCase';
 
 const CategoryBar = () => {
-  const { menu } = useMenu();
+  const { menuData } = useMenu();
   const [activeCategory, setActiveCategory] = useState<string>('');
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -23,11 +23,11 @@ const CategoryBar = () => {
 
   // Transform menu data to category data
   const categories: CategoryData[] = useMemo(() => {
-    if (!menu || !Array.isArray(menu)) return [];
+    if (!menuData || !Array.isArray(menuData)) return [];
 
-    const menuData = menu as MenuAPIData[];
+    const menuDataResponse = menuData as MenuAPIData[];
 
-    return menuData.map((item) => {
+    return menuDataResponse.map((item) => {
       return {
         categoryId: item.Id,
         sortOrder: item.Order,
@@ -36,7 +36,7 @@ const CategoryBar = () => {
         categoryActiveIcon: `/assets/images/category-icons/category-icon.webp`,
       };
     }).sort((a, b) => a.sortOrder - b.sortOrder);
-  }, [menu]);
+  }, [menuData]);
 
   const handleCategoryClick = (categoryId: string) => {
     setActiveCategory(categoryId);
