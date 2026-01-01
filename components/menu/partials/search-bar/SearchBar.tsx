@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
-import { useMenu } from "@/lib/signalR/hooks/useMenu";
+import { useMenu } from "@/hooks/useMenu";
 import { useSearch } from "@/contexts/SearchContext";
 import { SvgIcon } from "@/components/common/SvgIcon";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";

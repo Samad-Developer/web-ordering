@@ -1,20 +1,25 @@
 "use client";
 
 import React from "react";
+import { useAppSelector } from "@/store/hooks";
 import BannerWrapper from "@/components/banner";
 import CategoryBar from "./partials/category-bar";
 import AnimatedSearch from "./partials/search-bar";
+import { useMenu } from "@/hooks/useMenu";
 import { SearchProvider } from "@/contexts/SearchContext";
-import CategorySection from "./partials/category-section/CategorySection";
-import { FloatingCartButton } from "../shared/cart/FloatingCartButton";
-import { useAppSelector } from "@/store/hooks";
 import { selectCartItemCount } from "@/store/slices/cartSlice";
-import { useMenu } from "@/lib/signalR/hooks/useMenu";
+import { FloatingCartButton } from "../shared/cart/FloatingCartButton";
+import CategorySection from "./partials/category-section/CategorySection";
+import { Spinner } from "../ui/spinner";
 
 const MenuWrapper = () => {
-  const { menuData, isLoading, error, refetch } = useMenu();
+  const { menuData, isLoading, error } = useMenu();
+  const {token} = useAppSelector((state) => state.auth);
+  console.log('token', token);
   const itemCount = useAppSelector(selectCartItemCount);
-
+  console.log('menuData', menuData);
+  console.log('isLoading', isLoading);
+  console.log('error', error);
 
   return (
     <div>
@@ -24,9 +29,9 @@ const MenuWrapper = () => {
         <AnimatedSearch />
 
         {
-          isLoading ?
+          ( isLoading && !menuData ) ?
             <div className="w-full h-screen flex items-center justify-center">
-              <p>Loading Menu Plz wait...</p>
+              <Spinner/>
             </div>
             :
             <div className="my-10">
@@ -37,8 +42,6 @@ const MenuWrapper = () => {
         }
         {itemCount > 0 && <FloatingCartButton />}
 
-        {/* create a divided betweeen menu and footer */}
-        <div className="border border-gray-600 mt-20 max-w-4xl mx-auto"></div>
       </SearchProvider>
     </div>
   );

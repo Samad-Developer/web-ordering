@@ -38,10 +38,7 @@ export default function RootLayout({
       >
         <Providers>
           <ThemeProvider>
-            <SignalRProvider
-              username="admin"
-              password="password"
-            >
+            <SignalRProvider>
               <Header1 />
               {children}
               <Toaster position="top-center" richColors />

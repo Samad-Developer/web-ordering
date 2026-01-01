@@ -1,4 +1,4 @@
-import { useMenu } from '@/lib/signalR/hooks/useMenu';
+import { useMenu } from '@/hooks/useMenu';
 import { useMemo, useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';

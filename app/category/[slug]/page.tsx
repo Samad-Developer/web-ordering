@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { fromSlug } from "@/lib/address/slug";
-import { useMenu } from "@/lib/signalR/hooks/useMenu";
+import { useMenu } from "@/hooks/useMenu";
 import CategorySection from "@/components/menu/partials/category-section";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";

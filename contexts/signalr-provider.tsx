@@ -1,124 +1,85 @@
 'use client';
 
+import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { getToken } from '@/store/slices/authSlice';
+import { menuReceived, menuError } from '@/store/slices/menuSlice';
+import { createSignalRConnection } from '@/services/signalR/connection';
 import type { HubConnection } from '@microsoft/signalr';
-import { SignalRContextType } from '@/lib/signalR/types';
-import { fetchToken, clearStoredToken, getStoredToken } from '@/lib/signalR/auth';
-import { createConnection, setupConnectionHandlers } from '@/lib/signalR/connection';
-import { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
+import { MenuResponse } from '@/types/menu.types';
 
-const SignalRContext = createContext<SignalRContextType | null>(null);
-
-interface SignalRProviderProps {
-  children: React.ReactNode;
-  username: string;
-  password: string;
-  autoConnect?: boolean;
+interface SignalRContextType {
+  connection: HubConnection | null;
+  isConnected: boolean;
 }
 
-export function SignalRProvider({ 
-  children, 
-  username, 
-  password,
-  autoConnect = true 
-}: SignalRProviderProps) {
+const SignalRContext = createContext<SignalRContextType>({
+  connection: null,
+  isConnected: false,
+});
+
+export function SignalRProvider({ children }: { children: ReactNode }) {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.auth.token);
+
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const tokenRef = useRef<string | null>(null);
 
-  const disconnect = useCallback(async () => {
-    if (connection) {
-      try {
-        await connection.stop();
-        setConnection(null);
-        setIsConnected(false);
-        clearStoredToken();
-        tokenRef.current = null;
-      } catch (err) {
-        console.error('Failed to disconnect:', err);
-      }
-    }
-  }, [connection]);
-
-  const connect = useCallback(async () => {
-    if (isConnected || isConnecting) return;
-
-    setIsConnecting(true);
-    setError(null);
-
-    try {
-      // Get or fetch token
-      let token = getStoredToken();
-      if (!token) {
-        token = await fetchToken(username, password);
-      }
-      tokenRef.current = token;
-
-      // Create connection
-      const newConnection = createConnection(token);
-
-      // Setup handlers
-      setupConnectionHandlers(
-        newConnection,
-        () => setIsConnecting(true),
-        () => {
-          setIsConnected(true);
-          setIsConnecting(false);
-        },
-        () => {
-          setIsConnected(false);
-          clearStoredToken();
-        }
-      );
-
-      // Start connection
-      await newConnection.start();
-      
-      setConnection(newConnection);
-      setIsConnected(true);
-      console.log('SignalR Connected Successfully');
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to connect';
-      setError(errorMessage);
-      console.error('SignalR connection failed:', err);
-    } finally {
-      setIsConnecting(false);
-    }
-  }, [username, password, isConnected, isConnecting]);
+  const handlersRegisteredRef = useRef(false);
 
   useEffect(() => {
-    if (autoConnect) {
-      connect();
-    }
+    if (token) return;
 
-    return () => {
-      if (connection) {
-        connection.stop().catch(console.error);
+    dispatch(
+      getToken({
+        username: process.env.NEXT_PUBLIC_USERNAME || '',
+        password: process.env.NEXT_PUBLIC_PASSWORD || '',
+      })
+    );
+  }, [token, dispatch]);
+
+  useEffect(() => {
+    if (!token) return;
+
+    let cancelled = false;
+
+    const connect = async () => {
+      try {
+        const conn = await createSignalRConnection(token);
+        if (cancelled) return;
+
+        // Prevent duplicate handlers (Strict Mode safe)
+        if (!handlersRegisteredRef.current) {
+          conn.on('MenuResponse', (data: MenuResponse) => {
+            dispatch(menuReceived(data.menu));
+          });
+
+          handlersRegisteredRef.current = true;
+        }
+
+        setConnection(conn);
+        setIsConnected(true);
+      } catch (err) {
+        dispatch(
+          menuError(err instanceof Error ? err.message : 'SignalR connection failed')
+        );
       }
     };
-  }, [autoConnect]);
+
+    connect();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [token, dispatch]);
 
   return (
-    <SignalRContext.Provider 
-      value={{
-        connection,
-        isConnected,
-        isConnecting,
-        error,
-        connect,
-        disconnect,
-      }}
-    >
+    <SignalRContext.Provider value={{ connection, isConnected }}>
       {children}
     </SignalRContext.Provider>
   );
 }
 
-export function useSignalRContext() {
-  const context = useContext(SignalRContext);
-  if (!context) {
-    throw new Error('useSignalRContext must be used within SignalRProvider');
-  }
-  return context;
+export function useSignalR() {
+  return useContext(SignalRContext);
 }
