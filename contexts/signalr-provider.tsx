@@ -1,12 +1,10 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getToken } from '@/store/slices/authSlice';
-import { menuReceived, menuError } from '@/store/slices/menuSlice';
-import { createSignalRConnection } from '@/services/signalR/connection';
 import type { HubConnection } from '@microsoft/signalr';
-import { MenuResponse } from '@/types/menu.types';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { createSignalRConnection } from '@/services/signalR/connection';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 interface SignalRContextType {
   connection: HubConnection | null;
@@ -25,7 +23,7 @@ export function SignalRProvider({ children }: { children: ReactNode }) {
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  const handlersRegisteredRef = useRef(false);
+
 
   useEffect(() => {
     if (token) return;
@@ -47,22 +45,10 @@ export function SignalRProvider({ children }: { children: ReactNode }) {
       try {
         const conn = await createSignalRConnection(token);
         if (cancelled) return;
-
-        // Prevent duplicate handlers (Strict Mode safe)
-        if (!handlersRegisteredRef.current) {
-          conn.on('MenuResponse', (data: MenuResponse) => {
-            dispatch(menuReceived(data.menu));
-          });
-
-          handlersRegisteredRef.current = true;
-        }
-
         setConnection(conn);
         setIsConnected(true);
-      } catch (err) {
-        dispatch(
-          menuError(err instanceof Error ? err.message : 'SignalR connection failed')
-        );
+      } catch (err) { 
+        console.error('SignalR connection failed:', err); 
       }
     };
 

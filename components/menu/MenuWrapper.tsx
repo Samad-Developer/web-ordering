@@ -13,13 +13,8 @@ import CategorySection from "./partials/category-section/CategorySection";
 import { Spinner } from "../ui/spinner";
 
 const MenuWrapper = () => {
-  const { menuData, isLoading, error } = useMenu();
-  const {token} = useAppSelector((state) => state.auth);
-  console.log('token', token);
+  const { menuData, isLoading } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
-  console.log('menuData', menuData);
-  console.log('isLoading', isLoading);
-  console.log('error', error);
 
   return (
     <div>

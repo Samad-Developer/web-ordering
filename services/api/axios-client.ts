@@ -10,10 +10,8 @@ export const axiosClient = axios.create({
   timeout: 10000,
 });
 
-// Add request interceptor to add token if needed
 axiosClient.interceptors.request.use(
   (config) => {
-    // Add any headers or modifications here
     return config;
   },
   (error) => {
@@ -21,7 +19,6 @@ axiosClient.interceptors.request.use(
   }
 );
 
-// Add response interceptor for error handling
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
