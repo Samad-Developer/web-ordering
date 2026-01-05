@@ -1,0 +1,88 @@
+{
+    "nav": {
+      "home": "ہوم",
+      "menu": "مینُو",
+      "cart": "کارٹ",
+      "orders": "میرے آرڈرز",
+      "profile": "پروفائل",
+      "login": "لاگ ان",
+      "logout": "لاگ آؤٹ",
+      "changeLocation": "مقام تبدیل کریں",
+      "selectedArea": "منتخب شدہ علاقہ",
+      "submitComplaint": "شکایت جمع کریں"
+    },
+    "home": {
+      "title": "لذیذ کھانا آپ کے دروازے تک",
+      "subtitle": "اپنے پسندیدہ ریسٹورنٹس سے آرڈر کریں",
+      "searchPlaceholder": "کھانے یا ریسٹورنٹس کی تلاش کریں...",
+      "orderNow": "اب آرڈر کریں"
+    },
+    "menu": {
+      "title": "ہمارا مینو",
+      "categories": "زمرے",
+      "all": "سب",
+      "popular": "مشہور",
+      "addToCart": "کارٹ میں ڈالیں",
+      "viewDetails": "تفصیلات دیکھیں",
+      "price": "قیمت"
+    },
+    "cart": {
+      "title": "شاپنگ کارٹ",
+      "empty": "آپ کا کارٹ خالی ہے",
+      "continueShopping": "خریداری جاری رکھیں",
+      "subtotal": "ذیلی مجموعہ",
+      "deliveryFee": "ڈیلیوری فیس",
+      "total": "کل",
+      "checkout": "چیک آؤٹ کریں",
+      "removeItem": "ہٹائیں",
+      "quantity": "مقدار"
+    },
+    "checkout": {
+      "title": "چیک آؤٹ",
+      "deliveryAddress": "ڈیلیوری پتہ",
+      "paymentMethod": "ادائیگی کا طریقہ",
+      "orderSummary": "آرڈر کا خلاصہ",
+      "placeOrder": "آرڈر کریں",
+      "cashOnDelivery": "نقد رقم پر ڈیلیوری",
+      "cardPayment": "کارڈ کے ذریعے ادائیگی"
+    },
+    "orders": {
+      "title": "میرے آرڈرز",
+      "orderNumber": "آرڈر #",
+      "status": "حیثیت",
+      "date": "تاریخ",
+      "total": "کل",
+      "viewDetails": "تفصیلات دیکھیں",
+      "pending": "زیر التواء",
+      "confirmed": "تصدیق شدہ",
+      "preparing": "تیاری ہو رہی ہے",
+      "onTheWay": "راستے میں",
+      "delivered": "ترسیل ہو چکی",
+      "cancelled": "منسوخ شدہ"
+    },
+    "profile": {
+      "title": "میری پروفائل",
+      "personalInfo": "ذاتی معلومات",
+      "name": "نام",
+      "email": "ای میل",
+      "phone": "فون",
+      "addresses": "محفوظ پتہ جات",
+      "addAddress": "نیا پتہ شامل کریں",
+      "editProfile": "پروفائل ترمیم کریں",
+      "saveChanges": "تبدیلیاں محفوظ کریں"
+    },
+    "common": {
+      "loading": "لوڈ ہو رہا ہے...",
+      "error": "کچھ غلط ہو گیا",
+      "success": "کامیابی",
+      "cancel": "منسوخ کریں",
+      "save": "محفوظ کریں",
+      "edit": "ترمیم کریں",
+      "delete": "حذف کریں",
+      "confirm": "تصدیق کریں",
+      "search": "تلاش",
+      "filter": "فلٹر",
+      "sortBy": "ترتیب دیں"
+    }
+  }
+  

@@ -9,6 +9,7 @@ import { CartButton } from "./partials/CartButton";
 import { UserProfile } from "./partials/UserProfileButton";
 import { HamburgerMenu } from "./partials/HamburgerMenu";
 import { SvgIcon } from "../../common/SvgIcon";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const headerConfig = {
   phoneNumber: "+923485497976",
@@ -24,6 +25,7 @@ const headerConfig = {
 
 const Header1 = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
 
   return (
     <header className="w-full bg-color-background border-b border-color-border">
@@ -51,6 +53,8 @@ const Header1 = () => {
             <div className="hidden md:flex">
               <ActionButton {...headerConfig.actionButton} />
             </div>
+
+            <LanguageSwitcher/>
 
             <CartButton
               cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}

@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { Toaster } from "@/components/ui/sonner"
@@ -10,6 +10,16 @@ import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
 import { SignalRProvider } from "@/contexts/signalr-provider";
+
+
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import {notFound} from 'next/navigation';
+import {routing} from '@/i18n/routing';
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({locale}));
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +44,21 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
 
+  // Ensure that the incoming `locale` is valid
+  const { locale } = await params;
+  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
+    notFound();
+  }
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
 
   return (
-    <html lang="en">
+    <html lang={locale} dir={locale === 'ur' || locale === 'ur' ? 'rtl' : 'ltr'}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
+        <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <SignalRProvider>
               <Header1 />
@@ -50,6 +70,7 @@ export default async function RootLayout({
               <Footer1 />
             </SignalRProvider>
           </ThemeProvider>
+          </NextIntlClientProvider>
         </Providers>
       </body>
     </html>

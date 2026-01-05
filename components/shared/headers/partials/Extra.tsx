@@ -1,4 +1,7 @@
+'use client'
 import React from 'react';
+import {useTranslations} from 'next-intl';
+
 
 interface ActionButtonProps {
   text: string;
@@ -11,6 +14,8 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   href,
   openInNewTab = false,
 }) => {
+  const t = useTranslations('nav');
+
   return (
     <a
       href={href}
@@ -18,7 +23,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       rel={openInNewTab ? 'noopener noreferrer' : ''}
       className="px-4 py-2 rounded-lg font-medium transition bg-primary text-secondary hover:opacity-90"
     >
-      {text}
+      {t('submitComplaint')}
     </a>
   );
 };
