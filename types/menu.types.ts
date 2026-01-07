@@ -62,7 +62,7 @@ export interface CategoryInfo {
 
 // Menu Response from API (the actual response structure)
 export interface MenuResponse {
-  menu: MenuCategory[];
+  dataPayload: MenuCategory[];
   correlationId: string;
   connectionId: string;
   userId: string;

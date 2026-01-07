@@ -11,10 +11,11 @@ import { formatPrice } from "@/lib/product/productHelper";
 import { cn } from "@/lib/utils";
 import { CartButton } from "../headers/partials/CartButton";
 import { SvgIcon } from "@/components/common/SvgIcon";
+import { useTranslations } from "next-intl";
 
 export function FloatingCartButton() {
   const dispatch = useAppDispatch();
-  const itemCount = useAppSelector(selectCartItemCount);
+  const t = useTranslations("cart")
   const subtotal = useAppSelector(selectCartSubtotal);
 
   const handleOpenCart = () => {
@@ -35,7 +36,7 @@ export function FloatingCartButton() {
             "transition-all duration-300 ease-out",
             "border border-white",
             "group",
-            "max-w-[95vw]" // ensures full button stays visible on small screens
+            "max-w-[95vw]" 
           )}
         >
           {/* Cart Icon with Badge */}
@@ -52,7 +53,7 @@ export function FloatingCartButton() {
           <div className="flex items-center gap-8 sm:gap-16 whitespace-nowrap overflow-hidden min-w-0">
 
             <span className="text-white font-semibold text-lg sm:text-xl flex-shrink-0">
-              View Cart
+              {t("viewCart")}
             </span>
 
             <div className="flex gap-2 items-center min-w-0">

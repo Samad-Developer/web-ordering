@@ -18,17 +18,21 @@ import { CartSummary } from "./CartSummary";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cartSlice";
+import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 export function CartDrawer() {
   const router = useRouter();
+  const { locale } = useParams();
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
   const summary = calculateCartSummary(cartItems);
+  const t = useTranslations("cart")
 
   const handleCheckout = () => {
     dispatch(toggleCart(false));
-    router.push("/checkout");
+    router.push(`/${locale}/checkout`);
   };
 
   return (
@@ -45,7 +49,7 @@ export function CartDrawer() {
           <div className="flex items-center justify-between">
             <SheetTitle className="text-2xl font-bold flex items-center gap-2">
               <ShoppingBag className="h-6 w-6" />
-              Your Cart{" "}
+              {t("title")}{" "}
             </SheetTitle>
             <button
               className="bg-red-600 text-white font-extrabold rounded-full hover:bg-red-700 hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
@@ -77,7 +81,7 @@ export function CartDrawer() {
                   dispatch(toggleCart(false));
                 }}
               >
-                + Add more items
+                {t("addMoreItems")}
               </Button>
             </div>
 
@@ -87,16 +91,16 @@ export function CartDrawer() {
 
               <Button
                 size="lg"
-                className="w-full h-14 text-lg font-semibold"
+                className="w-full h-14 text-lg font-semibold flex items-center justify-center"
                 onClick={handleCheckout}
               >
-                <span>Proceed to Checkout</span>
+                <span>{t("checkout")}</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
               {/* Delivery Time Estimate */}
               <p className="text-center text-sm text-gray-500">
-                Estimated delivery in 45-60 minutes
+                {t("estimatedDelivery")}
               </p>
             </div>
           </>

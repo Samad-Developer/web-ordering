@@ -1,26 +1,25 @@
 "use client";
 
 import React from "react";
+import { useState } from "react";
 import { useAppSelector } from "@/store/hooks";
+import { Separator } from "@/components/ui/separator";
+import { CartSummary } from "../shared/cart/CartSummary";
+import { formatPrice } from "@/lib/product/productHelper";
 import { selectCartItems } from "@/store/slices/cartSlice";
 import { calculateCartSummary } from "@/lib/cart/cartHelpers";
 import { calculateTax } from "@/lib/checkout/checkoutHelpers";
-import { formatPrice } from "@/lib/product/productHelper";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
-import { Separator } from "@/components/ui/separator";
 import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
-import { CartSummary } from "../shared/cart/CartSummary";
+import { useTranslations } from "next-intl";
 
 interface OrderSummaryProps {
   showPaymentDetails?: boolean;
   variant?: "checkout" | "success";
 }
 
-export function OrderSummary({
-  showPaymentDetails = true,
-  variant = "checkout",
-}: OrderSummaryProps) {
+export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }: OrderSummaryProps) {
+  const t = useTranslations("checkout")
   const cartItems = useAppSelector(selectCartItems);
   const summary = calculateCartSummary(cartItems);
   const tax = calculateTax(summary.subtotal);
@@ -44,14 +43,14 @@ export function OrderSummary({
       ? " shadow-md"
       : variant === "success"
       ? "border-2 "
-      : "border"; // fallback
+      : "border";
 
   return (
     <div className={`rounded-xl ${containerBorderClass}`}>
       <div className="flex items-center gap-2 bg-gray-200 p-4 rounded-t-lg border-b">
         <ShoppingBag className="w-6 h-6 text-gray-600" />
         <h2 className="text-lg font-semibold text-gray-800 tracking-wide">
-          Order Summary
+          {t("orderSummary")}
         </h2>
       </div>
 

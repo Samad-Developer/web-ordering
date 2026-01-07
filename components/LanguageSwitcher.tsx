@@ -16,7 +16,6 @@ export default function LanguageSwitcher() {
   const languages = {
     en: 'English',
     ur: 'اردو',
-    ps: 'پښتو'
   };
 
   return (

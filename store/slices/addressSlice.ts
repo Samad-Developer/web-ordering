@@ -1,103 +1,88 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  UserAddress,
+import type {
+  DeliveryPickupApiResponse,
+  UserSelectedAddress,
   OrderMode,
-  AvailableModes,
-  OrderModesResponse
+  Branch
 } from '@/types/address.types';
 
 interface AddressState {
-  // User's selected address
-  currentAddress: UserAddress | null;
+  // API Data from SignalR
+  Data: DeliveryPickupApiResponse | null;
+  isLoading: boolean;
+  error: string | null;
 
-  // API Data
-  orderModesData: OrderModesResponse | null;
-  availableModes: AvailableModes;
+  // User Selection
+  selectedAddress: UserSelectedAddress | null;
 
   // UI State
   isModalOpen: boolean;
   isLoadingLocation: boolean;
-  isLoadingData: boolean;
 }
 
 const initialState: AddressState = {
-  currentAddress: null,
-  orderModesData: null,
-  availableModes: {
-    delivery: false,
-    pickup: false,
-  },
+  Data: null,
+  isLoading: false,
+  error: null,
+  selectedAddress: null,
   isModalOpen: false,
   isLoadingLocation: false,
-  isLoadingData: false,
 };
 
 const addressSlice = createSlice({
   name: 'address',
   initialState,
   reducers: {
-    // Set Order Modes Data (from API)
-    setOrderModesData: (state, action: PayloadAction<OrderModesResponse>) => {
-      state.orderModesData = action.payload;
+    // ============================================
+    // API DATA ACTIONS (SignalR)
+    // ============================================
 
-      // Update available modes
-      const hasDelivery = !!action.payload.orderModes.delivery && Object.keys(action.payload.orderModes.delivery).length > 0;
-      const hasPickup = !!action.payload.orderModes.pickup && Object.keys(action.payload.orderModes.pickup).length > 0;
-
-      state.availableModes = {
-        delivery: hasDelivery,
-        pickup: hasPickup,
-      };
+    addressDataRequested: (state) => {
+      state.isLoading = true;
+      state.error = null;
     },
 
-    // Open/Close Modal
-    openAddressModal: (state) => {
-      state.isModalOpen = true;
+    addressDataReceived: (state, action: PayloadAction<DeliveryPickupApiResponse>) => {
+      state.isLoading = false;
+      state.Data = action.payload;
     },
 
-    closeAddressModal: (state) => {
-      state.isModalOpen = false;
+    addressDataError: (state, action: PayloadAction<string>) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
 
-    // Set Order Mode
+    // ============================================
+    // USER SELECTION ACTIONS
+    // ============================================
+
     setOrderMode: (state, action: PayloadAction<OrderMode>) => {
-      if (state.currentAddress) {
-        state.currentAddress.orderMode = action.payload;
-
+      if (state.selectedAddress) {
+        state.selectedAddress.orderMode = action.payload;
         // Clear opposite mode data
         if (action.payload === 'delivery') {
-          state.currentAddress.branchId = undefined;
-          state.currentAddress.branchName = undefined;
-          state.currentAddress.branchAddress = undefined;
-          state.currentAddress.branchPhoneNumber = undefined;
+          state.selectedAddress.branchId = undefined;
+          state.selectedAddress.branchName = undefined;
+          state.selectedAddress.branchAddress = undefined;
+          state.selectedAddress.branchPhoneNumber = undefined;
         } else {
-          state.currentAddress.areaId = undefined;
-          state.currentAddress.areaName = undefined;
-          state.currentAddress.fullAddress = undefined;
+          state.selectedAddress.areaId = undefined;
+          state.selectedAddress.areaName = undefined;
+          state.selectedAddress.fullAddress = undefined;
         }
-      } else {
-        state.currentAddress = {
-          orderMode: action.payload,
-          isCurrentLocation: false,
-          lastUpdated: Date.now(),
-        };
       }
     },
 
-    // Set Delivery Address
-    setDeliveryAddress: (
-      state,
-      action: PayloadAction<{
-        cityId: string;
-        cityName: string;
-        areaId: number;
-        areaName: string;
-        fullAddress?: string;
-        coordinates?: { lat: number; lng: number };
-        isCurrentLocation?: boolean;
-      }>
-    ) => {
-      state.currentAddress = {
+    setDeliveryAddress: (state, action: PayloadAction<{
+      cityId: string;
+      cityName: string;
+      areaId: number;
+      areaName: string;
+      fullAddress?: string;
+      coordinates?: { lat: number; lng: number };
+      isCurrentLocation?: boolean;
+    }>) => {
+      state.selectedAddress = {
         orderMode: 'delivery',
         cityId: action.payload.cityId,
         cityName: action.payload.cityName,
@@ -110,19 +95,15 @@ const addressSlice = createSlice({
       };
     },
 
-    // Set Pickup Branch
-    setPickupBranch: (
-      state,
-      action: PayloadAction<{
-        cityId: string;
-        cityName: string;
-        branchId: number;
-        branchName: string;
-        branchAddress: string;
-        branchPhoneNumber: string;
-      }>
-    ) => {
-      state.currentAddress = {
+    setPickupBranch: (state, action: PayloadAction<{
+      cityId: string;
+      cityName: string;
+      branchId: number;
+      branchName: string;
+      branchAddress: string;
+      branchPhoneNumber: string;
+    }>) => {
+      state.selectedAddress = {
         orderMode: 'pickup',
         cityId: action.payload.cityId,
         cityName: action.payload.cityName,
@@ -135,82 +116,84 @@ const addressSlice = createSlice({
       };
     },
 
-    // Update City (intermediate selection)
-    updateSelectedCity: (
-      state,
-      action: PayloadAction<{ cityId: string; cityName: string }>
-    ) => {
-      if (state.currentAddress) {
-        state.currentAddress.cityId = action.payload.cityId;
-        state.currentAddress.cityName = action.payload.cityName;
-
-        // Clear area/branch when city changes
-        state.currentAddress.areaId = undefined;
-        state.currentAddress.areaName = undefined;
-        state.currentAddress.branchId = undefined;
-        state.currentAddress.branchName = undefined;
-        state.currentAddress.branchAddress = undefined;
-      }
+    clearSelectedAddress: (state) => {
+      state.selectedAddress = null;
     },
 
-    // Select Area (intermediate)
-    selectArea: (
-      state,
-      action: PayloadAction<{ areaId: number; areaName: string }>
-    ) => {
-      if (!state.currentAddress) return;
+    // ============================================
+    // MODAL ACTIONS
+    // ============================================
 
-      state.currentAddress.areaId = action.payload.areaId;
-      state.currentAddress.areaName = action.payload.areaName;
+    openAddressModal: (state) => {
+      state.isModalOpen = true;
     },
 
-    // Select Branch (intermediate)
-    selectBranch: (
-      state,
-      action: PayloadAction<{ branchId: number }>
-    ) => {
-      if (!state.currentAddress) return;
-
-      state.currentAddress.branchId = action.payload.branchId;
+    closeAddressModal: (state) => {
+      state.isModalOpen = false;
     },
 
+    // ============================================
+    // LOADING STATES
+    // ============================================
 
-    // Clear Address
-    clearAddress: (state) => {
-      state.currentAddress = null;
-    },
-
-    // Set Loading States
     setLoadingLocation: (state, action: PayloadAction<boolean>) => {
       state.isLoadingLocation = action.payload;
-    },
-
-    setLoadingData: (state, action: PayloadAction<boolean>) => {
-      state.isLoadingData = action.payload;
     },
   },
 });
 
 export const {
-  setOrderModesData,
-  openAddressModal,
-  closeAddressModal,
+  addressDataRequested,
+  addressDataReceived,
+  addressDataError,
   setOrderMode,
   setDeliveryAddress,
   setPickupBranch,
-  updateSelectedCity,
-  clearAddress,
+  clearSelectedAddress,
+  openAddressModal,
+  closeAddressModal,
   setLoadingLocation,
-  setLoadingData,
-  selectArea,
-  selectBranch
 } = addressSlice.actions;
 
 export default addressSlice.reducer;
 
-// Selectors
-export const selectCurrentAddress = (state: { address: AddressState }) => state.address.currentAddress;
-export const selectOrderModesData = (state: { address: AddressState }) => state.address.orderModesData;
-export const selectAvailableModes = (state: { address: AddressState }) => state.address.availableModes;
+// ============================================
+// SELECTORS
+// ============================================
+
+export const selectAddressApiData = (state: { address: AddressState }) => state.address.Data;
+
+export const selectAddressLoading = (state: { address: AddressState }) => state.address.isLoading;
+
+export const selectAddressError = (state: { address: AddressState }) => state.address.error;
+
+export const selectSelectedAddress = (state: { address: AddressState }) => state.address.selectedAddress;
+
 export const selectIsModalOpen = (state: { address: AddressState }) => state.address.isModalOpen;
+
 export const selectIsLoadingLocation = (state: { address: AddressState }) => state.address.isLoadingLocation;
+
+import { createSelector } from "@reduxjs/toolkit";
+
+// Helper selector for available modes (memoized)
+export const selectAvailableModes = createSelector(
+  [(state: { address: AddressState }) => state.address.Data],
+  (data) => {
+    if (!data) {
+      return { delivery: false, pickup: false };
+    }
+
+    const hasDelivery = Object.values(data.dataPayload.Delivery).some(
+      (city) => city.Areas.length > 0
+    );
+
+    const hasPickup = Object.values(data.dataPayload.Pickup).some(
+      (city) => city.Branches.length > 0
+    );
+
+    return {
+      delivery: hasDelivery,
+      pickup: hasPickup,
+    };
+  }
+);

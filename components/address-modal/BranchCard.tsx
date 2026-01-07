@@ -7,7 +7,7 @@ import { Branch } from '@/types/address.types';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Phone, Clock, Navigation, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { parseBranchAddress, formatBusinessHours } from '@/lib/address/addressHelpers';
+import { parseBranchAddress } from '@/lib/address/addressHelpers';
 import { motion } from 'framer-motion';
 
 interface BranchDetailsCardProps {
@@ -16,10 +16,6 @@ interface BranchDetailsCardProps {
 
 export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
   const { mainAddress, phoneNumber } = parseBranchAddress(branch.BranchAddress);
-  const businessHours = formatBusinessHours(
-    branch.BusinessDayStartTime,
-    branch.BusinessDayEndTime
-  );
 
   const handleGetDirections = () => {
     const encodedAddress = encodeURIComponent(mainAddress);
@@ -87,7 +83,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
               </div>
               <div className="flex-1">
                 <p className="text-xs text-gray-500 font-medium mb-1">Open Hours</p>
-                <p className="text-sm font-medium text-gray-900">{businessHours}</p>
+                <p className="text-sm font-medium text-gray-900">{branch.BusinessStartTime}</p>
               </div>
             </div>
           </div>

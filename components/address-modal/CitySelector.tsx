@@ -9,19 +9,9 @@ import Image from 'next/image';
 interface CitySelectorProps {
     cities: ParsedCity[];
     selectedCityId: string | null;
-    onCitySelect: (cityId: string, cityName: string) => void;
+    onCitySelect: (cityId: string) => void;
     orderMode: 'delivery' | 'pickup';
 }
-
-const CITY_IMAGES: Record<string, string> = {
-    '1223': '/assets/images/cities-pics/karachi.svg',
-    '1224': '/assets/images/cities-pics/lahore.svg',
-    '1323': '/assets/images/cities-pics/islamabad.svg',
-    '1325': '/assets/images/cities-pics/bahawalpurr.svg',
-    '1326': '/assets/images/cities-pics/faisalabad.svg',
-    '1327': '/assets/images/cities-pics/hyderabad.svg',
-    '1328': '/assets/images/cities-pics/sialkott.svg',
-};
 
 export function CitySelector({
     cities,
@@ -45,7 +35,7 @@ export function CitySelector({
                     <div 
                         key={city.id} 
                         className="flex flex-col items-center group cursor-pointer"
-                        onClick={() => onCitySelect(city.id, city.name)}
+                        onClick={() => onCitySelect(city.id)}
                     >
                         {/* Wrapper for Button + Checkmark */}
                         <div className="relative transform group-hover:scale-105 transition-transform duration-200">
@@ -60,9 +50,9 @@ export function CitySelector({
                             >
                                 {/* Image Container (50x50) */}
                                 <div className="relative w-[50px] h-[50px] flex-shrink-0">
-                                    {CITY_IMAGES[city.id] ? (
+                                    {true ? (
                                         <Image
-                                            src={CITY_IMAGES[city.id]}
+                                            src={'/assets/images/cities-pics/karachi.svg'}
                                             alt={city.name}
                                             fill
                                             className="object-contain"

@@ -17,7 +17,7 @@ import { Store } from 'lucide-react';
 interface BranchSelectorProps {
   branches: Branch[];
   selectedBranchId: number | null;
-  onBranchSelect: (branch: Branch) => void;
+  onBranchSelect: (branchId: number) => void;
 }
 
 export function BranchSelector({
@@ -31,7 +31,7 @@ export function BranchSelector({
     const branchId = parseInt(value);
     const branch = branches.find((b) => b.BranchId === branchId);
     if (branch) {
-      onBranchSelect(branch);
+      onBranchSelect(branch.BranchId);
     }
   };
 

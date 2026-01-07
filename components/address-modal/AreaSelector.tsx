@@ -15,7 +15,7 @@ import { ChevronDown } from 'lucide-react';
 interface AreaSelectorProps {
   areas: Area[];
   selectedAreaId: number | null;
-  onAreaSelect: (areaId: number, areaName: string) => void;
+  onAreaSelect: (areaId: number) => void;
   disabled?: boolean;
 }
 
@@ -30,7 +30,7 @@ export function AreaSelector({
     const areaId = parseInt(value);
     const area = areas.find((a) => a.AreaId === areaId);
     if (area) {
-      onAreaSelect(area.AreaId, area.AreaName);
+      onAreaSelect(area.AreaId);
     }
   };
 

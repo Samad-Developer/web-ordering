@@ -1,111 +1,11 @@
 
-import { 
-  OrderModesResponse, 
-  DeliveryCity, 
-  PickupCity, 
-  ParsedCity,
+import {  
   Area,
-  Branch
+  Branch,
+  DeliveryPickupApiResponse,
+  ParsedCity
 } from '@/types/address.types';
 
-/**
- * Parse API response to get available modes
- */
-export function getAvailableModes(data: OrderModesResponse) {
-  return {
-    delivery: !!data.orderModes.delivery && Object.keys(data.orderModes.delivery).length > 0,
-    pickup: !!data.orderModes.pickup && Object.keys(data.orderModes.pickup).length > 0,
-  };
-}
-
-/**
- * Get all cities with their available modes
- */
-export function getAllCities(data: OrderModesResponse): ParsedCity[] {
-  const citiesMap = new Map<string, ParsedCity>();
-
-  // Add delivery cities
-  if (data.orderModes.delivery) {
-    Object.entries(data.orderModes.delivery).forEach(([cityId, cityData]) => {
-      citiesMap.set(cityId, {
-        id: cityId,
-        name: cityData.cityName,
-        hasDelivery: true,
-        hasPickup: false,
-      });
-    });
-  }
-
-  // Add/Update with pickup cities
-  if (data.orderModes.pickup) {
-    Object.entries(data.orderModes.pickup).forEach(([cityId, cityData]) => {
-      const existing = citiesMap.get(cityId);
-      if (existing) {
-        existing.hasPickup = true;
-      } else {
-        citiesMap.set(cityId, {
-          id: cityId,
-          name: cityData.cityName,
-          hasDelivery: false,
-          hasPickup: true,
-        });
-      }
-    });
-  }
-
-  return Array.from(citiesMap.values()).sort((a, b) => a.name.localeCompare(b.name));
-}
-
-/**
- * Get cities for specific order mode
- */
-export function getCitiesForMode(
-  data: OrderModesResponse, 
-  mode: 'delivery' | 'pickup'
-): Record<string, DeliveryCity | PickupCity> {
-  if (mode === 'delivery') {
-    return data.orderModes.delivery || {};
-  }
-  return data.orderModes.pickup || {};
-}
-
-/**
- * Get areas for a city (Delivery mode)
- */
-export function getAreasForCity(
-  data: OrderModesResponse, 
-  cityId: string
-): Area[] {
-  const deliveryCity = data.orderModes.delivery?.[cityId];
-  return deliveryCity?.areas || [];
-}
-
-/**
- * Get branches for a city (Pickup mode)
- */
-export function getBranchesForCity(
-  data: OrderModesResponse, 
-  cityId: string
-): Branch[] {
-  const pickupCity = data.orderModes.pickup?.[cityId];
-  return pickupCity?.branches || [];
-}
-
-/**
- * Get city name by ID
- */
-export function getCityNameById(
-  data: OrderModesResponse, 
-  cityId: string
-): string | null {
-  const deliveryCity = data.orderModes.delivery?.[cityId];
-  if (deliveryCity) return deliveryCity.cityName;
-  
-  const pickupCity = data.orderModes.pickup?.[cityId];
-  if (pickupCity) return pickupCity.cityName;
-  
-  return null;
-}
 
 /**
  * Parse branch address (remove HTML tags)
@@ -127,34 +27,77 @@ export function parseBranchAddress(address: string): {
   return { mainAddress, phoneNumber };
 }
 
-/**
- * Format business hours
- */
-export function formatBusinessHours(startTime: string, endTime: string): string {
-  // Input format: "09:00:00"
-  // Output format: "9:00 AM - 6:00 PM"
-  
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
-  };
-  
-  return `${formatTime(startTime)} - ${formatTime(endTime)}`;
-}
 
 /**
  * Check if city exists in both modes
  */
 export function cityExistsInMode(
-  data: OrderModesResponse,
+  data: DeliveryPickupApiResponse,
   cityId: string,
   mode: 'delivery' | 'pickup'
 ): boolean {
   if (mode === 'delivery') {
-    return !!data.orderModes.delivery?.[cityId];
+    return !!data.dataPayload.Delivery?.[cityId];
   }
-  return !!data.orderModes.pickup?.[cityId];
+  return !!data.dataPayload.Pickup?.[cityId];
+}
+
+export function getAllCities(data: DeliveryPickupApiResponse): ParsedCity[] {
+  const citiesMap = new Map<string, ParsedCity>();
+
+  // Add delivery cities
+  if (data.dataPayload.Delivery) {
+    Object.entries(data.dataPayload.Delivery).forEach(([cityId, cityData]) => {
+      citiesMap.set(cityId, {
+        id: cityId,
+        name: cityData.CityName,
+        hasDelivery: true,
+        hasPickup: false,
+      });
+    });
+  }
+
+  // Add/Update with pickup cities
+  if (data.dataPayload.Pickup) {
+    Object.entries(data.dataPayload.Pickup).forEach(([cityId, cityData]) => {
+      const existing = citiesMap.get(cityId);
+      if (existing) {
+        existing.hasPickup = true;
+      } else {
+        citiesMap.set(cityId, {
+          id: cityId,
+          name: cityData.CityName,
+          hasDelivery: false,
+          hasPickup: true,
+        });
+      }
+    });
+  }
+
+  return Array.from(citiesMap.values()).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export function getAreasForCity(
+  data: DeliveryPickupApiResponse, 
+  cityId: string
+): Area[] {
+  return data.dataPayload.Delivery[cityId]?.Areas || [];
+}
+
+export function getBranchesForCity(
+  data: DeliveryPickupApiResponse, 
+  cityId: string
+): Branch[] {
+  return data.dataPayload.Pickup[cityId]?.Branches || [];
+}
+
+export function getCityNameById(
+  data: DeliveryPickupApiResponse, 
+  cityId: string
+): string | null {
+  return (
+    data.dataPayload.Delivery[cityId]?.CityName ||
+    data.dataPayload.Pickup[cityId]?.CityName ||
+    null
+  );
 }

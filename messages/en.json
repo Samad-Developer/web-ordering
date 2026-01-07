@@ -1,87 +1,94 @@
 {
-    "nav": {
-      "home": "Home",
-      "menu": "Menu",
-      "cart": "Cart",
-      "orders": "My Orders",
-      "profile": "Profile",
-      "login": "Login",
-      "logout": "Logout",
-      "changeLocation": "Change Location",
-      "selectedArea": "Selected Area",
-      "submitComplaint": "Submit Complaint"
-    },
-    "home": {
-      "title": "Delicious Food Delivered to Your Door",
-      "subtitle": "Order from your favorite restaurants",
-      "searchPlaceholder": "Search for food or restaurants...",
-      "orderNow": "Order Now"
-    },
-    "menu": {
-      "title": "Our Menu",
-      "categories": "Categories",
-      "all": "All",
-      "popular": "Popular",
-      "addToCart": "Add to Cart",
-      "viewDetails": "View Details",
-      "price": "Price"
-    },
-    "cart": {
-      "title": "Shopping Cart",
-      "empty": "Your cart is empty",
-      "continueShopping": "Continue Shopping",
-      "subtotal": "Subtotal",
-      "deliveryFee": "Delivery Fee",
-      "total": "Total",
-      "checkout": "Proceed to Checkout",
-      "removeItem": "Remove",
-      "quantity": "Quantity"
-    },
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "cart": "Cart",
+    "orders": "My Orders",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "changeLocation": "Change Location",
+    "selectedArea": "Selected Area",
+    "submitComplaint": "Submit Complaint"
+  },
+  "home": {
+    "title": "Delicious Food Delivered to Your Door",
+    "subtitle": "Order from your favorite restaurants",
+    "searchPlaceholder": "Search for food or restaurants...",
+    "orderNow": "Order Now"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "categories": "Categories",
+    "all": "All",
+    "popular": "Popular",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "price": "Price"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "continueShopping": "Continue Shopping",
+    "viewCart": "View Cart",
+    "addMoreItems": "+ Add more items",
+    "item": "Item",
+    "addons": "Add-ons",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "deliveryFee": "Delivery Fee",
+    "grandTotal": "Grand Total",
+    "checkout": "Proceed to Checkout",
+    "estimatedDelivery": "Estimated delivery in 45-60 minutes",
+    "removeItem": "Remove",
+    "quantity": "Quantity"
+  },
+
     "checkout": {
-      "title": "Checkout",
-      "deliveryAddress": "Delivery Address",
-      "paymentMethod": "Payment Method",
-      "orderSummary": "Order Summary",
-      "placeOrder": "Place Order",
-      "cashOnDelivery": "Cash on Delivery",
-      "cardPayment": "Card Payment"
-    },
-    "orders": {
-      "title": "My Orders",
-      "orderNumber": "Order #",
-      "status": "Status",
-      "date": "Date",
-      "total": "Total",
-      "viewDetails": "View Details",
-      "pending": "Pending",
-      "confirmed": "Confirmed",
-      "preparing": "Preparing",
-      "onTheWay": "On the way",
-      "delivered": "Delivered",
-      "cancelled": "Cancelled"
-    },
-    "profile": {
-      "title": "My Profile",
-      "personalInfo": "Personal Information",
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone",
-      "addresses": "Saved Addresses",
-      "addAddress": "Add New Address",
-      "editProfile": "Edit Profile",
-      "saveChanges": "Save Changes"
-    },
-    "common": {
-      "loading": "Loading...",
-      "error": "Something went wrong",
-      "success": "Success",
-      "cancel": "Cancel",
-      "save": "Save",
-      "edit": "Edit",
-      "delete": "Delete",
-      "confirm": "Confirm",
-      "search": "Search",
-      "filter": "Filter",
-      "sortBy": "Sort by"
-    }
+    "title": "Checkout",
+    "deliveryAddress": "Delivery Address",
+    "paymentMethod": "Payment Method",
+    "orderSummary": "Order Summary",
+    "placeOrder": "Place Order",
+    "cashOnDelivery": "Cash on Delivery",
+    "cardPayment": "Card Payment"
+  },
+  "orders": {
+    "title": "My Orders",
+    "orderNumber": "Order #",
+    "status": "Status",
+    "date": "Date",
+    "total": "Total",
+    "viewDetails": "View Details",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "preparing": "Preparing",
+    "onTheWay": "On the way",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  },
+  "profile": {
+    "title": "My Profile",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "addresses": "Saved Addresses",
+    "addAddress": "Add New Address",
+    "editProfile": "Edit Profile",
+    "saveChanges": "Save Changes"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "search": "Search",
+    "filter": "Filter",
+    "sortBy": "Sort by"
   }
+}

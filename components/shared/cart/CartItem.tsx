@@ -1,5 +1,3 @@
-// components/cart/CartItem.tsx
-
 "use client";
 
 import React, { useState } from "react";
@@ -13,11 +11,9 @@ import {
   removeItem,
 } from "@/store/slices/cartSlice";
 import { formatPrice } from "@/lib/product/productHelper";
-import {
-  getCartItemDisplayName,
-  getCartItemAddonsText,
-} from "@/lib/cart/cartHelpers";
+import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 interface CartItemProps {
   item: CartItemType;
@@ -25,6 +21,7 @@ interface CartItemProps {
 
 export function CartItem({ item }: CartItemProps) {
   const dispatch = useAppDispatch();
+  const t = useTranslations("cart")
   const [showAddons, setShowAddons] = useState(false);
 
   const addons = getCartItemAddonsText(item);
@@ -130,8 +127,7 @@ export function CartItem({ item }: CartItemProps) {
             className="flex items-center justify-between w-full text-sm text-gray-600 hover:text-gray-900"
           >
             <span className="font-medium">
-              {hasAddons &&
-                `${addons.length} add-on${addons.length > 1 ? "s" : ""}`}
+            {hasAddons && `${addons.length} ${t('addons')}`}
             </span>
             {showAddons ? (
               <ChevronUp className="h-4 w-4" />

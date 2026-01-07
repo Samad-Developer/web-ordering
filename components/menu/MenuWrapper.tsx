@@ -10,7 +10,7 @@ import { SearchProvider } from "@/contexts/SearchContext";
 import { selectCartItemCount } from "@/store/slices/cartSlice";
 import { FloatingCartButton } from "../shared/cart/FloatingCartButton";
 import CategorySection from "./partials/category-section/CategorySection";
-import { Spinner } from "../ui/spinner";
+import FullscreenLoader from "../loading/FullScreenLoader";
 
 const MenuWrapper = () => {
   const { menuData, isLoading } = useMenu();
@@ -26,7 +26,7 @@ const MenuWrapper = () => {
         {
           ( isLoading && !menuData ) ?
             <div className="w-full h-screen flex items-center justify-center">
-              <Spinner/>
+              <FullscreenLoader/>
             </div>
             :
             <div className="my-10">

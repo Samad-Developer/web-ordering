@@ -1,5 +1,4 @@
 import { GeolocationResult } from '@/types/address.types';
-import { OrderModesResponse } from '@/types/address.types';
 
 export async function getCurrentLocation(): Promise<{ lat: number; lng: number } | null> {
   if (!navigator.geolocation) {
@@ -51,18 +50,18 @@ export async function reverseGeocode(
 /**
  * Find matching city and area from coordinates
  */
-export async function findCityAndAreaFromLocation(
-  coordinates: { lat: number; lng: number },
-  orderModesData: OrderModesResponse
-): Promise<{ cityId: string; areaId: number } | null> {
+// export async function findCityAndAreaFromLocation(
+//   coordinates: { lat: number; lng: number },
+//   orderModesData: OrderModesResponse
+// ): Promise<{ cityId: string; areaId: number } | null> {
   // TODO: Implement logic to match coordinates with your cities/areas
   // This could involve:
   // 1. Calculating distance from city centers
   // 2. Using Google Maps API to get area name and matching with your data
   // 3. Or letting user manually select if no match found
 
-  return null;
-}
+//   return null;
+// }
 
 /**
  * Calculate distance between two coordinates (in km)

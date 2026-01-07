@@ -14,22 +14,28 @@ export function useMenu() {
 
   useEffect(() => {
     if (!connection || !isConnected || data) return;
+
     dispatch(menuRequested());
 
-    try {
-      console.log('Requesting menu...');
-      connection.invoke('MenuRequest');
+    const handler = (response: MenuResponse) => {
+      console.log("Checking what i get from menu response ------", response)
+      dispatch(menuReceived(response.dataPayload));
+    };
 
-      connection.on('MenuResponse', (data: MenuResponse) => {
-        dispatch(menuReceived(data.menu));
+    connection.on('MenuResponse', handler);
+
+    connection
+    .invoke('DataRequest', 'builderburger.co', 'Menu', 'MenuResponse')
+      .catch((err) => {
+        dispatch(
+          menuError(err?.message ?? 'Error while requesting menu')
+        );
       });
 
-    } catch (err) {
-      dispatch(
-        menuError(err instanceof Error ? err.message : 'Error while requesting menu')
-      );
-    }
-  }, [connection, isConnected, dispatch]);
+    return () => {
+      connection.off('MenuResponse', handler);
+    };
+  }, [connection, isConnected, data, dispatch]);
 
   return {
     menuData: data,
@@ -37,4 +43,3 @@ export function useMenu() {
     error,
   };
 }
-
