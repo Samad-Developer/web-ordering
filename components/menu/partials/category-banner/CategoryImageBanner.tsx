@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { toSlug } from "@/lib/address/slug";
+import { useParams } from "next/navigation";
 
 interface CategoryImageBannerProps {
   categoryImage: string;
@@ -15,12 +16,13 @@ const CategoryImageBanner: React.FC<CategoryImageBannerProps> = ({
   categoryName,
   priority = false,
 }) => {
+  const { locale } = useParams();
   const imageSrc = categoryImage && categoryImage.trim() !== "" ? categoryImage : "/assets/images/banner/category-banner/new-arrivals.webp";
   const categorySlug = toSlug(categoryName);
 
   return (
     <div className="text-center my-2 sm:my-4 border rounded-2xl overflow-hidden">
-      <Link href={`/[locale]/category/${categorySlug}`} prefetch={false}>
+      <Link href={`/${locale}/category/${categorySlug}`} prefetch={false}>
         <div className="relative w-full cursor-pointer">
           <Image
             src={imageSrc}
