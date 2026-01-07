@@ -5,6 +5,7 @@ import { ContactDetails } from "./partials/ContactDetails";
 import { SocialLinks } from "./partials/SocialLinks";
 import { AppDownloadSection } from "./partials/AppDownloadSection";
 import { FooterLogo } from "./partials/FooterLogo";
+import Link from "next/link";
 
 interface Footer1Props {
   content: FooterContent;
@@ -111,18 +112,18 @@ const Footer1 = () => {
               © {currentYear} {footerData.about.title}. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
-              <a
+              <Link
                 href="/privacy-policy"
                 className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
               >
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/terms-of-service"
                 className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
               >
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
