@@ -83,7 +83,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
               </div>
               <div className="flex-1">
                 <p className="text-xs text-gray-500 font-medium mb-1">Open Hours</p>
-                <p className="text-sm font-medium text-gray-900">{branch.BusinessStartTime}</p>
+                {/* <p className="text-sm font-medium text-gray-900">{branch.BusinessStartTime}</p> */}
               </div>
             </div>
           </div>
