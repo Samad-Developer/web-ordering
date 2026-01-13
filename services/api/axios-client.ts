@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://beta.eatx.pk:8090';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ordering.eatx.pk:8090';
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
