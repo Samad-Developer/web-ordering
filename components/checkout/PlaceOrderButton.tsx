@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
@@ -17,6 +18,7 @@ export function PlaceOrderButton({
   totalAmount,
   isDisabled = false
 }: PlaceOrderButtonProps) {
+  const t = useTranslations("checkout")
   return (
     <div className="space-y-3 ">
       <Button
@@ -28,12 +30,12 @@ export function PlaceOrderButton({
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-            Processing Order...
+            {t('processingOrder')}
           </>
         ) : (
           <div className="flex items-center justify-center w-full">
             <span className="flex items-center gap-2">
-              Place Order
+              {t('placeOrder')}
             </span>
             {/* <span className="font-bold">Rs. {totalAmount.toLocaleString()}</span> */}
           </div>

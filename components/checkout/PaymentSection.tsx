@@ -7,6 +7,7 @@ import { CheckoutFormData, PaymentMethod } from '@/types/checkout.types';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Label } from '../ui/label';
+import { useTranslations } from 'next-intl';
 
 interface PaymentSectionProps {
   form: UseFormReturn<CheckoutFormData>;
@@ -19,9 +20,10 @@ export function PaymentSection({
   paymentMethod, 
   onPaymentMethodChange 
 }: PaymentSectionProps) {
+  const t = useTranslations("checkout")
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-900">Payment Method</h3>
+      <h3 className="text-lg font-semibold text-gray-900">{t('paymentMethod')}</h3>
 
       {/* Payment Method Selection */}
       <div className="grid grid-cols-2 gap-3">
@@ -43,7 +45,7 @@ export function PaymentSection({
             "font-medium text-sm",
             paymentMethod === 'cash' ? "text-green-700" : "text-gray-700"
           )}>
-            Cash on Delivery
+            {t('cashOnDelivery')}
           </span>
         </button>
 
@@ -65,7 +67,7 @@ export function PaymentSection({
             "font-medium text-sm",
             paymentMethod === 'online' ? "text-blue-700" : "text-gray-700"
           )}>
-            Online Payment
+            {t('onlinePayment')}
           </span>
         </button>
       </div>
@@ -74,7 +76,7 @@ export function PaymentSection({
       {paymentMethod === 'cash' && (
         <div className="space-y-2">
           <Label htmlFor="changeAmount">
-            Change Request (Optional)
+          {t('changeRequest')}
           </Label>
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
@@ -84,12 +86,12 @@ export function PaymentSection({
               {...form.register('changeAmount', { valueAsNumber: true })}
               id="changeAmount"
               type="number"
-              placeholder="500"
+              placeholder={t('placeholders.changeAmount')}
               className="pl-10"
             />
           </div>
           <p className="text-xs text-gray-500">
-            Enter the amount you&apos;ll pay for change preparation
+            {t('changeRequestHelp')}
           </p>
         </div>
       )}

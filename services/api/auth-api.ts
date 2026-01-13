@@ -1,18 +1,20 @@
 import { axiosClient } from './axios-client';
 
-function getUserId(): string {
-  if (typeof window === 'undefined') return '';
-  
-  let userId = localStorage.getItem('user_id');
-  if (!userId) {
-    userId = `user_${Math.random().toString(36).substr(2, 9)}_${Date.now()}`;
-    localStorage.setItem('user_id', userId);
+function createRandomUserId() {
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let part1 = "";
+  let part2 = "";
+
+  for (let i = 0; i < 4; i++) {
+    part1 += chars[Math.floor(Math.random() * chars.length)];
+    part2 += chars[Math.floor(Math.random() * chars.length)];
   }
-  return userId;
+
+  return part1 + "-" + part2;
 }
 
 export async function fetchAuthToken(username: string, password: string): Promise<string> {
-  const userId = getUserId();
+  const userId = createRandomUserId();
   
   const response = await axiosClient.post('/generate-token', {
     username,

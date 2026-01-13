@@ -14,12 +14,12 @@ import {
   PaymentMethod,
 } from "@/types/checkout.types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CheckoutFormFields } from "./CheckoutFormFields";
 import { PaymentSection } from "./PaymentSection";
 import { toast } from "sonner";
-import { ArrowLeft } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface CheckoutFormProps {
   setFormRef: (ref: HTMLFormElement | null) => void;
@@ -30,7 +30,9 @@ export function CheckoutForm({
   setFormRef,
   setIsSubmitting,
 }: CheckoutFormProps) {
+  const t = useTranslations("checkout");
   const router = useRouter();
+  const { locale } = useParams();
   const cartItems = useAppSelector(selectCartItems);
 
   const orderMode: OrderMode = "delivery";
@@ -46,21 +48,8 @@ export function CheckoutForm({
     mode: "onBlur",
   });
 
-  // Reset gift fields when isGift changes
-  useEffect(() => {
-    if (!isGift) {
-      form.setValue("recipientName", "");
-      form.setValue("recipientNumber", "");
-      form.setValue("giftingMessage", "");
-    }
-  }, [isGift, form]);
 
-  // Reset change amount when payment method changes
-  useEffect(() => {
-    if (paymentMethod === "online") {
-      form.setValue("changeAmount", undefined);
-    }
-  }, [paymentMethod, form]);
+  
 
   // Update form's isGift value
   useEffect(() => {
@@ -82,10 +71,18 @@ export function CheckoutForm({
 
   const handlePaymentMethodChange = (method: PaymentMethod) => {
     setPaymentMethod(method);
+    if (paymentMethod === "online") {
+      form.setValue("changeAmount", undefined);
+    }
   };
 
   const handleGiftToggle = (checked: boolean) => {
     setIsGift(checked);
+    if (!isGift) {
+      form.setValue("recipientName", "");
+      form.setValue("recipientNumber", "");
+      form.setValue("giftingMessage", "");
+    }
   };
 
   const onSubmit = async (data: CheckoutFormData) => {
@@ -109,7 +106,7 @@ export function CheckoutForm({
       setIsGift(false);
       setPaymentMethod("cash");
 
-      router.push(`/order-success?orderNumber=123124235`);
+      router.push(`/${locale}/order-success?orderNumber=123124235`);
     } catch (error) {
       console.error("Checkout error:", error);
       toast.error("Failed to place order", {
@@ -124,22 +121,13 @@ export function CheckoutForm({
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-2xl">Checkout</CardTitle>
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => router.push("/")}
-            className="gap-2"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Cart
-          </Button>
-        </div>
-        <p className="text-sm text-gray-500 mt-1">
+          <CardTitle className="text-2xl">{t("title")}</CardTitle>
+          {/* <p className="text-sm text-gray-500 mt-1">
           This is a{" "}
           <span className="font-semibold text-red-600">Delivery Order 🚚</span>
-        </p>
+        </p> */}
+        </div>
+        
       </CardHeader>
 
       <CardContent>

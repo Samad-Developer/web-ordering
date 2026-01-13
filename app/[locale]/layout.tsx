@@ -46,9 +46,9 @@ export default async function RootLayout({
 
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  if (!routing.locales.includes(locale as typeof routing.locales[number])) {
-    notFound();
-  }
+  // if (!routing.locales.includes(locale as typeof routing.locales[number])) {
+  //   notFound();
+  // }
 
   // Providing all messages to the client
   // side is the easiest way to get started

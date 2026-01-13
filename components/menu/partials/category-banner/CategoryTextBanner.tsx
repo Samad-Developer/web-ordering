@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { toSlug } from "@/lib/address/slug";
 
 
 interface CategoryTextBannerProps {
@@ -19,7 +20,7 @@ const CategoryTextBanner: React.FC<CategoryTextBannerProps> = ({
     right: "text-right",
   };
 
-  const categorySlug = categoryName.toLowerCase().replace(/\s+/g, "-");
+  const categorySlug = toSlug(categoryName);
 
   return (
     <div

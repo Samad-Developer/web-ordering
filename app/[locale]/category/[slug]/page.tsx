@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { fromSlug } from "@/lib/address/slug";
 import { useMenu } from "@/hooks/useMenu";
 import CategorySection from "@/components/menu/partials/category-section";
@@ -35,20 +35,7 @@ const CategoryPage = () => {
     (cat) => cat.Name.toLowerCase() === categoryName.toLowerCase()
   );
 
-  if (!category) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Category Not Found
-          </h2>
-          <p className="text-gray-600">
-            {"The category you're looking for doesn't exist."}
-          </p>
-        </div>
-      </div>
-    );
-  }
+  if (!category) notFound();
 
   return (
     <div className="max-w-7xl mx-auto px-2 sm:px-0 py-8">

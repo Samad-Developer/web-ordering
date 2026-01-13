@@ -12,9 +12,12 @@ import { FloatingCartButton } from "../shared/cart/FloatingCartButton";
 import CategorySection from "./partials/category-section/CategorySection";
 import FullscreenLoader from "../loading/FullScreenLoader";
 
+
 const MenuWrapper = () => {
   const { menuData, isLoading } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
+
+  
 
   return (
     <div>

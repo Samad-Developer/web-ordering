@@ -24,6 +24,7 @@ import {
 } from "@/lib/cart/cartHelpers";
 import { RepeatLastOrderModal } from "./inc-dec-modals/RepeatLastOrderModal";
 import { getLastAddedItem } from "@/lib/cart/cartHelpers";
+import { toSlug } from "@/lib/address/slug";
 
 interface ProductProps {
   product: MenuItem;
@@ -98,7 +99,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   const handleOpenModal = () => {
     dispatch(openProductModal(product));
 
-    const slug = `${product.Name.toLowerCase().replace(/\s+/g, "-")}-${product.Id}`;
+    const slug = toSlug(product.Name);
 
     if (typeof window !== "undefined") {
       window.history.pushState(null, "", `/product/${slug}`);

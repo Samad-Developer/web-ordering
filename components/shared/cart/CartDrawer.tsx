@@ -15,25 +15,19 @@ import {
 import { CartItem } from "./CartItem";
 import { EmptyCart } from "./EmptyCart";
 import { CartSummary } from "./CartSummary";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useAppDispatch } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cartSlice";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
 export function CartDrawer() {
-  const router = useRouter();
   const { locale } = useParams();
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
   const summary = calculateCartSummary(cartItems);
   const t = useTranslations("cart")
-
-  const handleCheckout = () => {
-    dispatch(toggleCart(false));
-    router.push(`/${locale}/checkout`);
-  };
 
   return (
     <Sheet
@@ -89,14 +83,16 @@ export function CartDrawer() {
             <div className="border-t bg-white px-6 py-4 space-y-4">
               <CartSummary summary={summary} showDetails={true} />
 
-              <Button
-                size="lg"
-                className="w-full h-14 text-lg font-semibold flex items-center justify-center"
-                onClick={handleCheckout}
-              >
-                <span>{t("checkout")}</span>
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Link href={`/${locale}/checkout`} >
+                <Button
+                  size="lg"
+                  className="w-full h-14 text-lg font-semibold flex items-center justify-center"
+                  onClick={() => dispatch(toggleCart(false))}
+                >
+                  <span>{t("checkout")}</span>
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
 
               {/* Delivery Time Estimate */}
               <p className="text-center text-sm text-gray-500">

@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Gift } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface CheckoutFormFieldsProps {
   form: UseFormReturn<CheckoutFormData>;
@@ -31,24 +32,22 @@ export function CheckoutFormFields({
   isGift,
   onGiftToggle,
 }: CheckoutFormFieldsProps) {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = form;
+
+  const t = useTranslations("checkout");
+  const { register, control, formState: { errors } } = form;
 
   return (
     <div className="space-y-6">
       {/* Customer Information */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-900">Customer Information</h3>
+        <h3 className="text-lg font-semibold text-gray-900">{t('customerInfo')}</h3>
 
         {/* Title & Full Name */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
           {/* Title */}
           <div className="space-y-2">
             <Label htmlFor="title">
-              Title <span className="text-red-500">*</span>
+            {t('titleLabel')} <span className="text-red-500">*</span>
             </Label>
             <Controller
               name="title"
@@ -59,7 +58,7 @@ export function CheckoutFormFields({
                     id="title"
                      className={`w-full ${errors.title ? "border-red-500" : ""}`}
                   >
-                    <SelectValue placeholder="Select" />
+                    <SelectValue placeholder={t('placeholders.select')} />
                   </SelectTrigger>
                   <SelectContent>
                     {TITLE_OPTIONS.map((option) => (
@@ -79,12 +78,12 @@ export function CheckoutFormFields({
           {/* Full Name */}
           <div className="sm:col-span-3 space-y-2">
             <Label htmlFor="fullName">
-              Full Name <span className="text-red-500">*</span>
+            {t('fullName')} <span className="text-red-500">*</span>
             </Label>
             <Input
               {...register('fullName')}
               id="fullName"
-              placeholder="John Doe"
+              placeholder={t('placeholders.fullName')}
               className={errors.fullName ? 'border-red-500' : ''}
             />
             {errors.fullName && (
@@ -98,13 +97,13 @@ export function CheckoutFormFields({
           {/* Mobile Number */}
           <div className="space-y-2">
             <Label htmlFor="mobileNumber">
-              Mobile Number <span className="text-red-500">*</span>
+            {t('mobileNumber')} <span className="text-red-500">*</span>
             </Label>
             <Input
               {...register('mobileNumber')}
               id="mobileNumber"
               type="tel"
-              placeholder="03xx-xxxxxxx"
+              placeholder={t('placeholders.mobile')}
               className={errors.mobileNumber ? 'border-red-500' : ''}
             />
             {errors.mobileNumber && (
@@ -115,13 +114,13 @@ export function CheckoutFormFields({
           {/* Alternate Mobile Number */}
           <div className="space-y-2">
             <Label htmlFor="alternateMobileNumber">
-              Alternate Mobile Number
+            {t('alternateMobileNumber')}
             </Label>
             <Input
               {...register('alternateMobileNumber')}
               id="alternateMobileNumber"
               type="tel"
-              placeholder="03xx-xxxxxxx"
+              placeholder={t('placeholders.mobile')}
               className={errors.alternateMobileNumber ? 'border-red-500' : ''}
             />
             {errors.alternateMobileNumber && (
@@ -134,12 +133,12 @@ export function CheckoutFormFields({
 
         {/* Email Address */}
         <div className="space-y-2">
-          <Label htmlFor="emailAddress">Email Address</Label>
+          <Label htmlFor="emailAddress">{t('email')}</Label>
           <Input
             {...register('emailAddress')}
             id="emailAddress"
             type="email"
-            placeholder="john.doe@example.com"
+            placeholder={t('placeholders.email')}
             className={errors.emailAddress ? 'border-red-500' : ''}
           />
           {errors.emailAddress && (
@@ -151,17 +150,17 @@ export function CheckoutFormFields({
       {/* Delivery Information (Delivery Mode Only) */}
       {orderMode === 'delivery' && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">Delivery Information</h3>
+          <h3 className="text-lg font-semibold text-gray-900">{t("deliveryInfo")}</h3>
 
           {/* Delivery Address */}
           <div className="space-y-2">
             <Label htmlFor="deliveryAddress">
-              Delivery Address <span className="text-red-500">*</span>
+            {t("deliveryAddress")} <span className="text-red-500">*</span>
             </Label>
             <Textarea
               {...register('deliveryAddress')}
               id="deliveryAddress"
-              placeholder="House #, Street, Area, City"
+              placeholder={t("placeholders.address")}
               rows={3}
               className={errors.deliveryAddress ? 'border-red-500' : ''}
             />
@@ -172,11 +171,11 @@ export function CheckoutFormFields({
 
           {/* Nearest Landmark */}
           <div className="space-y-2">
-            <Label htmlFor="nearestLandmark">Nearest Landmark</Label>
+            <Label htmlFor="nearestLandmark">{t("nearestLandmark")}</Label>
             <Input
               {...register('nearestLandmark')}
               id="nearestLandmark"
-              placeholder="e.g., Near XYZ Mall"
+              placeholder={t("placeholders.landmark")}
               className={errors.nearestLandmark ? 'border-red-500' : ''}
             />
             {errors.nearestLandmark && (
@@ -189,16 +188,12 @@ export function CheckoutFormFields({
       {/* Delivery Instructions */}
       <div className="space-y-2">
         <Label htmlFor="deliveryInstructions">
-          {orderMode === 'delivery' ? 'Delivery' : 'Pickup'} Instructions
+           {t('deliveryInstructions')}
         </Label>
         <Textarea
           {...register('deliveryInstructions')}
           id="deliveryInstructions"
-          placeholder={
-            orderMode === 'delivery'
-              ? 'Any special instructions for delivery...'
-              : 'Any special instructions for pickup...'
-          }
+          placeholder={t('placeholders.instructions')}
           rows={3}
           className={errors.deliveryInstructions ? 'border-red-500' : ''}
         />
@@ -222,10 +217,10 @@ export function CheckoutFormFields({
                 className="flex items-center gap-2 cursor-pointer font-medium text-gray-900"
               >
                 <Gift className="w-5 h-5 text-pink-500" />
-                Send as a Gift
+                {t('sendAsGift')}
               </Label>
               <p className="text-xs text-gray-600 mt-1">
-                Add gifting details for the recipient
+              {t('sendAsGiftDescription')}
               </p>
             </div>
           </div>
@@ -233,17 +228,17 @@ export function CheckoutFormFields({
           {/* Gift Details */}
           {isGift && (
             <div className="space-y-4 pl-4 border-l-4 border-pink-300 bg-pink-50/50 p-4 rounded-r-lg">
-              <h4 className="text-sm font-semibold text-gray-900">Gifting Details</h4>
+              <h4 className="text-sm font-semibold text-gray-900">{t("giftingDetails")}</h4>
 
               {/* Recipient Name */}
               <div className="space-y-2">
                 <Label htmlFor="recipientName">
-                  Recipient Name <span className="text-red-500">*</span>
+                  {t("recipientName")} <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   {...register('recipientName')}
                   id="recipientName"
-                  placeholder="Jane Doe"
+                  placeholder={t("placeholders.fullName")}
                   className={errors.recipientName ? 'border-red-500' : ''}
                 />
                 {errors.recipientName && (
@@ -254,13 +249,13 @@ export function CheckoutFormFields({
               {/* Recipient Number */}
               <div className="space-y-2">
                 <Label htmlFor="recipientNumber">
-                  Recipient Number <span className="text-red-500">*</span>
+                {t("recipientNumber")} <span className="text-red-500">*</span>
                 </Label>
                 <Input
                   {...register('recipientNumber')}
                   id="recipientNumber"
                   type="tel"
-                  placeholder="03xx-xxxxxxx"
+                  placeholder={t("placeholders.mobile")}
                   className={errors.recipientNumber ? 'border-red-500' : ''}
                 />
                 {errors.recipientNumber && (
@@ -270,11 +265,11 @@ export function CheckoutFormFields({
 
               {/* Gifting Message */}
               <div className="space-y-2">
-                <Label htmlFor="giftingMessage">Gifting Message</Label>
+                <Label htmlFor="giftingMessage">{t("giftMessage")}</Label>
                 <Textarea
                   {...register('giftingMessage')}
                   id="giftingMessage"
-                  placeholder="Happy Birthday! Enjoy your meal..."
+                  placeholder={t("placeholders.giftMessage")}
                   rows={3}
                   className={errors.giftingMessage ? 'border-red-500' : ''}
                 />

@@ -43,15 +43,6 @@
     "removeItem": "ہٹائیں",
     "quantity": "مقدار"
   },
-  "checkout": {
-    "title": "چیک آؤٹ",
-    "deliveryAddress": "ڈیلیوری پتہ",
-    "paymentMethod": "ادائیگی کا طریقہ",
-    "orderSummary": "آرڈر کا خلاصہ",
-    "placeOrder": "آرڈر کریں",
-    "cashOnDelivery": "نقد رقم پر ڈیلیوری",
-    "cardPayment": "کارڈ کے ذریعے ادائیگی"
-  },
   "orders": {
     "title": "میرے آرڈرز",
     "orderNumber": "آرڈر #",
@@ -65,6 +56,56 @@
     "onTheWay": "راستے میں",
     "delivered": "ترسیل ہو چکی",
     "cancelled": "منسوخ شدہ"
+  },
+  "checkout": {
+    "title": "چیک آؤٹ",
+    "backToCart": "کارٹ پر واپس جائیں",
+    "orderType": "یہ ایک {{type}} آرڈر ہے",
+    "deliveryOrder": "ڈیلیوری",
+    "pickupOrder": "پک اپ",
+    "orderSummary": "آرڈر کا خلاصہ",
+
+    "customerInfo": "صارف کی معلومات",
+    "titleLabel": "عنوان",
+    "fullName": "پورا نام",
+    "mobileNumber": "موبائل نمبر",
+    "alternateMobileNumber": "متبادل موبائل نمبر",
+    "email": "ای میل ایڈریس",
+
+    "deliveryInfo": "ڈیلیوری کی معلومات",
+    "deliveryAddress": "ڈیلیوری کا پتہ",
+    "nearestLandmark": "قریب ترین نشان",
+    "deliveryInstructions": " ہدایات",
+
+    "placeholders": {
+      "select": "منتخب کریں",
+       "fullName": "سماد",
+      "mobile": "03xx-xxxxxxx",
+      "email": "example@email.com",
+      "address": "مکان نمبر، گلی، علاقہ، شہر",
+      "landmark": "مثلاً: XYZ مال کے قریب",
+      "instructions": "ڈیلیوری کے لیے کوئی خاص ہدایات...",
+      "changeAmount": "روپے 500",
+      "giftMessage": "سالگرہ مبارک! اپنے کھانے سے لطف اٹھائیں..."
+    },
+
+    "sendAsGift": "تحفے کے طور پر بھیجیں",
+    "sendAsGiftDescription": "وصول کنندہ کی تفصیلات شامل کریں",
+
+    "giftingDetails": "تحفے کی تفصیلات",
+    "recipientName": "وصول کنندہ کا نام",
+    "recipientNumber": "وصول کنندہ کا نمبر",
+    "giftMessage": "تحفے کا پیغام",
+
+    "paymentMethod": "ادائیگی کا طریقہ",
+    "cashOnDelivery": "نقد ادائیگی پر ڈیلیوری",
+    "onlinePayment": "آن لائن ادائیگی",
+
+    "changeRequest": "کھلے پیسوں کی درخواست (اختیاری)",
+    "changeRequestHelp": "وہ رقم درج کریں جس پر آپ کو کھلے پیسے چاہئیں",
+
+    "placeOrder": "آرڈر کریں",
+    "processingOrder": "آرڈر پر کارروائی جاری ہے..."
   },
   "profile": {
     "title": "میری پروفائل",

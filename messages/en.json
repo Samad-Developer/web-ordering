@@ -43,16 +43,6 @@
     "removeItem": "Remove",
     "quantity": "Quantity"
   },
-
-    "checkout": {
-    "title": "Checkout",
-    "deliveryAddress": "Delivery Address",
-    "paymentMethod": "Payment Method",
-    "orderSummary": "Order Summary",
-    "placeOrder": "Place Order",
-    "cashOnDelivery": "Cash on Delivery",
-    "cardPayment": "Card Payment"
-  },
   "orders": {
     "title": "My Orders",
     "orderNumber": "Order #",
@@ -67,6 +57,56 @@
     "delivered": "Delivered",
     "cancelled": "Cancelled"
   },
+    "checkout": {
+      "title": "Checkout",
+      "backToCart": "Back to Cart",
+      "orderType": "This is a {{type}} Order",
+      "deliveryOrder": "Delivery",
+      "pickupOrder": "Pickup",
+      "orderSummary": "Order Summary",
+  
+      "customerInfo": "Customer Information",
+      "titleLabel": "Title",
+      "fullName": "Full Name",
+      "mobileNumber": "Mobile Number",
+      "alternateMobileNumber": "Alternate Mobile Number",
+      "email": "Email Address",
+  
+      "deliveryInfo": "Delivery Information",
+      "deliveryAddress": "Delivery Address",
+      "nearestLandmark": "Nearest Landmark",
+      "deliveryInstructions": "Instructions",
+  
+      "placeholders": {
+        "select": "Select",
+        "fullName": "samad",
+        "mobile": "03xx-xxxxxxx",
+        "email": "john.doe@example.com",
+        "address": "House #, Street, Area, City",
+        "landmark": "e.g., Near XYZ Mall",
+        "instructions": "Any special instructions for delivery...",
+        "changeAmount": "Rs. 500",
+        "giftMessage": "Happy Birthday! Enjoy your meal..."
+      },
+  
+      "sendAsGift": "Send as a Gift",
+      "sendAsGiftDescription": "Add gifting details for the recipient",
+  
+      "giftingDetails": "Gifting Details",
+      "recipientName": "Recipient Name",
+      "recipientNumber": "Recipient Number",
+      "giftMessage": "Gifting Message",
+  
+      "paymentMethod": "Payment Method",
+      "cashOnDelivery": "Cash on Delivery",
+      "onlinePayment": "Online Payment",
+  
+      "changeRequest": "Change Request (Optional)",
+      "changeRequestHelp": "Enter the amount you'll pay for change preparation",
+  
+      "placeOrder": "Place Order",
+      "processingOrder": "Processing Order..."
+  },  
   "profile": {
     "title": "My Profile",
     "personalInfo": "Personal Information",
