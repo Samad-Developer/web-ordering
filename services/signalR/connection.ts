@@ -1,6 +1,6 @@
 import * as signalR from '@microsoft/signalr';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ordering.eatx.pk:8090';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://ordering.eatx.pk';
 
 let connection: signalR.HubConnection | null = null;
 
