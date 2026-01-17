@@ -128,7 +128,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
           {showPaymentDetails && (
             <>
               <Separator />
-              <CartSummary summary={summary} showDetails={true} />
+              <CartSummary showDetails={true} />
             </>
           )}
         </div>
