@@ -70,10 +70,11 @@ const MenuWrapper = () => {
       {isSearching && (
         <div className="max-w-7xl mx-auto px-4 py-4">
           {hasResults ? (
-            <p className="text-gray-600">
-            Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching{" "}
-            "{searchQuery}"
-          </p>
+           <p className="text-gray-600">
+           Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching&nbsp;
+           &quot;{searchQuery}&quot;
+         </p>
+         
           
           ) : (
             <div className="text-center py-10">
