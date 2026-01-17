@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useAppDispatch } from '@/store/hooks';
-import { setLoadingLocation } from '@/store/slices/addressSlice';
+// import { setLoadingLocation } from '@/store/slices/addressSlice';
 import { getCurrentLocation, reverseGeocode } from '@/lib/address/geolocation';
 import { toast } from 'sonner';
 
@@ -10,7 +10,7 @@ export function useGeolocation() {
   const [error, setError] = useState<string | null>(null);
 
   const getUserLocation = async () => {
-    dispatch(setLoadingLocation(true));
+    // dispatch(setLoadingLocation(true));
     setError(null);
 
     try {
@@ -24,7 +24,7 @@ export function useGeolocation() {
 
       // const address = await reverseGeocode(coordinates.lat, coordinates.lng);
 
-      dispatch(setLoadingLocation(false));
+      // dispatch(setLoadingLocation(false));
 
       return {
         coordinates,
@@ -33,7 +33,7 @@ export function useGeolocation() {
     } catch (err: any) {
       const errorMessage = err.message || 'Failed to get location';
       setError(errorMessage);
-      dispatch(setLoadingLocation(false));
+      // dispatch(setLoadingLocation(false));
       
       toast.error('Location Error', {
         description: errorMessage,
