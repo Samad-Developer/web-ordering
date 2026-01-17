@@ -30,11 +30,11 @@ export function CitySelector({
                     ? 'Select Your Location'
                     : 'Choose Pickup Outlet'}
             </h5>
-            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 px-3 justify-items-center justify-center">
+            <div className="flex flex-wrap justify-center gap-2 px-3 items-center">
                 {availableCities.map((city) => (
                     <div 
                         key={city.id} 
-                        className="flex flex-col items-center group cursor-pointer"
+                        className="flex flex-col justify-center items-center group cursor-pointer"
                         onClick={() => onCitySelect(city.id)}
                     >
                         {/* Wrapper for Button + Checkmark */}

@@ -6,9 +6,9 @@ import { Input } from "@/components/ui/input";
 import { useMenu } from "@/hooks/useMenu";
 import { useSearch } from "@/contexts/SearchContext";
 import { SvgIcon } from "@/components/common/SvgIcon";
-import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { extractCategoryNames } from "@/lib/search-bar/utils";
 import { useTypingAnimation } from "@/hooks/useTypingAnimation";
+import { useDebouncedCallback } from 'use-debounce';
 
 const placeHolderCategoryNames = [
   "Burgers",
@@ -24,18 +24,25 @@ const AnimatedSearch = () => {
 
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const debouncedSearch = useDebouncedValue(inputValue, 400);
   const categoryNames = extractCategoryNames(menuData || []).slice(0, 5) || placeHolderCategoryNames;
   const animatedText = useTypingAnimation(categoryNames, 80, 40, 1500);
 
-  useEffect(() => {
-    setSearchQuery(debouncedSearch);
-  }, [debouncedSearch]);
+  const debouncedSearch = useDebouncedCallback((value: string) => {
+    setSearchQuery(value);
+  }, 400);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedSearch(value);
+  };
 
   const handleClear = () => {
     setInputValue("");
     setSearchQuery("");
+    debouncedSearch.cancel();
   };
+
 
   return (
     <div className="relative max-w-3xl mx-auto my-2 sm:my-5 px-4">
@@ -54,11 +61,14 @@ const AnimatedSearch = () => {
           <Input
             type="text"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={handleChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder=""
-          className="w-full h-11 sm:h-14 pl-12 sm:pl-16 pr-14 text-base rounded-md border border-gray-200  transition-all duration-300 ease-in-out shadow-sm outline-none focus:border-slate-600 focus:ring-[5px] focus:ring-slate-500/25 focus-visible:ring-slate-500/25"
+            className="w-full h-11 sm:h-14 pl-12 sm:pl-16 pr-14 text-base text-slate-800 placeholder-slate-400 rounded-full bg-white
+                        border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.05)]
+                        transition-all duration-300 ease-out outline-none
+                      hover:border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-500/25"
           />
 
           {/* Animated Placeholder */}

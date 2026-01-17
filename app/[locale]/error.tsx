@@ -1,9 +1,10 @@
-'use client';
- 
-import { UtensilsCrossed, RefreshCw, Home } from 'lucide-react';
-import { useEffect } from 'react';
-import Link from 'next/link';
- 
+"use client";
+
+import { useEffect } from "react";
+import { Button } from "@/components/ui/button"; // optional, replace if not using shadcn
+import { RefreshCw, Home, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
+
 export default function Error({
   error,
   reset,
@@ -12,10 +13,9 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Optionally log the error to an error reporting service
-    console.error(error);
+    console.error("Application error:", error);
   }, [error]);
- 
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center bg-white rounded-2xl shadow-xl p-8">
@@ -39,11 +39,19 @@ export default function Error({
         <div className="mt-6 flex flex-col gap-3">
           <button
             onClick={() => window.location.reload()}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-3 text-sm font-medium text-white hover:bg-red-700 transition"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-red-700 transition"
           >
             <RefreshCw className="h-4 w-4" />
             Try Again
           </button>
+
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
+          >
+            <Home className="h-4 w-4" />
+            Back to Home
+          </Link>
         </div>
 
         {/* Footer note */}

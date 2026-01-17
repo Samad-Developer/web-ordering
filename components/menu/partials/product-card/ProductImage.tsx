@@ -10,21 +10,26 @@ interface ProductImageProps {
   priority?: boolean; 
 }
 
+// import   NEXT_PUBLIC_API_URL from .env.local
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL 
+
 export const ProductImage: React.FC<ProductImageProps> = ({
   src,
   alt,
   className = "",
   priority = false,
 }) => {
-  const imageSrc = "/assets/images/products/product.webp";
+
+  const imageSrc = `${API_BASE_URL}${src}`
+  const fallBackSrc = "/assets/images/products/product.webp";
 
   return (
     <div
       className={`relative w-full aspect-square overflow-hidden bg-gray-100 rounded-t-2xl ${className}`}
     >
-      {imageSrc ? (
+     
         <Image
-          src={imageSrc}
+          src={imageSrc ? imageSrc : fallBackSrc}
           alt={alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
@@ -34,11 +39,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
           loading={priority ? "eager" : "lazy"}
           priority={priority}
         />
-      ) : (
-        <div className="flex items-center justify-center h-full text-gray-400 text-sm">
-          No Image
-        </div>
-      )}
+     
     </div>
   );
 };

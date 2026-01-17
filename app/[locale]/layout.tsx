@@ -10,12 +10,13 @@ import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
 import { SignalRProvider } from "@/contexts/signalr-provider";
-
+import { SearchProvider } from "@/contexts/SearchContext";
 
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
+import React from "react";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
@@ -59,6 +60,7 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
         <NextIntlClientProvider messages={messages}>
+          <SearchProvider>
           <ThemeProvider>
             <SignalRProvider>
               <Header1 />
@@ -70,6 +72,7 @@ export default async function RootLayout({
               <Footer1 />
             </SignalRProvider>
           </ThemeProvider>
+          </SearchProvider>
           </NextIntlClientProvider>
         </Providers>
       </body>

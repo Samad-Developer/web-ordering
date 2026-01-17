@@ -55,18 +55,28 @@ export interface ParsedCity {
 
 export type OrderMode = 'delivery' | 'pickup';
 
-export interface Area {
-  AreaId: number;
-  AreaName: string;
-}
-
 export interface Branch {
   BranchId: number;
   BranchName: string;
   BranchAddress: string;
   BranchPhoneNumber: string;
-  BusinessStartTime: string;
-  BusinessEndTime: string;
+  BusinessStartTime: string; // "11:00 AM"
+  BusinessEndTime: string;   // "3:00 AM"
+  DeliveryCharges: number;
+  DeliveryChargesWaiveOffLimit: number; // Waive off if order >= this amount
+  DeliveryTime: number; // in minutes
+  MinimumOrder: number;
+  IsBranchOpen: boolean;
+}
+
+// Add to Area interface (assuming areas also have branch details)
+export interface Area {
+  AreaId: number;
+  AreaName: string;
+  BranchId: number; // If area is linked to a branch
+  DeliveryCharges?: number;
+  DeliveryTime?: number;
+  MinimumOrder?: number;
 }
 
 export interface CityDelivery {

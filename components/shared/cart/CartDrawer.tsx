@@ -15,14 +15,13 @@ import {
 import { CartItem } from "./CartItem";
 import { EmptyCart } from "./EmptyCart";
 import { CartSummary } from "./CartSummary";
-import Link from "next/link";
 import { useAppDispatch } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cartSlice";
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+import { CheckoutButton } from "./CheckoutButton";
 
 export function CartDrawer() {
-  const { locale } = useParams();
+
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
@@ -81,23 +80,9 @@ export function CartDrawer() {
 
             {/* Footer - Summary & Checkout */}
             <div className="border-t bg-white px-6 py-4 space-y-4">
-              <CartSummary summary={summary} showDetails={true} />
+              <CartSummary showDetails={true} />
 
-              <Link href={`/${locale}/checkout`} >
-                <Button
-                  size="lg"
-                  className="w-full h-14 text-lg font-semibold flex items-center justify-center"
-                  onClick={() => dispatch(toggleCart(false))}
-                >
-                  <span>{t("checkout")}</span>
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-
-              {/* Delivery Time Estimate */}
-              <p className="text-center text-sm text-gray-500">
-                {t("estimatedDelivery")}
-              </p>
+              <CheckoutButton />
             </div>
           </>
         )}

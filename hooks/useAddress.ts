@@ -18,39 +18,52 @@ import type { DeliveryPickupApiResponse } from '@/types/address.types';
 export function useAddress() {
   const dispatch = useAppDispatch();
   const { connection, isConnected } = useSignalR();
+  
+  // Selectors
   const apiData = useAppSelector(selectAddressApiData);
   const isLoading = useAppSelector(selectAddressLoading);
   const error = useAppSelector(selectAddressError);
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const availableModes = useAppSelector(selectAvailableModes);
 
-  // Auto-fetch address data when connection is ready
+
+  // Fetch address data from SignalR
   useEffect(() => {
     if (!connection || !isConnected || apiData) return;
 
-    const requestAddressData = async () => {
+    const fetchAddressData = async () => {
       dispatch(addressDataRequested());
 
       const handler = (payload: DeliveryPickupApiResponse) => {
-        console.log("Address Data Arrived Now", payload)
-        dispatch(addressDataReceived(payload))
+        console.log('Address Data Received:', payload);
+        dispatch(addressDataReceived(payload));
       };
 
       connection.on('DAndPResponse', handler);
 
-      connection
-        .invoke('DataRequest', 'builderburger.co', 'DeliveryAndPickup', 'DAndPResponse')
-        .catch((err) => {
-          dispatch(addressDataError(err?.message ?? 'Error while requesting Delivery & Pickup data'));
-        });
+      try {
+        await connection.invoke(
+          'DataRequest',
+          'builderburger.co',
+          'DeliveryAndPickup',
+          0, // Use saved branch ID or 0 for first-time users
+          'DAndPResponse'
+        );
+      } catch (err: any) {
+        dispatch(
+          addressDataError(
+            err?.message ?? 'Failed to load address data'
+          )
+        );
+      }
 
       return () => {
         connection.off('DAndPResponse', handler);
       };
     };
 
-    requestAddressData();
-  }, [connection, isConnected, apiData]);
+    fetchAddressData();
+  }, [connection, isConnected, apiData, dispatch]);
 
   return {
     apiData,

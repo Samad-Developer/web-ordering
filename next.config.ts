@@ -5,6 +5,9 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Your existing Next.js config options
+  images: {
+    domains: ['ordering.eatx.pk'],
+  },
 };
 
 export default withNextIntl(nextConfig);

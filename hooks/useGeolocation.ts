@@ -32,7 +32,6 @@ export function useGeolocation() {
       };
     } catch (err: any) {
       const errorMessage = err.message || 'Failed to get location';
-      console.log("checking location error", err)
       setError(errorMessage);
       dispatch(setLoadingLocation(false));
       

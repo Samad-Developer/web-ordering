@@ -5,6 +5,7 @@ import type { HubConnection } from '@microsoft/signalr';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { createSignalRConnection } from '@/services/signalR/connection';
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { menuRequested } from '@/store/slices/menuSlice';
 
 interface SignalRContextType {
   connection: HubConnection | null;
@@ -43,6 +44,7 @@ export function SignalRProvider({ children }: { children: ReactNode }) {
 
     const connect = async () => {
       try {
+        dispatch(menuRequested());
         const conn = await createSignalRConnection(token);
         if (cancelled) return;
         setConnection(conn);

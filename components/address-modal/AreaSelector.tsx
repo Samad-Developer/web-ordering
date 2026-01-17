@@ -34,6 +34,14 @@ export function AreaSelector({
     }
   };
 
+  if (areas.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-gray-500">No Areas available for this city</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-2 w-full mx-auto">
       <Label htmlFor="area-select" className="text-sm font-medium text-gray-700">
@@ -52,7 +60,7 @@ export function AreaSelector({
           <SelectValue placeholder="Select your area" />
         </SelectTrigger>
         
-        <SelectContent>
+        <SelectContent >
           {areas.length === 0 ? (
             <div className="p-4 text-center text-gray-500 text-sm">
               No areas available for this city

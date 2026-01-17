@@ -1,58 +1,121 @@
-import React from "react";
-import { CartSummary as CartSummaryType } from "@/types/cart.types";
-import { formatPrice } from "@/lib/product/productHelper";
-import { useTranslations } from "next-intl";
+'use client';
+
+import React from 'react';
+import { useTranslations } from 'next-intl';
+import { useBranchValidation } from '@/hooks/useBranchValidation';
+import { useCartTotals } from '@/hooks/useCartTotals';
+import { formatPrice } from '@/lib/product/productHelper';
+import { 
+  BranchNotSelectedAlert,
+  BranchClosedAlert,
+  MinimumOrderAlert,
+  FreeDeliveryProgress,
+  FreeDeliveryBadge,
+  DeliveryTimeInfo,
+} from './CartSummaryAlerts';
 
 interface CartSummaryProps {
-  summary: CartSummaryType;
   showDetails?: boolean;
 }
 
-export function CartSummary({ summary, showDetails = true }: CartSummaryProps) {
- 
-  const t = useTranslations("cart")
+export function CartSummary({ showDetails = true }: CartSummaryProps) {
+  const t = useTranslations('cart');
+  
+  // Two separate hooks - clean and focused
+  const branch = useBranchValidation();
+  const totals = useCartTotals();
+
+  // Computed values (only when needed)
+  const amountToMinimum = branch.getAmountToMinimum(totals.subtotal);
+  const amountToFreeDelivery = branch.getAmountToFreeDelivery(totals.subtotal);
+  const freeDeliveryProgress = branch.getFreeDeliveryProgress(totals.subtotal);
+  const isFreeDelivery = branch.isFreeDelivery(totals.subtotal);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
+      {/* Alerts & Notifications */}
+      {!branch.hasBranch && <BranchNotSelectedAlert />}
+      
+      {branch.hasBranch && !branch.isBranchOpen && (
+        <BranchClosedAlert businessHours={branch.businessHours!} />
+      )}
+      
+      {branch.hasBranch && !totals.meetsMinimumOrder && (
+        <MinimumOrderAlert amount={amountToMinimum} />
+      )}
+      
+      {branch.hasBranch && 
+       totals.meetsMinimumOrder && 
+       amountToFreeDelivery > 0 && 
+       branch.isDeliveryMode && (
+        <FreeDeliveryProgress
+          amount={amountToFreeDelivery}
+          progress={freeDeliveryProgress}
+        />
+      )}
+      
+      {isFreeDelivery && branch.isDeliveryMode && (
+        <FreeDeliveryBadge />
+      )}
+      
+      {branch.deliveryTimeRange && branch.isDeliveryMode && (
+        <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
+      )}
+
+      {/* Price Breakdown */}
       {showDetails && (
-        <>
+        <div className="space-y-2 pt-2">
           {/* Subtotal */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">{t("subtotal")}</span>
+            <span className="text-gray-600">{t('subtotal')}</span>
             <span className="font-medium text-gray-900">
-              {formatPrice(summary.subtotal)}
+              {formatPrice(totals.subtotal)}
             </span>
           </div>
 
           {/* Tax */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">{t("tax")} (15%)</span>
+            <span className="text-gray-600">
+              {t('tax')} ({Math.round(totals.taxRate * 100)}%)
+            </span>
             <span className="font-medium text-gray-900">
-              {formatPrice(summary.tax)}
+              {formatPrice(totals.tax)}
             </span>
           </div>
 
           {/* Delivery Fee */}
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">{t("deliveryFee")}</span>
-            <span className="font-medium text-gray-900">
-              {formatPrice(summary.deliveryFee)}
-            </span>
-          </div>
+          {branch.isDeliveryMode && (
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-gray-600">{t('deliveryFee')}</span>
+              {isFreeDelivery ? (
+                <span className="flex items-center gap-1 text-green-600 font-medium">
+                  <span className="line-through text-gray-400 text-xs">
+                    {formatPrice(branch.deliveryCharges)}
+                  </span>
+                  <span className="font-semibold">FREE</span>
+                </span>
+              ) : (
+                <span className="font-medium text-gray-900">
+                  {formatPrice(totals.deliveryFee)}
+                </span>
+              )}
+            </div>
+          )}
 
           {/* Divider */}
           <div className="border-t border-gray-200 my-2" />
-        </>
+        </div>
       )}
 
-      {/* Total */}
-      <div className="flex items-center justify-between">
-        <span className="text-lg font-semibold text-gray-900">{t("grandTotal")}</span>
-        <span className="text-2xl font-bold text-red-700">
-          {formatPrice(summary.total)}
+      {/* Grand Total */}
+      <div className="flex items-center justify-between pt-2">
+        <span className="text-lg font-semibold text-gray-900">
+          {t('grandTotal')}
+        </span>
+        <span className="text-2xl font-bold text-red-600">
+          {formatPrice(totals.total)}
         </span>
       </div>
-
     </div>
   );
 }

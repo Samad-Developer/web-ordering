@@ -65,7 +65,7 @@ export function BranchSelector({
             </div>
           </SelectTrigger>
           
-          <SelectContent className="max-h-[300px]">
+          <SelectContent >
             {branches.map((branch) => (
               <SelectItem 
                 key={branch.BranchId} 
