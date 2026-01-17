@@ -141,7 +141,7 @@ export function FreeDeliveryBadge() {
             <span className="text-base">🎉</span>
           </p>
           <p className="text-xs text-green-600 mt-0.5">
-            You've qualified for free delivery on this order
+            You&apos;ve qualified for free delivery on this order
           </p>
         </div>
       </div>
