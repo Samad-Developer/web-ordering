@@ -45,7 +45,7 @@ export function OrderDetails({
       {/* BODY */}
       <div className="p-5 space-y-4">
         {/* CART SUMMARY */}
-        <CartSummary summary={summary} />
+        <CartSummary />
       </div>
     </div>
   );
