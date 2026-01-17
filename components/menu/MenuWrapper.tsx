@@ -71,13 +71,14 @@ const MenuWrapper = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           {hasResults ? (
             <p className="text-gray-600">
-              Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching "
-              {searchQuery}"
-            </p>
+            Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching{" "}
+            "{searchQuery}"
+          </p>
+          
           ) : (
             <div className="text-center py-10">
               <p className="text-xl text-gray-600 mb-2">
-                No items found for "{searchQuery}"
+                No items found
               </p>
               <p className="text-sm text-gray-500">
                 Try searching with different keywords
