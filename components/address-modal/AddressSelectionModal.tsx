@@ -169,7 +169,7 @@ export function AddressSelectionModal() {
         ) : (
           <div className="p-6 space-y-6">
             {/* Order Mode Toggle */}
-            <div className='max-w-1/2 mx-auto'>
+            <div className='w-full max-w-64 mx-auto px-4'>
             <OrderModeToggle
               selectedMode={tempMode}
               onModeChange={handleModeChange}

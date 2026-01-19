@@ -24,13 +24,13 @@ export function OrderModeToggle({
                 Select your order type
             </h3>
 
-            <div className="relative inline-flex w-full max-w-md mx-auto bg-gray-200 rounded-full p-1">
+            <div className="relative flex w-full max-w-md mx-auto bg-gray-200 rounded-full p-1">
                 {/* Animated Background Slider */}
                 <motion.div
                     className="absolute top-1 bottom-1 rounded-full bg-red-500"
                     animate={{
-                        left: selectedMode === "delivery" ? "4px" : "calc(50% + 2px)",
-                        width: "calc(50% - 6px)",
+                        left: selectedMode === "delivery" ? "4px" : "50%",
+    width: "calc(50% - 6px)",
                         borderRadius: selectedMode === "delivery" ? "20px" : "40px",
                         opacity: 1,
                         scale: selectedMode === "delivery" ? 1 : 1,
@@ -50,7 +50,7 @@ export function OrderModeToggle({
                     onClick={() => availableDelivery && onModeChange('delivery')}
                     disabled={!availableDelivery}
                     className={cn(
-                        'cursor-pointer relative z-10 flex-1 py-2 px-3 rounded-full font-semibold text-sm transition-colors',
+                        'cursor-pointer relative z-10 flex-1 py-2 px-2 sm:px-3 rounded-full font-semibold text-sm transition-colors',
                         selectedMode === 'delivery'
                             ? 'text-white'
                             : 'text-gray-700 hover:text-gray-900',
