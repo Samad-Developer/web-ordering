@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { openAddressModal } from "@/store/slices/addressSlice";
 import { useAddress } from "@/hooks/useAddress";
-import { hasSelectedBranch } from "@/lib/address/addressHelpers";
+import { hasUserAddress } from "@/lib/address/addressHelpers";
 import BannerWrapper from "@/components/banner";
 import CategoryBar from "./partials/category-bar";
 import AnimatedSearch from "./partials/search-bar";
@@ -35,7 +35,7 @@ const MenuWrapper = () => {
 
   // Auto-open modal for first-time users
   useEffect(() => {
-    const shouldAutoOpen = !hasSelectedBranch() && apiData;
+    const shouldAutoOpen = !hasUserAddress() && apiData;
 
     if (shouldAutoOpen) {
       const timer = setTimeout(() => {
@@ -44,7 +44,7 @@ const MenuWrapper = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [apiData, dispatch]);
+  }, [apiData]);
 
   if (isLoading && !menuData) {
     return <LoadingState />

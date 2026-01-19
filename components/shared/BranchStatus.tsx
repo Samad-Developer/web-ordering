@@ -1,72 +1,45 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Branch } from '@/types/address.types';
-import { Clock, AlertCircle } from 'lucide-react';
-import { 
-  formatTimeRemaining 
-} from '@/lib/branch/branchUtils';
-
-import { cn } from '@/lib/utils';
+import React from 'react';
+import { XCircle } from 'lucide-react';
 import { useBranchValidation } from '@/hooks/useBranchValidation';
 
 export function BranchStatus() {
   const branch = useBranchValidation();
-  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
-
-
-  // if (compact) {
-  //   return (
-  //     <div className="flex items-center gap-2">
-  //       <div className={cn(
-  //         'w-2 h-2 rounded-full',
-  //         branch.isBranchOpen ? 'bg-green-500' : 'bg-red-500'
-  //       )} />
-  //       <span className={cn(
-  //         'text-sm font-medium',
-  //         branch.isBranchOpen ? 'text-green-600' : 'text-red-600'
-  //       )}>
-  //         {isOpen ? 'Open' : 'Closed'}
-  //       </span>
-  //     </div>
-  //   );
-  // }
+   if (!branch.hasBranch || !branch.businessStartTime || branch.isBranchOpen) {
+    return null;
+  }
 
   return (
-    <div className={cn(
-      'flex items-center gap-2 px-3 py-2 rounded-lg',
-      branch.isBranchOpen ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
-    )}>
-      {branch.isBranchOpen ? (
-        <Clock className="w-4 h-4 text-green-600" />
-      ) : (
-        <AlertCircle className="w-4 h-4 text-red-600" />
-      )}
-      
-      <div className="flex-1">
-        <p className={cn(
-          'text-sm font-semibold',
-          branch.isBranchOpen ? 'text-green-700' : 'text-red-700'
-        )}>
-          {branch.isBranchOpen ? 'Open Now' : 'Closed'}
-        </p>
-        
-        {timeRemaining && (
-          <p className="text-xs text-gray-600">
-            {branch.isBranchOpen 
-              ? `Closes in ${formatTimeRemaining(timeRemaining)}`
-              : `Opens in ${formatTimeRemaining(timeRemaining)}`
-            }
-          </p>
-        )}
+    <div className="relative w-full bg-gradient-to-br from-red-500 via-red-500 to-rose-600 overflow-hidden shadow-md">
+      {/* Subtle overlay pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '24px 24px'
+        }} />
       </div>
-      
-      <div className="text-right">
-        <p className="text-xs text-gray-500">Hours</p>
-        {/* <p className="text-xs font-medium text-gray-700">
-          {branch.BusinessStartTime} - {branch.BusinessEndTime}
-        </p> */}
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 py-2.5">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white">
+          {/* Icon & Message */}
+          <div className="flex items-center gap-2.5">
+            <XCircle className="w-4 h-4 flex-shrink-0" strokeWidth={2} />
+            <p className="text-sm font-medium">
+              We're currently closed and not accepting orders
+            </p>
+          </div>
+
+          {/* Separator (desktop only) */}
+          <div className="hidden sm:block w-1 h-1 rounded-full bg-white/40" />
+
+          {/* Reopening time */}
+          <p className="text-sm font-semibold">
+            Reopens at {branch.businessStartTime}
+          </p>
+        </div>
       </div>
     </div>
   );

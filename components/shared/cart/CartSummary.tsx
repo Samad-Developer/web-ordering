@@ -7,7 +7,6 @@ import { useCartTotals } from '@/hooks/useCartTotals';
 import { formatPrice } from '@/lib/product/productHelper';
 import { 
   BranchNotSelectedAlert,
-  BranchClosedAlert,
   MinimumOrderAlert,
   FreeDeliveryProgress,
   FreeDeliveryBadge,
@@ -21,24 +20,30 @@ interface CartSummaryProps {
 export function CartSummary({ showDetails = true }: CartSummaryProps) {
   const t = useTranslations('cart');
   
-  // Two separate hooks - clean and focused
   const branch = useBranchValidation();
   const totals = useCartTotals();
 
-  // Computed values (only when needed)
-  const amountToMinimum = branch.getAmountToMinimum(totals.subtotal);
-  const amountToFreeDelivery = branch.getAmountToFreeDelivery(totals.subtotal);
-  const freeDeliveryProgress = branch.getFreeDeliveryProgress(totals.subtotal);
-  const isFreeDelivery = branch.isFreeDelivery(totals.subtotal);
+  const amountToMinimum = branch.hasBranch 
+    ? branch.getAmountToMinimum(totals.subtotal)
+    : 0;
+
+  const amountToFreeDelivery = branch.hasBranch && branch.isDeliveryMode
+    ? branch.getAmountToFreeDelivery(totals.subtotal)
+    : 0;
+
+  const freeDeliveryProgress = branch.hasBranch
+    ? branch.getFreeDeliveryProgress(totals.subtotal)
+    : 0;
+
+  const isFreeDelivery = branch.hasBranch && branch.isDeliveryMode
+    ? branch.isFreeDelivery(totals.subtotal)
+    : false;
+
 
   return (
     <div className="space-y-4">
       {/* Alerts & Notifications */}
       {!branch.hasBranch && <BranchNotSelectedAlert />}
-      
-      {branch.hasBranch && !branch.isBranchOpen && (
-        <BranchClosedAlert businessHours={branch.businessHours!} />
-      )}
       
       {branch.hasBranch && !totals.meetsMinimumOrder && (
         <MinimumOrderAlert amount={amountToMinimum} />

@@ -1,5 +1,7 @@
+'use client';
+
 import { useMenu } from '@/hooks/useMenu';
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import CategoryTab from './CategoryTab';
@@ -11,8 +13,9 @@ const CategoryBar = () => {
   const { menuData } = useMenu();
   const [activeCategory, setActiveCategory] = useState<string>('');
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
+  const isClickScrolling = useRef(false); // ✅ Track if user clicked
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Use the custom scroll hook
   const {
     scrollContainerRef,
     showLeftArrow,
@@ -27,29 +30,117 @@ const CategoryBar = () => {
 
     const menuDataResponse = menuData as MenuAPIData[];
 
-    return menuDataResponse.map((item) => {
-      return {
-        categoryId: item.Id,
-        sortOrder: item.Order,
-        categoryName: toTitleCase(item.Name),
-        categoryIcon: `/assets/images/category-icons/category-icon.webp`,
-        categoryActiveIcon: `/assets/images/category-icons/category-icon.webp`,
-      };
-    }).sort((a, b) => a.sortOrder - b.sortOrder);
+    return menuDataResponse.map((item) => ({
+      categoryId: item.Id,
+      sortOrder: item.Order,
+      categoryName: toTitleCase(item.Name),
+      categoryIcon: `/assets/images/category-icons/category-icon.webp`,
+      categoryActiveIcon: `/assets/images/category-icons/category-icon.webp`,
+    })).sort((a, b) => a.sortOrder - b.sortOrder);
   }, [menuData]);
 
-  const handleCategoryClick = (categoryId: string) => {
+  // ✅ Intersection Observer for auto-activation
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Trigger when category is in top 30% of viewport
+      threshold: 0.5,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // ✅ Only update if NOT clicking (no manual scroll)
+      if (isClickScrolling.current) return;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const categoryId = entry.target.id;
+          setActiveCategory(categoryId);
+
+          // Scroll category tab into view in navbar
+          const tabElement = categoryRefs.current[categoryId];
+          if (tabElement && scrollContainerRef.current) {
+            const container = scrollContainerRef.current;
+            const tabRect = tabElement.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const isVisible = 
+              tabRect.left >= containerRect.left && 
+              tabRect.right <= containerRect.right;
+
+            if (!isVisible) {
+              tabElement.scrollIntoView({
+                behavior: 'smooth',
+                inline: 'center',
+                block: 'nearest',
+              });
+            }
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all category sections
+    categories.forEach((category) => {
+      const element = document.getElementById(category.categoryId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [categories, scrollContainerRef]);
+
+  // ✅ Handle category click
+  const handleCategoryClick = useCallback((categoryId: string) => {
+    // Mark that user clicked (prevent auto-activation during scroll)
+    isClickScrolling.current = true;
     setActiveCategory(categoryId);
 
-    const element = categoryRefs.current[categoryId];
+    // Scroll to category section
+    const element = document.getElementById(categoryId);
     if (element) {
-      element.scrollIntoView({
+      const yOffset = -100; // Offset for sticky header
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth',
+      });
+    }
+
+    // Scroll category tab into view
+    const tabElement = categoryRefs.current[categoryId];
+    if (tabElement) {
+      tabElement.scrollIntoView({
         behavior: 'smooth',
         inline: 'center',
         block: 'nearest',
       });
     }
-  };
+
+    // ✅ Re-enable auto-activation after scroll completes
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      isClickScrolling.current = false;
+    }, 1000); // Wait 1 second after scroll starts
+
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
 
   if (!categories.length) {
     return (
@@ -60,7 +151,7 @@ const CategoryBar = () => {
   }
 
   return (
-    <div className="relative w-full md:max-w-7xl mx-auto sm:py-6">
+    <div className="sticky top-0 bg-white z-50 w-full py-2 shadow-lg">
       {/* Left Arrow */}
       {showLeftArrow && (
         <Button
@@ -78,10 +169,10 @@ const CategoryBar = () => {
       <div
         ref={scrollContainerRef}
         onScroll={checkScroll}
-        className="overflow-x-auto scrollbar-hide px-10 sm:px-12 "
+        className="overflow-x-auto scrollbar-hide px-2 sm:px-12"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        <div className="flex items-start gap-1 sm:gap-4 md:gap-4 w-max">
+        <div className="flex items-center sm:justify-center gap-1 sm:gap-4 md:gap-4">
           {categories.map((category) => (
             <CategoryTab
               key={category.categoryId}
@@ -89,7 +180,7 @@ const CategoryBar = () => {
               category={category}
               isActive={activeCategory === category.categoryId}
               onClick={() => handleCategoryClick(category.categoryId)}
-              layout="iconic"
+              layout="default"
             />
           ))}
         </div>
@@ -112,4 +203,3 @@ const CategoryBar = () => {
 };
 
 export default CategoryBar;
-

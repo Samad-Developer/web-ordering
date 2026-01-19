@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { getImageUrl } from "@/lib/image/imageUtils";
 
 interface ProductImageProps {
   src?: string;
@@ -10,8 +11,7 @@ interface ProductImageProps {
   priority?: boolean; 
 }
 
-// import   NEXT_PUBLIC_API_URL from .env.local
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL 
+
 
 export const ProductImage: React.FC<ProductImageProps> = ({
   src,
@@ -20,16 +20,14 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   priority = false,
 }) => {
 
-  const imageSrc = `${API_BASE_URL}${src}`
-  const fallBackSrc = "/assets/images/products/product.webp";
+  const imageSrc = getImageUrl(src, '/assets/images/products/product.webp');
 
   return (
     <div
       className={`relative w-full aspect-square overflow-hidden bg-gray-100 rounded-t-2xl ${className}`}
     >
-     
         <Image
-          src={imageSrc ? imageSrc : fallBackSrc}
+          src={imageSrc}
           alt={alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
@@ -39,7 +37,6 @@ export const ProductImage: React.FC<ProductImageProps> = ({
           loading={priority ? "eager" : "lazy"}
           priority={priority}
         />
-     
     </div>
   );
 };

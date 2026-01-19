@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { getImageUrl } from "@/lib/image/imageUtils";
 
 interface ProductImageProps {
   image: string;
@@ -17,7 +18,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   priority = false,
 }) => {
 
-  const imageSrc = "/assets/images/products/product.webp";
+  const imageSrc = getImageUrl(image, '/assets/images/products/product.webp')
 
   return (
     <div

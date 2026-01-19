@@ -1,5 +1,3 @@
-// store/slices/addressSlice.ts
-
 import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 import type {
   DeliveryPickupApiResponse,
@@ -7,17 +5,14 @@ import type {
   OrderMode,
   Branch,
 } from '@/types/address.types';
-import { saveBranchId, clearBranchId } from '@/lib/address/addressHelpers';
+import { saveUserAddress, clearUserAddress } from '@/lib/address/addressHelpers';
 
 interface AddressState {
   apiData: DeliveryPickupApiResponse | null;
   isLoading: boolean;
   error: string | null;
   selectedAddress: UserSelectedAddress | null;
-  
-  // Branch details for current selection
   selectedBranchDetails: Branch | null;
-  
   isModalOpen: boolean;
 }
 
@@ -56,22 +51,40 @@ const addressSlice = createSlice({
         cityName: string;
         areaId: number;
         areaName: string;
-        branchId: number;
-        branchDetails?: Branch; // Optional full branch details
+        branchDetails: Branch; 
       }>
     ) => {
-      state.selectedAddress = {
+      const deliveryAddress: UserSelectedAddress = {
         orderMode: 'delivery',
         cityId: action.payload.cityId,
         cityName: action.payload.cityName,
         areaId: action.payload.areaId,
         areaName: action.payload.areaName,
+        branchId: action.payload.branchDetails.BranchId,
+        
+        // ✅ Store complete branch details
+        branchDetails: {
+          BranchId: action.payload.branchDetails.BranchId,
+          BranchName: action.payload.branchDetails.BranchName,
+          BranchAddress: action.payload.branchDetails.BranchAddress,
+          BranchPhoneNumber: action.payload.branchDetails.BranchPhoneNumber,
+          BusinessStartTime: action.payload.branchDetails.BusinessStartTime,
+          BusinessEndTime: action.payload.branchDetails.BusinessEndTime,
+          DeliveryCharges: action.payload.branchDetails.DeliveryCharges,
+          DeliveryChargesWaiveOffLimit: action.payload.branchDetails.DeliveryChargesWaiveOffLimit,
+          DeliveryTime: action.payload.branchDetails.DeliveryTime,
+          MinimumOrder: action.payload.branchDetails.MinimumOrder,
+          IsBranchOpen: action.payload.branchDetails.IsBranchOpen,
+        },
+        
         isCurrentLocation: false,
         lastUpdated: Date.now(),
       };
 
-      state.selectedBranchDetails = action.payload.branchDetails || null;
-      saveBranchId(action.payload.branchId);
+      state.selectedAddress = deliveryAddress;
+      state.selectedBranchDetails = action.payload.branchDetails;
+      
+      saveUserAddress(deliveryAddress);
     },
 
     setPickupBranch: (
@@ -79,10 +92,10 @@ const addressSlice = createSlice({
       action: PayloadAction<{
         cityId: string;
         cityName: string;
-        branch: Branch; // Full branch object
+        branch: Branch; 
       }>
     ) => {
-      state.selectedAddress = {
+      const pickupAddress: UserSelectedAddress = {
         orderMode: 'pickup',
         cityId: action.payload.cityId,
         cityName: action.payload.cityName,
@@ -90,18 +103,36 @@ const addressSlice = createSlice({
         branchName: action.payload.branch.BranchName,
         branchAddress: action.payload.branch.BranchAddress,
         branchPhoneNumber: action.payload.branch.BranchPhoneNumber,
+        
+        branchDetails: {
+          BranchId: action.payload.branch.BranchId,
+          BranchName: action.payload.branch.BranchName,
+          BranchAddress: action.payload.branch.BranchAddress,
+          BranchPhoneNumber: action.payload.branch.BranchPhoneNumber,
+          BusinessStartTime: action.payload.branch.BusinessStartTime,
+          BusinessEndTime: action.payload.branch.BusinessEndTime,
+          DeliveryCharges: action.payload.branch.DeliveryCharges,
+          DeliveryChargesWaiveOffLimit: action.payload.branch.DeliveryChargesWaiveOffLimit,
+          DeliveryTime: action.payload.branch.DeliveryTime,
+          MinimumOrder: action.payload.branch.MinimumOrder,
+          IsBranchOpen: action.payload.branch.IsBranchOpen,
+        },
+        
         isCurrentLocation: false,
         lastUpdated: Date.now(),
       };
 
+      state.selectedAddress = pickupAddress;
       state.selectedBranchDetails = action.payload.branch;
-      saveBranchId(action.payload.branch.BranchId);
+      
+      // ✅ Save complete address to localStorage
+      saveUserAddress(pickupAddress);
     },
 
     clearSelectedAddress: (state) => {
       state.selectedAddress = null;
       state.selectedBranchDetails = null;
-      clearBranchId();
+      clearUserAddress();
     },
 
     openAddressModal: (state) => {
@@ -127,10 +158,7 @@ export const {
 
 export default addressSlice.reducer;
 
-// ============================================
-// SELECTORS
-// ============================================
-
+// Selectors
 export const selectAddressApiData = (state: { address: AddressState }) =>
   state.address.apiData;
 

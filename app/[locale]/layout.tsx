@@ -12,14 +12,15 @@ import { AddressSelectionModal } from "@/components/address-modal/AddressSelecti
 import { SignalRProvider } from "@/contexts/signalr-provider";
 import { SearchProvider } from "@/contexts/SearchContext";
 
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
-import {notFound} from 'next/navigation';
-import {routing} from '@/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
 import React from "react";
+import { BranchStatus } from "@/components/shared/BranchStatus";
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 const geistSans = Geist({
@@ -59,20 +60,21 @@ export default async function RootLayout({
     <html lang={locale} dir={locale === 'ur' || locale === 'ur' ? 'rtl' : 'ltr'}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-        <NextIntlClientProvider messages={messages}>
-          <SearchProvider>
-          <ThemeProvider>
-            <SignalRProvider>
-              <Header1 />
-              {children}
-              <Toaster position="top-center" richColors />
-              <AddressSelectionModal />
-              <ProductModal />
-              <CartDrawer />
-              <Footer1 />
-            </SignalRProvider>
-          </ThemeProvider>
-          </SearchProvider>
+          <NextIntlClientProvider messages={messages}>
+            <SearchProvider>
+              <ThemeProvider>
+                <SignalRProvider>
+                  <BranchStatus/>
+                  <Header1 />
+                  {children}
+                  <Toaster position="top-center" richColors />
+                  <AddressSelectionModal />
+                  <ProductModal />
+                  <CartDrawer />
+                  <Footer1 />
+                </SignalRProvider>
+              </ThemeProvider>
+            </SearchProvider>
           </NextIntlClientProvider>
         </Providers>
       </body>

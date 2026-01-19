@@ -44,16 +44,15 @@ export function useCartTotals(): CartTotalsData {
     const rawTax = subtotal * TAX_RATE;
     const tax = Math.round(rawTax);
 
-    // Delivery fee (depends on branch and cart total)
-    const deliveryFee = branch.calculateDeliveryFee(subtotal);
+   const deliveryFee = branch.hasBranch ? branch.calculateDeliveryFee(subtotal) : 0;
 
     // Totals
     const beforeTax = subtotal + deliveryFee;
     const total = subtotal + tax + deliveryFee;
 
     // Validations
-    const meetsMinimumOrder = branch.meetsMinimumOrder(subtotal);
-    const canCheckout = branch.canPlaceOrder(subtotal, hasItems);
+      const meetsMinimumOrder = branch.hasBranch ? branch.meetsMinimumOrder(subtotal) : true;
+      const canCheckout = branch.hasBranch ? branch.canPlaceOrder(subtotal, hasItems) : hasItems;
 
     return {
       // Cart basics

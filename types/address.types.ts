@@ -104,20 +104,36 @@ export interface DeliveryPickupApiResponse {
   branchId: number;
 }
 
+
 export interface UserSelectedAddress {
   orderMode: OrderMode;
   cityId: string;
   cityName: string;
+  
   // Delivery fields
   areaId?: number;
   areaName?: string;
-  fullAddress?: string;
-  coordinates?: { lat: number; lng: number };
-  // Pickup fields
+  
+  // Pickup fields (branch info)
   branchId?: number;
   branchName?: string;
   branchAddress?: string;
   branchPhoneNumber?: string;
+  
+  branchDetails?: {
+    BranchId: number;
+    BranchName: string;
+    BranchAddress: string;
+    BranchPhoneNumber: string;
+    BusinessStartTime: string;
+    BusinessEndTime: string;
+    DeliveryCharges: number;
+    DeliveryChargesWaiveOffLimit: number;
+    DeliveryTime: number;
+    MinimumOrder: number;
+    IsBranchOpen: boolean;
+  };
+  
   // Metadata
   isCurrentLocation: boolean;
   lastUpdated: number;

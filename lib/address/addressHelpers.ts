@@ -3,7 +3,8 @@ import {
   Area,
   Branch,
   DeliveryPickupApiResponse,
-  ParsedCity
+  ParsedCity,
+  UserSelectedAddress
 } from '@/types/address.types';
 
 /**
@@ -100,46 +101,62 @@ export function getCityNameById(
   );
 }
 
-const BRANCH_ID_KEY = 'selected_branch_id';
+
+const USER_ADDRESS_KEY = 'user_selected_address';
 
 /**
- * Save branch ID to localStorage
+ * Save complete user-selected address with branch details
  */
-export function saveBranchId(branchId: number): void {
+export function saveUserAddress(address: UserSelectedAddress): void {
   try {
-    localStorage.setItem(BRANCH_ID_KEY, branchId.toString());
+    localStorage.setItem(USER_ADDRESS_KEY, JSON.stringify(address));
+    window.dispatchEvent(new Event('address-storage-change'));
   } catch (error) {
-    console.error('Failed to save branch ID:', error);
+    console.error('Failed to save user address:', error);
   }
 }
 
 /**
- * Load branch ID from localStorage
+ * Load saved user-selected address
  */
-export function loadBranchId(): number {
+export function loadUserAddress(): UserSelectedAddress | null {
   try {
-    const saved = localStorage.getItem(BRANCH_ID_KEY);
-    return saved ? parseInt(saved, 10) : 0;
+    const saved = localStorage.getItem(USER_ADDRESS_KEY);
+    return saved ? (JSON.parse(saved) as UserSelectedAddress) : null;
   } catch (error) {
-    console.error('Failed to load branch ID:', error);
+    console.error('Failed to load user address:', error);
+    return null;
+  }
+}
+
+/**
+ * Check if address exists
+ */
+export function hasUserAddress(): boolean {
+  try {
+    return !!localStorage.getItem(USER_ADDRESS_KEY);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Clear saved address
+ */
+export function clearUserAddress(): void {
+  try {
+    localStorage.removeItem(USER_ADDRESS_KEY);
+    window.dispatchEvent(new Event('address-storage-change'));
+  } catch (error) {
+    console.error('Failed to clear user address:', error);
+  }
+}
+
+export function getSavedBranchId(): number {
+  try {
+    const address = loadUserAddress();
+    return address?.branchId || 0;
+  } catch {
     return 0;
-  }
-}
-
-/**
- * Check if user has selected a branch before
- */
-export function hasSelectedBranch(): boolean {
-  return loadBranchId() !== 0;
-}
-
-/**
- * Clear saved branch ID
- */
-export function clearBranchId(): void {
-  try {
-    localStorage.removeItem(BRANCH_ID_KEY);
-  } catch (error) {
-    console.error('Failed to clear branch ID:', error);
   }
 }

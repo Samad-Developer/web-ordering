@@ -1,12 +1,10 @@
-// hooks/useBranchValidation.ts
-
 'use client';
 
 import { useMemo } from 'react';
 import { useAppSelector } from '@/store/hooks';
-import { 
-  selectSelectedBranchDetails, 
-  selectSelectedAddress 
+import {
+  selectSelectedBranchDetails,
+  selectSelectedAddress
 } from '@/store/slices/addressSlice';
 import {
   calculateDeliveryCharges,
@@ -57,6 +55,37 @@ export function useBranchValidation(): BranchValidationData {
   const selectedAddress = useAppSelector(selectSelectedAddress);
 
   return useMemo(() => {
+    // ✅ Default values when no branch
+    const defaultReturn: BranchValidationData = {
+      hasBranch: false,
+      isDeliveryMode: false,
+      isPickupMode: false,
+      branchName: null,
+      branchId: null,
+      isBranchOpen: false,
+      businessHours: null,
+      businessStartTime: null,
+      businessEndTime: null,
+      deliveryCharges: 0,
+      deliveryChargesWaiveOffLimit: 0,
+      deliveryTime: null,
+      deliveryTimeRange: null,
+      minimumOrderAmount: 0,
+      meetsMinimumOrder: () => true,
+      getAmountToMinimum: () => 0,
+      hasDeliveryChargesWaiveOff: false,
+      calculateDeliveryFee: () => 0,
+      getAmountToFreeDelivery: () => 0,
+      getFreeDeliveryProgress: () => 0,
+      isFreeDelivery: () => false,
+      canPlaceOrder: () => false,
+    };
+
+    // ✅ Return defaults if no branch details
+    if (!branchDetails) {
+      return defaultReturn;
+    }
+
     // Branch availability
     const hasBranch = !!branchDetails;
     const isDeliveryMode = selectedAddress?.orderMode === 'delivery';
@@ -64,9 +93,9 @@ export function useBranchValidation(): BranchValidationData {
     const branchName = isDeliveryMode
       ? selectedAddress?.areaName || null
       : selectedAddress?.branchName || null;
-    const branchId = selectedAddress?.branchId || 
-                     selectedAddress?.areaId || 
-                     null;
+    const branchId = selectedAddress?.branchId ||
+      selectedAddress?.areaId ||
+      null;
 
     const businessHours = hasBranch
       ? `${branchDetails.BusinessStartTime} - ${branchDetails.BusinessEndTime}`
@@ -76,8 +105,8 @@ export function useBranchValidation(): BranchValidationData {
 
     // Delivery settings
     const deliveryCharges = hasBranch ? branchDetails.DeliveryCharges : 0;
-    const deliveryChargesWaiveOffLimit = hasBranch 
-      ? branchDetails.DeliveryChargesWaiveOffLimit 
+    const deliveryChargesWaiveOffLimit = hasBranch
+      ? branchDetails.DeliveryChargesWaiveOffLimit
       : 0;
     const deliveryTime = hasBranch ? branchDetails.DeliveryTime : null;
     const deliveryTimeRange = hasBranch && isDeliveryMode

@@ -45,7 +45,7 @@ const AnimatedSearch = () => {
 
 
   return (
-    <div className="relative max-w-3xl mx-auto my-2 sm:my-5 px-4">
+    <div className="relative max-w-3xl mx-auto my-10 sm:my-16 px-4">
       <div className="relative group">
         {/* Search Icon */}
         <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 pointer-events-none z-10">

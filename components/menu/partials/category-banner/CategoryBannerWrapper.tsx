@@ -10,20 +10,19 @@ interface CategoryBannerProps {
 type BannerLayout = "image" | "video" | "text";
 
 const CATEGORY_BANNER_CONFIG: { layout: BannerLayout } = {
-  layout: "text",
+  layout: "image",
 };
 
 const CategoryBannerWrapper: React.FC<CategoryBannerProps> = ({
   categoryInfo,
 }) => {
   const { layout } = CATEGORY_BANNER_CONFIG;
-  const { Name, Image } = categoryInfo;
 
   switch (layout) {
     case "image":
-      return <CategoryImageBanner categoryImage={Image} categoryName={Name} />;
+      return <CategoryImageBanner categoryInfo={categoryInfo}/>;
     case "text":
-      return <CategoryTextBanner categoryName={Name} alignment="center" />;
+      return <CategoryTextBanner categoryInfo={categoryInfo} alignment="center" />;
     case "video":
       return <CategoryVideoBanner />;
     default:
