@@ -28,7 +28,7 @@ export function BranchStatus() {
           <div className="flex items-center gap-2.5">
             <XCircle className="w-4 h-4 flex-shrink-0" strokeWidth={2} />
             <p className="text-sm font-medium">
-              We're currently closed and not accepting orders
+              We&lsquo;re currently closed and not accepting orders
             </p>
           </div>
 
