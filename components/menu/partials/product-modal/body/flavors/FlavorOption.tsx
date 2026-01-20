@@ -15,7 +15,7 @@ export function FlavorOption({ flavor, isSelected }: FlavorOptionProps) {
     <button
       onClick={() => setFlavor(flavor.id)}
       className={cn(
-        "relative w-full p-4 rounded-lg border-2 text-left transition-all",
+        "relative w-full p-4 rounded-lg border-1 text-left transition-all",
         isSelected
           ? "border-red-500 bg-red-50"
           : "border-gray-200 hover:border-gray-300 hover:bg-gray-50 bg-white"
@@ -30,11 +30,9 @@ export function FlavorOption({ flavor, isSelected }: FlavorOptionProps) {
         </div>
 
         {isSelected && (
-          <div className="flex-shrink-0 ml-3">
-            <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-              <Check className="w-4 h-4 text-white" />
-            </div>
-          </div>
+          <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-lg z-10 border-2 border-white">
+          <span className="text-white text-xs font-bold">✓</span>
+        </div>
         )}
       </div>
     </button>

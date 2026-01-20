@@ -41,7 +41,9 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
 
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
+
+      <div className='space-y-4'>
       {/* Alerts & Notifications */}
       {!branch.hasBranch && <BranchNotSelectedAlert />}
       
@@ -65,11 +67,13 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
       
       {branch.deliveryTimeRange && branch.isDeliveryMode && (
         <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
+      
       )}
+      </div>
 
       {/* Price Breakdown */}
       {showDetails && (
-        <div className="space-y-2 pt-2">
+        <div className="pt-2">
           {/* Subtotal */}
           <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">{t('subtotal')}</span>
@@ -113,7 +117,7 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
       )}
 
       {/* Grand Total */}
-      <div className="flex items-center justify-between pt-2">
+      <div className="flex items-center justify-between ">
         <span className="text-lg font-semibold text-gray-900">
           {t('grandTotal')}
         </span>

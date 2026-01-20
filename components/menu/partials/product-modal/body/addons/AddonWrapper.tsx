@@ -5,40 +5,46 @@ import { AddonOption } from './AddonOption';
 
 interface AddonSelectorProps {
   choice: ItemChoice;
+  onComplete?: (isComplete: boolean) => void;
 }
 
-export function AddonWrapper({ choice }: AddonSelectorProps) {
+export function AddonWrapper({
+  choice,
+  onComplete
+}: AddonSelectorProps) {
   const { customization } = useProductModal();
-  
-  const selectedGroup = customization.selectedAddons[choice.Id];
-  
-  // Count how many DIFFERENT options are selected
-  const selectedOptionsCount = selectedGroup?.selectedOptions?.reduce(
-          (total, option) => total + option.quantity, 0
-        ) || 0;
 
-  // Determine if optional
+  const selectedGroup = customization.selectedAddons[choice.Id];
+
+  const selectedOptionsCount = selectedGroup?.selectedOptions?.reduce(
+    (total, option) => total + option.quantity, 0
+  ) || 0;
+
   const isOptional = choice.MaxChoice === 0;
-  
-  // For multi-select (MaxChoice > 1 or optional)
   const isMultiSelect = choice.MaxChoice !== 1;
 
-  // Calculate if user can add more DIFFERENT options
   let canAddMore = true;
-  
   if (!isOptional && choice.MaxChoice > 0) {
     canAddMore = selectedOptionsCount < choice.MaxChoice;
   }
 
+  const isComplete = !isOptional && choice.MaxChoice > 0 && selectedOptionsCount >= choice.MaxChoice;
+
+  React.useEffect(() => {
+    if (isComplete && onComplete) {
+      onComplete(true);
+    }
+  }, [isComplete, onComplete]);
+
   return (
     <div className="space-y-3">
-      {/* Progress Indicator - Only for MaxChoice > 1 */}
+      {/* Progress Indicator */}
       {choice.MaxChoice > 1 && !isOptional && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">
             Selected: {selectedOptionsCount} / {choice.MaxChoice}
           </span>
-          {selectedOptionsCount === choice.MaxChoice && (
+          {isComplete && (
             <span className="text-green-600 font-medium">✓ Complete</span>
           )}
         </div>
@@ -57,7 +63,7 @@ export function AddonWrapper({ choice }: AddonSelectorProps) {
           const selectedOption = selectedGroup?.selectedOptions.find(
             opt => opt.optionId === option.Id
           );
-          
+
           return (
             <AddonOption
               key={option.Id}

@@ -5,8 +5,10 @@ import { FlavorOption } from "./FlavorOption";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+
 export function FlavorWrapper() {
   const { product, customization } = useProductModal();
+
 
   // Can't select flavor without size
   if (!customization.selectedSizeId) {

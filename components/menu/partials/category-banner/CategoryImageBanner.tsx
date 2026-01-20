@@ -21,7 +21,7 @@ const CategoryImageBanner: React.FC<CategoryBannerProps> = ({
   const categorySlug = toSlug(categoryInfo.Image);
 
   return (
-    <section id={categoryInfo.Id} className="text-center my-2 sm:my-4 rounded-2xl overflow-hidden">
+    <section className="text-center my-2 sm:my-4 rounded-2xl overflow-hidden">
       <Link href={`/${locale}/category/${categorySlug}`} prefetch={false}>
         <div className="relative w-full cursor-pointer">
           <Image

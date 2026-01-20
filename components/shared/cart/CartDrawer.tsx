@@ -76,11 +76,15 @@ export function CartDrawer() {
               >
                 {t("addMoreItems")}
               </Button>
+
+              <div className="px-4 py-4">
+
+              <CartSummary showDetails={true} />
+              </div>
             </div>
 
             {/* Footer - Summary & Checkout */}
             <div className="border-t bg-white px-6 py-4 space-y-4">
-              <CartSummary showDetails={true} />
 
               <CheckoutButton />
             </div>

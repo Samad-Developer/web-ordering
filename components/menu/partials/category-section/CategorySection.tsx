@@ -12,12 +12,12 @@ const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
     const { Items, ...categoryInfo } = category;
 
     return (
-        <div className="max-w-7xl mx-auto px-2 sm:px-0">
+        <section id={categoryInfo.Id} className="max-w-7xl mx-auto px-2 sm:px-0">
 
             <CategoryBannerWrapper categoryInfo={categoryInfo}/>
             <ItemsList itemsList={Items}/> 
 
-        </div>
+        </section>
     );
 };
 

@@ -1,5 +1,3 @@
-// components/product-modal/body/size-selector/size-selector.tsx
-
 import React from 'react';
 import { useProductModal } from '../../ProductModalContext';
 import { getUniqueSizes } from '@/lib/product/productHelper';
@@ -7,8 +5,7 @@ import { SizeOption } from './SizeOption';
 
 export function SizeWrapper() {
   const { product, customization } = useProductModal();
-  
-  
+
   // Get all unique sizes - ALWAYS show all
   const sizes = getUniqueSizes(product);
 

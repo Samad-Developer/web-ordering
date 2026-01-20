@@ -13,7 +13,7 @@ const CategoryBar = () => {
   const { menuData } = useMenu();
   const [activeCategory, setActiveCategory] = useState<string>('');
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
-  const isClickScrolling = useRef(false); // ✅ Track if user clicked
+  const isClickScrolling = useRef(false); 
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
@@ -39,62 +39,43 @@ const CategoryBar = () => {
     })).sort((a, b) => a.sortOrder - b.sortOrder);
   }, [menuData]);
 
-  // ✅ Intersection Observer for auto-activation
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -70% 0px', // Trigger when category is in top 30% of viewport
-      threshold: 0.5,
+      rootMargin: '0px 0px -50% 0px', // Simple: trigger when category is in top half
+      threshold: 0.1,
     };
-
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // ✅ Only update if NOT clicking (no manual scroll)
-      if (isClickScrolling.current) return;
+      if (isClickScrolling.current) {
+        return;
+      }
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const categoryId = entry.target.id;
           setActiveCategory(categoryId);
-
-          // Scroll category tab into view in navbar
-          const tabElement = categoryRefs.current[categoryId];
-          if (tabElement && scrollContainerRef.current) {
-            const container = scrollContainerRef.current;
-            const tabRect = tabElement.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            
-            const isVisible = 
-              tabRect.left >= containerRect.left && 
-              tabRect.right <= containerRect.right;
-
-            if (!isVisible) {
-              tabElement.scrollIntoView({
-                behavior: 'smooth',
-                inline: 'center',
-                block: 'nearest',
-              });
-            }
-          }
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe all category sections
-    categories.forEach((category) => {
-      const element = document.getElementById(category.categoryId);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+    // Wait for DOM
+    setTimeout(() => {
+      categories.forEach((category) => {
+        const element = document.getElementById(category.categoryId);
+        if (element) {
+          observer.observe(element);
+        }
+      });
+    }, 200);
 
     return () => {
       observer.disconnect();
     };
-  }, [categories, scrollContainerRef]);
+  }, [categories]);
 
-  // ✅ Handle category click
+
   const handleCategoryClick = useCallback((categoryId: string) => {
     // Mark that user clicked (prevent auto-activation during scroll)
     isClickScrolling.current = true;

@@ -34,7 +34,7 @@ export function AddonOption({
       <button
         onClick={() => setAddonOption(choiceId, option.Id, option.Name, option.Price)}
         className={cn(
-          "w-full px-4 py-3 rounded-lg border-2 text-left transition-all cursor-pointer",
+          "relative w-full px-4 py-3 rounded-lg border-1 text-left transition-all cursor-pointer",
           isSelected
             ? "border-red-500 bg-red-50"
             : "border-gray-100 hover:border-gray-300 hover:bg-gray-50 bg-white"
@@ -51,11 +51,9 @@ export function AddonOption({
           </div>
 
           {isSelected && (
-            <div className="flex-shrink-0 ml-3">
-              <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-                <Check className="w-4 h-4 text-white" />
-              </div>
-            </div>
+             <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-lg z-10 border-2 border-white">
+             <span className="text-white text-xs font-bold">✓</span>
+           </div>
           )}
         </div>
       </button>
@@ -66,7 +64,7 @@ export function AddonOption({
 return (
     <div
       className={cn(
-        "w-full px-4 py-3 rounded-lg border-2 transition-all",
+        "relative w-full px-4 py-3 rounded-lg border-1 transition-all",
         isSelected
           ? "border-red-500 bg-red-50"
           : "border-gray-100 hover:border-gray-300 bg-white"
@@ -128,6 +126,12 @@ return (
             </Button>
           </div>
         )}
+
+{isSelected && (
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center shadow-lg z-10 border-2 border-white">
+          <span className="text-white text-xs font-bold">✓</span>
+        </div>
+      )}
       </div>
     </div>
   );
