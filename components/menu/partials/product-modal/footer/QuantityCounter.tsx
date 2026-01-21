@@ -17,7 +17,7 @@ export function QuantityCounter() {
   };
 
   return (
-    <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
       <Button
         variant="ghost"
         size="icon"

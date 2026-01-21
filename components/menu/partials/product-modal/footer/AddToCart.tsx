@@ -33,7 +33,7 @@ export function AddToCartButton({
     >
       <div className="flex items-center justify-between w-full gap-3">
         <div className="flex items-center gap-2">
-          {icon}
+          {/* {icon} */}
           <span>{label}</span>
         </div>
         <span className="font-bold">{formatPrice(price)}</span>
