@@ -6,7 +6,7 @@ export function ProductInfo() {
   const { product, priceBreakdown } = useProductModal();
 
   return (
-    <div className="px-6 py-4 space-y-3">
+    <div className="px-4 sm:px-6 py-4 space-y-3">
       {/* Price */}
       <div className="flex items-baseline gap-3">
         <span className="text-xl font-bold text-gray-900">
