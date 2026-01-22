@@ -17,7 +17,7 @@ export const PhoneNumber: React.FC<PhoneNumberProps> = ({
   return (
     <button
       onClick={handleCall}
-      className="flex items-center gap-2 lg:px-4 lg:py-2 rounded-lg transition bg-header-phone-bg text-header-phone-text hover:opacity-80"
+      className="flex items-center gap-2 px-2 sm:px-3 py-2 sm:py-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 hover:opacity-90 transition-opacity"
     >
       <span className="">{phoneIcon}</span>
       <span className="hidden lg:inline text-sm font-bold">{phoneNumber}</span>

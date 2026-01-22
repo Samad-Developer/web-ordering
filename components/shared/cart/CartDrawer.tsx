@@ -45,7 +45,7 @@ export function CartDrawer() {
               {t("title")}{" "}
             </SheetTitle>
             <button
-              className="bg-red-600 text-white font-extrabold rounded-full hover:bg-red-700 hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
+              className="bg-primary text-secondary font-extrabold rounded-full hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
               onClick={() => dispatch(toggleCart(false))}
             >
               <X className="h-4 w-4 font-extrabold" />

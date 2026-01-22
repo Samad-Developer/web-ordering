@@ -51,7 +51,7 @@ export function CheckoutButton() {
     return (
       <Button
         disabled
-        className="w-full rounded-lg h-14 text-base font-semibold bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full rounded-lg h-14 text-base font-semibold bg-primary text-secondary disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {getButtonText()}
         <ArrowRight className="ml-2" />
@@ -63,7 +63,7 @@ export function CheckoutButton() {
     <Link href={`/${locale}/checkout`}>
       <Button
         onClick={handleCheckout}
-        className="w-full rounded-lg h-14 text-base font-semibold bg-red-500 hover:bg-red-600"
+        className="w-full rounded-lg h-14 text-base font-semibold bg-primary text-secondary"
       >
         {getButtonText()}
         <ArrowRight className="ml-2" />

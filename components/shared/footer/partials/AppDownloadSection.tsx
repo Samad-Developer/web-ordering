@@ -35,10 +35,10 @@ export const AppDownloadSection: React.FC<AppDownloadSectionProps> = ({
 
       {/* Right side: Text + Download buttons */}
       <div className="text-center lg:text-left">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-xl font-bold text-footer-fg dark:text-white mb-2">
           {title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-6 text-smleading-tight">
+        <p className="text-footer-fg dark:text-gray-300 mb-6 text-smleading-tight">
           {subtitle}
         </p>
 

@@ -10,6 +10,8 @@ import { UserProfile } from "./partials/UserProfileButton";
 import { HamburgerMenu } from "./partials/HamburgerMenu";
 import { SvgIcon } from "../../common/SvgIcon";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useAppSelector } from "@/store/hooks";
+import { selectAddressApiData } from "@/store/slices/addressSlice";
 
 const headerConfig = {
   phoneNumber: "+923485497976",
@@ -25,57 +27,72 @@ const headerConfig = {
 
 const Header1 = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+  const addressAndThemeData = useAppSelector(selectAddressApiData);
+  const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
+
+  const showSubmitComplaint = settings?.SUBMIT_COMPLAINT_BUTTON ?? false; // Default: show
+  const showMultiLanguage = settings?.MULTI_LANGUAGE ?? false; // Default: show
+  const showUserLogin = settings?.USER_LOGIN_ICON ?? false; // Default: show
+  const showHamburger = settings?.HAMBURGER_MENU ?? false; // Default: show
+
+  // Get restaurant logo or use default
+  const logoSrc = settings?.RESTAURANT_LOGO || headerConfig.logoSrc;
 
   return (
-    <header className="w-full bg-color-background border-b border-color-border">
-      <div className="w-full md:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 md:py-4">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-
-          {/* Left Section — will be move to right side on mobile */}
-          <div className="flex items-center gap-3 order-2 md:order-1 mr-3 md:mr-0">
-            <ChangeLocation
-              locationIcon={<SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location"/>}
-            />
-            <PhoneNumber
-              phoneIcon={<SvgIcon src="/assets/images/svgIcons/phone-call.svg" alt="Phone" />}
-              phoneNumber={headerConfig.phoneNumber}
-            />
-          </div>
-
-          {/* Center Section — Logo  */}
-          <div className="order-1 md:order-2 flex-1 flex items-center justify-start md:justify-center">
-            <Logo src={headerConfig.logoSrc} href="/" alt="logo" />
-          </div>
-
-          {/* Right Section */}
-          <div className="flex items-center gap-3 lg:gap-4 order-3 md:order-3">
+    <header className="w-full bg-topbar-bg border-b border-color-border relative">
+    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 md:py-4">
+  
+      <div className="relative flex items-center h-16 lg:h-20">
+  
+        {/* Left Section */}
+        <div className="flex items-center gap-3">
+          <ChangeLocation locationIcon={<SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location" />} />
+          <PhoneNumber
+            phoneIcon={<SvgIcon src="/assets/images/svgIcons/phone-call.svg" alt="Phone" />}
+            phoneNumber={headerConfig.phoneNumber}
+          />
+        </div>
+  
+        {/* Center Logo — truly fixed */}
+        <div className="absolute left-1/2 -translate-x-1/2">
+          <Logo src={headerConfig.logoSrc} href="/" alt="logo" />
+        </div>
+  
+        {/* Right Section */}
+        <div className="ml-auto flex items-center gap-3 lg:gap-4">
+          {showSubmitComplaint && (
             <div className="hidden md:flex">
               <ActionButton {...headerConfig.actionButton} />
             </div>
-
-            <LanguageSwitcher/>
-
-            <CartButton
-              cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}
-              href={headerConfig.cartHref}
-            />
-
+          )}
+  
+          {showMultiLanguage && <LanguageSwitcher />}
+  
+          <CartButton
+            cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}
+            href={headerConfig.cartHref}
+          />
+  
+          {showUserLogin && (
             <UserProfile
               profileIcon={<SvgIcon src="/assets/images/svgIcons/user.svg" alt="Profile" />}
               href={headerConfig.profileHref}
             />
-
+          )}
+  
+          {showHamburger && (
             <HamburgerMenu
               menuIcon={<SvgIcon src="/assets/images/svgIcons/humburger-menu.svg" alt="Menu" />}
               isOpen={sidebarOpen}
               onToggle={setSidebarOpen}
             />
-
-          </div>
+          )}
         </div>
+  
       </div>
-    </header>
+    </div>
+  </header>
+  
   );
 };
 

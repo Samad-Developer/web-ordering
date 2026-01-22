@@ -34,8 +34,8 @@ export function ProductModalHeader() {
   };
 
   return (
-    <div className="sticky top-0 z-10 bg-white border-b px-6 py-4 flex items-center justify-between">
-      <h2 className="text-xl font-semibold text-gray-900 truncate pr-4">
+    <div className="sticky top-0 z-10 bg-popup-header-bg border-b px-6 py-4 flex items-center justify-between">
+      <h2 className="text-xl font-semibold text-popup-header-fg truncate pr-4">
         {product.Name}
       </h2>
 
@@ -43,7 +43,7 @@ export function ProductModalHeader() {
         <Button
           size="icon"
           onClick={handleShare}
-          className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer"
+          className="bg-primary rounded-full text-secondary cursor-pointer"
         >
           <Share2 className="h-5 w-5" />
         </Button>
@@ -57,7 +57,7 @@ export function ProductModalHeader() {
         </Button> */}
 
         <DialogClose asChild>
-          <Button type="button" size="icon" className="bg-red-500 rounded-full text-white hover:text-slate-50 cursor-pointer">
+          <Button type="button" size="icon" className="bg-primary rounded-full text-secondary cursor-pointer">
             <X className="h-5 w-5" />
           </Button>
         </DialogClose>

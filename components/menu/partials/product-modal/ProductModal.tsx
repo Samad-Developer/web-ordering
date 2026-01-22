@@ -38,7 +38,7 @@ export const ProductModal = () => {
       >
         <ProductModalProvider product={currentProduct}>
           {/* Two Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] h-full max-h-[90vh]">
+          <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] h-full max-h-[90vh] bg-popup-bg">
 
             {/* LEFT COLUMN - Image Only (No Header/Footer) */}
             <div className="hidden lg:block md:p-5">

@@ -30,8 +30,7 @@ export function FloatingCartButton() {
           className={cn(
             "cursor-pointer relative flex items-center gap-8 sm:gap-16",
             "px-4 py-3 rounded-full",
-            "bg-gradient-to-r from-red-600 to-red-500",
-            "hover:from-red-700 hover:to-red-600",
+            "bg-primary text-secondary",
             "shadow-2xl hover:shadow-red-500/50",
             "transition-all duration-300 ease-out",
             "border border-white",
@@ -52,13 +51,13 @@ export function FloatingCartButton() {
           {/* Divider + Text + Price */}
           <div className="flex items-center gap-8 sm:gap-16 whitespace-nowrap overflow-hidden min-w-0">
 
-            <span className="text-white font-semibold text-lg sm:text-xl flex-shrink-0">
+            <span className="text-secondary font-semibold text-lg sm:text-xl flex-shrink-0">
               {t("viewCart")}
             </span>
 
             <div className="flex gap-2 items-center min-w-0">
               <div className="text-left min-w-0">
-                <p className="text-lg font-bold text-white truncate">
+                <p className="text-lg font-bold text-secondary truncate">
                   {formatPrice(subtotal)}
                 </p>
               </div>

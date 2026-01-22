@@ -16,14 +16,14 @@ const iconMap = {
 export const ContactDetails: React.FC<ContactDetailsProps> = ({ contacts }) => {
   return (
     <div className="space-y-4 flex flex-col justify-center items-center sm:items-start sm:justify-start">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <h3 className="text-xl font-semibold text-footer-fg dark:text-white">
         Contact us
       </h3>
       <ul className="space-y-3">
         {contacts.map((contact, index) => {
           const Icon = iconMap[contact.type];
           const content = (
-            <span className="flex items-center gap-3 text-gray-600 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
+            <span className="flex items-center gap-3 text-footer-fg dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-colors">
               {Icon && <Icon className="w-5 h-5 flex-shrink-0" />}
               <span>{contact.value}</span>
             </span>

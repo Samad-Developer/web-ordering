@@ -18,7 +18,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
   return (
     <div className="space-y-4 flex flex-col justify-center items-center sm:items-start sm:justify-start">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <h3 className="text-xl font-semibold text-footer-fg dark:text-white">
         Follow us
       </h3>
       <div className="flex gap-4">
@@ -31,7 +31,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({ links }) => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.ariaLabel}
-              className="w-5 h-5 rounded-full dark:bg-gray-800 flex items-center justify-center text-gray-600"
+              className="w-5 h-5 rounded-full dark:bg-gray-800 flex items-center justify-center text-footer-fg"
             >
               {Icon && <Icon className="w-5 h-5 hover:text-red-500" />}
             </Link>

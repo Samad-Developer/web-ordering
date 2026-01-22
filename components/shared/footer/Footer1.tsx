@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { FooterContent } from "@/types/footer.types";
 import { RestaurantAbout } from "./partials/RestaurantAbout";
@@ -6,10 +8,8 @@ import { SocialLinks } from "./partials/SocialLinks";
 import { AppDownloadSection } from "./partials/AppDownloadSection";
 import { FooterLogo } from "./partials/FooterLogo";
 import Link from "next/link";
-
-interface Footer1Props {
-  content: FooterContent;
-}
+import { useAppSelector } from "@/store/hooks";
+import { selectAddressApiData } from "@/store/slices/addressSlice";
 
 export const footerData: FooterContent = {
   about: {
@@ -76,20 +76,29 @@ export const footerData: FooterContent = {
 };
 
 const Footer1 = () => {
+  const addressAndThemeData = useAppSelector(selectAddressApiData);
+  const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
+  const showAboutUs = settings?.ABOUT_US ?? false;
+
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-2 border-t ">
+    <footer className="border-2 border-t bg-footer-bg text-footer-fg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col max-w-4xl mx-auto">
           <div>
             <div className="flex justify-center">
               <FooterLogo footerLogo={footerData.footerLogo} />
             </div>
-            <RestaurantAbout
-              title={footerData.about.title}
-              description={footerData.about.description}
-            />
+            {
+              showAboutUs && (
+                <RestaurantAbout
+                  title={footerData.about.title}
+                  description={footerData.about.description}
+                />
+              )
+            }
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.8fr] gap-8 lg:gap-12 items-start mt-10">
@@ -108,19 +117,19 @@ const Footer1 = () => {
         {/* Footer Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-footer-fg dark:text-gray-400">
               © {currentYear} {footerData.about.title}. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link
                 href="/privacy-policy"
-                className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                className="text-footer-fg dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms-of-service"
-                className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+                className="text-footer-fg dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
               >
                 Terms of Service
               </Link>

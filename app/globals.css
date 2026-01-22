@@ -44,54 +44,53 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  
-  /* Custom Colors for Header */
-  --color-header-location-bg: var(--header-location-bg);
-  --color-header-location-text: var(--header-location-text);
-  
-  --color-header-phone-bg: var(--header-phone-bg);
-  --color-header-phone-text: var(--header-phone-text);
-  
-  --color-header-button-bg: var(--header-button-bg);
-  --color-header-button-text: var(--header-button-text);
-  
-  --color-header-cart-bg: var(--header-cart-bg);
-  --color-header-cart-text: var(--header-cart-text);
-  --color-header-cart-badge: var(--header-cart-badge);
-  --color-header-cart-badge-text: var(--header-cart-badge-text);
-  
-  --color-header-profile-bg: var(--header-profile-bg);
-  --color-header-profile-text: var(--header-profile-text);
-  
-  --color-header-hamburger-bg: var(--header-hamburger-bg);
-  --color-header-hamburger-text: var(--header-hamburger-text);
 
-   /* Core */
-   --color-primary: var(--color-primary);
-   --color-secondary: var(--color-secondary);
-   --color-background: var(--color-background);
- 
-   /* Top bar */
-   --color-topbar-bg: var(--color-topbar-bg);
-   --color-topbar-fg: var(--color-topbar-fg);
- 
-   /* Category */
-   --color-category-bg: var(--color-category-bg);
-   --color-category-fg: var(--color-category-fg);
-   --color-category-hover: var(--color-category-hover);
-   --color-category-active: var(--color-category-active);
- 
-   /* Product */
-   --color-product-bg: var(--color-product-bg);
-   --color-product-name: var(--color-product-name);
-   --color-product-description: var(--color-product-description);
-   --color-product-price-bg: var(--color-product-price-bg);
-   --color-product-price-fg: var(--color-product-price-fg);
-   --color-product-add-btn: var(--color-product-add-btn);
- 
-   /* Footer */
-   --color-footer-bg: var(--color-footer-bg);
-   --color-footer-fg: var(--color-footer-fg);
+  /* Top Bar */
+  --color-topbar-bg: var(--top-bar-bg-color);
+  --color-topbar-fg: var(--top-bar-fore-color);
+
+  /* Category */
+  --color-category-bg: var(--category-bar-bg-color);
+  --color-category-fg: var(--category-bar-fore-color);
+  --color-category-hover: var(--category-hover-color);
+  --color-category-active: var(--category-active-color);
+
+  /* Product */
+  --color-product-bg: var(--product-bg-color);
+  --color-product-name: var(--product-name-fore-color);
+  --color-product-desc: var(--product-desc-fore-color);
+  --color-product-hover: var(--product-hover-color);
+  --color-product-price-bg: var(--product-price-bg-color);
+  --color-product-price-fg: var(--product-price-fore-color);
+  --color-product-add-btn: var(--product-add-btn-bg-color);
+
+  /* Footer */
+  --color-footer-bg: var(--footer-bg-color);
+  --color-footer-fg: var(--footer-fore-color);
+
+  /* Cart */
+  --color-cart-bg: var(--view-cart-bg-color);
+  --color-cart-fg: var(--view-cart-fore-color);
+
+  /* Product Popup */
+  --color-popup-bg: var(--product-popup-bg-color);
+  --color-popup-header-bg: var(--product-popup-header-bg-color);
+  --color-popup-header-fg: var(--product-popup-header-fore-color);
+  --color-popup-desc: var(--product-popup-desc-fore-color);
+  --color-popup-price: var(--product-popup-price-fore-color);
+  --color-popup-cart-fg: var(--product-popup-add-to-cart-fore-color);
+  --color-popup-cart-bg: var(--product-popup-add-to-cart-bg-color);
+  --color-popup-qty-btn: var(--product-popup-plus-minus-bg-color);
+  --color-popup-qty-fg: var(--product-popup-qty-fore-color);
+
+  /* Deal Popup */
+  --color-deal-option: var(--deal-popup-option-name-fore-color);
+  --color-deal-product: var(--deal-popup-product-name-fore-color);
+
+  /* Core */
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-web-bg: var(--web-bg-color);
 }
 
 :root {
@@ -128,34 +127,40 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-   /* Default theme colors (will be overridden by JS) */
-   --color-primary: #E7000B;
-   --color-primary-rgb: #FFFFFF;
-   --color-secondary: #FFFFFF;
-   --color-secondary-rgb: #FF6B00;
-   --color-background: #FFFFFF;
 
-   /* Top bar */
-   --color-topbar-bg: #111827;
-   --color-topbar-fg: #F9FAFB;
 
-   /* Category */
-   --color-category-bg: #F3F4F6;
-   --color-category-fg: #111827;
-   --color-category-hover: #E5E7EB;
-   --color-category-active: #D1D5DB;
-
-   /* Product */
-   --color-product-bg: #FFFFFF;
-   --color-product-name: #111827;
-   --color-product-description: #6B7280;
-   --color-product-price-bg: #111827;
-   --color-product-price-fg: #FFFFFF;
-   --color-product-add-btn: #22C55E;
-
-   /* Footer */
-   --color-footer-bg: #111827;
-   --color-footer-fg: #F9FAFB;
+  /* Default Theme Colors - Will be overridden by JS */
+  --top-bar-bg-color: #FFFFFF;
+  --top-bar-fore-color: #000000;
+  --category-bar-bg-color: #E5E7EB;
+  --category-bar-fore-color: #1F2937;
+  --category-hover-color: #ffffff;
+  --category-active-color: #9CA3AF;
+  --product-bg-color: #FFFFFF;
+  --product-name-fore-color: #111827;
+  --product-desc-fore-color: #6B7280;
+  --product-hover-color: #ffffff;
+  --product-price-bg-color: #FFFFFF;
+  --product-price-fore-color: #101828;
+  --product-add-btn-bg-color: #6B7280;
+  --footer-bg-color: #1F2937;
+  --footer-fore-color: #F9FAFB;
+  --view-cart-bg-color: #4B5563;
+  --view-cart-fore-color: #FFFFFF;
+  --product-popup-bg-color: #FFFFFF;
+  --product-popup-header-bg-color: #F9FAFB;
+  --product-popup-header-fore-color: #111827;
+  --product-popup-desc-fore-color: #6B7280;
+  --product-popup-price-fore-color: #1F2937;
+  --product-popup-add-to-cart-fore-color: #FFFFFF;
+  --product-popup-add-to-cart-bg-color: #4B5563;
+  --product-popup-plus-minus-bg-color: #6B7280;
+  --product-popup-qty-fore-color: #111827;
+  --deal-popup-option-name-fore-color: #374151;
+  --deal-popup-product-name-fore-color: #1F2937;
+  --primary-color: #6B7280;
+  --secondary-color: #FFFFFF;
+  --web-bg-color: #F9FAFB;
 }
 
 .dark {
@@ -190,35 +195,14 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-
-  /* Header Colors - Dark Mode */
-  --header-location-bg: oklch(0.25 0.15 250);
-  --header-location-text: oklch(0.9 0.15 250);
-
-  --header-phone-bg: oklch(0.25 0.15 160);
-  --header-phone-text: oklch(0.9 0.15 160);
-
-  --header-button-bg: oklch(0.8 0.2 40);
-  --header-button-text: oklch(0.145 0 0);
-
-  --header-cart-bg: oklch(0.25 0.15 280);
-  --header-cart-text: oklch(0.9 0.15 280);
-  --header-cart-badge: oklch(0.704 0.191 22.216);
-  --header-cart-badge-text: oklch(0.985 0 0);
-
-  --header-profile-bg: oklch(0.269 0 0);
-  --header-profile-text: oklch(0.708 0 0);
-
-  --header-hamburger-bg: oklch(0.269 0 0);
-  --header-hamburger-text: oklch(0.985 0 0);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
-

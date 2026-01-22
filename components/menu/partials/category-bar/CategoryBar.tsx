@@ -132,7 +132,7 @@ const CategoryBar = () => {
   }
 
   return (
-    <div className="sticky top-0 bg-white z-50 w-full py-2 shadow-lg">
+    <div className="sticky top-0 z-50 w-full py-2 shadow-lg bg-category-bg text-category-fg">
       {/* Left Arrow */}
       {showLeftArrow && (
         <Button

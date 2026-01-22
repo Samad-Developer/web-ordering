@@ -32,15 +32,15 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="border border-red-200 rounded-xl">
+      <div className="border bg-gray-50 rounded-xl">
         <CardContent className="p-4 space-y-4">
           {/* Header with Success Icon */}
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+            <div className="flex-shrink-0 w-10 h-10 bg-primary text-secondary rounded-full flex items-center justify-center">
               <CheckCircle className="w-6 h-6 text-white" />
             </div>
             <div className="flex-1">
-              <p className="text-xs text-red-600 font-medium">Selected Branch</p>
+              <p className="text-xs text-primary font-medium">Selected Branch</p>
               <h4 className="font-semibold text-lg text-gray-900">
                 {branch.BranchName}
               </h4>
@@ -48,14 +48,14 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-red-200" />
+          <div className="border-t " />
 
           {/* Details */}
           <div className="space-y-3">
             {/* Address */}
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <MapPin className="w-4 h-4 text-red-600" />
+                <MapPin className="w-4 h-4 text-gray-500" />
               </div>
               <div className="flex-1">
                 <p className="text-xs text-gray-500 font-medium mb-1">Location</p>
@@ -66,7 +66,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
             {/* Phone */}
             <div className="flex items-center gap-3">
               <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Phone className="w-4 h-4 text-red-600" />
+                <Phone className="w-4 h-4 text-gray-500" />
               </div>
               <div className="flex-1">
                 <p className="text-xs text-gray-500 font-medium mb-1">Contact</p>
@@ -79,7 +79,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
             {/* Business Hours */}
             <div className="flex items-center gap-3">
               <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Clock className="w-4 h-4 text-red-600" />
+                <Clock className="w-4 h-4 text-gray-500" />
               </div>
               <div className="flex-1">
                 <p className="text-xs text-gray-500 font-medium mb-1">Open Hours</p>
@@ -93,7 +93,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
             <Button
               type="button"
               variant="outline"
-              className="gap-2 border-red-200 bg-white hover:bg-red-50 rounded-full"
+              className="gap-2  bg-gray-100 rounded-md"
               onClick={handleCall}
             >
               <Phone className="w-4 h-4" />
@@ -102,7 +102,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
             
             <Button
               type="button"
-              className="gap-2 bg-red-600 hover:bg-red-700 text-white rounded-full"
+              className="gap-2 bg-primary text-secondary rounded-md"
               onClick={handleGetDirections}
             >
               <Navigation className="w-4 h-4" />

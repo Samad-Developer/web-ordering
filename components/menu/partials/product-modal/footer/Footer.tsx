@@ -70,7 +70,7 @@ export function ProductModalFooter() {
             disabled={!isValid}
             price={priceBreakdown.total}
             icon={<ShoppingCart className="h-5 w-5" />}
-            className='bg-red-500 text-white hover:bg-red-600 cursor-poi'
+            className='bg-popup-cart-bg text-popup-cart-fg  cursor-pointer'
           />
         </div>
       </div>

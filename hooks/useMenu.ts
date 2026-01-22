@@ -24,7 +24,7 @@ export function useMenu() {
     };
     connection.on('MenuResponse', handler);
 
-    connection.invoke('DataRequest', 'builderburger.co', 'Menu', branchId, 'MenuResponse')
+    connection.invoke('DataRequest', 'rollinnbbq.pk', 'Menu', branchId, 'MenuResponse')
       .catch((err) => {
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
       });

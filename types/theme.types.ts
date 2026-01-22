@@ -1,33 +1,38 @@
+
 export interface ThemeColors {
-    main: {
-      primaryColor: string;
-      secondaryColor: string;
-      backgroundColor: string;
-    };
-    topBar: {
-      background: string;
-      foreground: string;
-    };
-    category: {
-      background: string;
-      foreground: string;
-      hover: string;
-      active: string;
-    };
-    product: {
-      background: string;
-      nameColor: string;
-      descriptionColor: string;
-      price: {
-        background: string;
-        foreground: string;
-      };
-      addButton: {
-        background: string;
-      };
-    };
-    footer: {
-      background: string;
-      foreground: string;
-    };
-  }
+  TOP_BAR_BG_COLOR?: string;
+  TOP_BAR_FORE_COLOR?: string;
+  CATEGORY_BAR_BG_COLOR?: string;
+  CATEGORY_BAR_FORE_COLOR?: string;
+  CATEGORY_HOVER_COLOR?: string;
+  CATEGORY_ACTIVE_COLOR?: string;
+  PRODUCT_BG_COLOR?: string;
+  PRODUCT_NAME_FORE_COLOR?: string;
+  PRODUCT_DESC_FORE_COLOR?: string;
+  PRODUCT_HOVER_COLOR?: string;
+  PRODUCT_PRICE_BG_COLOR?: string;
+  PRODUCT_PRICE_FORE_COLOR?: string;
+  PRODUCT_ADD_BTN_BG_COLOR?: string;
+  FOOTER_BG_COLOR?: string;
+  FOOTER_FORE_COLOR?: string;
+  VIEW_CART_BG_COLOR?: string;
+  VIEW_CART_FORE_COLOR?: string;
+  PRODUCT_POPUP_BG_COLOR?: string;
+  PRODUCT_POPUP_HEADER_BG_COLOR?: string;
+  PRODUCT_POPUP_HEADER_FORE_COLOR?: string;
+  PRODUCT_POPUP_DESC_FORE_COLOR?: string;
+  PRODUCT_POPUP_PRICE_FORE_COLOR?: string;
+  PRODUCT_POPUP_ADD_TO_CART_FORE_COLOR?: string;
+  PRODUCT_POPUP_ADD_TO_CART_BG_COLOR?: string;
+  PRODUCT_POPUP_PLUS_MINUS_BG_COLOR?: string;
+  PRODUCT_POPUP_QTY_FORE_COLOR?: string;
+  DEAL_POPUP_OPTION_NAME_FORE_COLOR?: string;
+  DEAL_POPUP_PRODUCT_NAME_FORE_COLOR?: string;
+  PRIMARY_COLOR?: string;
+  SECONDARY_COLOR?: string;
+  WEB_BG_COLOR?: string;
+}
+
+export interface ThemeData {
+  colors: ThemeColors;
+}

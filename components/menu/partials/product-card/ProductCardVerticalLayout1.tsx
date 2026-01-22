@@ -184,7 +184,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     <>
       <article
         className={`
-          bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
+          bg-product-bg hover:bg-product-hover rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
           hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] 
           overflow-hidden transition-all duration-300 
           transform hover:-translate-y-1
@@ -197,7 +197,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
 
           {/* Badge for multiple variations in cart */}
           {hasMultipleInCart && (
-            <div className="absolute top-3 left-3 border bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
+            <div className="absolute top-3 left-3 border bg-primary text-secondary text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
               {productCartItems.length} variants in cart
             </div>
           )}

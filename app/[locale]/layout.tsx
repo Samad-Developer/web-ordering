@@ -5,16 +5,15 @@ import { Toaster } from "@/components/ui/sonner"
 import Footer1 from "@/components/shared/footer";
 import Header1 from "@/components/shared/headers";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/contexts/ThemeProvider";
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
 import { SignalRProvider } from "@/contexts/signalr-provider";
 import { SearchProvider } from "@/contexts/SearchContext";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import React from "react";
 import { BranchStatus } from "@/components/shared/BranchStatus";
@@ -62,9 +61,9 @@ export default async function RootLayout({
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <SearchProvider>
-              <ThemeProvider>
-                <SignalRProvider>
-                  <BranchStatus/>
+              <SignalRProvider>
+                <ThemeProvider>
+                  <BranchStatus />
                   <Header1 />
                   {children}
                   <Toaster position="top-center" richColors />
@@ -72,8 +71,8 @@ export default async function RootLayout({
                   <ProductModal />
                   <CartDrawer />
                   <Footer1 />
-                </SignalRProvider>
-              </ThemeProvider>
+                </ThemeProvider>
+              </SignalRProvider>
             </SearchProvider>
           </NextIntlClientProvider>
         </Providers>

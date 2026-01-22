@@ -19,9 +19,9 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
     : 0;
 
   return (
-    <div className={`flex items-center gap-2 flex-wrap ${className}`}>
+    <div className={`bg-product-price-bg flex items-center gap-2 flex-wrap ${className}`}>
 
-      <span className="text-lg font-bold text-gray-900">
+      <span className="text-lg font-bold text-product-price-fg">
         {currency} {currentPrice}
       </span>
 

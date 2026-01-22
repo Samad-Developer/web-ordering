@@ -9,8 +9,8 @@ export const categoryTabVariants = cva(
         iconic: "flex-col justify-center gap-2 px-3 py-2 text-[13px] sm:text-[15px] text-center font-medium",
       },
       state: {
-        default: "bg-transparent text-gray-700 hover:bg-red-500 hover:text-white",
-        active: "bg-red-500 text-white",
+        default: "bg-transparent text-category-fg hover:bg-category-active hover:text-category-hover",
+        active: "bg-category-active text-category-hover",
       },
     },
     defaultVariants: {

@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './slices/cartSlice';
 import productModalReducer from './slices/productModalSlice'
 import addressReducer from './slices/addressSlice'
-import themeReducer from './slices/themeSlice'
 import authReducer from './slices/authSlice'
 import menuReducer from './slices/menuSlice'
 
@@ -11,7 +10,6 @@ export const store = configureStore({
     cart: cartReducer,
     address: addressReducer,
     productModal: productModalReducer,
-    theme: themeReducer,
     auth: authReducer,
     menu: menuReducer,
   },

@@ -23,7 +23,7 @@ export const RestaurantAbout: React.FC<RestaurantAboutProps> = ({
 
   return (
     <div className="space-y-4 text-center">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+      <h2 className="text-2xl font-bold text-footer-fg dark:text-white">
         {title}
       </h2>
 
@@ -31,7 +31,7 @@ export const RestaurantAbout: React.FC<RestaurantAboutProps> = ({
         {displayParagraphs.map((paragraph, index) => (
           <p
             key={index}
-            className="text-gray-600 dark:text-gray-300 leading-relaxed text-[15px]"
+            className="text-footer-fg dark:text-gray-300 leading-relaxed text-[15px]"
           >
             {paragraph}
           </p>

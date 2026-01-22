@@ -23,7 +23,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   size = "md",
 }) => {
   const variantClasses = {
-    primary: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+    primary: "bg-popup-cart-bg text-popup-cart-fg",
     secondary: "bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800",
     outline:
       "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50 active:bg-red-100",

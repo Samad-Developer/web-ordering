@@ -4,7 +4,9 @@ import React from 'react';
 import { BannerImage, BannerStyle } from '@/types/banner.types';
 import { SingleBanner } from './SingleBanner';
 import { CarouselBanner } from './CarouselBanner';
-
+import { useAppSelector } from '@/store/hooks';
+import { selectAddressApiData } from '@/store/slices/addressSlice';
+import { useMemo } from 'react';
 
 const BANNER_CONFIG = {
   images: [
@@ -38,26 +40,48 @@ const BANNER_CONFIG = {
   autoPlayInterval: 4000,
 };
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
-const handleBannerClick = () => {};
 
+const handleBannerClick = () => { };
 
 const BannerWrapper = () => {
-  const { images, style, showPaymentCards, autoPlay, autoPlayInterval } = BANNER_CONFIG;
+  const { style, showPaymentCards, autoPlay, autoPlayInterval } = BANNER_CONFIG;
 
-  if (!images || images.length === 0) {
-    console.error('BannerWrapper: No images provided in configuration');
+  const addressAndThemeData = useAppSelector(selectAddressApiData);
+  const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
+
+  const bannerImages = useMemo(() => {
+    const apiBanners = settings?.BANNER_IMAGES;
+
+    // If no API banners or empty array, use defaults
+    if (!apiBanners || apiBanners.length === 0) {
+      return BANNER_CONFIG.images;
+    }
+
+    return apiBanners.map((banner, index) => ({
+      id: `api-${index + 1}`,
+      src: `${API_BASE_URL}${banner}`,
+      alt: `Banner ${index + 1}`,
+    }));
+  }, [settings?.BANNER_IMAGES]);
+
+  // No images at all
+  if (!bannerImages || bannerImages.length === 0) {
+    console.error('❌ BannerWrapper: No images available');
     return null;
   }
 
-  if (images.length > 5) {
-    console.warn('BannerWrapper: Maximum 5 images allowed. Truncating...');
+  // Limit to 5 images
+  const limitedImages = bannerImages.slice(0, 5);
+  if (bannerImages.length > 5) {
+    console.warn('⚠️ BannerWrapper: Maximum 5 images allowed. Truncating...');
   }
 
-  if (images.length === 1) {
+  if (limitedImages.length === 1) {
     return (
       <SingleBanner
-        images={[images[0]]}
+        images={[limitedImages[0]]}
         style={style}
         showPaymentCards={showPaymentCards}
         onClick={handleBannerClick}
@@ -67,7 +91,7 @@ const BannerWrapper = () => {
 
   return (
     <CarouselBanner
-      images={images}
+      images={limitedImages}
       style={style}
       showPaymentCards={showPaymentCards}
       onClick={handleBannerClick}

@@ -7,26 +7,17 @@ import { CategoryInfo } from "@/types/menu.types";
 interface CategoryBannerProps {
   categoryInfo: CategoryInfo;
 }
-type BannerLayout = "image" | "video" | "text";
-
-const CATEGORY_BANNER_CONFIG: { layout: BannerLayout } = {
-  layout: "image",
-};
 
 const CategoryBannerWrapper: React.FC<CategoryBannerProps> = ({
   categoryInfo,
 }) => {
-  const { layout } = CATEGORY_BANNER_CONFIG;
 
-  switch (layout) {
-    case "image":
-      return <CategoryImageBanner categoryInfo={categoryInfo}/>;
-    case "text":
-      return <CategoryTextBanner categoryInfo={categoryInfo} alignment="center" />;
-    case "video":
-      return <CategoryVideoBanner />;
-    default:
-      return null;
+  const hasImage = Boolean(categoryInfo.Image) && categoryInfo.Image !== "N/A";
+
+  if (hasImage) {
+    return <CategoryImageBanner categoryInfo={categoryInfo} />;
+  } else {
+    return <CategoryTextBanner categoryInfo={categoryInfo} alignment="center" />;
   }
 };
 
