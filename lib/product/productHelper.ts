@@ -1,10 +1,10 @@
-// lib/product/productHelper.ts
-
+import { Discount } from '@/types/discount.types';
+import { calculateDiscount } from '../discount/discountUtils';
 import { ProductVariation, ProductItem } from '@/types/product.types';
 import { 
-  ProductCustomization,        // Updated
+  ProductCustomization,       
   PriceBreakdown,
-  CustomizationError           // Updated
+  CustomizationError           
 } from '@/types/customization.types';
 
 
@@ -14,22 +14,25 @@ import {
 
 export function calculatePrice(
   variation: ProductVariation | null,
-  customization: ProductCustomization     // Updated parameter name
+  customization: ProductCustomization    
 ): PriceBreakdown {
   if (!variation) {
     return {
-      basePrice: 0,              // Updated
-      addonsTotal: 0,            // Updated
+      basePrice: 0,  
+      originalBasePrice: 0,           
+      addonsTotal: 0,            
       subtotal: 0,
       total: 0,
     };
   }
 
-  const basePrice = variation.Price;     // Updated
+  const originalBasePrice = variation.Price;
+  const priceCalc = calculateDiscount(variation.Price, variation.Discount);
+  const basePrice = priceCalc.finalPrice;    
 
   // Calculate total from all addon upgrades (where price > 0)
-  const addonsTotal = Object.values(customization.selectedAddons).reduce(  // Updated
-    (total, group) => {          // Updated: choice -> group
+  const addonsTotal = Object.values(customization.selectedAddons).reduce( 
+    (total, group) => {         
       return total + group.selectedOptions.reduce(
         (groupTotal, option) => groupTotal + (option.price * option.quantity),
         0
@@ -42,8 +45,9 @@ export function calculatePrice(
   const total = subtotal * customization.quantity;
 
   return {
-    basePrice,                   // Updated
-    addonsTotal,                 // Updated
+    basePrice,   
+    originalBasePrice,               
+    addonsTotal,                 
     subtotal,
     total,
   };
@@ -162,13 +166,15 @@ export function formatPrice(price: number): string {
  * Returns array of unique sizes sorted by ID
  */
 export function getUniqueSizes(product: ProductItem) {
-  const sizesMap = new Map<number, { id: number; name: string }>();
+  const sizesMap = new Map<number, { id: number; name: string; price: number, discount: Discount | null; }>();
   
   product.Variations.forEach(variation => {
     if (!sizesMap.has(variation.Size.Id)) {
       sizesMap.set(variation.Size.Id, {
         id: variation.Size.Id,
         name: variation.Size.Name,
+        price: variation.Price,
+        discount: variation.Discount
       });
     }
   });

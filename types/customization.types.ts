@@ -40,6 +40,7 @@ export interface CustomizationError {
 
 export interface PriceBreakdown {
   basePrice: number;         // Base price from selected variation (renamed from variationPrice)
+  originalBasePrice: number;
   addonsTotal: number;       // Sum of all addon upgrades (renamed from choicesTotal)
   subtotal: number;          // basePrice + addonsTotal
   total: number;             // subtotal * quantity

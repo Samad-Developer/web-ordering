@@ -67,17 +67,16 @@ export function CartDrawer() {
               </div>
 
               {/* Add More Items Button */}
-              <Button
-                variant="outline"
-                className="w-full mt-4"
+              <button
+                className="w-full mt-4 p-2 rounded-md border-2 border-dashed cursor-pointer"
                 onClick={() => {
                   dispatch(toggleCart(false));
                 }}
               >
                 {t("addMoreItems")}
-              </Button>
+              </button>
 
-              <div className="px-4 py-4">
+              <div className="p-1 mt-3">
 
               <CartSummary showDetails={true} />
               </div>

@@ -444,11 +444,7 @@ export function ProductModalProvider({
       state.customization.selectedSizeId,
       state.customization.selectedFlavorId
     );
-  }, [
-    product,
-    state.customization.selectedSizeId,
-    state.customization.selectedFlavorId,
-  ]);
+  }, [product, state.customization.selectedSizeId, state.customization.selectedFlavorId]);
 
   // Calculate price
   const priceBreakdown = useMemo(() => {

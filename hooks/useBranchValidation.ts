@@ -13,49 +13,15 @@ import {
   getAmountToFreeDelivery,
   getDeliveryTimeRange,
 } from '@/lib/branch/branchUtils';
+import { BranchValidationData } from '@/types/validation.types';
 
-export interface BranchValidationData {
-  // Branch availability
-  hasBranch: boolean;
-  isDeliveryMode: boolean;
-  isPickupMode: boolean;
-  branchName: string | null;
-  branchId: number | null;
-
-  // Business hours
-  isBranchOpen: boolean;
-  businessHours: string | null;
-  businessStartTime: string | null;
-  businessEndTime: string | null;
-
-  // Delivery settings
-  deliveryCharges: number;
-  deliveryChargesWaiveOffLimit: number;
-  deliveryTime: number | null;
-  deliveryTimeRange: string | null;
-
-  // Minimum order
-  minimumOrderAmount: number;
-  meetsMinimumOrder: (cartTotal: number) => boolean;
-  getAmountToMinimum: (cartTotal: number) => number;
-
-  // Free delivery
-  hasDeliveryChargesWaiveOff: boolean;
-  calculateDeliveryFee: (cartTotal: number) => number;
-  getAmountToFreeDelivery: (cartTotal: number) => number;
-  getFreeDeliveryProgress: (cartTotal: number) => number;
-  isFreeDelivery: (cartTotal: number) => boolean;
-
-  // Overall validation
-  canPlaceOrder: (cartTotal: number, hasItems: boolean) => boolean;
-}
 
 export function useBranchValidation(): BranchValidationData {
   const branchDetails = useAppSelector(selectSelectedBranchDetails);
   const selectedAddress = useAppSelector(selectSelectedAddress);
 
   return useMemo(() => {
-    // ✅ Default values when no branch
+
     const defaultReturn: BranchValidationData = {
       hasBranch: false,
       isDeliveryMode: false,
@@ -81,27 +47,19 @@ export function useBranchValidation(): BranchValidationData {
       canPlaceOrder: () => false,
     };
 
-    // ✅ Return defaults if no branch details
-    if (!branchDetails) {
-      return defaultReturn;
-    }
+    if (!branchDetails) return defaultReturn;
+    
 
     // Branch availability
     const hasBranch = !!branchDetails;
-    const isDeliveryMode = selectedAddress?.orderMode === 'delivery';
+    const branchId = selectedAddress?.branchId || null;
     const isPickupMode = selectedAddress?.orderMode === 'pickup';
-    const branchName = isDeliveryMode
-      ? selectedAddress?.areaName || null
-      : selectedAddress?.branchName || null;
-    const branchId = selectedAddress?.branchId ||
-      selectedAddress?.areaId ||
-      null;
+    const isDeliveryMode = selectedAddress?.orderMode === 'delivery';
+    const branchName = isDeliveryMode ? selectedAddress?.areaName || null : selectedAddress?.branchName || null;
 
-    const businessHours = hasBranch
-      ? `${branchDetails.BusinessStartTime} - ${branchDetails.BusinessEndTime}`
-      : null;
-    const businessStartTime = hasBranch ? branchDetails.BusinessStartTime : null;
     const businessEndTime = hasBranch ? branchDetails.BusinessEndTime : null;
+    const businessStartTime = hasBranch ? branchDetails.BusinessStartTime : null;
+    const businessHours = hasBranch ? `${branchDetails.BusinessStartTime} - ${branchDetails.BusinessEndTime}` : null;
 
     // Delivery settings
     const deliveryCharges = hasBranch ? branchDetails.DeliveryCharges : 0;
@@ -156,7 +114,7 @@ export function useBranchValidation(): BranchValidationData {
     const canPlaceOrderFn = (cartTotal: number, hasItems: boolean): boolean => {
       return (
         hasBranch &&
-        branchDetails.IsBranchOpen &&
+        // branchDetails.IsBranchOpen &&
         hasItems &&
         meetsMinimumOrderFn(cartTotal)
       );

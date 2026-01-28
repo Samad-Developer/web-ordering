@@ -1,3 +1,5 @@
+import { Discount } from "./discount.types";
+
 // types/menu.types.ts
 export interface ItemOption {
   Id: number;
@@ -24,6 +26,7 @@ export interface Variation {
     Name: string;
   };
   Price: number;
+  Discount: Discount | null;
   ItemChoices: ItemChoice[];
 }
 
@@ -41,6 +44,7 @@ export interface MenuItem {
   IsKot: boolean;
   ItemFOC: boolean;
   Variations: Variation[];
+  Discount: Discount | null;
 }
 
 export interface MenuCategory {

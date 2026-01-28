@@ -42,13 +42,7 @@ export function useAddress() {
       connection.on('DAndPResponse', handler);
 
       try {
-        await connection.invoke(
-          'DataRequest',
-          'rollinnbbq.pk',
-          'DeliveryAndPickup',
-          0, // Use saved branch ID or 0 for first-time users
-          'DAndPResponse'
-        );
+        await connection.invoke('DataRequest', 'rollinnbbq.pk', 'DeliveryAndPickup', 0, 'DAndPResponse');
       } catch (err: any) {
         dispatch(
           addressDataError(

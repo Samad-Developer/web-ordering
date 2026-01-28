@@ -1,6 +1,7 @@
 // lib/types/cart.types.ts
 
 import { ProductCustomization, PriceBreakdown } from './customization.types';
+import { Discount } from './discount.types';
 
 export interface CartItem {
   // Unique identifier for this cart item
@@ -21,6 +22,7 @@ export interface CartItem {
   
   // Pricing
   priceBreakdown: PriceBreakdown;
+  discount: Discount | null;
   
   // Metadata
   specialInstructions?: string;

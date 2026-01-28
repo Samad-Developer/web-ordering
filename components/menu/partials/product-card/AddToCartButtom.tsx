@@ -1,5 +1,5 @@
 import React from "react";
-import { ShoppingCart, Loader2 } from "lucide-react";
+import { ShoppingCart, Loader2, PlusIcon } from "lucide-react";
 
 interface AddToCartButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -59,7 +59,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
         </>
       ) : (
         <>
-          {showIcon && <ShoppingCart className="w-5 h-5" />}
+          {showIcon && <PlusIcon className="w-5 h-5" />}
           <span>{text}</span>
         </>
       )}

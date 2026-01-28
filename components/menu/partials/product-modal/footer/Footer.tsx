@@ -41,6 +41,7 @@ export function ProductModalFooter() {
         customization,
         priceBreakdown,
         specialInstructions: customization.specialInstructions,
+        discount: currentVariation?.Discount || null
       })
     );
     toast.success(`${product.Name} added to your cart!`);

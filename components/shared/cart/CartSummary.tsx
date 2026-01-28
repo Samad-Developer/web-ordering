@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useBranchValidation } from '@/hooks/useBranchValidation';
 import { useCartTotals } from '@/hooks/useCartTotals';
 import { formatPrice } from '@/lib/product/productHelper';
-import { 
+import {
   BranchNotSelectedAlert,
   MinimumOrderAlert,
   FreeDeliveryProgress,
@@ -19,11 +19,11 @@ interface CartSummaryProps {
 
 export function CartSummary({ showDetails = true }: CartSummaryProps) {
   const t = useTranslations('cart');
-  
+
   const branch = useBranchValidation();
   const totals = useCartTotals();
 
-  const amountToMinimum = branch.hasBranch 
+  const amountToMinimum = branch.hasBranch
     ? branch.getAmountToMinimum(totals.subtotal)
     : 0;
 
@@ -41,39 +41,39 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
 
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]  p-3 rounded-lg">
 
       <div className='space-y-4'>
-      {/* Alerts & Notifications */}
-      {!branch.hasBranch && <BranchNotSelectedAlert />}
-      
-      {branch.hasBranch && !totals.meetsMinimumOrder && (
-        <MinimumOrderAlert amount={amountToMinimum} />
-      )}
-      
-      {branch.hasBranch && 
-       totals.meetsMinimumOrder && 
-       amountToFreeDelivery > 0 && 
-       branch.isDeliveryMode && (
-        <FreeDeliveryProgress
-          amount={amountToFreeDelivery}
-          progress={freeDeliveryProgress}
-        />
-      )}
-      
-      {isFreeDelivery && branch.isDeliveryMode && (
-        <FreeDeliveryBadge />
-      )}
-      
-      {branch.deliveryTimeRange && branch.isDeliveryMode && (
-        <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
-      
-      )}
+        {/* Alerts & Notifications */}
+        {!branch.hasBranch && <BranchNotSelectedAlert />}
+
+        {branch.hasBranch && !totals.meetsMinimumOrder && (
+          <MinimumOrderAlert amount={amountToMinimum} />
+        )}
+
+        {branch.hasBranch &&
+          totals.meetsMinimumOrder &&
+          amountToFreeDelivery > 0 &&
+          branch.isDeliveryMode && (
+            <FreeDeliveryProgress
+              amount={amountToFreeDelivery}
+              progress={freeDeliveryProgress}
+            />
+          )}
+
+        {isFreeDelivery && branch.isDeliveryMode && (
+          <FreeDeliveryBadge />
+        )}
+
+        {branch.deliveryTimeRange && branch.isDeliveryMode && (
+          <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
+
+        )}
       </div>
 
       {/* Price Breakdown */}
       {showDetails && (
-        <div className="pt-2">
+        <div className="pt-2 space-y-1">
           {/* Subtotal */}
           <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">{t('subtotal')}</span>
@@ -81,6 +81,16 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
               {formatPrice(totals.subtotal)}
             </span>
           </div>
+
+          {/* ✅ Discount (NEW) */}
+          {totals.totalDiscount > 0 && (
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-green-600 font-medium">Discount</span>
+              <span className="text-green-600 font-bold">
+                - {formatPrice(totals.totalDiscount)}
+              </span>
+            </div>
+          )}
 
           {/* Tax */}
           <div className="flex items-center justify-between text-sm">

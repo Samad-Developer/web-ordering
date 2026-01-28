@@ -25,6 +25,8 @@ import {
 import { RepeatLastOrderModal } from "./inc-dec-modals/RepeatLastOrderModal";
 import { getLastAddedItem } from "@/lib/cart/cartHelpers";
 import { toSlug } from "@/lib/address/slug";
+import { DiscountBadge } from "../DiscountBadge";
+import { calculateDiscount } from "@/lib/discount/discountUtils";
 
 interface ProductProps {
   product: MenuItem;
@@ -35,6 +37,10 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   const cartItems = useAppSelector(selectCartItems);
   const [showVariationModal, setShowVariationModal] = useState(false);
   const [showRepeatModal, setShowRepeatModal] = useState(false);
+
+
+  const displayPrice = product.Price;
+  const displayDiscount = product.Discount;
 
   // Check if product can be added directly (single variation, no addons)
   const canAddDirectly = (): boolean => {
@@ -62,6 +68,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     e.stopPropagation();
 
     const variation = product.Variations[0];
+    const priceCalc = calculateDiscount(variation.Price, variation.Discount);
 
     dispatch(
       addToCart({
@@ -81,11 +88,13 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           specialInstructions: "",
         },
         priceBreakdown: {
-          basePrice: variation.Price,
+          basePrice: priceCalc.finalPrice,        
+          originalBasePrice: variation.Price,      
           addonsTotal: 0,
-          subtotal: variation.Price,
-          total: variation.Price,
+          subtotal: priceCalc.finalPrice,          
+          total: priceCalc.finalPrice,          
         },
+        discount: variation.Discount,
         specialInstructions: "",
       })
     );
@@ -184,7 +193,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     <>
       <article
         className={`
-          bg-product-bg hover:bg-product-hover rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
+          relative bg-product-bg hover:bg-product-hover rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
           hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] 
           overflow-hidden transition-all duration-300 
           transform hover:-translate-y-1
@@ -192,15 +201,15 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         `}
         onClick={handleOpenModal}
       >
+
+        {displayDiscount && (
+          <div className="absolute top-2 left-2 z-10">
+            <DiscountBadge discount={displayDiscount} size="md" />
+          </div>
+        )}
+
         <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
           <ProductImage src={product.Image} alt={product.Name} priority={true} />
-
-          {/* Badge for multiple variations in cart */}
-          {hasMultipleInCart && (
-            <div className="absolute top-3 left-3 border bg-primary text-secondary text-xs font-semibold px-2 py-1 rounded-full shadow-lg">
-              {productCartItems.length} variants in cart
-            </div>
-          )}
         </div>
 
         {/* Content Section */}
@@ -213,8 +222,9 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           />
 
           <PriceDisplay
-            currentPrice={product.Variations[0]?.Price || product.Price}
-            originalPrice={product.Variations[0]?.Price || product.Price}
+            price={displayPrice}
+            discount={displayDiscount}
+            size="md"
           />
 
           {/* Add to Cart / Quantity Counter */}

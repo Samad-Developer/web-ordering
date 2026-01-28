@@ -13,7 +13,7 @@ const CategoryBar = () => {
   const { menuData } = useMenu();
   const [activeCategory, setActiveCategory] = useState<string>('');
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
-  const isClickScrolling = useRef(false); 
+  const isClickScrolling = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
@@ -124,11 +124,7 @@ const CategoryBar = () => {
   }, []);
 
   if (!categories.length) {
-    return (
-      <div className="w-full p-4 text-center text-muted-foreground">
-        No categories available
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -153,7 +149,11 @@ const CategoryBar = () => {
         className="overflow-x-auto scrollbar-hide px-2 sm:px-12"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        <div className="flex items-center sm:justify-center gap-1 sm:gap-4 md:gap-4">
+        <div
+          className={`flex items-center gap-1 sm:gap-4 md:gap-4 justify-start 
+          ${categories.length <= 10 ? 'sm:justify-center' : ''
+            }`}
+        >
           {categories.map((category) => (
             <CategoryTab
               key={category.categoryId}

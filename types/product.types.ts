@@ -1,3 +1,5 @@
+import { Discount } from "./discount.types";
+
 export interface ProductSize {
   id: string;
   label: string;
@@ -48,6 +50,7 @@ export interface ProductItem {
   Comment: string;
   IsKot: boolean;
   ItemFOC: boolean;
+  Discount: Discount | null;
   Variations: ProductVariation[];
 }
 
@@ -56,6 +59,7 @@ export interface ProductVariation {
   Size: VariationAttribute;
   Flavour: VariationAttribute;
   Price: number;
+  Discount: Discount | null;
   ItemChoices: ItemChoice[];
 }
 

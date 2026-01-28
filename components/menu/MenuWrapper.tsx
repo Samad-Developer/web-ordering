@@ -22,7 +22,7 @@ const MenuWrapper = () => {
   const { apiData } = useAddress();
   const dispatch = useAppDispatch();
   const { searchQuery } = useSearch();
-  const { menuData, error } = useMenu();
+  const { menuData, error, isLoading: isMenuLoading } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
 
   const {
@@ -46,7 +46,7 @@ const MenuWrapper = () => {
     }
   }, [apiData]);
 
-  if (isLoading && !menuData) {
+  if (isMenuLoading && !menuData) {
     return <LoadingState />
   }
 

@@ -2,76 +2,73 @@
 
 import { useMemo } from 'react';
 import { useAppSelector } from '@/store/hooks';
-import { selectCartItems, selectCartSubtotal } from '@/store/slices/cartSlice';
+import { selectCartItems } from '@/store/slices/cartSlice';
 import { useBranchValidation } from './useBranchValidation';
+import { CartTotalsData } from '@/types/validation.types';
 
-export interface CartTotalsData {
-  // Cart basics
-  subtotal: number;
-  itemCount: number;
-  hasItems: boolean;
-
-  // Calculations
-  tax: number;
-  taxRate: number;
-  deliveryFee: number;
-  total: number;
-
-  // Formatted totals
-  beforeTax: number; // subtotal + delivery
-  
-  // Validations
-  meetsMinimumOrder: boolean;
-  canCheckout: boolean;
-}
-
-const TAX_RATE = 0.16; // 16% tax - centralized configuration
+const TAX_RATE = 0.16;
 
 export function useCartTotals(): CartTotalsData {
   const cartItems = useAppSelector(selectCartItems);
-  const subtotal = useAppSelector(selectCartSubtotal);
   const branch = useBranchValidation();
 
   return useMemo(() => {
-    // Cart basics
     const itemCount = cartItems.reduce(
       (sum, item) => sum + item.customization.quantity,
       0
     );
     const hasItems = itemCount > 0;
 
-    // Tax calculation
-    const rawTax = subtotal * TAX_RATE;
+    // ✅ Calculate subtotal based on ORIGINAL prices
+    const subtotal = cartItems.reduce((sum, item) => {
+      const originalPrice = item.priceBreakdown.originalBasePrice;
+      const addonsTotal = item.priceBreakdown.addonsTotal || 0;
+      const itemTotal = (originalPrice + addonsTotal) * item.customization.quantity;
+      return sum + itemTotal;
+    }, 0);
+
+    // ✅ Calculate total discount amount
+    const totalDiscount = cartItems.reduce((sum, item) => {
+      const originalPrice = item.priceBreakdown.originalBasePrice;
+      const discountedPrice = item.priceBreakdown.basePrice;
+      const discountPerItem = originalPrice - discountedPrice;
+      return sum + (discountPerItem * item.customization.quantity);
+    }, 0);
+
+    // ✅ Subtotal after discount
+    const subtotalAfterDiscount = subtotal - totalDiscount;
+
+    // Tax calculation on discounted amount
+    const rawTax = subtotalAfterDiscount * TAX_RATE;
     const tax = Math.round(rawTax);
 
-   const deliveryFee = branch.hasBranch ? branch.calculateDeliveryFee(subtotal) : 0;
+    const deliveryFee = branch.hasBranch 
+      ? branch.calculateDeliveryFee(subtotalAfterDiscount) 
+      : 0;
 
-    // Totals
-    const beforeTax = subtotal + deliveryFee;
-    const total = subtotal + tax + deliveryFee;
+    const beforeTax = subtotalAfterDiscount + deliveryFee;
+    const total = subtotalAfterDiscount + tax + deliveryFee;
 
-    // Validations
-      const meetsMinimumOrder = branch.hasBranch ? branch.meetsMinimumOrder(subtotal) : true;
-      const canCheckout = branch.hasBranch ? branch.canPlaceOrder(subtotal, hasItems) : hasItems;
+    const meetsMinimumOrder = branch.hasBranch 
+      ? branch.meetsMinimumOrder(subtotalAfterDiscount) 
+      : true;
+      
+    const canCheckout = branch.hasBranch 
+      ? branch.canPlaceOrder(subtotalAfterDiscount, hasItems) 
+      : hasItems;
 
     return {
-      // Cart basics
       subtotal,
+      totalDiscount,
       itemCount,
       hasItems,
-
-      // Calculations
       tax,
       taxRate: TAX_RATE,
       deliveryFee,
       total,
-
-      // Formatted totals
       beforeTax,
-
-      // Validations
       meetsMinimumOrder,
       canCheckout,
     };
-  }, [cartItems, subtotal, branch]);
+  }, [cartItems, branch]);
 }

@@ -10,13 +10,12 @@ export function SizeWrapper() {
   const sizes = getUniqueSizes(product);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-      {sizes.map((size) => (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {sizes.sort((a, b) => a.price - b.price).map((size) => (
         <SizeOption
           key={size.id}
           size={size}
           isSelected={customization.selectedSizeId === size.id}
-          // NO isDisabled prop - all sizes are always clickable
         />
       ))}
     </div>

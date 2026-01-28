@@ -11,6 +11,7 @@ import {
   clearCartFromLocalStorage,
 } from '@/lib/cart/cartHelpers';
 import { PriceBreakdown, ProductCustomization } from '@/types/customization.types';
+import { Discount } from '@/types/discount.types';
 
 const initialState: CartState = {
   items: [],
@@ -42,6 +43,7 @@ const cartSlice = createSlice({
         flavorName: string;
         customization: ProductCustomization;
         priceBreakdown: PriceBreakdown;
+        discount: Discount | null;
         specialInstructions?: string;
       }>
     ) => {
@@ -54,6 +56,7 @@ const cartSlice = createSlice({
         flavorName,
         customization,
         priceBreakdown,
+        discount,
         specialInstructions,
       } = action.payload;
 
@@ -83,6 +86,7 @@ const cartSlice = createSlice({
           flavorName,
           customization,
           priceBreakdown,
+          discount,
           specialInstructions,
           addedAt: Date.now(),
         };

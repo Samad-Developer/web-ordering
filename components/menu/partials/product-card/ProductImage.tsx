@@ -11,8 +11,6 @@ interface ProductImageProps {
   priority?: boolean; 
 }
 
-
-
 export const ProductImage: React.FC<ProductImageProps> = ({
   src,
   alt,

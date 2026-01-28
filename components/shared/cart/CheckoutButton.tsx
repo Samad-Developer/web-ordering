@@ -27,9 +27,9 @@ export function CheckoutButton() {
   const amountToMinimum = branch.getAmountToMinimum(totals.subtotal);
 
   const getButtonText = () => {
-    if (!branch.isBranchOpen) {
-      return 'Branch Closed';
-    }
+    // if (!branch.isBranchOpen) {
+    //   return 'Branch Closed';
+    // }
 
     if (!totals.hasItems) {
       return 'Cart is Empty';

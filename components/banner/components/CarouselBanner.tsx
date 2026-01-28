@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { getImageUrl } from '@/lib/image/imageUtils';
 
 export const CarouselBanner: React.FC<CarouselBannerProps> = ({
   images,
@@ -55,7 +56,7 @@ export const CarouselBanner: React.FC<CarouselBannerProps> = ({
             <CarouselItem key={image.id}>
               <div className={imageWrapperClasses} onClick={onClick}>
                 <Image
-                  src={image.src}
+                  src={getImageUrl(image.src, '/assets/images/banner/category-banner/new-arrivals.webp')}
                   alt={image.alt}
                   fill
                   priority={bannerImages.indexOf(image) === 0}

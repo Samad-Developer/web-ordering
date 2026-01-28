@@ -39,7 +39,7 @@ export function AddonWrapper({
   return (
     <div className="space-y-3">
       {/* Progress Indicator */}
-      {choice.MaxChoice > 1 && !isOptional && (
+      {!isOptional && (
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">
             Selected: {selectedOptionsCount} / {choice.MaxChoice}

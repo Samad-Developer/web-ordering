@@ -26,6 +26,7 @@ export function CartItem({ item }: CartItemProps) {
 
   const addons = getCartItemAddonsText(item);
   const hasAddons = addons.length > 0;
+  const hasDiscount = !!item.discount;
 
   const handleIncrement = () => {
     dispatch(incrementItem(item.cartItemId));
@@ -72,10 +73,26 @@ export function CartItem({ item }: CartItemProps) {
 
           {/* Price */}
           <div className=" flex items-center justify-between">
-            <span className="text-base font-bold text-gray-900">
-              {formatPrice(item.priceBreakdown.basePrice)}
-            </span>
-
+            {/* ✅ Price Display with Discount */}
+            <div className="flex flex-col gap-0.5">
+              {hasDiscount ? (
+                <div className="flex gap-2 items-baseline">
+                  {/* Discounted Price - Green */}
+                  <span className="text-base font-bold text-gray-800">
+                    {formatPrice(item.priceBreakdown.basePrice)}
+                  </span>
+                  {/* Original Price - Line Through */}
+                  <span className="text-xs text-gray-400 line-through">
+                    {formatPrice(item.priceBreakdown.originalBasePrice)}
+                  </span>
+                </div>
+              ) : (
+                /* No Discount - Normal Price */
+                <span className="text-base font-bold text-gray-900">
+                  {formatPrice(item.priceBreakdown.basePrice)}
+                </span>
+              )}
+            </div>
       
 
             {/* Quantity Controls */}
