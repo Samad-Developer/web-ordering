@@ -13,6 +13,7 @@ const demoProduct: ProductItem = {
   Name: "Tenders & Drink Combo",
   DepartmentName: "430",
   Price: 0,
+  Discount: null,
   TaxAmount: 0,
   Quantity: 0,
   Image: "/ProductImages/a42830be-0e8c-46f9-9e0b-9890fee75166.jpg",
@@ -25,6 +26,7 @@ const demoProduct: ProductItem = {
       Size: { Id: 960, Name: "-" },
       Flavour: { Id: 609, Name: "-" },
       Price: 410,
+      Discount: null,
       ItemChoices: [
         {
           Id: 4434,
