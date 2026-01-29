@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { Discount } from '@/types/discount.types';
 import { useProductModal } from '../../ProductModalContext';
 import { PriceDisplay } from '../../../product-card/PriceDisplay';
+import { calculateDiscount } from '@/lib/discount/discountUtils';
 
 interface SizeOptionProps {
   size: {
@@ -16,6 +17,7 @@ interface SizeOptionProps {
 
 export function SizeOption({ size, isSelected }: SizeOptionProps) {
   const { setSize } = useProductModal();
+  const discountCalc = calculateDiscount(size.price, size.discount)
 
   return (
     <button
@@ -27,6 +29,8 @@ export function SizeOption({ size, isSelected }: SizeOptionProps) {
           : "border-gray-200 hover:border-gray-300 bg-white text-gray-900"
       )}
     >
+      <p className=' text-xs font-semibold text-red-600'>Save {discountCalc.discountPercentage}%</p>
+
       <h1 className='font-semibold text-base'>{size.name}</h1>
 
       {/* ✅ Show price with discount */}

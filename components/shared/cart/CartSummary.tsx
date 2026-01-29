@@ -5,13 +5,14 @@ import { useTranslations } from 'next-intl';
 import { useBranchValidation } from '@/hooks/useBranchValidation';
 import { useCartTotals } from '@/hooks/useCartTotals';
 import { formatPrice } from '@/lib/product/productHelper';
-import {
-  BranchNotSelectedAlert,
-  MinimumOrderAlert,
-  FreeDeliveryProgress,
-  FreeDeliveryBadge,
-  DeliveryTimeInfo,
-} from './CartSummaryAlerts';
+import { 
+  Receipt, 
+  Tag, 
+  Calculator, 
+  Truck, 
+  Wallet,
+} from 'lucide-react';
+
 
 interface CartSummaryProps {
   showDetails?: boolean;
@@ -23,17 +24,7 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
   const branch = useBranchValidation();
   const totals = useCartTotals();
 
-  const amountToMinimum = branch.hasBranch
-    ? branch.getAmountToMinimum(totals.subtotal)
-    : 0;
 
-  const amountToFreeDelivery = branch.hasBranch && branch.isDeliveryMode
-    ? branch.getAmountToFreeDelivery(totals.subtotal)
-    : 0;
-
-  const freeDeliveryProgress = branch.hasBranch
-    ? branch.getFreeDeliveryProgress(totals.subtotal)
-    : 0;
 
   const isFreeDelivery = branch.hasBranch && branch.isDeliveryMode
     ? branch.isFreeDelivery(totals.subtotal)
@@ -43,40 +34,14 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
   return (
     <div className="space-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]  p-3 rounded-lg">
 
-      <div className='space-y-4'>
-        {/* Alerts & Notifications */}
-        {!branch.hasBranch && <BranchNotSelectedAlert />}
 
-        {branch.hasBranch && !totals.meetsMinimumOrder && (
-          <MinimumOrderAlert amount={amountToMinimum} />
-        )}
-
-        {branch.hasBranch &&
-          totals.meetsMinimumOrder &&
-          amountToFreeDelivery > 0 &&
-          branch.isDeliveryMode && (
-            <FreeDeliveryProgress
-              amount={amountToFreeDelivery}
-              progress={freeDeliveryProgress}
-            />
-          )}
-
-        {isFreeDelivery && branch.isDeliveryMode && (
-          <FreeDeliveryBadge />
-        )}
-
-        {branch.deliveryTimeRange && branch.isDeliveryMode && (
-          <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
-
-        )}
-      </div>
 
       {/* Price Breakdown */}
       {showDetails && (
-        <div className="pt-2 space-y-1">
+        <div className=" space-y-1">
           {/* Subtotal */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">{t('subtotal')}</span>
+            <span className="text-gray-600 flex gap-2 items-center"><Receipt className="w-4 h-4" /> {t('subtotal')}</span>
             <span className="font-medium text-gray-900">
               {formatPrice(totals.subtotal)}
             </span>
@@ -85,7 +50,7 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
           {/* ✅ Discount (NEW) */}
           {totals.totalDiscount > 0 && (
             <div className="flex items-center justify-between text-sm">
-              <span className="text-green-600 font-medium">Discount</span>
+              <span className="text-green-600 font-medium flex gap-2 items-center"><Tag className="w-4 h-4" /> Discount</span>
               <span className="text-green-600 font-bold">
                 - {formatPrice(totals.totalDiscount)}
               </span>
@@ -94,8 +59,8 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
 
           {/* Tax */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">
-              {t('tax')} ({Math.round(totals.taxRate * 100)}%)
+            <span className="text-gray-600 flex gap-2 items-center">
+              <Calculator className="w-4 h-4" /> {t('tax')} ({Math.round(totals.taxRate * 100)}%)
             </span>
             <span className="font-medium text-gray-900">
               {formatPrice(totals.tax)}
@@ -128,8 +93,8 @@ export function CartSummary({ showDetails = true }: CartSummaryProps) {
 
       {/* Grand Total */}
       <div className="flex items-center justify-between ">
-        <span className="text-lg font-semibold text-gray-900">
-          {t('grandTotal')}
+        <span className="text-lg font-semibold text-gray-900 flex gap-2 items-center">
+          <Wallet className="w-5 h-5" /> {t('grandTotal')}
         </span>
         <span className="text-2xl font-bold text-red-600">
           {formatPrice(totals.total)}

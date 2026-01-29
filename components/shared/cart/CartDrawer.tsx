@@ -1,10 +1,7 @@
 "use client";
 
-import React from "react";
 import { useAppSelector } from "@/store/hooks";
-import { X, ShoppingBag, ArrowRight } from "lucide-react";
-import { calculateCartSummary } from "@/lib/cart/cartHelpers";
-import { Button } from "@/components/ui/button";
+import { X, ShoppingBag } from "lucide-react";
 import { selectCartItems, selectIsCartOpen } from "@/store/slices/cartSlice";
 import {
   Sheet,
@@ -19,14 +16,42 @@ import { useAppDispatch } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cartSlice";
 import { useTranslations } from "next-intl";
 import { CheckoutButton } from "./CheckoutButton";
+import { useBranchValidation } from "@/hooks/useBranchValidation";
+import { useCartTotals } from "@/hooks/useCartTotals";
+import {
+  BranchNotSelectedAlert,
+  MinimumOrderAlert,
+  FreeDeliveryProgress,
+  FreeDeliveryBadge,
+  DeliveryTimeInfo,
+} from './CartSummaryAlerts';
 
 export function CartDrawer() {
 
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const isCartOpen = useAppSelector(selectIsCartOpen);
-  const summary = calculateCartSummary(cartItems);
   const t = useTranslations("cart")
+
+  const branch = useBranchValidation();
+  const totals = useCartTotals();
+
+  const amountToMinimum = branch.hasBranch
+    ? branch.getAmountToMinimum(totals.subtotal)
+    : 0;
+
+  const amountToFreeDelivery = branch.hasBranch && branch.isDeliveryMode
+    ? branch.getAmountToFreeDelivery(totals.subtotal)
+    : 0;
+
+  const freeDeliveryProgress = branch.hasBranch
+    ? branch.getFreeDeliveryProgress(totals.subtotal)
+    : 0;
+
+  const isFreeDelivery = branch.hasBranch && branch.isDeliveryMode
+    ? branch.isFreeDelivery(totals.subtotal)
+    : false;
+
 
   return (
     <Sheet
@@ -76,15 +101,42 @@ export function CartDrawer() {
                 {t("addMoreItems")}
               </button>
 
-              <div className="p-1 mt-3">
 
-              <CartSummary showDetails={true} />
+              <div className='space-y-4 my-4'>
+                {/* Alerts & Notifications */}
+                {!branch.hasBranch && <BranchNotSelectedAlert />}
+
+                {branch.hasBranch && !totals.meetsMinimumOrder && (
+                  <MinimumOrderAlert amount={amountToMinimum} />
+                )}
+
+                {branch.hasBranch &&
+                  totals.meetsMinimumOrder &&
+                  amountToFreeDelivery > 0 &&
+                  branch.isDeliveryMode && (
+                    <FreeDeliveryProgress
+                      amount={amountToFreeDelivery}
+                      progress={freeDeliveryProgress}
+                    />
+                  )}
+
+                {isFreeDelivery && branch.isDeliveryMode && (
+                  <FreeDeliveryBadge />
+                )}
+
+                {branch.deliveryTimeRange && branch.isDeliveryMode && (
+                  <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
+
+                )}
+              </div>
+
+              <div className="p-1">
+                <CartSummary showDetails={true} />
               </div>
             </div>
 
             {/* Footer - Summary & Checkout */}
             <div className="border-t bg-white px-6 py-4 space-y-4">
-
               <CheckoutButton />
             </div>
           </>

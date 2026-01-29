@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { PlaceOrderButton } from "@/components/checkout/PlaceOrderButton";
-import { calculateCartSummary } from "@/lib/cart/cartHelpers";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/slices/cartSlice";
 
@@ -12,9 +11,6 @@ export default function CheckoutPage() {
   const [formRef, setFormRef] = useState<HTMLFormElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const cartItems = useAppSelector(selectCartItems);
-  const summary = calculateCartSummary(cartItems);
-  const tax = summary.subtotal * 0.15;
-  const grandTotal = summary.total + tax;
 
   const handlePlaceOrder = () => {
     if (formRef) {
@@ -40,7 +36,6 @@ export default function CheckoutPage() {
             <PlaceOrderButton
               onPlaceOrder={handlePlaceOrder}
               isSubmitting={isSubmitting}
-              totalAmount={grandTotal}
               isDisabled={cartItems.length === 0}
             />
           </div>

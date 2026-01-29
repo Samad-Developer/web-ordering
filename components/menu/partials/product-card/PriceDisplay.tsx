@@ -67,6 +67,11 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
           </span>
         )}
 
+ {showSavings && calculation.discountPercentage && (
+        <span className={` text-xs font-semibold text-red-600 ${sizeClasses[size].savings}`}>
+          (Save {calculation.discountPercentage.toFixed(0)}%)
+        </span>
+      )}
       </div>
     );
   }
@@ -87,11 +92,11 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
       )}
 
       {/* Savings */}
-      {showSavings && calculation.discountPercentage && (
+      {/* {showSavings && calculation.discountPercentage && (
         <span className={`text-green-600 font-medium ${sizeClasses[size].savings}`}>
           (Save {calculation.discountPercentage.toFixed(0)}%)
         </span>
-      )}
+      )} */}
     </div>
   );
 };

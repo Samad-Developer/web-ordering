@@ -1,14 +1,11 @@
 "use client";
 
-import React from "react";
 import { useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { Separator } from "@/components/ui/separator";
 import { CartSummary } from "../shared/cart/CartSummary";
 import { formatPrice } from "@/lib/product/productHelper";
 import { selectCartItems } from "@/store/slices/cartSlice";
-import { calculateCartSummary } from "@/lib/cart/cartHelpers";
-import { calculateTax } from "@/lib/checkout/checkoutHelpers";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -21,8 +18,6 @@ interface OrderSummaryProps {
 export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }: OrderSummaryProps) {
   const t = useTranslations("checkout")
   const cartItems = useAppSelector(selectCartItems);
-  const summary = calculateCartSummary(cartItems);
-  const tax = calculateTax(summary.subtotal);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const toggleItem = (itemId: string) => {

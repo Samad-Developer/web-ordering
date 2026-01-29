@@ -8,14 +8,12 @@ import { useTranslations } from 'next-intl';
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
   isSubmitting: boolean;
-  totalAmount: number;
   isDisabled?: boolean;
 }
 
 export function PlaceOrderButton({ 
   onPlaceOrder, 
   isSubmitting,
-  totalAmount,
   isDisabled = false
 }: PlaceOrderButtonProps) {
   const t = useTranslations("checkout")

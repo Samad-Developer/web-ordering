@@ -1,11 +1,7 @@
 "use client";
 
-import React from "react";
 import { BadgeDollarSignIcon, CreditCard, Banknote } from "lucide-react";
 import { CartSummary } from "../shared/cart/CartSummary";
-import { useAppSelector } from "@/store/hooks";
-import { selectCartItems } from "@/store/slices/cartSlice";
-import { calculateCartSummary } from "@/lib/cart/cartHelpers";
 
 interface OrderDetailsProps {
   paymentMethod: "cash" | "online";
@@ -14,8 +10,6 @@ interface OrderDetailsProps {
 export function OrderDetails({
   paymentMethod,
 }: OrderDetailsProps) {
-  const cartItems = useAppSelector(selectCartItems);
-  const summary = calculateCartSummary(cartItems);
 
   return (
     <div className="border-2 rounded-xl">

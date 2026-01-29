@@ -14,6 +14,7 @@ import { formatPrice } from "@/lib/product/productHelper";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { Separator } from "@/components/ui/separator";
 
 interface CartItemProps {
   item: CartItemType;
@@ -21,7 +22,7 @@ interface CartItemProps {
 
 export function CartItem({ item }: CartItemProps) {
   const dispatch = useAppDispatch();
-  const t = useTranslations("cart")
+  const t = useTranslations("cart");
   const [showAddons, setShowAddons] = useState(false);
 
   const addons = getCartItemAddonsText(item);
@@ -41,10 +42,10 @@ export function CartItem({ item }: CartItemProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-      <div className="flex gap-3 p-3">
+    <div className="bg-whiteoverflow-hidden">
+      <div className="flex gap-3 px-1.5">
         {/* Product Image */}
-        <div className="relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden bg-gray-100">
+        <div className="relative w-18 h-18 flex-shrink-0 rounded-md overflow-hidden bg-gray-100">
           <Image
             src="/assets/images/products/product.webp"
             alt={item.productName}
@@ -55,7 +56,7 @@ export function CartItem({ item }: CartItemProps) {
         </div>
 
         {/* Product Info */}
-        <div className="flex-1 items-center min-w-0">
+        <div className="flex-1  items-center min-w-0">
           {/* Product Name */}
           <h3 className="font-semibold text-gray-900 text-sm line-clamp-1">
             {item.productName}
@@ -77,13 +78,14 @@ export function CartItem({ item }: CartItemProps) {
             <div className="flex flex-col gap-0.5">
               {hasDiscount ? (
                 <div className="flex gap-2 items-baseline">
-                  {/* Discounted Price - Green */}
-                  <span className="text-base font-bold text-gray-800">
-                    {formatPrice(item.priceBreakdown.basePrice)}
-                  </span>
                   {/* Original Price - Line Through */}
                   <span className="text-xs text-gray-400 line-through">
                     {formatPrice(item.priceBreakdown.originalBasePrice)}
+                  </span>
+
+                  {/* Discounted Price - Green */}
+                  <span className="text-base font-bold text-gray-800">
+                    {formatPrice(item.priceBreakdown.basePrice)}
                   </span>
                 </div>
               ) : (
@@ -93,7 +95,6 @@ export function CartItem({ item }: CartItemProps) {
                 </span>
               )}
             </div>
-      
 
             {/* Quantity Controls */}
             <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1 border">
@@ -101,17 +102,16 @@ export function CartItem({ item }: CartItemProps) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 text-red-600 hover:text-red-700 hover:bg-red-50"
+                  className="h-6 w-6 text-red-600 hover:text-red-700 hover:bg-red-50"
                   onClick={handleRemove}
                 >
                   <Trash2 className="h-3.5 w-3.5s" />
-
                 </Button>
               ) : (
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 hover:bg-gray-200 rounded-full"
+                  className="h-6 w-6 hover:bg-gray-200 rounded-full"
                   onClick={handleDecrement}
                 >
                   <Minus className="h-3.5 w-3.5" />
@@ -125,7 +125,7 @@ export function CartItem({ item }: CartItemProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7 hover:bg-white rounded-full"
+                className="h-6 w-6 hover:bg-white rounded-full"
                 onClick={handleIncrement}
               >
                 <Plus className="h-3.5 w-3.5" />
@@ -144,7 +144,7 @@ export function CartItem({ item }: CartItemProps) {
             className="flex items-center justify-between w-full text-sm text-gray-600 hover:text-gray-900"
           >
             <span className="font-medium">
-            {hasAddons && `${addons.length} ${t('addons')}`}
+              {hasAddons && `${addons.length} ${t("addons")}`}
             </span>
             {showAddons ? (
               <ChevronUp className="h-4 w-4" />
@@ -174,6 +174,8 @@ export function CartItem({ item }: CartItemProps) {
           )}
         </div>
       )}
+
+      <Separator className="bg-gray-200 h-[1px] w-full mt-1" />
     </div>
   );
 }
