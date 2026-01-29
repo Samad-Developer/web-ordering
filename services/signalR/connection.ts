@@ -29,7 +29,6 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
 
   // Start connection
   await connection.start();
-  console.log('SignalR: Connected');
 
   return connection;
 }

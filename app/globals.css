@@ -135,7 +135,7 @@
   /* Default Theme Colors - Will be overridden by JS */
   --top-bar-bg-color: #FFFFFF;
   --top-bar-fore-color: #000000;
-  --category-bar-bg-color: #E5E7EB;
+  --category-bar-bg-color: #ffffff;
   --category-bar-fore-color: #1F2937;
   --category-hover-color: #ffffff;
   --category-active-color: #9CA3AF;
@@ -151,7 +151,7 @@
   --view-cart-bg-color: #4B5563;
   --view-cart-fore-color: #FFFFFF;
   --product-popup-bg-color: #FFFFFF;
-  --product-popup-header-bg-color: #F9FAFB;
+  --product-popup-header-bg-color: #FFFFFF;
   --product-popup-header-fore-color: #111827;
   --product-popup-desc-fore-color: #6B7280;
   --product-popup-price-fore-color: #1F2937;
