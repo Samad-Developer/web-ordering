@@ -85,7 +85,7 @@
         "address": "House #, Street, Area, City",
         "landmark": "e.g., Near XYZ Mall",
         "instructions": "Any special instructions for delivery...",
-        "changeAmount": "Rs. 500",
+        "changeAmount": "500",
         "giftMessage": "Happy Birthday! Enjoy your meal..."
       },
   

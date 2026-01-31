@@ -1,5 +1,3 @@
-// hooks/useMenu.ts
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -14,14 +12,11 @@ export function useMenu() {
   const { connection, isConnected } = useSignalR();
   const { data, isLoading, error } = useAppSelector((state) => state.menu);
   const selectedAddress = useAppSelector(selectSelectedAddress);
-
-  // ✅ Get branchId from Redux (hydrated from localStorage)
   const branchId = selectedAddress?.branchId || 0;
 
   useEffect(() => {
     if (!connection || !isConnected) return;
 
-    // ✅ Clear previous menu and set loading
     dispatch(menuRequested());
 
     const handler = (response: MenuResponse) => {
@@ -30,6 +25,7 @@ export function useMenu() {
     };
 
     connection.on('MenuResponse', handler);
+    connection.on("Ack", (ack) => console.log("Ack: " + JSON.stringify(ack)));
 
     connection.invoke('DataRequest', 'rollinnbbq.pk', 'Menu', branchId, 'MenuResponse')
       .catch((err) => {
@@ -40,7 +36,7 @@ export function useMenu() {
     return () => {
       connection.off('MenuResponse', handler);
     };
-  }, [connection, isConnected, branchId, dispatch]); // ✅ branchId dependency
+  }, [connection, isConnected, branchId, dispatch]);
 
   return {
     menuData: data,

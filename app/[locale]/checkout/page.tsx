@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useRef } from "react";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { PlaceOrderButton } from "@/components/checkout/PlaceOrderButton";
@@ -8,13 +8,12 @@ import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/slices/cartSlice";
 
 export default function CheckoutPage() {
-  const [formRef, setFormRef] = useState<HTMLFormElement | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null!);
   const cartItems = useAppSelector(selectCartItems);
 
   const handlePlaceOrder = () => {
-    if (formRef) {
-      formRef.requestSubmit();
+    if (formRef.current) {
+      formRef.current.requestSubmit();
     }
   };
 
@@ -25,8 +24,7 @@ export default function CheckoutPage() {
           {/* Left: Checkout Form */}
           <div className="lg:col-span-2">
             <CheckoutForm
-              setFormRef={setFormRef}
-              setIsSubmitting={setIsSubmitting}
+              formRef={formRef}
             />
           </div>
 
@@ -35,7 +33,6 @@ export default function CheckoutPage() {
             <OrderSummary />
             <PlaceOrderButton
               onPlaceOrder={handlePlaceOrder}
-              isSubmitting={isSubmitting}
               isDisabled={cartItems.length === 0}
             />
           </div>

@@ -1,7 +1,6 @@
 
 'use client';
 
-import React from 'react';
 import { Controller, UseFormReturn } from 'react-hook-form';
 import { CheckoutFormData, OrderMode } from '@/types/checkout.types';
 import { TITLE_OPTIONS } from '@/lib/checkout/checkoutHelpers';

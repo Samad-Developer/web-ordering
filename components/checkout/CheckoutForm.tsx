@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, RefObject } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -20,16 +20,13 @@ import { PaymentSection } from "./PaymentSection";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useOrderSubmission } from "@/hooks/useOrderSubmission";
 
 interface CheckoutFormProps {
-  setFormRef: (ref: HTMLFormElement | null) => void;
-  setIsSubmitting: (loading: boolean) => void;
+  formRef: RefObject<HTMLFormElement>;
 }
 
-export function CheckoutForm({
-  setFormRef,
-  setIsSubmitting,
-}: CheckoutFormProps) {
+export function CheckoutForm({ formRef }: CheckoutFormProps) {
   const t = useTranslations("checkout");
   const router = useRouter();
   const { locale } = useParams();
@@ -39,6 +36,8 @@ export function CheckoutForm({
   const [isGift, setIsGift] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cash");
 
+  const { submitOrder, isSubmitting: isOrderSubmitting } = useOrderSubmission();
+
   // Create dynamic schema based on current state
   const schema = createCheckoutSchema(orderMode, isGift, paymentMethod);
 
@@ -47,19 +46,6 @@ export function CheckoutForm({
     defaultValues: getDefaultFormValues(),
     mode: "onBlur",
   });
-
-
-  
-
-  // Update form's isGift value
-  useEffect(() => {
-    form.setValue("isGift", isGift);
-  }, [isGift, form]);
-
-  // Update form's payment method
-  useEffect(() => {
-    form.setValue("paymentMethod", paymentMethod);
-  }, [paymentMethod, form]);
 
   // Redirect if cart is empty
   useEffect(() => {
@@ -71,13 +57,17 @@ export function CheckoutForm({
 
   const handlePaymentMethodChange = (method: PaymentMethod) => {
     setPaymentMethod(method);
-    if (paymentMethod === "online") {
+    form.setValue("paymentMethod", method);
+
+    if (method !== "cash") {
       form.setValue("changeAmount", undefined);
     }
   };
 
   const handleGiftToggle = (checked: boolean) => {
     setIsGift(checked);
+    form.setValue("isGift", checked);
+
     if (!isGift) {
       form.setValue("recipientName", "");
       form.setValue("recipientNumber", "");
@@ -85,56 +75,49 @@ export function CheckoutForm({
     }
   };
 
+
+
   const onSubmit = async (data: CheckoutFormData) => {
-    setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Save customer info for success page
-      localStorage.setItem("orderCustomerInfo", JSON.stringify(data));
+      const response = await submitOrder(data);
+      console.log("Order Response .......", response); 
 
       toast.success("Order placed successfully!", {
-        description: (
-          <p className="text-gray-300">
-            You will receive a confirmation shortly.
-          </p>
-        ),
+        description: "You will receive a confirmation shortly.",
       });
+
+      localStorage.setItem("orderCustomerInfo", JSON.stringify(data));
 
       form.reset(getDefaultFormValues());
       setIsGift(false);
       setPaymentMethod("cash");
 
-      router.push(`/${locale}/order-success?orderNumber=123124235`);
+      router.push(`/${locale}/order-success?orderNumber=345`);
+
     } catch (error) {
-      console.error("Checkout error:", error);
       toast.error("Failed to place order", {
-        description: "Please try again or contact support.",
+        description: error instanceof Error ? error.message : "Please try again or contact support.",
       });
-    } finally {
-      setIsSubmitting(false);
     }
+
   };
+
+
 
   return (
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-2xl">{t("title")}</CardTitle>
-          {/* <p className="text-sm text-gray-500 mt-1">
-          This is a{" "}
-          <span className="font-semibold text-red-600">Delivery Order 🚚</span>
-        </p> */}
         </div>
-        
       </CardHeader>
 
       <CardContent>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
-          ref={setFormRef}
+          ref={formRef}
         >
           {/* Form Fields */}
           <CheckoutFormFields

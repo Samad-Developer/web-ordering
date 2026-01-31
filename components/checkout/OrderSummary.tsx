@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { Separator } from "@/components/ui/separator";
-import { CartSummary } from "../shared/cart/CartSummary";
+import { PriceSummary } from "../shared/cart/PriceSummary";
 import { formatPrice } from "@/lib/product/productHelper";
 import { selectCartItems } from "@/store/slices/cartSlice";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
@@ -123,7 +123,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
           {showPaymentDetails && (
             <>
               <Separator />
-              <CartSummary showDetails={true} />
+              <PriceSummary variant="checkout" />
             </>
           )}
         </div>

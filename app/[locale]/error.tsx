@@ -39,19 +39,11 @@ export default function Error({
         <div className="mt-6 flex flex-col gap-3">
           <button
             onClick={() => window.location.reload()}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-red-700 transition"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-4 py-4 text-sm font-medium text-white hover:bg-red-700 transition"
           >
             <RefreshCw className="h-4 w-4" />
             Try Again
           </button>
-
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
-          >
-            <Home className="h-4 w-4" />
-            Back to Home
-          </Link>
         </div>
 
         {/* Footer note */}

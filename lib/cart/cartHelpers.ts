@@ -103,6 +103,7 @@ export function clearCartFromLocalStorage(): void {
   try {
     localStorage.removeItem('cart');
     localStorage.removeItem('cart_updated');
+    localStorage.removeItem("orderCustomerInfo");
   } catch (error) {
     console.error('Failed to clear cart from localStorage:', error);
   }

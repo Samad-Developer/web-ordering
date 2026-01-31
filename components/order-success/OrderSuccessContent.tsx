@@ -62,7 +62,6 @@ export default function OrderSuccessContent() {
 
   // Clear storage + cart and navigate
   const handleNavigation = (path: string) => {
-    localStorage.removeItem("orderCustomerInfo");
     dispatch(clearCart());
     router.push(path);
   };
@@ -80,7 +79,7 @@ export default function OrderSuccessContent() {
             estimatedTime={orderData.delivery.estimatedTime}
           />
 
-          <div className="grid grid-cols-1  gap-6">
+          <div className="grid grid-cols-1 gap-6">
             <div className="space-y-6">
               <CustomerInfo
                 customerData={orderData.customer}

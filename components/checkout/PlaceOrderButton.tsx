@@ -4,19 +4,20 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useOrderSubmission } from '@/hooks/useOrderSubmission';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
-  isSubmitting: boolean;
   isDisabled?: boolean;
 }
 
 export function PlaceOrderButton({ 
   onPlaceOrder, 
-  isSubmitting,
   isDisabled = false
 }: PlaceOrderButtonProps) {
   const t = useTranslations("checkout")
+  const { isSubmitting } = useOrderSubmission();
+
   return (
     <div className="space-y-3 ">
       <Button

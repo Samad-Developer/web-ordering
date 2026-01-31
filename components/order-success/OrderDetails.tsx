@@ -1,7 +1,7 @@
 "use client";
 
 import { BadgeDollarSignIcon, CreditCard, Banknote } from "lucide-react";
-import { CartSummary } from "../shared/cart/CartSummary";
+import { PriceSummary } from "../shared/cart/PriceSummary";
 
 interface OrderDetailsProps {
   paymentMethod: "cash" | "online";
@@ -39,7 +39,7 @@ export function OrderDetails({
       {/* BODY */}
       <div className="p-5 space-y-4">
         {/* CART SUMMARY */}
-        <CartSummary />
+        <PriceSummary variant="success" />
       </div>
     </div>
   );

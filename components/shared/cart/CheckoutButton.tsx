@@ -47,17 +47,17 @@ export function CheckoutButton() {
   };
 
   // ✅ Do NOT allow Link unless checkout is valid
-  if (!canCheckout) {
-    return (
-      <Button
-        disabled
-        className="w-full rounded-lg h-14 text-base font-semibold bg-primary text-secondary disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {getButtonText()}
-        <ArrowRight className="ml-2" />
-      </Button>
-    );
-  }
+  // if (!canCheckout) {
+  //   return (
+  //     <Button
+  //       disabled
+  //       className="w-full rounded-lg h-14 text-base font-semibold bg-primary text-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+  //     >
+  //       {getButtonText()}
+  //       <ArrowRight className="ml-2" />
+  //     </Button>
+  //   );
+  // }
 
   return (
     <Link href={`/${locale}/checkout`}>

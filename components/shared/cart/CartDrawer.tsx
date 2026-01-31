@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { CartItem } from "./CartItem";
 import { EmptyCart } from "./EmptyCart";
-import { CartSummary } from "./CartSummary";
+import { PriceSummary } from "./PriceSummary";
 import { useAppDispatch } from "@/store/hooks";
 import { toggleCart } from "@/store/slices/cartSlice";
 import { useTranslations } from "next-intl";
@@ -130,8 +130,8 @@ export function CartDrawer() {
                 )}
               </div>
 
-              <div className="p-1">
-                <CartSummary showDetails={true} />
+              <div className="p-2">
+                <PriceSummary variant="cart" />
               </div>
             </div>
 

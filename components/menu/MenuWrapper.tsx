@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "@/store/hooks";
 import { openAddressModal } from "@/store/slices/addressSlice";
 import { useAddress } from "@/hooks/useAddress";
@@ -24,6 +24,8 @@ const MenuWrapper = () => {
   const { searchQuery } = useSearch();
   const { menuData, error, isLoading: isMenuLoading } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
+
+  console.log("checking menu data in MenuWrapper:", menuData);
 
   const {
     filteredMenu,
@@ -74,8 +76,6 @@ const MenuWrapper = () => {
            Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching&nbsp;
            &quot;{searchQuery}&quot;
          </p>
-         
-          
           ) : (
             <div className="text-center py-10">
               <p className="text-xl text-gray-600 mb-2">
