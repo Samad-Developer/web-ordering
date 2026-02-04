@@ -1,11 +1,12 @@
 import { CartItem } from "@/types/cart.types";
-import { MenuCategory } from "@/types/menu.types";
+import { SelectedAddonGroup, SelectedAddonOption } from "@/types/customization.types";
+import { ItemChoice, MenuCategory } from "@/types/menu.types";
 import { Variation } from "@/types/menu.types";
 
 export function transformCartItemsForAPI(
   cartItems: CartItem[],
   menuData: MenuCategory[] | null
-): any[] {
+) {
   if (!menuData || !cartItems || cartItems.length === 0) {
     return [];
   }
@@ -63,7 +64,7 @@ export function transformCartItemsForAPI(
         Comment: cartItem.specialInstructions || "",
         IsKot: menuItem.IsKot || false,
         ItemFOC: menuItem.ItemFOC || false,
-        Description: menuItem.Description || "",
+        Description: menuItem.Comment || "",
         Variations: [transformedVariation],
         Discount: cartItem.discount,
       };
@@ -74,7 +75,7 @@ export function transformCartItemsForAPI(
 /**
  * Find menu item by ID in the menu data structure
  */
-function findMenuItemById(menuData: MenuCategory[], itemId: number): any | null {
+function findMenuItemById(menuData: MenuCategory[], itemId: number) {
   if (!menuData || !Array.isArray(menuData)) return null;
 
   for (const category of menuData) {
@@ -93,9 +94,9 @@ function findMenuItemById(menuData: MenuCategory[], itemId: number): any | null 
  * Transform selected addons from cart format to API ItemChoices format
  */
 function transformAddonsToItemChoices(
-  selectedAddons: Record<string, any>,
-  originalItemChoices: any[]
-): any[] {
+  selectedAddons: Record<number, SelectedAddonGroup>,
+  originalItemChoices: ItemChoice[]
+) {
   if (
     !selectedAddons ||
     Object.keys(selectedAddons).length === 0 ||
@@ -112,7 +113,7 @@ function transformAddonsToItemChoices(
     );
 
     // Transform selected options
-    const selectedItemOptions = addon.selectedOptions.map((option: any) => ({
+    const selectedItemOptions = addon.selectedOptions.map((option: SelectedAddonOption) => ({
       Id: option.optionId,
       Name: option.optionName,
       Price: option.price,

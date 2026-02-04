@@ -38,7 +38,7 @@ export function useOrderSubmission() {
           reject(new Error("Branch ID not found"));
           return;
         }
-
+        console.log("checking cart Items", cartItems)
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
         // Prepare complete order object
@@ -48,6 +48,8 @@ export function useOrderSubmission() {
           branchId: selectedAddress.branchId || 0,
           domain: "rollinnbbq.pk",
         };
+
+        console.log("Submitting order object:", orderObject);
 
         // Setup response handler
         const handleOrderResponse = (response: OrderResponse) => {

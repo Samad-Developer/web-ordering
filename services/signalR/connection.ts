@@ -16,6 +16,7 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
       `${API_BASE_URL}/gatewayHub?access_token=${encodeURIComponent(token)}`,
       {
         accessTokenFactory: () => token,
+        withCredentials: false,
       }
     )
     .withAutomaticReconnect()
