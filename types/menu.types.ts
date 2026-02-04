@@ -41,6 +41,7 @@ export interface MenuItem {
   Quantity: number;
   Image: string;
   Comment: string;
+  Description: string;
   IsKot: boolean;
   ItemFOC: boolean;
   Variations: Variation[];

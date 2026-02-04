@@ -217,7 +217,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           <ProductHeader
             name={product.Name}
             description={
-              product.Comment || "Delicious and freshly made just for you"
+              product.Description
             }
           />
 
