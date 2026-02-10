@@ -61,8 +61,9 @@ export function useOrderSubmission() {
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
           domain: "rollinnbbq.pk",
-          orderType: "delivery",
-          paymentMode: "cash",
+          orderType: "Delivery",
+          paymentMode: "Cash",
+          deliveryCharges: 100,
         };
 
         // Setup response handler
