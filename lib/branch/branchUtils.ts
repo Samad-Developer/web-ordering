@@ -19,23 +19,6 @@ export function formatTimeRemaining(minutes: number): string {
 }
 
 /**
- * Calculate delivery charges based on cart total
- */
-export function calculateDeliveryCharges(
-  branch: Branch,
-  cartTotal: number
-): number {
-  if (
-    branch.DeliveryChargesWaiveOffLimit > 0 &&
-    cartTotal >= branch.DeliveryChargesWaiveOffLimit
-  ) {
-    return 0; // Free delivery
-  }
-
-  return branch.DeliveryCharges;
-}
-
-/**
  * Check if order meets minimum requirement
  */
 export function meetsMinimumOrder(
@@ -56,26 +39,3 @@ export function getAmountToMinimum(
   return needed > 0 ? needed : 0;
 }
 
-/**
- * Get amount needed for free delivery
- */
-export function getAmountToFreeDelivery(
-  branch: Branch,
-  cartTotal: number
-): number {
-  if (branch.DeliveryChargesWaiveOffLimit === 0) {
-    return 0; // No free delivery available
-  }
-
-  const needed = branch.DeliveryChargesWaiveOffLimit - cartTotal;
-  return needed > 0 ? needed : 0;
-}
-
-/**
- * Get estimated delivery time range
- */
-export function getDeliveryTimeRange(branch: Branch): string {
-  const minTime = branch.DeliveryTime - 5;
-  const maxTime = branch.DeliveryTime + 5;
-  return `${minTime}-${maxTime} minutes`;
-}
