@@ -25,8 +25,6 @@ export function useAddressHydration() {
     const savedAddress = loadUserAddress();
     if (!savedAddress || !savedAddress.branchDetails) return;
 
-    console.log('🔄 Hydrating from localStorage');
-
     // Dispatch to Redux
     if (savedAddress.orderMode === 'delivery') {
       dispatch(
@@ -35,6 +33,9 @@ export function useAddressHydration() {
           cityName: savedAddress.cityName,
           areaId: savedAddress.areaId!,
           areaName: savedAddress.areaName!,
+          deliveryCharges: savedAddress.deliveryCharges!,
+          deliveryTime: savedAddress.deliveryTime!,
+          deliveryChargesWaiveOffLimit: savedAddress.deliveryChargesWaiveOffLimit!,
           branchDetails: savedAddress.branchDetails,
         })
       );

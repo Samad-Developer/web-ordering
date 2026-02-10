@@ -4,11 +4,11 @@ import { useTranslations } from 'next-intl';
 import { useBranchValidation } from '@/hooks/useBranchValidation';
 import { useCartTotals } from '@/hooks/useCartTotals';
 import { formatPrice } from '@/lib/product/productHelper';
-import { 
-  Receipt, 
-  Tag, 
-  Calculator, 
-  Truck, 
+import {
+  Receipt,
+  Tag,
+  Calculator,
+  Truck,
   Wallet,
   CheckCircle2,
 } from 'lucide-react';
@@ -23,9 +23,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
   const branch = useBranchValidation();
   const totals = useCartTotals();
 
-  const isFreeDelivery = branch.hasBranch && branch.isDeliveryMode
-    ? branch.isFreeDelivery(totals.subtotal)
-    : false;
+  const isFreeDelivery = totals.isFreeDelivery;
 
   // 🎨 Different styles based on variant
   const containerStyles = {
@@ -80,7 +78,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
 
   return (
     <div className={containerStyles[variant]}>
-      {/* 🎯 Checkout-only Header (NOT shown on success page) */}
+
       {variant === 'checkout' && (
         <div className="flex items-center gap-2 mb-3 pb-3 border-b-2 border-gray-200">
           <h3 className="text-xl font-bold text-gray-900">Price Summary</h3>
@@ -111,14 +109,18 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
         )}
 
         {/* Tax */}
-        <div className={`flex items-center justify-between ${styles.detail}`}>
-          <span className={`${styles.label} flex gap-2 items-center`}>
-            <Calculator className={iconStyles[variant]} /> {t('tax')} ({Math.round(totals.taxRate * 100)}%)
-          </span>
-          <span className={styles.value}>
-            {formatPrice(totals.tax)}
-          </span>
-        </div>
+        {
+          totals.tax > 0 && (
+            <div className={`flex items-center justify-between ${styles.detail}`}>
+              <span className={`${styles.label} flex gap-2 items-center`}>
+                <Calculator className={iconStyles[variant]} /> {t('tax')} ({Math.round(totals.taxRate * 100)}%)
+              </span>
+              <span className={styles.value}>
+                {formatPrice(totals.tax)}
+              </span>
+            </div>
+          )
+        }
 
         {/* Delivery Fee */}
         {branch.isDeliveryMode && (
@@ -129,7 +131,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
             {isFreeDelivery ? (
               <span className="flex items-center gap-2">
                 <span className={`line-through text-gray-400 ${variant === 'cart' ? 'text-xs' : 'text-sm'}`}>
-                  {formatPrice(branch.deliveryCharges)}
+                  {formatPrice(totals.deliveryCharges)}
                 </span>
                 <span className={`font-semibold text-green-600 ${variant === 'checkout' || variant === 'success' ? 'text-base' : 'text-sm'}`}>
                   FREE

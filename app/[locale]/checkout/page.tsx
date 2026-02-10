@@ -6,10 +6,13 @@ import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { PlaceOrderButton } from "@/components/checkout/PlaceOrderButton";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/slices/cartSlice";
+import { useOrderSubmission } from "@/hooks/useOrderSubmission";
 
 export default function CheckoutPage() {
   const formRef = useRef<HTMLFormElement>(null!);
   const cartItems = useAppSelector(selectCartItems);
+
+  const { submitOrder, isSubmitting } = useOrderSubmission();
 
   const handlePlaceOrder = () => {
     if (formRef.current) {
@@ -25,6 +28,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2">
             <CheckoutForm
               formRef={formRef}
+              submitOrder={submitOrder}
             />
           </div>
 
@@ -34,6 +38,7 @@ export default function CheckoutPage() {
             <PlaceOrderButton
               onPlaceOrder={handlePlaceOrder}
               isDisabled={cartItems.length === 0}
+              isSubmitting={isSubmitting}
             />
           </div>
         </div>

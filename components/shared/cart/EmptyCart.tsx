@@ -1,16 +1,11 @@
-// components/cart/EmptyCart.tsx
-
 'use client';
 
-import React from 'react';
 import { ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/store/hooks';
 import { toggleCart } from '@/store/slices/cartSlice';
 
 export function EmptyCart() {
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleBrowseMenu = () => {

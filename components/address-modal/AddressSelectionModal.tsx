@@ -108,6 +108,9 @@ export function AddressSelectionModal() {
           cityName,
           areaId: tempAreaId,
           areaName: area.AreaName,
+          deliveryCharges: area.DeliveryCharges,
+          deliveryTime: area.DeliveryTime,
+          deliveryChargesWaiveOffLimit: area.DeliveryChargesWaiveOffLimit,
           branchDetails: areaBranch,
         })
       );

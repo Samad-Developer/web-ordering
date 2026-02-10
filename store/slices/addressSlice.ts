@@ -2,7 +2,6 @@ import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 import type {
   DeliveryPickupApiResponse,
   UserSelectedAddress,
-  OrderMode,
   Branch,
 } from '@/types/address.types';
 import { saveUserAddress, clearUserAddress } from '@/lib/address/addressHelpers';
@@ -51,30 +50,34 @@ const addressSlice = createSlice({
         cityName: string;
         areaId: number;
         areaName: string;
+        deliveryCharges: number;
+        deliveryTime: number;
+        deliveryChargesWaiveOffLimit: number;
         branchDetails: Branch; 
       }>
     ) => {
+      const payload = action.payload;
+
       const deliveryAddress: UserSelectedAddress = {
         orderMode: 'delivery',
-        cityId: action.payload.cityId,
-        cityName: action.payload.cityName,
-        areaId: action.payload.areaId,
-        areaName: action.payload.areaName,
-        branchId: action.payload.branchDetails.BranchId,
-        
-        // ✅ Store complete branch details
+        cityId: payload.cityId,
+        cityName: payload.cityName,
+        areaId: payload.areaId,
+        areaName: payload.areaName,
+        branchId: payload.branchDetails.BranchId,
+        deliveryCharges: payload.deliveryCharges,
+        deliveryTime: payload.deliveryTime,
+        deliveryChargesWaiveOffLimit: payload.deliveryChargesWaiveOffLimit,
+
         branchDetails: {
-          BranchId: action.payload.branchDetails.BranchId,
-          BranchName: action.payload.branchDetails.BranchName,
-          BranchAddress: action.payload.branchDetails.BranchAddress,
-          BranchPhoneNumber: action.payload.branchDetails.BranchPhoneNumber,
-          BusinessStartTime: action.payload.branchDetails.BusinessStartTime,
-          BusinessEndTime: action.payload.branchDetails.BusinessEndTime,
-          DeliveryCharges: action.payload.branchDetails.DeliveryCharges,
-          DeliveryChargesWaiveOffLimit: action.payload.branchDetails.DeliveryChargesWaiveOffLimit,
-          DeliveryTime: action.payload.branchDetails.DeliveryTime,
-          MinimumOrder: action.payload.branchDetails.MinimumOrder,
-          IsBranchOpen: action.payload.branchDetails.IsBranchOpen,
+          BranchId: payload.branchDetails.BranchId,
+          BranchName: payload.branchDetails.BranchName,
+          BranchAddress: payload.branchDetails.BranchAddress,
+          BranchPhoneNumber: payload.branchDetails.BranchPhoneNumber,
+          BusinessStartTime: payload.branchDetails.BusinessStartTime,
+          BusinessEndTime: payload.branchDetails.BusinessEndTime,
+          MinimumOrder: payload.branchDetails.MinimumOrder,
+          IsBranchOpen: payload.branchDetails.IsBranchOpen,
         },
         
         isCurrentLocation: false,
@@ -82,7 +85,7 @@ const addressSlice = createSlice({
       };
 
       state.selectedAddress = deliveryAddress;
-      state.selectedBranchDetails = action.payload.branchDetails;
+      state.selectedBranchDetails = payload.branchDetails;
       
       saveUserAddress(deliveryAddress);
     },
@@ -103,6 +106,9 @@ const addressSlice = createSlice({
         branchName: action.payload.branch.BranchName,
         branchAddress: action.payload.branch.BranchAddress,
         branchPhoneNumber: action.payload.branch.BranchPhoneNumber,
+        deliveryCharges: 0,
+        deliveryTime: null,
+        deliveryChargesWaiveOffLimit: 0,
         
         branchDetails: {
           BranchId: action.payload.branch.BranchId,
@@ -111,9 +117,6 @@ const addressSlice = createSlice({
           BranchPhoneNumber: action.payload.branch.BranchPhoneNumber,
           BusinessStartTime: action.payload.branch.BusinessStartTime,
           BusinessEndTime: action.payload.branch.BusinessEndTime,
-          DeliveryCharges: action.payload.branch.DeliveryCharges,
-          DeliveryChargesWaiveOffLimit: action.payload.branch.DeliveryChargesWaiveOffLimit,
-          DeliveryTime: action.payload.branch.DeliveryTime,
           MinimumOrder: action.payload.branch.MinimumOrder,
           IsBranchOpen: action.payload.branch.IsBranchOpen,
         },
@@ -125,7 +128,6 @@ const addressSlice = createSlice({
       state.selectedAddress = pickupAddress;
       state.selectedBranchDetails = action.payload.branch;
       
-      // ✅ Save complete address to localStorage
       saveUserAddress(pickupAddress);
     },
 

@@ -13,7 +13,7 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
   // Create new connection
   connection = new signalR.HubConnectionBuilder()
     .withUrl(
-      `${API_BASE_URL}/gatewayHub?access_token=${encodeURIComponent(token)}`,
+      `${API_BASE_URL}/gatewayHub`,
       {
         accessTokenFactory: () => token,
         withCredentials: false,

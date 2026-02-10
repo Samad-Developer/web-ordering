@@ -34,7 +34,7 @@ export function ProductModalFooter() {
       addToCart({
         productId: product.Id,
         productName: product.Name,
-        productImage: product.Image !== 'N/A' ? product.Image : '/placeholder-food.jpg',
+        productImage: product.Image,
         variationId: currentVariation.Id,
         sizeName: currentVariation.Size.Name,
         flavorName: currentVariation.Flavour.Name,

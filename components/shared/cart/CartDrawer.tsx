@@ -36,23 +36,6 @@ export function CartDrawer() {
   const branch = useBranchValidation();
   const totals = useCartTotals();
 
-  const amountToMinimum = branch.hasBranch
-    ? branch.getAmountToMinimum(totals.subtotal)
-    : 0;
-
-  const amountToFreeDelivery = branch.hasBranch && branch.isDeliveryMode
-    ? branch.getAmountToFreeDelivery(totals.subtotal)
-    : 0;
-
-  const freeDeliveryProgress = branch.hasBranch
-    ? branch.getFreeDeliveryProgress(totals.subtotal)
-    : 0;
-
-  const isFreeDelivery = branch.hasBranch && branch.isDeliveryMode
-    ? branch.isFreeDelivery(totals.subtotal)
-    : false;
-
-
   return (
     <Sheet
       open={isCartOpen}
@@ -83,8 +66,8 @@ export function CartDrawer() {
           <EmptyCart />
         ) : (
           <>
-            {/* Cart Items - Scrollable */}
             <div className="flex-1 overflow-y-auto px-2 py-2">
+              {/* Cart Items */}
               <div className="space-y-4">
                 {cartItems.map((item) => (
                   <CartItem key={item.cartItemId} item={item} />
@@ -101,43 +84,42 @@ export function CartDrawer() {
                 {t("addMoreItems")}
               </button>
 
-
+              {/* Alerts & Notifications */}
               <div className='space-y-4 my-4'>
-                {/* Alerts & Notifications */}
                 {!branch.hasBranch && <BranchNotSelectedAlert />}
 
                 {branch.hasBranch && !totals.meetsMinimumOrder && (
-                  <MinimumOrderAlert amount={amountToMinimum} />
+                  <MinimumOrderAlert amount={totals.amountToMinimum} />
                 )}
 
                 {branch.hasBranch &&
                   totals.meetsMinimumOrder &&
-                  amountToFreeDelivery > 0 &&
+                  totals.amountToFreeDelivery > 0 &&
                   branch.isDeliveryMode && (
                     <FreeDeliveryProgress
-                      amount={amountToFreeDelivery}
-                      progress={freeDeliveryProgress}
+                      amount={totals.amountToFreeDelivery}
+                      progress={totals.freeDeliveryProgress}
                     />
                   )}
 
-                {isFreeDelivery && branch.isDeliveryMode && (
+                {totals.isFreeDelivery && branch.isDeliveryMode && (
                   <FreeDeliveryBadge />
                 )}
 
-                {branch.deliveryTimeRange && branch.isDeliveryMode && (
-                  <DeliveryTimeInfo timeRange={branch.deliveryTimeRange} />
-
+                {totals.deliveryTimeRange && branch.isDeliveryMode && (
+                  <DeliveryTimeInfo timeRange={totals.deliveryTimeRange} />
                 )}
               </div>
 
+              {/* Price Summary */}
               <div className="p-2">
                 <PriceSummary variant="cart" />
               </div>
-            </div>
 
-            {/* Footer - Summary & Checkout */}
-            <div className="border-t bg-white px-6 py-4 space-y-4">
-              <CheckoutButton />
+              {/* Footer - Summary & Checkout */}
+              <div className="px-2 py-4 space-y-4">
+                <CheckoutButton />
+              </div>
             </div>
           </>
         )}

@@ -20,13 +20,14 @@ import { PaymentSection } from "./PaymentSection";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useOrderSubmission } from "@/hooks/useOrderSubmission";
+import { PlaceOrderResponse } from "@/hooks/useOrderSubmission";
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
+  submitOrder: (data: CheckoutFormData) => Promise<PlaceOrderResponse>;
 }
 
-export function CheckoutForm({ formRef }: CheckoutFormProps) {
+export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   const t = useTranslations("checkout");
   const router = useRouter();
   const { locale } = useParams();
@@ -35,8 +36,6 @@ export function CheckoutForm({ formRef }: CheckoutFormProps) {
   const orderMode: OrderMode = "delivery";
   const [isGift, setIsGift] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cash");
-
-  const { submitOrder, isSubmitting: isOrderSubmitting } = useOrderSubmission();
 
   // Create dynamic schema based on current state
   const schema = createCheckoutSchema(orderMode, isGift, paymentMethod);
@@ -81,11 +80,14 @@ export function CheckoutForm({ formRef }: CheckoutFormProps) {
 
     try {
       const response = await submitOrder(data);
-      console.log("Order Response .......", response); 
 
-      toast.success("Order placed successfully!", {
-        description: "You will receive a confirmation shortly.",
-      });
+      console.log("Order submission response:", response);
+
+      if (response.dataPayload?.Success) {
+        toast.success("Order placed successfully!", {
+          description: "You will receive a confirmation shortly.",
+        });
+      }
 
       localStorage.setItem("orderCustomerInfo", JSON.stringify(data));
 
@@ -93,7 +95,7 @@ export function CheckoutForm({ formRef }: CheckoutFormProps) {
       setIsGift(false);
       setPaymentMethod("cash");
 
-      router.push(`/${locale}/order-success?orderNumber=345`);
+      router.push(`/${locale}/order-success?orderNumber=${response.dataPayload?.OrderNumber}`);
 
     } catch (error) {
       toast.error("Failed to place order", {

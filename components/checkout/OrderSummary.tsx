@@ -37,8 +37,8 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
     variant === "checkout"
       ? " shadow-md"
       : variant === "success"
-      ? "border-2 "
-      : "border";
+        ? "border-2 "
+        : "border";
 
   return (
     <div className={`rounded-xl ${containerBorderClass}`}>
@@ -56,6 +56,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
             {cartItems.map((item) => {
               const addons = getCartItemAddonsText(item);
               const isExpanded = expandedItems.has(item.cartItemId);
+              const hasDiscount = !!item.discount;
 
               return (
                 <div
@@ -111,7 +112,26 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                     </div>
 
                     <span className="font-semibold text-sm text-gray-900 flex-shrink-0">
-                      {formatPrice(item.priceBreakdown.total)}
+                      <div className="flex flex-col gap-0.5">
+                        {hasDiscount ? (
+                          <div className="flex gap-2 items-baseline">
+                            {/* Original Price - Line Through */}
+                            <span className="text-xs text-gray-400 line-through">
+                              {formatPrice(item.priceBreakdown.originalBasePrice)}
+                            </span>
+
+                            {/* Discounted Price - Green */}
+                            <span className="text-base font-bold text-gray-800">
+                              {formatPrice(item.priceBreakdown.basePrice)}
+                            </span>
+                          </div>
+                        ) : (
+                          /* No Discount - Normal Price */
+                          <span className="text-base font-bold text-gray-900">
+                            {formatPrice(item.priceBreakdown.basePrice)}
+                          </span>
+                        )}
+                      </div>
                     </span>
                   </div>
                 </div>

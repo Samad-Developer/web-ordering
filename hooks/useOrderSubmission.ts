@@ -9,12 +9,27 @@ import { useMenu } from "./useMenu";
 import { CheckoutFormData } from "@/types/checkout.types";
 import { transformCartItemsForAPI } from "@/lib/place-order/orderHelpers";
 
-interface OrderResponse {
-  success: boolean;
-  orderNumber?: string;
-  message?: string;
-  error?: string;
+export interface PlaceOrderResponse {
+  order?: unknown; // intentionally untyped
+
+  dataPayload?: {
+    Success: boolean;
+    Message?: string;
+    OrderNumber?: string;
+  };
+
+  correlationId?: string;
+  connectionId?: string;
+  userId?: string;
+
+  responseKey?: "CreateOrderResponse";
+  signalRMethodName?: "PlaceOrder";
+
+  restaurantId?: number;
+  branchId?: number;
+  domainName?: string;
 }
+
 
 export function useOrderSubmission() {
   const { menuData } = useMenu();
@@ -23,12 +38,12 @@ export function useOrderSubmission() {
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitOrder = useCallback((customerData: CheckoutFormData): Promise<OrderResponse> => {
+  const submitOrder = useCallback((customerData: CheckoutFormData): Promise<PlaceOrderResponse> => {
       setIsSubmitting(true);
 
       return new Promise((resolve, reject) => {
         if (!connection || !isConnected) {
-          setIsSubmitting(false);
+          setIsSubmitting(false);     
           reject(new Error("SignalR connection not available"));
           return;
         }
@@ -38,7 +53,6 @@ export function useOrderSubmission() {
           reject(new Error("Branch ID not found"));
           return;
         }
-        console.log("checking cart Items", cartItems)
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
         // Prepare complete order object
@@ -49,19 +63,18 @@ export function useOrderSubmission() {
           domain: "rollinnbbq.pk",
         };
 
-        console.log("Submitting order object:", orderObject);
+        console.log("Submitting Order : ...", orderObject)
 
         // Setup response handler
-        const handleOrderResponse = (response: OrderResponse) => {
-          console.log("Received order response In Hook:", response);
-
+        const handleOrderResponse = (response: PlaceOrderResponse) => {
           // connection.off("CreateOrderResponse", handleOrderResponse);
+          console.log("Received order response:", response);
           setIsSubmitting(false);
 
-          if (response.success) {
+          if (response.dataPayload?.Success) {
             resolve(response);
           } else {
-            reject(new Error(response.error || "Order submission failed"));
+            reject(new Error(response.dataPayload?.Message));
           }
         };
 

@@ -12,11 +12,12 @@ import { cn } from "@/lib/utils";
 import { CartButton } from "../headers/partials/CartButton";
 import { SvgIcon } from "@/components/common/SvgIcon";
 import { useTranslations } from "next-intl";
+import { useCartTotals } from "@/hooks/useCartTotals";
 
 export function FloatingCartButton() {
   const dispatch = useAppDispatch();
-  const t = useTranslations("cart")
-  const subtotal = useAppSelector(selectCartSubtotal);
+  const t = useTranslations("cart");
+  const { subtotal} = useCartTotals();
 
   const handleOpenCart = () => {
     dispatch(toggleCart(true));

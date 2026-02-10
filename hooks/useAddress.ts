@@ -26,7 +26,6 @@ export function useAddress() {
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const availableModes = useAppSelector(selectAvailableModes);
 
-
   // Fetch address data from SignalR
   useEffect(() => {
     if (!connection || !isConnected || apiData) return;

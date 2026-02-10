@@ -1,22 +1,21 @@
 'use client';
 
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useOrderSubmission } from '@/hooks/useOrderSubmission';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
   isDisabled?: boolean;
+  isSubmitting: boolean;
 }
 
 export function PlaceOrderButton({ 
   onPlaceOrder, 
-  isDisabled = false
+  isDisabled = false,
+  isSubmitting,
 }: PlaceOrderButtonProps) {
   const t = useTranslations("checkout")
-  const { isSubmitting } = useOrderSubmission();
 
   return (
     <div className="space-y-3 ">
@@ -27,10 +26,10 @@ export function PlaceOrderButton({
         disabled={isSubmitting || isDisabled}
       >
         {isSubmitting ? (
-          <>
-            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+          <div className='flex items-center justify-center gap-2'>
+            <Loader2 className="w-5 h-5 animate-spin" />
             {t('processingOrder')}
-          </>
+          </div>
         ) : (
           <div className="flex items-center justify-center w-full">
             <span className="flex items-center gap-2">

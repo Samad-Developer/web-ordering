@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Minus, Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import { CartItem as CartItemType } from "@/types/cart.types";
@@ -15,6 +15,7 @@ import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
+import { getImageUrl } from "@/lib/image/imageUtils";
 
 interface CartItemProps {
   item: CartItemType;
@@ -41,13 +42,15 @@ export function CartItem({ item }: CartItemProps) {
     dispatch(removeItem(item.cartItemId));
   };
 
+  const imageSrc = getImageUrl(item.productImage, '/assets/images/products/product.webp');
+
   return (
     <div className="bg-whiteoverflow-hidden">
       <div className="flex gap-3 px-1.5">
         {/* Product Image */}
         <div className="relative w-18 h-18 flex-shrink-0 rounded-md overflow-hidden bg-gray-100">
           <Image
-            src="/assets/images/products/product.webp"
+            src={imageSrc}
             alt={item.productName}
             fill
             className="object-cover"
@@ -74,7 +77,6 @@ export function CartItem({ item }: CartItemProps) {
 
           {/* Price */}
           <div className=" flex items-center justify-between">
-            {/* ✅ Price Display with Discount */}
             <div className="flex flex-col gap-0.5">
               {hasDiscount ? (
                 <div className="flex gap-2 items-baseline">

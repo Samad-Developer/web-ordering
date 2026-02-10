@@ -17,6 +17,7 @@ import LoadingState from "../states/LoadingState";
 import { useSearch } from "@/contexts/SearchContext";
 import { useMenuSearch } from "@/hooks/useMenuSearch";
 import ErrorState from "../states/ErrorState";
+import MenuSkeleton from "../skeletons/MenuSkeleton";
 
 const MenuWrapper = () => {
   const { apiData } = useAddress();
@@ -24,8 +25,6 @@ const MenuWrapper = () => {
   const { searchQuery } = useSearch();
   const { menuData, error, isLoading: isMenuLoading } = useMenu();
   const itemCount = useAppSelector(selectCartItemCount);
-
-  console.log("checking menu data in MenuWrapper:", menuData);
 
   const {
     filteredMenu,
@@ -49,7 +48,7 @@ const MenuWrapper = () => {
   }, [apiData]);
 
   if (isMenuLoading && !menuData) {
-    return <LoadingState />
+    return <MenuSkeleton />
   }
 
 

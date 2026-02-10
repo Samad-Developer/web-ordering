@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { useSignalR } from '@/contexts/signalr-provider';
 import { MenuResponse } from '@/types/menu.types';

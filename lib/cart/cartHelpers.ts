@@ -52,7 +52,7 @@ export function getCartItemAddonsText(item: CartItem): string[] {
 
   Object.values(item.customization.selectedAddons).forEach((group) => {
     group.selectedOptions.forEach((option) => {
-      const text = option.quantity > 1 ? `${option.optionName} (×${option.quantity})` : option.optionName;
+      const text = option.quantity > 1 ? `${option.optionName} +Rs ${option.price} (×${option.quantity})` : `${option.optionName} +Rs ${option.price}`;
       addons.push(text);
     });
   });
