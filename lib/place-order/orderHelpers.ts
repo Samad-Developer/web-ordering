@@ -42,7 +42,7 @@ export function transformCartItemsForAPI(
         Id: selectedVariation.Id,
         Size: selectedVariation.Size,
         Flavour: selectedVariation.Flavour,
-        Price: cartItem.priceBreakdown.basePrice,
+        Price: cartItem.priceBreakdown.originalBasePrice,
         Discount: cartItem.discount,
         ItemChoices: itemChoices,
       };

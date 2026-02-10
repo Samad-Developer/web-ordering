@@ -55,15 +55,15 @@ export function useOrderSubmission() {
         }
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
-        // Prepare complete order object
+        // Prepare complete order object TODO : i have to chnage order type and payment mode based on user selection in checkout form
         const orderObject = {
           customerDetails: customerData,
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
           domain: "rollinnbbq.pk",
+          orderType: "delivery",
+          paymentMode: "cash",
         };
-
-        console.log("Submitting Order : ...", orderObject)
 
         // Setup response handler
         const handleOrderResponse = (response: PlaceOrderResponse) => {
