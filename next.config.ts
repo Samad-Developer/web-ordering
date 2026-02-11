@@ -1,12 +1,16 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Your existing Next.js config options
+const nextConfig: NextConfig = {
   images: {
-    domains: ['ordering.eatx.pk'],
+    remotePatterns: [
+      {
+        protocol: 'https' as const,
+        hostname: 'ordering.eatx.pk',
+      },
+    ],
   },
 };
 
