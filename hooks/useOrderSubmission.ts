@@ -55,7 +55,7 @@ export function useOrderSubmission() {
         }
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
-        // Prepare complete order object TODO : i have to chnage order type and payment mode based on user selection in checkout form
+        // Prepare complete order object TODO : i have to chnage order type and payment mode and delivery charges based on user selection in checkout form
         const orderObject = {
           customerDetails: customerData,
           items: transformedItems,

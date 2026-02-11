@@ -91,7 +91,7 @@ const MenuSkeleton = () => {
   return (
     <div className="my-10 max-w-7xl mx-auto px-2 sm:px-0 min-h-screen py-8">
       {/* Search Box */}
-      <SearchSkeleton />
+      {/* <SearchSkeleton /> */}
 
       {/* First Category Section */}
       <div className="mb-12">
