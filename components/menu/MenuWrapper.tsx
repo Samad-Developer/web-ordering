@@ -63,18 +63,24 @@ const MenuWrapper = () => {
 
   return (
     <div>
-      <BannerWrapper />
-      <CategoryBar />
-      <AnimatedSearch />
+
+      {/* show the below three component only if there is menudata avaiable */}
+      {menuData && (
+        <>
+          <BannerWrapper />
+          <CategoryBar />
+          <AnimatedSearch />
+        </>
+      )}
 
       {/* Search Results Info */}
       {isSearching && (
         <div className="max-w-7xl mx-auto px-4 py-4">
           {hasResults ? (
-           <p className="text-gray-600">
-           Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching&nbsp;
-           &quot;{searchQuery}&quot;
-         </p>
+            <p className="text-gray-600">
+              Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching&nbsp;
+              &quot;{searchQuery}&quot;
+            </p>
           ) : (
             <div className="text-center py-10">
               <p className="text-xl text-gray-600 mb-2">

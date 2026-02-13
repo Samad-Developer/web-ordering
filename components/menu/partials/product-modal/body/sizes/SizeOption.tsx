@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
 import { Discount } from '@/types/discount.types';
 import { useProductModal } from '../../ProductModalContext';
@@ -13,15 +12,21 @@ interface SizeOptionProps {
     discount?: Discount | null;
   };
   isSelected: boolean;
+  scrollToSection: (sectionId: string) => void;
 }
 
-export function SizeOption({ size, isSelected }: SizeOptionProps) {
+export function SizeOption({ size, isSelected, scrollToSection }: SizeOptionProps) {
   const { setSize } = useProductModal();
   const discountCalc = calculateDiscount(size.price, size.discount)
 
+  const handleClick = () => {
+    setSize(size.id);
+    scrollToSection('choice-0'); // Scroll to first item choice after selecting size
+  }
+
   return (
     <button
-      onClick={() => setSize(size.id)}
+      onClick={handleClick}
       className={cn(
         "relative p-3 rounded-lg border-1 text-center transition-all flex flex-col items-center justify-center",
         isSelected
@@ -33,7 +38,6 @@ export function SizeOption({ size, isSelected }: SizeOptionProps) {
 
       <h1 className='font-semibold text-base'>{size.name}</h1>
 
-      {/* ✅ Show price with discount */}
       <PriceDisplay
         price={size.price}
         discount={size.discount}

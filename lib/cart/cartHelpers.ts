@@ -45,15 +45,44 @@ export function getCartItemDisplayName(item: CartItem): string {
 }
 
 /**
- * Format cart item addons for display
+ * Return all selected addons for a cart item as formatted text (e.g. "Extra Cheese +Rs 50 (×2)")
  */
 export function getCartItemAddonsText(item: CartItem): string[] {
   const addons: string[] = [];
 
   Object.values(item.customization.selectedAddons).forEach((group) => {
     group.selectedOptions.forEach((option) => {
-      const text = option.quantity > 1 ? `${option.optionName} +Rs ${option.price} (×${option.quantity})` : `${option.optionName} +Rs ${option.price}`;
+      let text = option.optionName;
+      if (option.price > 0) {
+        text += ` +Rs ${option.price}`;
+      }
+      if (option.quantity > 1) {
+        text += ` (×${option.quantity})`;
+      }
       addons.push(text);
+    });
+  });
+
+  return addons;
+}
+
+// Same as getCartItemAddonsText but returns structured data instead of text
+export interface AddonInfo {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export function getCartItemAddons(item: CartItem): AddonInfo[] {
+  const addons: AddonInfo[] = [];
+
+  Object.values(item.customization.selectedAddons).forEach((group) => {
+    group.selectedOptions.forEach((option) => {
+      addons.push({
+        name: option.optionName,
+        price: option.price,
+        quantity: option.quantity,
+      });
     });
   });
 

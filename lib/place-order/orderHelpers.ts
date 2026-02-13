@@ -117,6 +117,7 @@ function transformAddonsToItemChoices(
       Id: option.optionId,
       Name: option.optionName,
       Price: option.price,
+      Quantity: option.quantity,
     }));
 
     return {

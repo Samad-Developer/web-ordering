@@ -1,12 +1,9 @@
-import React from 'react';
 import { useProductModal } from '../../ProductModalContext';
 import { getUniqueSizes } from '@/lib/product/productHelper';
 import { SizeOption } from './SizeOption';
 
-export function SizeWrapper() {
+export function SizeWrapper({ scrollToSection }: { scrollToSection: (sectionId: string) => void   }) {
   const { product, customization } = useProductModal();
-
-  // Get all unique sizes - ALWAYS show all
   const sizes = getUniqueSizes(product);
 
   return (
@@ -16,6 +13,7 @@ export function SizeWrapper() {
           key={size.id}
           size={size}
           isSelected={customization.selectedSizeId === size.id}
+          scrollToSection={scrollToSection}
         />
       ))}
     </div>

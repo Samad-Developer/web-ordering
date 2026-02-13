@@ -21,8 +21,7 @@ export function searchMenuItems(
   const query = searchQuery.toLowerCase().trim();
 
   // Filter categories and their items
-  const filteredCategories = categories
-    .map((category) => {
+  const filteredCategories = categories.map((category) => {
       // Check if category name matches
       const categoryMatches = category.Name.toLowerCase().includes(query);
 
@@ -33,9 +32,9 @@ export function searchMenuItems(
 
         // Search in item description
         const descriptionMatches =
-          item.Comment &&
-          item.Comment !== 'null' &&
-          item.Comment.toLowerCase().includes(query);
+          item.Description &&
+          item.Description !== 'null' &&
+          item.Description.toLowerCase().includes(query);
 
         return nameMatches || descriptionMatches;
       });

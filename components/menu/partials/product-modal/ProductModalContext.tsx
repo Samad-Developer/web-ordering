@@ -68,6 +68,7 @@ interface ProductModalState {
 
 function getInitialState(product: ProductItem): ProductModalState {
   // Auto-select if only one size exists
+
   const defaultSizeId =
     product.Variations.length === 1
       ? product.Variations[0].Size.Id

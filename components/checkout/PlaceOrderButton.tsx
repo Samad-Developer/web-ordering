@@ -39,10 +39,6 @@ export function PlaceOrderButton({
           </div>
         )}
       </Button>
-      
-      <p className="text-xs text-center text-gray-500">
-        Your order will be confirmed shortly
-      </p>
     </div>
   );
 }

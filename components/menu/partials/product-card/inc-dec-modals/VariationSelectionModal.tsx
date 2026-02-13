@@ -10,6 +10,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogDescription,
+    DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -62,39 +63,38 @@ export function VariationSelectionModal({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-          <DialogContent className="sm:max-w-2xl max-h-[70vh] p-0 overflow-hidden flex flex-col">
-            
-            {/* Header */}
-            <DialogHeader className="px-6 py-2 border-b shrink-0">
-              <DialogTitle className="text-xl font-bold text-gray-900">
-                Select Item to Remove
-              </DialogTitle>
-              <DialogDescription>
-                {productName} - {variations.length} variation
-                {variations.length > 1 ? "s" : ""} in cart
-              </DialogDescription>
-            </DialogHeader>
-      
-            {/* Variations List */}
-            <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
-              <AnimatePresence mode="popLayout">
-                {variations.map((item, index) => (
-                  <VariationItem
-                    key={item.cartItemId}
-                    item={item}
-                    index={index}
-                    onDecrement={() => handleDecrement(item)}
-                    onRemove={() => handleRemove(item)}
-                    isLast={index === variations.length - 1}
-                  />
-                ))}
-              </AnimatePresence>
-            </div>
-      
-          </DialogContent>
+            <DialogContent className="sm:max-w-2xl max-h-[70vh] p-0 overflow-hidden flex flex-col">
+
+                {/* Header */}
+                <DialogHeader className="px-6 py-2 border-b shrink-0">
+                    <DialogTitle className="text-xl font-bold text-gray-900">
+                        Select Item to Remove
+                    </DialogTitle>
+                    <DialogDescription>
+                        {productName} - {variations.length} variation
+                        {variations.length > 1 ? "s" : ""} in cart
+                    </DialogDescription>
+                </DialogHeader>
+
+                {/* Variations List */}
+                <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4">
+                    <AnimatePresence mode="popLayout">
+                        {variations.map((item, index) => (
+                            <VariationItem
+                                key={item.cartItemId}
+                                item={item}
+                                index={index}
+                                onDecrement={() => handleDecrement(item)}
+                                onRemove={() => handleRemove(item)}
+                                isLast={index === variations.length - 1}
+                            />
+                        ))}
+                    </AnimatePresence>
+                </div>
+            </DialogContent>
         </Dialog>
-      );
-      
+    );
+
 }
 
 
@@ -176,12 +176,13 @@ function VariationItem({
                         <div className="mb-2">
                             <div className="flex flex-wrap gap-1">
                                 {addons.map((addon, idx) => (
-                                    <span
+                                    <div
                                         key={idx}
-                                        className="text-xs bg-red-50 text-red-600 px-2 py-0.5 rounded"
+                                        className="flex items-center gap-1.5 text-xs bg-red-50 text-red-700 px-2.5 py-1 rounded-full border border-red-200"
                                     >
-                                        + {addon}
-                                    </span>
+                                        <span className="w-1.5 h-1.5 bg-red-500 rounded-full" />
+                                        {addon}
+                                    </div>
                                 ))}
                             </div>
                         </div>

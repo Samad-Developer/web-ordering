@@ -48,7 +48,7 @@ export function SuccessAnimation({
       </div>
 
       {/* ORDER TIMELINE */}
-      <OrderTimeline estimatedDelivery={estimatedTime}/>
+      {/* <OrderTimeline estimatedDelivery={estimatedTime}/> */}
     </div>
   );
 }

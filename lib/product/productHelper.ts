@@ -186,9 +186,15 @@ export function getUniqueSizes(product: ProductItem) {
 /**
  * Get default size (first available)
  */
+// export function getDefaultSize(product: ProductItem): number | null {
+//   if (product.Variations.length === 0) return null;
+//   return product.Variations[0].Size.Id;
+// }
+
 export function getDefaultSize(product: ProductItem): number | null {
   if (product.Variations.length === 0) return null;
-  return product.Variations[0].Size.Id;
+  const sorted = [...product.Variations].sort((a, b) => a.Price - b.Price);
+  return sorted[0].Size.Id;
 }
 
 // ============================================================================

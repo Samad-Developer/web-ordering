@@ -33,7 +33,7 @@ const ProductModalBody = () => {
         {uniqueSizes.length > 1 && (
           <div ref={registerSection('size')}>
             <ConfigurationSection title="Select Size" required={true}>
-              <SizeWrapper />
+              <SizeWrapper scrollToSection={scrollToSection} />
             </ConfigurationSection>
           </div>
         )}

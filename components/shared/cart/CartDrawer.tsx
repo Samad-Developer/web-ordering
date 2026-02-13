@@ -111,16 +111,20 @@ export function CartDrawer() {
                 )}
               </div>
 
-              {/* Price Summary */}
-              <div className="p-2">
-                <PriceSummary variant="cart" />
-              </div>
 
+
+            </div>
+
+            
               {/* Footer - Summary & Checkout */}
               <div className="px-2 py-4 space-y-4">
+                {/* Price Summary */}
+                <div className="p-2">
+                  <PriceSummary variant="cart" />
+                </div>
+
                 <CheckoutButton />
               </div>
-            </div>
           </>
         )}
       </SheetContent>

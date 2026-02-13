@@ -103,15 +103,6 @@ export default function OrderSuccessContent() {
               <ShoppingBag className="w-4 h-4" />
               Continue Shopping
             </Button>
-            <Button
-              onClick={() => handleNavigation("/")}
-              variant="outline"
-              className="gap-2"
-              size="lg"
-            >
-              <Phone className="w-4 h-4" />
-              Contact Support
-            </Button>
           </div>
 
           <div className="text-center space-y-2">

@@ -60,11 +60,15 @@ export function useOrderSubmission() {
           customerDetails: customerData,
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
+          branchName: selectedAddress.branchName || "",
           domain: "rollinnbbq.pk",
-          orderType: "Delivery",
-          paymentMode: "Cash",
-          deliveryCharges: 100,
+          orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
+          paymentType: customerData.paymentMethod === "cash" ? "Cash" : "Card",
+          deliveryCharges: selectedAddress.deliveryCharges || 0,
+          status: "Pending",
         };
+
+        console.log("Submitting order:", orderObject);
 
         // Setup response handler
         const handleOrderResponse = (response: PlaceOrderResponse) => {

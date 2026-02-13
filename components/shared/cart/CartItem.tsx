@@ -11,7 +11,7 @@ import {
   removeItem,
 } from "@/store/slices/cartSlice";
 import { formatPrice } from "@/lib/product/productHelper";
-import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
+import { getCartItemAddons, getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +26,7 @@ export function CartItem({ item }: CartItemProps) {
   const t = useTranslations("cart");
   const [showAddons, setShowAddons] = useState(false);
 
-  const addons = getCartItemAddonsText(item);
+  const addons = getCartItemAddons(item);
   const hasAddons = addons.length > 0;
   const hasDiscount = !!item.discount;
 
@@ -139,14 +139,14 @@ export function CartItem({ item }: CartItemProps) {
 
       {/* Addons & Special Instructions */}
       {hasAddons && (
-        <div className="border-t border-gray-100 px-3 py-2 bg-gray-50">
+        <div className="px-3 py-2">
           {/* Toggle Button */}
           <button
             onClick={() => setShowAddons(!showAddons)}
-            className="flex items-center justify-between w-full text-sm text-gray-600 hover:text-gray-900"
+            className="flex items-center justify-between w-full text-sm text-red-600 cursor-pointer"
           >
-            <span className="font-medium">
-              {hasAddons && `${addons.length} ${t("addons")}`}
+            <span className="font-regular">
+              {hasAddons && `View ${t("addons")}`}
             </span>
             {showAddons ? (
               <ChevronUp className="h-4 w-4" />
@@ -164,10 +164,11 @@ export function CartItem({ item }: CartItemProps) {
                   {addons.map((addon, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 text-xs text-gray-600"
+                      className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
                     >
-                      <span className="w-1 h-1 rounded-full bg-gray-400" />
-                      <span>{addon}</span>
+                      
+                      <span>+ {addon.name} {addon.quantity > 1 ? `(${addon.quantity}x)` : ''}</span>
+                      {addon.price > 0 ? <span> + Rs {addon.price}</span> : '-'}
                     </div>
                   ))}
                 </div>

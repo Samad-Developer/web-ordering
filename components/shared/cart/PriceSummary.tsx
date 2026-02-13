@@ -27,7 +27,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
 
   // 🎨 Different styles based on variant
   const containerStyles = {
-    cart: "space-y-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)] p-3 rounded-lg bg-white",
+    cart: "space-y-2 shadow-sm p-3 rounded-lg bg-white",
     checkout: "space-y-3",
     success: "space-y-3" // Same as checkout but without header
   };
