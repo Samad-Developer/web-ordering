@@ -35,14 +35,14 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
   // Dynamic border styling based on variant
   const containerBorderClass =
     variant === "checkout"
-      ? " shadow-md"
+      ? "shadow-sm"
       : variant === "success"
         ? "border-2 "
         : "border";
 
   return (
     <div className={`rounded-xl ${containerBorderClass}`}>
-      <div className="flex items-center gap-2 bg-gray-200 p-4 rounded-t-lg border-b">
+      <div className="flex items-center gap-2 bg-gray-100 p-4 rounded-t-lg border-b">
         <ShoppingBag className="w-6 h-6 text-gray-600" />
         <h2 className="text-lg font-semibold text-gray-800 tracking-wide">
           {t("orderSummary")}

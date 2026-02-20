@@ -140,6 +140,7 @@ export interface ThemeSettings {
   USER_LOGIN_ICON?: boolean;
   HAMBURGER_MENU?: boolean;
   ABOUT_US?: boolean;
+  OrderStatuses?: Record<string, string>; // e.g., { "1": "Pending", "2": "Accepted", ... }
 }
 
 export interface Theme {

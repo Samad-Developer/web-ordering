@@ -20,7 +20,6 @@ export function useMenu() {
     dispatch(menuRequested());
 
     const handler = (response: MenuResponse) => {
-      console.log("Menu Response for branch:", branchId, response);
       dispatch(menuReceived(response.dataPayload));
     };
 
@@ -29,7 +28,6 @@ export function useMenu() {
 
     connection.invoke('DataRequest', 'rollinnbbq.pk', 'Menu', branchId, 'MenuResponse')
       .catch((err) => {
-        console.error('Menu fetch error:', err);
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
       });
 

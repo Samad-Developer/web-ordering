@@ -97,7 +97,7 @@ export default function OrderSuccessContent() {
           <div className="flex flex-wrap justify-center gap-4">
             <Button
               onClick={() => handleNavigation("/")}
-              className="gap-2"
+              className="gap-2 px-5"
               size="lg"
             >
               <ShoppingBag className="w-4 h-4" />

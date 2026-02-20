@@ -19,8 +19,8 @@ function createRandomUserId(): string {
 function getUserId() {
   try {
     // Try to get from localStorage
-    const existingId = localStorage.getItem(USER_ID_KEY);
-    if (existingId) return existingId;
+    // const existingId = localStorage.getItem(USER_ID_KEY);
+    // if (existingId) return existingId;
 
     // create new user id and save to localStorage
     const branchId = getSavedBranchId();

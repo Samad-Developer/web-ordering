@@ -19,7 +19,8 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
         withCredentials: false,
       }
     )
-    .withAutomaticReconnect()
+    .withAutomaticReconnect([0, 2000, 5000, 10000, 30000])
+    .withKeepAliveInterval(15000)
     .configureLogging(signalR.LogLevel.Warning)
     .build();
 
