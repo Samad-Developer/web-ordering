@@ -11,33 +11,33 @@ export function SuccessAnimation({
   orderNumber
 }: SuccessAnimationProps) {
   return (
-    <div className=" py-10 px-6">
-      <div className="max-w-3xl mx-auto">
+    <div className="flex items-center justify-center py-10 px-4">
+      <div className="max-w-2xl w-full text-center space-y-8">
 
-        {/* SUCCESS SECTION */}
-        <div className="text-center">
+        {/* Success Message - Centered */}
+        <div className="space-y-6">
           <div className="flex justify-center">
-            <div className="w-24 h-24 flex items-center justify-center bg-green-100 rounded-full">
-              <Check
-                className="w-14 h-14 text-green-500"
-                strokeWidth={2}
-              />
+            <div className="w-20 h-20 flex items-center justify-center bg-green-500 rounded-full animate-scale-in">
+              <Check className="w-12 h-12 text-white" strokeWidth={3} />
             </div>
           </div>
 
-          <div className="mt-6 space-y-2">
-            <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-              Thank You!
-            </h1>
-            <p className="text-xl text-muted-foreground mb-2">Order ID: <span className="font-semibold text-foreground">{orderNumber}</span></p>
-            <p className="text-muted-foreground">Your order has been placed successfully.</p>
+          <div className="space-y-3">
+            <h1 className="text-5xl font-bold">Thank You!</h1>
+            <p className="text-xl text-muted-foreground">
+              Your order has been placed successfully
+            </p>
+          </div>
+
+          <div className="inline-flex items-center gap-2 bg-muted px-4 py-2 rounded-full">
+            <span className="text-sm text-muted-foreground">Order ID:</span>
+            <span className="font-semibold">#{orderNumber}</span>
           </div>
         </div>
 
-        {/* STATUS SECTION */}
-        <div>
-          <OrderStatusDisplay orderNumber={orderNumber} />
-        </div>
+        {/* Live Status */}
+        <OrderStatusDisplay orderNumber={orderNumber} />
+
       </div>
     </div>
   );

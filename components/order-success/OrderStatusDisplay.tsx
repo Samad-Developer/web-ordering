@@ -1,10 +1,8 @@
-import { CheckCircle2, XCircle, Bike, Home, PackageCheck } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { CheckCircle2, XCircle, Bike, ChefHat, Clock } from "lucide-react";
 import { useSignalR } from "@/contexts/signalr-provider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { selectAddressApiData } from "@/store/slices/addressSlice";
-import { useState } from "react";
 
 export function OrderStatusDisplay({ orderNumber }: { orderNumber: string }) {
   const { connection, isConnected } = useSignalR();
@@ -14,6 +12,7 @@ export function OrderStatusDisplay({ orderNumber }: { orderNumber: string }) {
 
   useEffect(() => {
     if (!connection || !isConnected) return;
+
     connection.on("OrderStatusUpdate", (OrderStatus) => {
       if (OrderStatus.orderNumber !== orderNumber) return;
 
@@ -26,93 +25,86 @@ export function OrderStatusDisplay({ orderNumber }: { orderNumber: string }) {
     return () => {
       connection.off("OrderStatusUpdate");
     };
-  }, [connection, isConnected]);
+  }, [connection, isConnected, orderNumber, statusMap]);
 
   if (!currentStatus) return null;
 
-  return (
-    <div className="rounded-2xl  mt-6  text-center transition-all duration-500">
-        {/* Section 2: Order Status - Beautiful Container */}
-        <div className="mb-20 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-          <div className="bg-card rounded-3xl p-12 shadow-lg border border-border/50 backdrop-blur-sm">
-            <h2 className="text-3xl font-bold mb-12 text-foreground tracking-tight">Order Status</h2>
-                  {renderStatusUI(currentStatus)}
-          </div>
-        </div>
-
-    </div>
-  );
-}
-
-function renderStatusUI(status: string) {
-  const STATUS_CONFIG: Record<string,
-    {
-      label: string;
-      description: string;
-      icon: React.ReactNode;
-      gradient: string;
-    }> = {
-    Pending: {
-      label: "Order Received",
-      description: "Waiting for restaurant confirmation.",
-      icon: <PackageCheck className="h-14 w-14" />,
-      gradient: "from-gray-50 to-gray-100",
-    },
-    Accept: {
-      label: "Order Accepted",
-      description: "Restaurant has started preparing your meal.",
-      icon: <CheckCircle2 className="h-14 w-14" />,
-      gradient: "from-green-50 to-green-100",
-    },
-    Dispatch: {
-      label: "Out for Delivery",
-      description: "Your order is on the way.",
-      icon: <Bike className="h-14 w-14" />,
-      gradient: "from-blue-50 to-blue-100",
-    },
-    Delivered: {
-      label: "Delivered",
-      description: "Your order has been delivered.",
-      icon: <Home className="h-14 w-14" />,
-      gradient: "from-emerald-50 to-emerald-100",
-    },
-    Cancel: {
-      label: "Order Cancelled",
-      description: "This order has been cancelled.",
-      icon: <XCircle className="h-14 w-14" />,
-      gradient: "from-red-50 to-red-100",
-    },
-  };
-
-  const current = STATUS_CONFIG[status];
-  if (!current) return null;
+  const config = STATUS_CONFIG[currentStatus];
+  if (!config) return null;
 
   return (
-    <div className="animate-slide-up">
-      <div
-        className={`rounded-3xl p-4 md:p-16 bg-gradient-to-br ${current.gradient} border border-primary/10 overflow-hidden relative`}
-      >
-        {/* Decorative blur elements */}
-        <div className="absolute top-0 right-0 w-56 h-56 bg-primary/5 rounded-full -mr-28 -mt-28 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-primary/5 rounded-full -ml-20 -mb-20 blur-3xl"></div>
+    <div className="bg-card border rounded-2xl p-8 shadow-sm">
+      <div className="flex items-center justify-center gap-4">
 
-        <div className="relative z-10 text-center space-y-6">
-          {/* Icon */}
-          <div className="flex justify-center animate-pulse-glow text-primary">
-            {current.icon}
-          </div>
-
-          {/* Text */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-3 tracking-tight">
-              {current.label}
-            </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              {current.description}
-            </p>
-          </div>
+        {/* Live Blinking Indicator */}
+        <div className="relative">
+          <div className={`w-3 h-3 rounded-full ${config.color} animate-ping absolute`} />
+          <div className={`w-3 h-3 rounded-full ${config.color}`} />
         </div>
+
+        {/* Status Icon */}
+        <div className={`p-3 rounded-full ${config.bgColor}`}>
+          {config.icon}
+        </div>
+
+        {/* Status Text */}
+        <div className="text-left">
+          <h3 className="text-xl font-semibold">{config.label}</h3>
+          <p className="text-sm text-muted-foreground">{config.description}</p>
+        </div>
+
       </div>
     </div>
   );
 }
+
+const STATUS_CONFIG: Record<string, {
+  label: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+  bgColor: string;
+}> = {
+  Pending: {
+    label: "Order Received",
+    description: "Waiting for restaurant confirmation",
+    icon: <Clock className="h-6 w-6 text-orange-600" />,
+    color: "bg-orange-500",
+    bgColor: "bg-orange-100 dark:bg-orange-950",
+  },
+  Accept: {
+    label: "Preparing Your Order",
+    description: "Restaurant is cooking your meal",
+    icon: <ChefHat className="h-6 w-6 text-blue-600" />,
+    color: "bg-blue-500",
+    bgColor: "bg-blue-100 dark:bg-blue-950",
+  },
+  Confirmed: {
+    label: "Preparing Your Order",
+    description: "Restaurant is cooking your meal",
+    icon: <ChefHat className="h-6 w-6 text-blue-600" />,
+    color: "bg-blue-500",
+    bgColor: "bg-blue-100 dark:bg-blue-950",
+  },
+  Dispatch: {
+    label: "Out for Delivery",
+    description: "Your order is on the way",
+    icon: <Bike className="h-6 w-6 text-purple-600" />,
+    color: "bg-purple-500",
+    bgColor: "bg-purple-100 dark:bg-purple-950",
+  },
+  Delivered: {
+    label: "Delivered",
+    description: "Enjoy your meal!",
+    icon: <CheckCircle2 className="h-6 w-6 text-green-600" />,
+    color: "bg-green-500",
+    bgColor: "bg-green-100 dark:bg-green-950",
+  },
+  Cancel: {
+    label: "Order Cancelled",
+    description: "This order has been cancelled",
+    icon: <XCircle className="h-6 w-6 text-red-600" />,
+    color: "bg-red-500",
+    bgColor: "bg-red-100 dark:bg-red-950",
+  },
+};

@@ -70,9 +70,7 @@ export default function OrderSuccessContent() {
   if (!customerInfo) return null;
 
   return (
-    <div className="min-h-screen ">
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8">
           <SuccessAnimation
             orderNumber={orderData.orderNumber}
             orderTime={orderData.orderDate}
@@ -111,7 +109,5 @@ export default function OrderSuccessContent() {
             </p>
           </div>
         </div>
-      </div>
-    </div>
   );
 }
