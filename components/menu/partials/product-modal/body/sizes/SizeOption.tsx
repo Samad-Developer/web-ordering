@@ -18,6 +18,7 @@ interface SizeOptionProps {
 export function SizeOption({ size, isSelected, scrollToSection }: SizeOptionProps) {
   const { setSize } = useProductModal();
   const discountCalc = calculateDiscount(size.price, size.discount)
+  const hasDiscount = size.discount && discountCalc?.discountPercentage && discountCalc.discountPercentage > 0;
 
   const handleClick = () => {
     setSize(size.id);
@@ -34,8 +35,12 @@ export function SizeOption({ size, isSelected, scrollToSection }: SizeOptionProp
           : "border-gray-200 hover:border-gray-300 bg-white text-gray-900"
       )}
     >
-      <p className=' text-xs font-semibold text-red-600'>Save {discountCalc.discountPercentage}%</p>
-
+      {hasDiscount && (
+        <p className='text-xs font-semibold text-red-600'>
+          Save {discountCalc.discountPercentage}%
+        </p>
+      )}
+      
       <h1 className='font-semibold text-base'>{size.name}</h1>
 
       <PriceDisplay
