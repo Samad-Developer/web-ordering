@@ -5,7 +5,7 @@ export const categoryTabVariants = cva(
   {
     variants: {
       layout: {
-        default: "px-3 py-2 font-semibold text-[14px] sm:text-[16px]",
+        default: "px-3 py-1 sm:py-2 font-semibold text-[14px] sm:text-[16px]",
         iconic: "flex-col justify-center gap-2 px-3 py-2 text-[13px] sm:text-[15px] text-center font-medium",
       },
       state: {

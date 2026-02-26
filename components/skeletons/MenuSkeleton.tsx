@@ -79,7 +79,7 @@ const ProductCardSkeleton = () => (
 
 // Products Grid Skeleton
 const ProductsGridSkeleton = ({ count = 6 }) => (
-  <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-8 px-4 mb-8">
+  <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 px-4 mb-8">
     {Array.from({ length: count }).map((_, index) => (
       <ProductCardSkeleton key={index} />
     ))}
@@ -89,7 +89,7 @@ const ProductsGridSkeleton = ({ count = 6 }) => (
 // Main Menu Skeleton Component
 const MenuSkeleton = () => {
   return (
-    <div className="my-10 max-w-7xl mx-auto px-2 sm:px-0 min-h-screen py-8">
+    <div className="my-10 max-w-6xl mx-auto px-2 sm:px-0 min-h-screen py-8">
       {/* Search Box */}
       {/* <SearchSkeleton /> */}
 

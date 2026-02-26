@@ -32,14 +32,21 @@ export default function CheckoutPage() {
             />
           </div>
 
-          {/* Right: Order Summary & Place Order Button */}
-          <div className="lg:col-span-1 space-y-4 relative">
+          <div className="lg:col-span-1 space-y-4">
             <OrderSummary />
-            <PlaceOrderButton
-              onPlaceOrder={handlePlaceOrder}
-              isDisabled={cartItems.length === 0}
-              isSubmitting={isSubmitting}
-            />
+
+            {/* Mobile fixed bottom */}
+            <div className="
+    fixed bottom-0 left-0 right-0 z-10
+    p-4 bg-white border-t shadow-lg
+    lg:static lg:p-0 lg:bg-transparent lg:border-0 lg:shadow-none
+  ">
+              <PlaceOrderButton
+                onPlaceOrder={handlePlaceOrder}
+                isDisabled={cartItems.length === 0}
+                isSubmitting={isSubmitting}
+              />
+            </div>
           </div>
         </div>
       </div>

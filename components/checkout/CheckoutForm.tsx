@@ -108,14 +108,14 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
 
   return (
-    <Card>
-      <CardHeader>
+    <div className="border p-6 rounded-xl">
+      <div>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-2xl">{t("title")}</CardTitle>
+          <h1 className="text-2xl">{t("title")}</h1>
         </div>
-      </CardHeader>
+      </div>
 
-      <CardContent>
+      <div>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
@@ -138,7 +138,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
             onPaymentMethodChange={handlePaymentMethodChange}
           />
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

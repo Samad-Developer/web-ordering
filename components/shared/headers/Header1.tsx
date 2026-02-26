@@ -12,6 +12,7 @@ import { SvgIcon } from "../../common/SvgIcon";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useAppSelector } from "@/store/hooks";
 import { selectAddressApiData } from "@/store/slices/addressSlice";
+import { MapPin } from "lucide-react";
 
 const headerConfig = {
   phoneNumber: "+923485497976",
@@ -46,7 +47,10 @@ const Header1 = () => {
   
         {/* Left Section */}
         <div className="flex items-center gap-3">
-          <ChangeLocation locationIcon={<SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location" />} />
+          <ChangeLocation locationIcon={
+            // <SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location" />
+            <MapPin size={20} color="#4B5563" />
+            } />
           <PhoneNumber
             phoneIcon={<SvgIcon src="/assets/images/svgIcons/phone-call.svg" alt="Phone" />}
             phoneNumber={headerConfig.phoneNumber}
@@ -69,7 +73,9 @@ const Header1 = () => {
           {showMultiLanguage && <LanguageSwitcher />}
   
           <CartButton
-            cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}
+            cartIcon={
+            <SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />
+          }
             href={headerConfig.cartHref}
           />
   

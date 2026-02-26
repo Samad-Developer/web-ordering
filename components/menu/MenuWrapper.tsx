@@ -75,7 +75,7 @@ const MenuWrapper = () => {
 
       {/* Search Results Info */}
       {isSearching && (
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-4 py-4">
           {hasResults ? (
             <p className="text-gray-600">
               Found {totalResults} item{totalResults !== 1 ? "s" : ""} matching&nbsp;

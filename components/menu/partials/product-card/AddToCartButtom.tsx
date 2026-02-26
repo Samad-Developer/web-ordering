@@ -25,14 +25,13 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const variantClasses = {
     primary: "bg-popup-cart-bg text-popup-cart-fg",
     secondary: "bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800",
-    outline:
-      "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50 active:bg-red-100",
+    outline: "bg-white text-red-600 border-2 border-red-600 hover:bg-red-50 active:bg-red-100",
   };
 
   const sizeClasses = {
-    sm: "py-2 px-4 text-sm",
-    md: "py-3 px-6 text-base",
-    lg: "py-4 px-8 text-lg",
+    sm: "py-2 px-2 text-sm",
+    md: "py-[10px] px-2 text-base",
+    lg: "py-4 px-4 text-lg",
   };
 
   return (
@@ -45,7 +44,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
         disabled:opacity-50 disabled:cursor-not-allowed
         flex items-center justify-center gap-2
         focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
-        shadow-md hover:shadow-lg active:shadow-sm
+        shadow-md hover:shadow-lg active:shadow-sm 
         ${variantClasses[variant]}
         ${sizeClasses[size]}
         ${className}
