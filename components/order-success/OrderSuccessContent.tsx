@@ -70,7 +70,7 @@ export default function OrderSuccessContent() {
   if (!customerInfo) return null;
 
   return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8 py-5">
           <SuccessAnimation
             orderNumber={orderData.orderNumber}
             orderTime={orderData.orderDate}
@@ -99,15 +99,10 @@ export default function OrderSuccessContent() {
               size="lg"
             >
               <ShoppingBag className="w-4 h-4" />
-              Continue Shopping
+              Place Another order
             </Button>
           </div>
 
-          <div className="text-center space-y-2">
-            <p className="text-xs text-gray-500">
-              If you have any questions, please contact our customer support
-            </p>
-          </div>
         </div>
   );
 }

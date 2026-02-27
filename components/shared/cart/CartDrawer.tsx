@@ -66,7 +66,7 @@ export function CartDrawer() {
           <EmptyCart />
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-2 py-2">
+            <div className="flex-1 overflow-y-auto px-4 sm:px-4 py-2">
               {/* Cart Items */}
               <div className="space-y-4">
                 {cartItems.map((item) => (
@@ -117,9 +117,9 @@ export function CartDrawer() {
 
             
               {/* Footer - Summary & Checkout */}
-              <div className="px-2 py-4 space-y-4">
+              <div className="px-2 pb-4 space-y-4">
                 {/* Price Summary */}
-                <div className="p-2">
+                <div className="">
                   <PriceSummary variant="cart" />
                 </div>
 

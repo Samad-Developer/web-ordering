@@ -1,8 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useCartTotals } from '@/hooks/useCartTotals';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
@@ -16,6 +17,7 @@ export function PlaceOrderButton({
   isSubmitting,
 }: PlaceOrderButtonProps) {
   const t = useTranslations("checkout")
+ const totals = useCartTotals();
 
   return (
     <div className="space-y-3 ">
@@ -31,11 +33,10 @@ export function PlaceOrderButton({
             {t('processingOrder')}
           </div>
         ) : (
-          <div className="flex items-center justify-center w-full">
+          <div className="flex items-center justify-center gap-2 w-full">
             <span className="flex items-center gap-2">
               {t('placeOrder')}
             </span>
-            {/* <span className="font-bold">Rs. {totalAmount.toLocaleString()}</span> */}
           </div>
         )}
       </Button>

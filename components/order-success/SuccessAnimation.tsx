@@ -11,7 +11,7 @@ export function SuccessAnimation({
   orderNumber
 }: SuccessAnimationProps) {
   return (
-    <div className="flex items-center justify-center py-10 px-4">
+    <div className="flex items-center justify-center py-10 px-4 bg-green-50 rounded-xl mt-4">
       <div className="max-w-2xl w-full text-center space-y-8">
 
         {/* Success Message - Centered */}
@@ -23,7 +23,7 @@ export function SuccessAnimation({
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-5xl font-bold">Thank You!</h1>
+            <h1 className="text-5xl text-green-600 font-bold">Thank You!</h1>
             <p className="text-xl text-muted-foreground">
               Your order has been placed successfully
             </p>
