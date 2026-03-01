@@ -54,24 +54,24 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   if (layout === 'vertical') {
     return (
       <div className={`flex items-baseline justify-center gap-2 ${className}`}>
-       
+
         {/* Final Price */}
         <span className={`font-semibold text-gray-700 ${sizeClasses[size].final}`}>
           Rs. {calculation.finalPrice.toFixed(0)}
         </span>
 
-         {/* Original Price */}
-         {showOriginalPrice && (
+        {/* Original Price */}
+        {showOriginalPrice && (
           <span className={`text-gray-400 line-through ${sizeClasses[size].original}`}>
             Rs. {calculation.originalPrice}
           </span>
         )}
 
- {showSavings && calculation.discountPercentage && (
-        <span className={` text-xs font-semibold text-red-600 ${sizeClasses[size].savings}`}>
-          (Save {calculation.discountPercentage.toFixed(0)}%)
-        </span>
-      )}
+        {showSavings && calculation.discountPercentage && (
+          <span className={` text-xs font-semibold text-red-600 ${sizeClasses[size].savings}`}>
+            (Save {calculation.discountPercentage.toFixed(0)}%)
+          </span>
+        )}
       </div>
     );
   }

@@ -213,7 +213,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         </div>
 
         {/* Content Section */}
-        <div className="p-2 sm:p-6 space-y-4">
+        <div className="p-4 sm:p-6 space-y-4">
           <ProductHeader
             name={product.Name}
             description={
@@ -228,7 +228,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           />
 
           {/* Add to Cart / Quantity Counter */}
-          <div className="pt-2" onClick={(e) => e.stopPropagation()}>
+          <div className="" onClick={(e) => e.stopPropagation()}>
             {isInCart ? (
               <QuantityCounter
                 quantity={totalQuantity}
@@ -247,6 +247,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
               />
             )}
           </div>
+
         </div>
       </article>
 

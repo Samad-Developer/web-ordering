@@ -30,7 +30,7 @@ export function FloatingCartButton() {
           onClick={handleOpenCart}
           className={cn(
             "cursor-pointer relative flex items-center gap-8 sm:gap-16",
-            "px-4 py-3 rounded-full",
+            "px-4 py-3 rounded-lg",
             "bg-primary text-secondary",
             "shadow-2xl hover:shadow-red-500/50",
             "transition-all duration-300 ease-out",
@@ -42,9 +42,8 @@ export function FloatingCartButton() {
           {/* Cart Icon with Badge */}
           <div className="relative flex-shrink-0">
             <CartButton
-              cartIcon={
-                <SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Menu" />
-              }
+              cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Menu" />}
+              iconClassName="text-white"
             />
   
           </div>

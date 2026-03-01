@@ -30,7 +30,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
 
   const sizeClasses = {
     sm: "py-2 px-2 text-sm",
-    md: "py-[10px] px-2 text-base",
+    md: "py-[9px] sm:py-[10px] px-2 text-base",
     lg: "py-4 px-4 text-lg",
   };
 

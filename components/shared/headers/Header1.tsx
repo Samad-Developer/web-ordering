@@ -72,11 +72,10 @@ const Header1 = () => {
   
           {showMultiLanguage && <LanguageSwitcher />}
   
+
           <CartButton
-            cartIcon={
-            <SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />
-          }
-            href={headerConfig.cartHref}
+            cartIcon={<SvgIcon src="/assets/images/svgIcons/cart.svg" alt="Cart" />}
+            iconClassName="text-primary"
           />
   
           {showUserLogin && (

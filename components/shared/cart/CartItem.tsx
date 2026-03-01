@@ -99,7 +99,7 @@ export function CartItem({ item }: CartItemProps) {
             </div>
 
             {/* Quantity Controls */}
-            <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1 border">
+            <div className="flex items-center gap-2 bg-gray-100 rounded-full p-1 border">
               {item.customization.quantity === 1 ? (
                 <Button
                   variant="ghost"
@@ -178,7 +178,7 @@ export function CartItem({ item }: CartItemProps) {
         </div>
       )}
 
-      <Separator className="bg-gray-200 h-[1px] w-full mt-1" />
+      <Separator className="bg-gray-200 h-[1px] w-full mt-2" />
     </div>
   );
 }

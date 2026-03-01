@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector } from "@/store/hooks";
-import { X, ShoppingBag } from "lucide-react";
+import { X, ShoppingCart } from "lucide-react";
 import { selectCartItems, selectIsCartOpen } from "@/store/slices/cartSlice";
 import {
   Sheet,
@@ -48,15 +48,15 @@ export function CartDrawer() {
         {/* Header */}
         <SheetHeader className="px-6 py-4 border-b">
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-2xl font-bold flex items-center gap-2">
-              <ShoppingBag className="h-6 w-6" />
+            <SheetTitle className="text-xl font-semibold flex items-center gap-2">
+              {/* <ShoppingCart className="h-6 w-6 text-primary" /> */}
               {t("title")}{" "}
             </SheetTitle>
             <button
               className="bg-primary text-secondary font-extrabold rounded-full hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
               onClick={() => dispatch(toggleCart(false))}
             >
-              <X className="h-4 w-4 font-extrabold" />
+              <X className="h-4 w-4 font-extrabold" strokeWidth={4}/>
             </button>
           </div>
         </SheetHeader>
@@ -119,7 +119,7 @@ export function CartDrawer() {
               {/* Footer - Summary & Checkout */}
               <div className="px-2 pb-4 space-y-4">
                 {/* Price Summary */}
-                <div className="">
+                <div className="p-2">
                   <PriceSummary variant="cart" />
                 </div>
 
