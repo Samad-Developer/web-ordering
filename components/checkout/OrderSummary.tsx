@@ -33,12 +33,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
   };
 
   // Dynamic border styling based on variant
-  const containerBorderClass =
-    variant === "checkout"
-      ? "shadow-sm"
-      : variant === "success"
-        ? "border-2 "
-        : "border";
+  const containerBorderClass = variant === "checkout" ? "shadow-sm" : variant === "success" ? "border-2 " : "border";
 
   return (
     <>

@@ -13,7 +13,6 @@ import {
   OrderMode,
   PaymentMethod,
 } from "@/types/checkout.types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CheckoutFormFields } from "./CheckoutFormFields";
 import { PaymentSection } from "./PaymentSection";
@@ -28,7 +27,6 @@ interface CheckoutFormProps {
 }
 
 export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
-  const t = useTranslations("checkout");
   const router = useRouter();
   const { locale } = useParams();
   const cartItems = useAppSelector(selectCartItems);
@@ -74,14 +72,10 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
     }
   };
 
-
-
   const onSubmit = async (data: CheckoutFormData) => {
 
     try {
       const response = await submitOrder(data);
-
-      console.log("Order submission response:", response);
 
       if (response.dataPayload?.Success) {
         toast.success("Order placed successfully!", {
@@ -96,16 +90,13 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
       setPaymentMethod("cash");
 
       router.push(`/${locale}/order-success?orderNumber=${response.dataPayload?.OrderNumber}`);
-
+      
     } catch (error) {
       toast.error("Failed to place order", {
         description: error instanceof Error ? error.message : "Please try again or contact support.",
       });
     }
-
   };
-
-
 
   return (
     <div className="p-2 sm:p-10">
