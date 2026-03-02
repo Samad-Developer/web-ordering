@@ -42,7 +42,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-gray-800 tracking-wide mb-2">
+      <h2 className="text-lg font-semibold text-gray-700 tracking-wide mb-2">
         {t("orderSummary")}
       </h2>
 
