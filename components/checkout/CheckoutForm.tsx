@@ -109,8 +109,6 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
   return (
     <div className="p-2 sm:p-10">
-    
-
       <div>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

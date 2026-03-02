@@ -42,7 +42,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
 
   return (
     <>
-      <h2 className="text-lg font-semibold text-gray-800 tracking-wide">
+      <h2 className="text-lg font-semibold text-gray-800 tracking-wide mb-2">
         {t("orderSummary")}
       </h2>
 
@@ -140,7 +140,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
             {/* Show cart summary and separator only if showCartDetails is true */}
             {showPaymentDetails && (
               <>
-                <Separator />
+                <Separator className="bg-gray-600"/>
                 <PriceSummary variant="checkout" />
               </>
             )}

@@ -25,7 +25,6 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
 
   const isFreeDelivery = totals.isFreeDelivery;
 
-  // 🎨 Different styles based on variant
   const containerStyles = {
     cart: "space-y-2 shadow-sm p-3 rounded-lg bg-white",
     checkout: "space-y-3",
@@ -34,7 +33,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
 
   const detailsContainerStyles = {
     cart: "space-y-2",
-    checkout: "space-y-2 bg-white p-4 rounded-lg",
+    checkout: "space-y-2 bg-white mb-0 p-4 rounded-lg",
     success: "space-y-2 bg-white p-4 rounded-lg" // Same as checkout
   };
 
@@ -68,22 +67,11 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
     success: "w-5 h-5"
   };
 
-  const dividerStyles = {
-    cart: "border-t border-gray-200 my-2",
-    checkout: "border-t-2 border-gray-300 my-3",
-    success: "border-t-2 border-gray-300 my-3"
-  };
 
   const styles = textSizeStyles[variant];
 
   return (
     <div className={containerStyles[variant]}>
-
-      {variant === 'checkout' && (
-        <div className="flex items-center gap-2 mb-3 pb-3 border-b-2 border-gray-200">
-          <h3 className="text-xl font-bold text-gray-900">Price Summary</h3>
-        </div>
-      )}
 
       <div className={detailsContainerStyles[variant]}>
         {/* Subtotal */}
@@ -144,13 +132,10 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
             )}
           </div>
         )}
-
-        {/* Divider */}
-        <div className={dividerStyles[variant]} />
       </div>
 
       {/* Grand Total */}
-      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? 'bg-red-50 p-4 rounded-lg' : ''}`}>
+      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? 'bg-red-50 border border-red-200 p-4 rounded-lg' : ''}`}>
         <span className={`${styles.totalLabel} flex gap-2 items-center`}>
           {/* <Wallet className={variant === 'cart' ? 'w-5 h-5' : 'w-6 h-6'} />  */}
           {t('grandTotal')}
