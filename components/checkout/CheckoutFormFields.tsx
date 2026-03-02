@@ -39,7 +39,7 @@ export function CheckoutFormFields({
     <div className="space-y-6">
       {/* Customer Information */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-900">{t('customerInfo')}</h3>
+        {/* <h3 className="text-lg font-semibold text-gray-900">{t('customerInfo')}</h3> */}
 
         {/* Title & Full Name */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
@@ -149,7 +149,7 @@ export function CheckoutFormFields({
       {/* Delivery Information (Delivery Mode Only) */}
       {orderMode === 'delivery' && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">{t("deliveryInfo")}</h3>
+          {/* <h3 className="text-lg font-semibold text-gray-900">{t("deliveryInfo")}</h3> */}
 
           {/* Delivery Address */}
           <div className="space-y-2">

@@ -21,7 +21,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#F9FAFB]">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left: Checkout Form */}
@@ -37,10 +37,10 @@ export default function CheckoutPage() {
 
             {/* Mobile fixed bottom */}
             <div className="
-    fixed bottom-0 left-0 right-0 z-10
-    p-4 bg-white border-t shadow-lg
-    lg:static lg:p-0 lg:bg-transparent lg:border-0 lg:shadow-none
-  ">
+              fixed bottom-0 left-0 right-0 z-10
+              p-4 bg-white border-t shadow-lg
+              lg:static lg:p-0 lg:bg-transparent lg:border-0 lg:shadow-none
+            ">
               <PlaceOrderButton
                 onPlaceOrder={handlePlaceOrder}
                 isDisabled={cartItems.length === 0}

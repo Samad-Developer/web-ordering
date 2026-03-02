@@ -168,7 +168,7 @@ export function CartItem({ item }: CartItemProps) {
                     >
                       
                       <span>+ {addon.name} {addon.quantity > 1 ? `(${addon.quantity}x)` : ''}</span>
-                      {addon.price > 0 ? <span> + Rs {addon.price}</span> : '-'}
+                      {addon.price > 0 ? <span>Rs {addon.price}</span> : '-'}
                     </div>
                   ))}
                 </div>

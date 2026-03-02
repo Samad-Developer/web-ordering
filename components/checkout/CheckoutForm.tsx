@@ -108,12 +108,8 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
 
   return (
-    <div className="border p-6 rounded-xl">
-      <div>
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl">{t("title")}</h1>
-        </div>
-      </div>
+    <div className="p-2 sm:p-10">
+    
 
       <div>
         <form
