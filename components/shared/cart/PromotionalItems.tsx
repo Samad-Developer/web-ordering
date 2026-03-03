@@ -13,6 +13,7 @@ import { useMenu } from "@/hooks/useMenu"
 import { getPromotionalItems } from "@/lib/cart/cartHelpers";
 import { useAppSelector } from "@/store/hooks";
 import { selectCartItems } from "@/store/slices/cartSlice";
+import { Flame } from "lucide-react";
 
 export function PromotionalItems() {
     const { menuData } = useMenu();
@@ -41,12 +42,15 @@ export function PromotionalItems() {
     return (
         <div className="my-6">
             {/* Header with Navigation */}
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2 mb-4">
+                <div className="rounded-xl p-2 bg-red-50">
+                    <Flame className="text-red-500" size={20} />
+                </div>
                 <div>
                     <h3 className="text-lg font-semibold text-gray-900">
-                        🔥 Featured Items
+                        Featured Items
                     </h3>
-                    <p className="text-sm text-gray-500 mt-0.5">
+                    <p className="text-sm text-gray-500">
                         Handpicked items we recommend
                     </p>
                 </div>
