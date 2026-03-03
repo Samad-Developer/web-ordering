@@ -11,11 +11,11 @@ import {
   removeItem,
 } from "@/store/slices/cartSlice";
 import { formatPrice } from "@/lib/product/productHelper";
-import { getCartItemAddons, getCartItemAddonsText } from "@/lib/cart/cartHelpers";
-import { Button } from "@/components/ui/button";
+import { getCartItemAddons } from "@/lib/cart/cartHelpers";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { getImageUrl } from "@/lib/image/imageUtils";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface CartItemProps {
   item: CartItemType;
@@ -115,37 +115,31 @@ export function CartItem({ item }: CartItemProps) {
         {/* Quantity Controls */}
         <div className="flex items-center gap-0">
           {item.customization.quantity === 1 ? (
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-l-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
               onClick={handleRemove}
             >
               <Trash2 className="h-3.5 w-3.5 text-primary" />
-            </Button>
+            </button>
           ) : (
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-l-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
               onClick={handleDecrement}
             >
               <Minus className="h-3.5 w-3.5" />
-            </Button>
+            </button>
           )}
 
           <div className="flex h-8 w-8 items-center justify-center border-y border-border bg-card text-sm font-medium text-foreground">
             {item.customization.quantity}
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
+          <button
             className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-r-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
             onClick={handleIncrement}
           >
             <Plus className="h-3.5 w-3.5" />
-          </Button>
+          </button>
         </div>
       </div>
 
@@ -168,25 +162,36 @@ export function CartItem({ item }: CartItemProps) {
           </button>
 
           {/* Expanded Details */}
-          {showAddons && (
-            <div className="mt-2 space-y-1 bg-gray-50 p-3 rounded-lg">
-              {/* Addons List */}
-              {hasAddons && (
-                <div className="space-y-1">
-                  {addons.map((addon, index) => (
-                    <div
-                      key={index}
-                      className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
-                    >
-
-                      <span>+ {addon.name} {addon.quantity > 1 ? `(${addon.quantity}x)` : ''}</span>
-                      {addon.price > 0 ? <span>Rs {addon.price}</span> : '-'}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          <AnimatePresence>
+  {showAddons && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="overflow-hidden"
+    >
+      <div className="mt-2 space-y-1 bg-gray-50 p-3 rounded-lg">
+        {addons.map((addon, index) => (
+          <div
+            key={index}
+            className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
+          >
+            <span>
+              + {addon.name}{" "}
+              {addon.quantity > 1 ? `(${addon.quantity}x)` : ""}
+            </span>
+            {addon.price > 0 ? (
+              <span>Rs {addon.price}</span>
+            ) : (
+              "-"
+            )}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
         </div>
       )}
 

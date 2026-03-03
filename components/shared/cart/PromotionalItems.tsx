@@ -18,8 +18,6 @@ export function PromotionalItems() {
     const { menuData } = useMenu();
     const cartItems = useAppSelector(selectCartItems);
 
-    if (!menuData) return;
-
     // Extract promotional items and filter out those already in cart
     const promotionalItems = useMemo(() => {
         if (!menuData) return [];
