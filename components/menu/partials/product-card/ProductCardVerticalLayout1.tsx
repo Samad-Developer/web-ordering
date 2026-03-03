@@ -204,7 +204,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
 
         {displayDiscount && (
           <div className="absolute top-2 left-2 z-10">
-            <DiscountBadge discount={displayDiscount} size="md" />
+            <DiscountBadge discount={displayDiscount} size="md" bounce={true}/>
           </div>
         )}
 

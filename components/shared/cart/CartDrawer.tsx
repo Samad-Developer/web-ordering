@@ -25,6 +25,7 @@ import {
   FreeDeliveryBadge,
   DeliveryTimeInfo,
 } from './CartSummaryAlerts';
+import { PromotionalItems } from "./PromotionalItems";
 
 export function CartDrawer() {
 
@@ -55,7 +56,7 @@ export function CartDrawer() {
             </div>
 
               <div className="flex flex-col">
-              {t("title")}{" "}
+              {t("title")}
               {cartItems.length > 0 && (
                 <span className="text-sm text-gray-400">
                   {cartItems.length} items
@@ -83,6 +84,11 @@ export function CartDrawer() {
                 {cartItems.map((item) => (
                   <CartItem key={item.cartItemId} item={item} />
                 ))}
+              </div>
+
+              {/* Promotional items */}
+              <div>
+                <PromotionalItems />
               </div>
 
               {/* Add More Items Button */}

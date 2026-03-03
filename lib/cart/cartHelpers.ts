@@ -1,4 +1,5 @@
 import { CartItem, CartSummary } from "@/types/cart.types";
+import { MenuItem, MenuCategory } from "@/types/menu.types";
 
 /**
  * Calculate cart summary
@@ -208,4 +209,24 @@ export function hasCustomizations(item: CartItem): boolean {
   const hasAddons = Object.keys(item.customization.selectedAddons).length > 0;
   const hasInstructions = !!item.specialInstructions && item.specialInstructions.trim() !== '';
   return hasAddons || hasInstructions;
+}
+
+
+// Helper function to extract promotional items from menu data
+export function getPromotionalItems(menuData: MenuCategory[]) {
+  if (!menuData || !Array.isArray(menuData)) return [];
+
+  const items: MenuItem[] = [];
+
+  menuData.forEach((category) => {
+    if (Array.isArray(category.Items)) {
+      category.Items.forEach((item) => {
+        if (item.IsPromotional) {
+          items.push(item);
+        }
+      });
+    }
+  });
+
+  return items;
 }

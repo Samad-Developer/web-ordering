@@ -27,6 +27,8 @@ export interface Variation {
   };
   Price: number;
   Discount: Discount | null;
+  IsPromotional: boolean;
+  IsPopular: boolean;
   ItemChoices: ItemChoice[];
 }
 
@@ -43,6 +45,8 @@ export interface MenuItem {
   Comment: string;
   Description: string;
   IsKot: boolean;
+  IsPromotional: boolean;
+  IsPopular: boolean;
   ItemFOC: boolean;
   Variations: Variation[];
   Discount: Discount | null;

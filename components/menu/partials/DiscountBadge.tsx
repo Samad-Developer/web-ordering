@@ -7,12 +7,14 @@ interface DiscountBadgeProps {
   discount: Discount | null | undefined;
   className?: string;
   size?: "sm" | "md" | "lg";
+  bounce?: boolean;
 }
 
 export const DiscountBadge: React.FC<DiscountBadgeProps> = ({
   discount,
   className = "",
   size = "md",
+  bounce = false,
 }) => {
   if (!discount) return null;
 
@@ -29,9 +31,9 @@ export const DiscountBadge: React.FC<DiscountBadgeProps> = ({
       className={`
         relative overflow-hidden
         inline-flex items-center gap-1 
-      bg-orange-500 text-white font-bold rounded 
+      bg-red-500 text-white font-bold rounded 
         ${sizeClasses[size]} ${className}
-        animate-bounce
+        ${bounce ? "animate-bounce" : ""}
       `}
     >
       {/* Shine overlay */}
