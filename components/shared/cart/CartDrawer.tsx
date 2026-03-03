@@ -48,14 +48,20 @@ export function CartDrawer() {
         {/* Header */}
         <SheetHeader className="px-6 py-4 border-b">
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-xl font-semibold flex items-center gap-2">
-              <ShoppingCart className="h-6 w-6 text-black" />
+            <SheetTitle className="text-xl font-semibold flex items-center gap-3">
+              
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15">
+              <ShoppingCart className="h-5 w-5 text-primary" />
+            </div>
+
+              <div className="flex flex-col">
               {t("title")}{" "}
               {cartItems.length > 0 && (
-                <span className="ml-1 bg-primary text-secondary text-sm font-bold px-2 py-0.5 rounded-full">
-                  {cartItems.length}
+                <span className="text-sm text-gray-400">
+                  {cartItems.length} items
                 </span>
               )}
+              </div>
             </SheetTitle>
             <button
               className="bg-gray-100 text-gray-700 font-extrabold rounded-full hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
