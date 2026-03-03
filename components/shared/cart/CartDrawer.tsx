@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector } from "@/store/hooks";
-import { X, ShoppingCart } from "lucide-react";
+import { X, ShoppingCart, Plus } from "lucide-react";
 import { selectCartItems, selectIsCartOpen } from "@/store/slices/cartSlice";
 import {
   Sheet,
@@ -49,14 +49,19 @@ export function CartDrawer() {
         <SheetHeader className="px-6 py-4 border-b">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-xl font-semibold flex items-center gap-2">
-              {/* <ShoppingCart className="h-6 w-6 text-primary" /> */}
+              <ShoppingCart className="h-6 w-6 text-black" />
               {t("title")}{" "}
+              {cartItems.length > 0 && (
+                <span className="ml-1 bg-primary text-secondary text-sm font-bold px-2 py-0.5 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
             </SheetTitle>
             <button
-              className="bg-primary text-secondary font-extrabold rounded-full hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
+              className="bg-gray-100 text-gray-700 font-extrabold rounded-full hover:text-shadow-header-profile-text cursor-pointer p-2 hover:scale-105 transition-transform"
               onClick={() => dispatch(toggleCart(false))}
             >
-              <X className="h-4 w-4 font-extrabold" strokeWidth={4}/>
+              <X className="h-4 w-4 font-extrabold" strokeWidth={4} />
             </button>
           </div>
         </SheetHeader>
@@ -76,11 +81,13 @@ export function CartDrawer() {
 
               {/* Add More Items Button */}
               <button
-                className="w-full mt-4 p-2 rounded-md border-2 border-dashed cursor-pointer"
+                className="flex items-center justify-center gap-2 w-full mt-4 p-3 rounded-xl border-2 border-dashed cursor-pointer"
                 onClick={() => {
                   dispatch(toggleCart(false));
                 }}
               >
+                <Plus className="h-4 w-4" />
+
                 {t("addMoreItems")}
               </button>
 
@@ -110,21 +117,15 @@ export function CartDrawer() {
                   <DeliveryTimeInfo timeRange={totals.deliveryTimeRange} />
                 )}
               </div>
-
-
-
             </div>
 
-            
-              {/* Footer - Summary & Checkout */}
-              <div className="px-2 pb-4 space-y-4">
-                {/* Price Summary */}
-                <div className="p-2">
-                  <PriceSummary variant="cart" />
-                </div>
-
+            {/* Footer - Summary & Checkout */}
+            <div className="p-2 pb-4 space-y-2 border-t">
+              <PriceSummary variant="cart" />
+              <div className="p-1">
                 <CheckoutButton />
               </div>
+            </div>
           </>
         )}
       </SheetContent>

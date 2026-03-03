@@ -33,11 +33,11 @@ interface ProductProps {
 }
 
 const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
+
   const dispatch = useDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const [showVariationModal, setShowVariationModal] = useState(false);
   const [showRepeatModal, setShowRepeatModal] = useState(false);
-
 
   const displayPrice = product.Price;
   const displayDiscount = product.Discount;

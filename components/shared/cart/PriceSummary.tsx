@@ -26,7 +26,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
   const isFreeDelivery = totals.isFreeDelivery;
 
   const containerStyles = {
-    cart: "space-y-2 shadow-sm p-3 rounded-lg bg-white",
+    cart: "space-y-2 p-3 rounded-lg bg-white",
     checkout: "space-y-3",
     success: "space-y-3" // Same as checkout but without header
   };

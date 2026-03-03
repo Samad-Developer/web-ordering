@@ -9,6 +9,8 @@ import { selectCartItems } from "@/store/slices/cartSlice";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
 import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { getImageUrl } from "@/lib/image/imageUtils";
 
 interface OrderSummaryProps {
   showPaymentDetails?: boolean;
@@ -50,6 +52,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                 const addons = getCartItemAddonsText(item);
                 const isExpanded = expandedItems.has(item.cartItemId);
                 const hasDiscount = !!item.discount;
+                const imageSrc = getImageUrl(item.productImage, '/assets/images/products/product.webp');
 
                 return (
                   <div
@@ -59,11 +62,16 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 text-red-600 text-xs font-semibold flex items-center justify-center">
-                            {item.customization.quantity}×
-                          </span>
+                         <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
+  <Image
+    alt={item.productName}
+    src={imageSrc}
+    fill
+    className="object-cover"
+  />
+</div>
                           <h4 className="font-medium text-sm text-gray-900 line-clamp-1">
-                            {item.productName}
+                            {item.customization.quantity} × {item.productName}
                           </h4>
                         </div>
 

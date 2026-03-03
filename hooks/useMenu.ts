@@ -20,6 +20,7 @@ export function useMenu() {
     dispatch(menuRequested());
 
     const handler = (response: MenuResponse) => {
+      console.log("Checking Menu Response", response)
       dispatch(menuReceived(response.dataPayload));
     };
 

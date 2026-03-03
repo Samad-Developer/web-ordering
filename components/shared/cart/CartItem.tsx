@@ -46,9 +46,9 @@ export function CartItem({ item }: CartItemProps) {
 
   return (
     <div className="bg-whiteoverflow-hidden">
-      <div className="flex gap-3 px-1.5">
+      <div className="flex items-start gap-3 px-1.5">
         {/* Product Image */}
-        <div className="relative w-18 h-18 flex-shrink-0 rounded-md overflow-hidden bg-gray-100">
+        <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
           <Image
             src={imageSrc}
             alt={item.productName}
@@ -66,14 +66,23 @@ export function CartItem({ item }: CartItemProps) {
           </h3>
 
           {/* Size & Flavor */}
-          <div className="flex items-center gap-2 mt-1">
-            <span className="text-xs text-gray-700 py-0.5 rounded">
-              {item.sizeName}
-            </span>
-            <span className="text-xs text-gray-700 py-0.5 rounded">
-              {item.flavorName}
-            </span>
-          </div>
+          {(item.sizeName !== "-" || item.flavorName !== "-") && (
+            <div className="flex items-center gap-2 mt-1">
+
+              {item.sizeName !== "-" && (
+                <span className="text-xs text-gray-700 py-0.5 rounded">
+                  {item.sizeName}
+                </span>
+              )}
+
+              {item.flavorName !== "-" && (
+                <span className="text-xs text-gray-700 py-0.5 rounded">
+                  {item.flavorName}
+                </span>
+              )}
+
+            </div>
+          )}
 
           {/* Price */}
           <div className=" flex items-center justify-between">
@@ -98,42 +107,45 @@ export function CartItem({ item }: CartItemProps) {
               )}
             </div>
 
-            {/* Quantity Controls */}
-            <div className="flex items-center gap-2 bg-gray-100 rounded-full p-1 border">
-              {item.customization.quantity === 1 ? (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-6 w-6 text-red-600 hover:text-red-700 hover:bg-red-50"
-                  onClick={handleRemove}
-                >
-                  <Trash2 className="h-3.5 w-3.5s" />
-                </Button>
-              ) : (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-6 w-6 hover:bg-gray-200 rounded-full"
-                  onClick={handleDecrement}
-                >
-                  <Minus className="h-3.5 w-3.5" />
-                </Button>
-              )}
 
-              <span className="text-sm font-semibold text-gray-900 min-w-[20px] text-center">
-                {item.customization.quantity}
-              </span>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-6 w-6 hover:bg-white rounded-full"
-                onClick={handleIncrement}
-              >
-                <Plus className="h-3.5 w-3.5" />
-              </Button>
-            </div>
           </div>
+        </div>
+
+
+        {/* Quantity Controls */}
+        <div className="flex items-center gap-0">
+          {item.customization.quantity === 1 ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-l-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
+              onClick={handleRemove}
+            >
+              <Trash2 className="h-3.5 w-3.5 text-primary" />
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-l-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
+              onClick={handleDecrement}
+            >
+              <Minus className="h-3.5 w-3.5" />
+            </Button>
+          )}
+
+          <div className="flex h-8 w-8 items-center justify-center border-y border-border bg-card text-sm font-medium text-foreground">
+            {item.customization.quantity}
+          </div>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="cursor-pointer flex h-8 w-8 items-center justify-center rounded-r-lg border border-border text-muted-foreground transition-colors hover:bg-secondary"
+            onClick={handleIncrement}
+          >
+            <Plus className="h-3.5 w-3.5" />
+          </Button>
         </div>
       </div>
 
@@ -157,7 +169,7 @@ export function CartItem({ item }: CartItemProps) {
 
           {/* Expanded Details */}
           {showAddons && (
-            <div className="mt-2 space-y-1">
+            <div className="mt-2 space-y-1 bg-gray-50 p-3 rounded-lg">
               {/* Addons List */}
               {hasAddons && (
                 <div className="space-y-1">
@@ -166,7 +178,7 @@ export function CartItem({ item }: CartItemProps) {
                       key={index}
                       className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
                     >
-                      
+
                       <span>+ {addon.name} {addon.quantity > 1 ? `(${addon.quantity}x)` : ''}</span>
                       {addon.price > 0 ? <span>Rs {addon.price}</span> : '-'}
                     </div>

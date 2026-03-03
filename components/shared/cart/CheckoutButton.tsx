@@ -19,7 +19,7 @@ export function CheckoutButton() {
     <Link href={`/${locale}/checkout`}>
       <Button
         onClick={handleCheckout}
-        className="w-full rounded-lg h-14 text-base font-semibold bg-primary text-secondary cursor-pointer hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all"
+        className="w-full rounded-xl h-12 text-base font-semibold bg-primary text-secondary cursor-pointer transition-all hover:bg-primary/90 active:scale-[0.98]"
       >
         Proceed to Checkout
         <ArrowRight className="ml-2" />
