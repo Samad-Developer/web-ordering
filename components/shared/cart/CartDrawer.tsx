@@ -78,16 +78,16 @@ export function CartDrawer() {
           <EmptyCart />
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-4 sm:px-4 py-2">
+            <div className="flex-1 overflow-y-auto p-2">
               {/* Cart Items */}
               <div className="space-y-4">
-                {cartItems.map((item) => (
-                  <CartItem key={item.cartItemId} item={item} />
+                {cartItems.map((item, index) => (
+                  <CartItem key={item.cartItemId} item={item} isLast={index === cartItems.length - 1} />
                 ))}
               </div>
 
               {/* Promotional items */}
-              <div>
+              <div className="mt-2 border-t py-4">
                 <PromotionalItems />
               </div>
 
@@ -129,11 +129,13 @@ export function CartDrawer() {
                   <DeliveryTimeInfo timeRange={totals.deliveryTimeRange} />
                 )}
               </div>
+
+
+              <PriceSummary variant="cart" />
             </div>
 
             {/* Footer - Summary & Checkout */}
-            <div className="p-2 pb-4 space-y-2 border-t">
-              <PriceSummary variant="cart" />
+            <div className="p-2 pb-3 border-t">
               <div className="p-1">
                 <CheckoutButton />
               </div>

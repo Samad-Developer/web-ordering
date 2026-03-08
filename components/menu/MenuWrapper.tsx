@@ -62,7 +62,7 @@ const MenuWrapper = () => {
   }
 
   return (
-    <div>
+    <div className="">
 
       {/* show the below three component only if there is menudata avaiable */}
       {menuData && (

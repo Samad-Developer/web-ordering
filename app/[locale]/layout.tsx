@@ -1,22 +1,21 @@
 import "../globals.css";
+import React from "react";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
-import { Toaster } from "@/components/ui/sonner"
-import Footer1 from "@/components/shared/footer";
-import Header1 from "@/components/shared/headers";
+import { routing } from '@/i18n/routing';
+import { getMessages } from 'next-intl/server';
+import { Toaster } from "@/components/ui/sonner";
+// import Footer1 from "@/components/shared/footer";
+// import Header1 from "@/components/shared/headers";
+import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
+import { SearchProvider } from "@/contexts/SearchContext";
+import { SignalRProvider } from "@/contexts/signalr-provider";
+import { BranchStatus } from "@/components/shared/BranchStatus";
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
-import { SignalRProvider } from "@/contexts/signalr-provider";
-import { SearchProvider } from "@/contexts/SearchContext";
-import { ThemeProvider } from "@/contexts/ThemeProvider";
-
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
-import React from "react";
-import { BranchStatus } from "@/components/shared/BranchStatus";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -46,14 +45,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
 
-  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
-  // if (!routing.locales.includes(locale as typeof routing.locales[number])) {
-  //   notFound();
-  // }
-
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages();
 
   return (
@@ -65,13 +57,13 @@ export default async function RootLayout({
               <SignalRProvider>
                 <ThemeProvider>
                   <BranchStatus />
-                  <Header1 />
+                  {/* <Header1 /> */}
                   {children}
                   <Toaster position="top-center" richColors />
                   <AddressSelectionModal />
                   <ProductModal />
                   <CartDrawer />
-                  <Footer1 />
+                  {/* <Footer1 /> */}
                 </ThemeProvider>
               </SignalRProvider>
             </SearchProvider>

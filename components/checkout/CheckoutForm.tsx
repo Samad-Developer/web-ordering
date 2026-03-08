@@ -76,7 +76,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
     try {
       const response = await submitOrder(data);
-
+      console.log("Order submission response:", response);
       if (response.dataPayload?.Success) {
         toast.success("Order placed successfully!", {
           description: "You will receive a confirmation shortly.",
@@ -89,7 +89,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
       setIsGift(false);
       setPaymentMethod("cash");
 
-      router.push(`/${locale}/order-success?orderNumber=${response.dataPayload?.OrderNumber}`);
+      router.push(`/${locale}/order-placed?orderNumber=${response.dataPayload?.OrderNumber}`);
       
     } catch (error) {
       toast.error("Failed to place order", {
@@ -99,7 +99,6 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   };
 
   return (
-    <div className="p-2 sm:p-10">
       <div>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -124,6 +123,5 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
           />
         </form>
       </div>
-    </div>
   );
 }

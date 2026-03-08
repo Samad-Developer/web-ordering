@@ -62,51 +62,29 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
                 <p className="text-sm text-gray-900">{mainAddress}</p>
               </div>
             </div>
-
-            {/* Phone */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Phone className="w-4 h-4 text-gray-500" />
-              </div>
-              <div className="flex-1">
-                <p className="text-xs text-gray-500 font-medium mb-1">Contact</p>
-                <p className="text-sm font-medium text-gray-900">
-                  {phoneNumber || branch.BranchPhoneNumber}
-                </p>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="flex items-center gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Clock className="w-4 h-4 text-gray-500" />
-              </div>
-              <div className="flex-1">
-                <p className="text-xs text-gray-500 font-medium mb-1">Open Hours</p>
-                {/* <p className="text-sm font-medium text-gray-900">{branch.BusinessStartTime}</p> */}
-              </div>
-            </div>
           </div>
 
           {/* Action Buttons */}
           <div className="grid grid-cols-2 gap-3 pt-2">
-            <Button
-              type="button"
-              variant="outline"
-              className="gap-2  bg-gray-100 rounded-md"
-              onClick={handleCall}
-            >
-              <Phone className="w-4 h-4" />
-              Call
-            </Button>
+           
             
             <Button
               type="button"
-              className="gap-2 bg-primary text-secondary rounded-md"
+              variant='outline'
+              className="gap-2 border border-gray-500 text-black rounded-md cursor-pointer"
               onClick={handleGetDirections}
             >
               <Navigation className="w-4 h-4" />
               Directions
+            </Button>
+
+             <Button
+              type="button"
+              className="gap-2  bg-primary text-secondary rounded-md cursor-pointer"
+              onClick={handleCall}
+            >
+              <Phone className="w-4 h-4" />
+              Call
             </Button>
           </div>
         </CardContent>

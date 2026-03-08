@@ -22,7 +22,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
 
   return (
     <div
-      className={`relative w-full aspect-square overflow-hidden bg-gray-100 rounded-t-2xl ${className}`}
+      className={`relative aspect-square overflow-hidden bg-gray-100 rounded-t-2xl ${className}`}
     >
         <Image
           src={imageSrc}

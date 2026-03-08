@@ -52,12 +52,20 @@ export function AddressSelectionModal() {
     }
   }, [isOpen, selectedAddress, availableModes]);
 
+
+  // useEffect(() => {
+  //   if (isOpen && cities.length === 1 && !tempCityId) {
+  //     setTempCityId(cities[0].id);
+  //   }
+  // }, [isOpen, cities, tempCityId]);
+
+  
   if (!apiData) return null;
 
   const cities = getAllCities(apiData);
   const areas = tempCityId ? getAreasForCity(apiData, tempCityId) : [];
   const branches = tempCityId ? getBranchesForCity(apiData, tempCityId) : [];
-
+  
   const isTemporarilyClosed = !availableModes.delivery && !availableModes.pickup;
 
   const handleModeChange = (mode: OrderMode) => {
@@ -165,13 +173,14 @@ export function AddressSelectionModal() {
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseModal}>
       <DialogContent
-        className="md:max-w-[500px] max-h-[90vh] overflow-y-auto p-0"
+        className="md:max-w-[500px] p-0 overflow-hidden"
         showCloseButton={false}
       >
         {isTemporarilyClosed ? (
           <TemporarilyClosedMessage />
         ) : (
-          <div className="p-6 space-y-6">
+          <div className="max-h-[90vh] overflow-y-auto p-6 space-y-6">
+
             {/* Order Mode Toggle */}
             <div className='w-full max-w-64 mx-auto px-4'>
               <OrderModeToggle
@@ -201,7 +210,6 @@ export function AddressSelectionModal() {
             {/* Area Selector - Only for Delivery */}
             {tempMode === 'delivery' && tempCityId && (
               <>
-
                 <AreaSelector
                   areas={areas}
                   selectedAreaId={tempAreaId}

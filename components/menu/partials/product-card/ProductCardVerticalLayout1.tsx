@@ -208,12 +208,12 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           </div>
         )}
 
-        <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
+        <div className="relative w-full overflow-hidden bg-white">
           <ProductImage src={product.Image} alt={product.Name} priority={true} />
         </div>
 
         {/* Content Section */}
-        <div className="p-4 sm:p-6 space-y-4">
+        <div className="p-4 sm:p-5 space-y-4">
           <ProductHeader
             name={product.Name}
             description={

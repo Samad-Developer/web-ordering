@@ -30,7 +30,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
       savings: 'text-[10px]',
     },
     md: {
-      final: 'text-base',
+      final: 'text-lg',
       original: 'text-sm',
       savings: 'text-xs',
     },
@@ -44,7 +44,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   // No discount - show normal price
   if (!calculation.hasDiscount) {
     return (
-      <div className={`font-semibold ${sizeClasses[size].final} ${className}`}>
+      <div className={`font-bold text-primary ${sizeClasses[size].final} ${className}`}>
         Rs. {price}
       </div>
     );
@@ -68,7 +68,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
         )}
 
         {showSavings && calculation.discountPercentage && (
-          <span className={` text-xs font-semibold text-red-600 ${sizeClasses[size].savings}`}>
+          <span className={` text-xs font-semibold text-gray-700 ${sizeClasses[size].savings}`}>
             (Save {calculation.discountPercentage.toFixed(0)}%)
           </span>
         )}
@@ -80,7 +80,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   return (
     <div className={`flex items-baseline justify-start gap-2 ${className}`}>
       {/* Final Price */}
-      <span className={`font-bold text-black ${sizeClasses[size].final}`}>
+      <span className={`font-bold text-primary ${sizeClasses[size].final}`}>
         Rs. {calculation.finalPrice.toFixed(0)}
       </span>
 

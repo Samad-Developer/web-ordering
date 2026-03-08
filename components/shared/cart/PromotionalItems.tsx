@@ -40,7 +40,7 @@ export function PromotionalItems() {
     if (!menuData || promotionalItems.length === 0) return null;
 
     return (
-        <div className="my-6">
+        <>
             {/* Header with Navigation */}
             <div className="flex items-center gap-2 mb-4">
                 <div className="rounded-xl p-2 bg-red-50">
@@ -78,6 +78,6 @@ export function PromotionalItems() {
                     <CarouselNext className="static translate-y-0" />
                 </div>
             </Carousel>
-        </div>
+        </>
     );
 }

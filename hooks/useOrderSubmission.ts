@@ -60,6 +60,7 @@ export function useOrderSubmission() {
           customerDetails: customerData,
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
+          areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
           domain: "rollinnbbq.pk",
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
@@ -68,7 +69,7 @@ export function useOrderSubmission() {
           status: "Pending",
         };
 
-        console.log("Submitting order:", orderObject);
+        console.log("Submitting order:.............", orderObject);
 
         // Setup response handler
         const handleOrderResponse = (response: PlaceOrderResponse) => {

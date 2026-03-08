@@ -3,10 +3,10 @@
 import { useMemo } from 'react';
 import { useAppSelector } from '@/store/hooks';
 import { selectCartItems } from '@/store/slices/cartSlice';
-import { 
+import {
   selectAddressApiData,
-  selectSelectedAddress, 
-  selectSelectedBranchDetails 
+  selectSelectedAddress,
+  selectSelectedBranchDetails
 } from '@/store/slices/addressSlice';
 
 export function useCartTotals() {
@@ -17,7 +17,7 @@ export function useCartTotals() {
   const addressData = useAppSelector(selectAddressApiData);
 
   return useMemo(() => {
-    
+
     const itemCount = cartItems.reduce((sum, item) => sum + item.customization.quantity, 0);
     const hasItems = itemCount > 0;
 
@@ -25,9 +25,20 @@ export function useCartTotals() {
     const subtotal = cartItems.reduce((sum, item) => {
       const originalPrice = item.priceBreakdown.originalBasePrice;
       const addonsTotal = item.priceBreakdown.addonsTotal || 0;
+      
       const itemTotal = (originalPrice + addonsTotal) * item.customization.quantity;
       return sum + itemTotal;
     }, 0);
+
+    // const subtotal = cartItems.reduce((sum, item) => {
+    //   const originalPrice = Number(item.priceBreakdown?.originalBasePrice ?? 0);
+    //   const addonsTotal = Number(item.priceBreakdown?.addonsTotal ?? 0);
+    //   const quantity = Number(item.customization?.quantity ?? 0);
+
+    //   const itemTotal = (originalPrice + addonsTotal) * quantity;
+
+    //   return sum + itemTotal;
+    // }, 0);
 
     // Calculate total discount amount
     const totalDiscount = cartItems.reduce((sum, item) => {
@@ -68,13 +79,13 @@ export function useCartTotals() {
     // Calculate delivery fee
     const deliveryFee = (() => {
       if (!isDeliveryMode) return 0;
-      
+
       // Check if free delivery threshold is met
-      if (hasDeliveryChargesWaiveOff && 
-          subtotalAfterDiscount >= deliveryChargesWaiveOffLimit) {
+      if (hasDeliveryChargesWaiveOff &&
+        subtotalAfterDiscount >= deliveryChargesWaiveOffLimit) {
         return 0; // Free delivery
       }
-      
+
       return deliveryCharges;
     })();
 
@@ -119,8 +130,8 @@ export function useCartTotals() {
       tax,
       taxRate,
       deliveryFee,
-      deliveryCharges,             
-      deliveryTimeRange,           
+      deliveryCharges,
+      deliveryTimeRange,
       isFreeDelivery,
       amountToFreeDelivery,
       freeDeliveryProgress,
@@ -130,5 +141,5 @@ export function useCartTotals() {
       amountToMinimum,
       canCheckout,
     };
-  }, [cartItems, selectedAddress, branchDetails]); 
+  }, [cartItems, selectedAddress, branchDetails]);
 }

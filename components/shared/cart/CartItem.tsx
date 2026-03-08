@@ -19,9 +19,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface CartItemProps {
   item: CartItemType;
+  isLast?: boolean;
 }
 
-export function CartItem({ item }: CartItemProps) {
+export function CartItem({ item, isLast }: CartItemProps) {
   const dispatch = useAppDispatch();
   const t = useTranslations("cart");
   const [showAddons, setShowAddons] = useState(false);
@@ -163,39 +164,39 @@ export function CartItem({ item }: CartItemProps) {
 
           {/* Expanded Details */}
           <AnimatePresence>
-  {showAddons && (
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      exit={{ height: 0, opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="overflow-hidden"
-    >
-      <div className="mt-2 space-y-1 bg-gray-50 p-3 rounded-lg">
-        {addons.map((addon, index) => (
-          <div
-            key={index}
-            className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
-          >
-            <span>
-              + {addon.name}{" "}
-              {addon.quantity > 1 ? `(${addon.quantity}x)` : ""}
-            </span>
-            {addon.price > 0 ? (
-              <span>Rs {addon.price}</span>
-            ) : (
-              "-"
+            {showAddons && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-2 space-y-1 bg-gray-50 p-3 rounded-lg">
+                  {addons.map((addon, index) => (
+                    <div
+                      key={index}
+                      className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
+                    >
+                      <span>
+                        + {addon.name}{" "}
+                        {addon.quantity > 1 ? `(${addon.quantity}x)` : ""}
+                      </span>
+                      {addon.price > 0 ? (
+                        <span>Rs {addon.price}</span>
+                      ) : (
+                        "-"
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             )}
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
+          </AnimatePresence>
         </div>
       )}
 
-      <Separator className="bg-gray-200 h-[1px] w-full mt-2" />
+      {!isLast && <Separator className="bg-gray-200 h-[1px] w-full mt-2" />}
     </div>
   );
 }

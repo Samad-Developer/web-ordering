@@ -1,22 +1,20 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppSelector } from "@/store/hooks";
+import { selectAddressApiData } from "@/store/slices/addressSlice";
 
-interface LogoProps {
-  src: string;
-  alt?: string;
-  href?: string;
-}
+export const Logo = () => {
+  const addressAndThemeData = useAppSelector(selectAddressApiData);
+  const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
+  const logoSrc = settings?.RESTAURANT_LOGO || "/assets/images/logo/logo.webp";
 
-export const Logo: React.FC<LogoProps> = ({
-  src,
-  alt = "Logo",
-  href = "/",
-}) => {
   return (
     <Link
-      href={href}
-      className="flex items-center justify-center hover:opacity-80 transition"
+      href="/"
+      className=" hover:opacity-80 transition"
     >
       <div
         className="
@@ -28,8 +26,8 @@ export const Logo: React.FC<LogoProps> = ({
         "
       >
         <Image
-          src={src}
-          alt={alt}
+          src={logoSrc}
+          alt="Logo"
           fill
           className="object-contain"
           priority

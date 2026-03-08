@@ -2,6 +2,7 @@ import { CartItem } from "@/types/cart.types";
 import { SelectedAddonGroup, SelectedAddonOption } from "@/types/customization.types";
 import { ItemChoice, MenuCategory } from "@/types/menu.types";
 import { Variation } from "@/types/menu.types";
+import { ItemVariation, OrderItemAddon, ApiOrderResponse, OrderDetails, OrderItem } from "@/types/getOrder.types";
 
 export function transformCartItemsForAPI(
   cartItems: CartItem[],
@@ -128,4 +129,95 @@ function transformAddonsToItemChoices(
       ItemOptions: selectedItemOptions,
     };
   });
+}
+
+
+export function extractAddons(variations: ItemVariation[]): OrderItemAddon[] {
+  const addons: OrderItemAddon[] = [];
+
+  if (!variations || variations.length === 0) return addons;
+
+  // Get the first variation (active selection)
+  const variation = variations[0];
+
+  if (!variation.itemChoices) return addons;
+
+  // Loop through each item choice
+  variation.itemChoices.forEach((choice) => {
+    if (!choice.itemOptions) return;
+
+    // Loop through each option in the choice
+    choice.itemOptions.forEach((option) => {
+      // Only add if price > 0 or if you want to show all addons
+      addons.push({
+        name: option.name,
+        price: option.price,
+        quantity: option.quantity,
+      });
+    });
+  });
+
+  return addons;
+}
+
+
+export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
+  console.log("Transforming API order data:", apiData);
+  // Transform items with addons
+  const transformedItems: OrderItem[] = apiData.items.map((item) => {
+    const addons = extractAddons(item.variations);
+    const size = item.variations?.[0]?.size?.name !== '-' ? item.variations?.[0]?.size?.name : undefined;
+
+    return {
+      id: item.id.toString(),
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+      size,
+      addons,
+      totalPrice: item.price,
+    };
+  });
+
+  // Calculate order totals
+  const tax = Math.round(apiData.amountWithGst - apiData.amountWithoutGst);
+  const discount = apiData.totalDiscount || 0;
+  const subtotal = apiData.amountWithoutGst + discount;
+  const deliveryCharges = apiData.deliveryCharges || 0;
+  const grandTotal = Math.round(apiData.amountWithGst + deliveryCharges);
+
+  return {
+    // Basic order info
+    orderNumber: apiData.orderNumber,
+    orderToken: apiData.orderToken,
+    status: apiData.status || 'Pending',
+    branchName: apiData.branchName || '',
+    orderType: apiData.orderType || '',
+    createdAt: apiData.orderTime,
+
+    // Transformed items
+    items: transformedItems,
+
+    // Financial breakdown
+    subtotal,
+    tax,
+    totalDiscount: discount,
+    deliveryCharges,
+    totalAmount: grandTotal,
+    gstPercentage: apiData.gstPercentage || 0,
+
+    // Customer details
+    customerName: apiData.customerDetails?.fullName || 'Customer',
+    customerPhone: apiData.customerDetails?.mobileNumber || '',
+    customerEmail: apiData.customerDetails?.emailAddress || null,
+    deliveryAddress: apiData.customerDetails?.deliveryAddress || 'N/A',
+    deliveryInstructions: apiData.customerDetails?.deliveryInstructions || '',
+    nearestLandmark: apiData.customerDetails?.nearestLandmark || '',
+    customerAltPhone: apiData.customerDetails?.alternateMobileNumber || '',
+    isGift: apiData.customerDetails?.isGift || false,
+    giftingMessage: apiData.customerDetails?.giftingMessage || '',
+    recipientName: apiData.customerDetails?.recipientName || '',
+    recipientNumber: apiData.customerDetails?.recipientNumber || '',
+
+  };
 }

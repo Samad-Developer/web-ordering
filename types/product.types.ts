@@ -33,10 +33,7 @@ export interface CartItem {
   image: string;
 }
 
-
-
-// this types are for the prdocut which we use on product modal
-
+// this types are for the product which we use on product modal
 export interface ProductItem {
   Id: number;
   CategoryId: string;

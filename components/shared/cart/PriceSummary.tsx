@@ -9,8 +9,6 @@ import {
   Tag,
   Calculator,
   Truck,
-  Wallet,
-  CheckCircle2,
 } from 'lucide-react';
 
 interface OrderSummaryProps {
@@ -33,7 +31,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
 
   const detailsContainerStyles = {
     cart: "space-y-2",
-    checkout: "space-y-2 bg-white mb-0 p-4 rounded-lg",
+    checkout: "space-y-2 bg-white mb-0 p-2 rounded-lg",
     success: "space-y-2 bg-white p-4 rounded-lg" // Same as checkout
   };
 
@@ -50,14 +48,14 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
       label: "text-gray-700 font-medium",
       value: "font-semibold text-gray-900",
       totalLabel: "text-xl font-bold text-gray-900",
-      totalValue: "text-3xl font-bold text-red-600"
+      totalValue: "text-2xl font-bold text-red-600"
     },
     success: {
       detail: "text-base",
       label: "text-gray-700 font-medium",
       value: "font-semibold text-gray-900",
       totalLabel: "text-xl font-bold text-gray-900",
-      totalValue: "text-3xl font-bold text-red-600"
+      totalValue: "text-2xl font-bold text-red-600"
     }
   };
 
@@ -135,7 +133,7 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
       </div>
 
       {/* Grand Total */}
-      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? 'bg-red-50 border border-red-200 p-4 rounded-lg' : ''}`}>
+      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? 'p-2 border-t' : ''}`}>
         <span className={`${styles.totalLabel} flex gap-2 items-center`}>
           {/* <Wallet className={variant === 'cart' ? 'w-5 h-5' : 'w-6 h-6'} />  */}
           {t('grandTotal')}

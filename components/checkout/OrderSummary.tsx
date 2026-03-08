@@ -7,7 +7,7 @@ import { PriceSummary } from "../shared/cart/PriceSummary";
 import { formatPrice } from "@/lib/product/productHelper";
 import { selectCartItems } from "@/store/slices/cartSlice";
 import { getCartItemAddonsText } from "@/lib/cart/cartHelpers";
-import { ShoppingBag, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { getImageUrl } from "@/lib/image/imageUtils";
@@ -38,16 +38,14 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
   const containerBorderClass = variant === "checkout" ? "shadow-sm" : variant === "success" ? "border-2 " : "border";
 
   return (
-    <>
-      <h2 className="text-lg font-semibold text-gray-700 tracking-wide mb-2">
-        {t("orderSummary")}
-      </h2>
-
       <div className={` bg-white rounded-lg ${containerBorderClass}`}>
-        <div className="p-6">
+        <h2 className="px-6 pt-6 text-lg font-semibold text-gray-700 tracking-wide mb-2">
+          {t("orderSummary")}
+        </h2>
+        <div className="">
           <div className="space-y-4">
             {/* Cart Items */}
-            <div className="space-y-3 max-h-[400px] overflow-y-auto">
+            <div className="space-y-3 max-h-[400px] px-6 pb-6 pt-2 overflow-y-auto">
               {cartItems.map((item) => {
                 const addons = getCartItemAddonsText(item);
                 const isExpanded = expandedItems.has(item.cartItemId);
@@ -62,23 +60,25 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                         <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
-  <Image
-    alt={item.productName}
-    src={imageSrc}
-    fill
-    className="object-cover"
-  />
-</div>
-                          <h4 className="font-medium text-sm text-gray-900 line-clamp-1">
-                            {item.customization.quantity} × {item.productName}
-                          </h4>
+                          <div className="relative w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
+                            <Image
+                              alt={item.productName}
+                              src={imageSrc}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <h4 className="font-medium text-sm text-gray-900 line-clamp-1">
+                              {item.customization.quantity} × {item.productName}
+                            </h4>
+                            <p className="text-xs text-gray-500">
+                              {item.sizeName} • {item.flavorName}
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="ml-8 mt-1 space-y-1">
-                          <p className="text-xs text-gray-500">
-                            {item.sizeName} • {item.flavorName}
-                          </p>
+                        <div className="py-2 px-1 space-y-1">
 
                           {/* Addons Toggle */}
                           {addons.length > 0 && (
@@ -142,14 +142,13 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
 
             {/* Show cart summary and separator only if showCartDetails is true */}
             {showPaymentDetails && (
-              <>
-                <Separator className="bg-gray-600"/>
+              <div className="p-5">
+                <Separator className="bg-gray-500 mb-4" />
                 <PriceSummary variant="checkout" />
-              </>
+              </div>
             )}
           </div>
         </div>
       </div>
-    </>
   );
 }

@@ -122,7 +122,7 @@ export function PromotionalCard({ item }: PromotionalCardProps) {
                     </h4>
 
                     {/* Price & Add Button */}
-                    <div className="flex flex-col items-start justify-start">
+                    <div className="flex items-center justify-between">
                         <PriceDisplay
                             price={item.Price}
                             discount={displayDiscount}
@@ -132,11 +132,10 @@ export function PromotionalCard({ item }: PromotionalCardProps) {
                         {/* Add Button */}
                         <button
                             onClick={handleAddToCart}
-                            className="cursor-pointer w-full mt-2 bg-primary/10 hover:bg-primary hover:text-white text-primary flex items-center justify-center gap-2 rounded-xl py-1 transition-all duration-200 hover:scale-110 active:scale-95"
+                            className="cursor-pointer bg-primary/10 hover:bg-primary hover:text-white text-primary flex items-center justify-center gap-2 rounded-xl p-1.5 transition-all duration-200 hover:scale-110 active:scale-95"
                             aria-label={`Add ${item.Name} to cart`}
                         >
                             <Plus className="h-4 w-4" />
-                            <span className="font-semibold">Add</span>
                         </button>
                     </div>
                 </div>
