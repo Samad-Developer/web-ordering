@@ -4,6 +4,7 @@ import { PartyPopper, Check } from 'lucide-react';
 import { OrderSuccessPageProps } from '@/types/getOrder.types';
 import { Logo } from '@/components/shared/headers/partials/Logo';
 import { fetchOrderDetails } from '@/services/api/get-Order';
+import Link from 'next/link';
 
 export default async function OrderSuccessPage({ searchParams }: OrderSuccessPageProps) {
   const resolvedSearchParams = await searchParams;
@@ -41,7 +42,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
                 Woohoo! Order Placed!
               </h1>
               <p className="text-white/90 text-sm mt-1">
-                Sit tight, we'll keep you updated
+                Sit tight, we&apos;ll keep you updated
               </p>
 
               <div className='bg-white rounded-xl absolute -bottom-14 shadow left-1/2 -translate-x-1/2 border border-gray-200 w-[calc(100%-2rem)] sm:w-[calc(100%-10rem)]'>               {/* Order Status Tracker */}
@@ -287,12 +288,12 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
 
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <a
+            <Link
               href="/en"
               className="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-center font-medium"
             >
               Continue Shopping
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -329,12 +330,12 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
           <p className="text-gray-600 mb-6">
             We encountered an error while fetching your order details.
           </p>
-          <a
+          <Link
             href="/en"
             className="inline-block px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
           >
             Return to Home
-          </a>
+          </Link>
         </div>
       </div>
     );
