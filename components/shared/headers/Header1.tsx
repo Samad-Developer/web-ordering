@@ -59,7 +59,7 @@ const Header1 = () => {
   
         {/* Center Logo — truly fixed */}
         <div className="absolute left-1/2 -translate-x-1/2">
-          <Logo src={logoSrc} href="/" alt="logo" />
+          <Logo />
         </div>
   
         {/* Right Section */}
