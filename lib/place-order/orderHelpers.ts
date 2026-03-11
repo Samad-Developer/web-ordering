@@ -162,7 +162,7 @@ export function extractAddons(variations: ItemVariation[]): OrderItemAddon[] {
 
 
 export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
-  console.log("Transforming API order data:", apiData);
+  
   // Transform items with addons
   const transformedItems: OrderItem[] = apiData.items.map((item) => {
     const addons = extractAddons(item.variations);

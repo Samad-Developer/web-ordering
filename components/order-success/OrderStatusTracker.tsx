@@ -24,9 +24,10 @@ export function OrderStatusTracker({
     connection.on("OrderStatusUpdate", (OrderStatus) => {
       console.log("order status updated response ", OrderStatus)
 
-      if (OrderStatus.orderNumber !== orderToken) return;
+      if (OrderStatus.orderToken !== orderToken) return;
 
       const statusName = statusMap[String(OrderStatus.orderStatusId)];
+      console.log("Mapped status name: ", statusName);
       if (statusName) {
         setCurrentStatus(statusName);
       }
