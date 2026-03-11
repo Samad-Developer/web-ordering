@@ -5,7 +5,7 @@ import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/store/hooks";
-import { selectCartItems } from "@/store/slices/cartSlice";
+import { clearCart, selectCartItems } from "@/store/slices/cartSlice";
 import { createCheckoutSchema } from "@/lib/checkout/checkoutSchema";
 import { getDefaultFormValues } from "@/lib/checkout/checkoutHelpers";
 import {
@@ -18,8 +18,8 @@ import { CheckoutFormFields } from "./CheckoutFormFields";
 import { PaymentSection } from "./PaymentSection";
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
 import { PlaceOrderResponse } from "@/hooks/useOrderSubmission";
+import { useAppDispatch } from "@/store/hooks";
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
@@ -28,6 +28,7 @@ interface CheckoutFormProps {
 
 export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { locale } = useParams();
   const cartItems = useAppSelector(selectCartItems);
 
@@ -43,14 +44,6 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
     defaultValues: getDefaultFormValues(),
     mode: "onBlur",
   });
-
-  // Redirect if cart is empty
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      toast.error("Your cart is empty");
-      router.push("/");
-    }
-  }, [cartItems.length, router]);
 
   const handlePaymentMethodChange = (method: PaymentMethod) => {
     setPaymentMethod(method);
@@ -76,20 +69,25 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
     try {
       const response = await submitOrder(data);
-      console.log("Order submission response:", response);
+
       if (response.dataPayload?.Success) {
         toast.success("Order placed successfully!", {
           description: "You will receive a confirmation shortly.",
         });
+
+        // Reset form and state
+        form.reset(getDefaultFormValues());
+        dispatch(clearCart());
+        setIsGift(false);
+        setPaymentMethod("cash");
+
+        // Navigate to order confirmation page with order number
+        router.push(`/${locale}/order-placed?orderNumber=${response.dataPayload?.OrderNumber}`);
+      } else {
+        toast.error("Failed to place order", {
+          description: response.dataPayload?.Message || "Please try again or contact support.",
+        });
       }
-
-      localStorage.setItem("orderCustomerInfo", JSON.stringify(data));
-
-      form.reset(getDefaultFormValues());
-      setIsGift(false);
-      setPaymentMethod("cash");
-
-      router.push(`/${locale}/order-placed?orderNumber=${response.dataPayload?.OrderNumber}`);
       
     } catch (error) {
       toast.error("Failed to place order", {
@@ -99,29 +97,27 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   };
 
   return (
-      <div>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6"
-          ref={formRef}
-        >
-          {/* Form Fields */}
-          <CheckoutFormFields
-            form={form}
-            orderMode={orderMode}
-            isGift={isGift}
-            onGiftToggle={handleGiftToggle}
-          />
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+        ref={formRef}
+      >
+        {/* Form Fields */}
+        <CheckoutFormFields
+          form={form}
+          orderMode={orderMode}
+          isGift={isGift}
+          onGiftToggle={handleGiftToggle}
+        />
 
-          <Separator />
+        <Separator />
 
-          {/* Payment Section */}
-          <PaymentSection
-            form={form}
-            paymentMethod={paymentMethod}
-            onPaymentMethodChange={handlePaymentMethodChange}
-          />
-        </form>
-      </div>
+        {/* Payment Section */}
+        <PaymentSection
+          form={form}
+          paymentMethod={paymentMethod}
+          onPaymentMethodChange={handlePaymentMethodChange}
+        />
+      </form>
   );
 }

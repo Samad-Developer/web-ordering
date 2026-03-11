@@ -30,13 +30,13 @@ export default function CheckoutPage() {
       </div>
 
       {/* Main Container */}
-      <div className="max-w-[1200px] mx-auto px-4 pb-24 lg:pb-8">
+      <div className="max-w-[1200px] mx-auto px-2 pb-24 lg:pb-8">
 
         {/* Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
           {/* Left Side - Checkout Form */}
-          <div className="lg:col-span-3 px-8 py-6 bg-white rounded-lg shadow-sm">
+          <div className="lg:col-span-3 px-4 sm:px-8 py-6 bg-white rounded-lg shadow-sm">
             <h1 className="text-2xl font-semibold mb-8">Checkout</h1>
 
             <CheckoutForm

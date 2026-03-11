@@ -27,7 +27,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
 
           {/* Success Header */}
           <div className="relative rounded-xl mb-6">
-            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 pt-14 pb-28 rounded-xl">
+            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 pt-6 sm:pt-14 pb-16 sm:pb-24 rounded-xl">
               <div className="absolute top-3 left-6">
                 <PartyPopper className="w-8 h-8 text-white/80 rotate-[-15deg]" />
               </div>
@@ -36,7 +36,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
               </div>
 
               <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4">
-                <Check className="w-7 h-7 text-green-500" />
+                <Check className="w-7 h-7 text-green-600" />
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Woohoo! Order Placed!
@@ -45,7 +45,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
                 Sit tight, we&apos;ll keep you updated
               </p>
 
-              <div className='bg-white rounded-xl absolute -bottom-14 shadow left-1/2 -translate-x-1/2 border border-gray-200 w-[calc(100%-2rem)] sm:w-[calc(100%-10rem)]'>               {/* Order Status Tracker */}
+              <div className='bg-white rounded-xl absolute -bottom-12 sm:-bottom-10 shadow left-1/2 -translate-x-1/2 border border-gray-200 w-[calc(100%-2rem)] sm:w-[calc(100%-10rem)]'>               {/* Order Status Tracker */}
                 <OrderStatusTracker
                   initialStatus={order.status}
                   orderToken={order.orderToken}
@@ -292,7 +292,9 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
               href="/en"
               className="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition text-center font-medium"
             >
-              Continue Shopping
+              {/* icon for place new order lucide react icon*/}
+              Place New Order
+              
             </Link>
           </div>
         </div>

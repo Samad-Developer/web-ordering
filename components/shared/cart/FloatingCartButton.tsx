@@ -22,11 +22,11 @@ export function FloatingCartButton() {
   };
 
   return (
- <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-auto px-4">
+ <div className="fixed bottom-2 left-1/2 -translate-x-1/2 z-50 w-auto px-4">
   <div
     onClick={handleOpenCart}
     className={cn(
-      "cursor-pointer relative flex items-center gap-5",
+      "cursor-pointer relative flex items-center gap-8 sm:gap-10",
       "px-4 py-3 rounded-2xl",
       // Glassy effect
       "bg-white/10 dark:bg-black/20",

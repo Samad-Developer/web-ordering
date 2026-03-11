@@ -75,15 +75,15 @@ export function OrderStatusTracker({
   }
 
   return (
-    <div className="px-3 sm:px-6 py-4">
+    <div className="px-3 sm:px-6 py-3">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <p className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
           Order Status
         </p>
-        <span className={`text-[10px] font-bold ${config.textColor} tracking-widest px-3 py-1.5 ${config.badgeBg} rounded-full`}>
-  <span className="uppercase">({config.badge})</span> <span className="hidden sm:inline">{config.description}</span>
-</span>
+        <span className={`text-[10px] font-bold ${config.textColor} tracking-widest px-2 py-1 ${config.badgeBg} rounded-full`}>
+          <span className="sm:hidden">({config.badge})</span> <span className="hidden sm:inline">{config.description}</span>
+        </span>
       </div>
 
       {/* Timeline with inline icons */}
@@ -96,13 +96,13 @@ export function OrderStatusTracker({
           return (
             <div key={step.key} className={`flex items-center ${!isLastStep ? 'flex-1' : ''}`}>
               {/* Icon */}
-              <div className={`relative w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${isActive
+              <div className={`relative w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${isActive
                 ? 'bg-red-100 dark:bg-red-950/40'
                 : 'bg-neutral-100 dark:bg-neutral-800 opacity-50'
                 }`}>
                 {/* Pulse ring animation for current step */}
                 {isCurrentStep && (
-                  <div className="absolute  rounded-full bg-red-500 animate-ping opacity-30 w-6 h-6" />
+                  <div className="absolute  rounded-full bg-red-500 animate-ping opacity-30 w-5 h-5 sm:w-6 sm:h-6" />
                 )}
 
                 {isActive ? (
@@ -116,7 +116,7 @@ export function OrderStatusTracker({
 
               {/* Progress bar - don't show after last step */}
               {!isLastStep && (
-                <div className="flex-1 h-2 mx-2 rounded-full bg-neutral-200 dark:bg-neutral-700 relative overflow-hidden">
+                <div className="flex-1 h-2 mx-1 sm:mx-2 rounded-full bg-neutral-200 dark:bg-neutral-700 relative overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-700 ease-in-out ${isActive ? 'bg-red-500 w-full' : 'w-0'
                       }`}
