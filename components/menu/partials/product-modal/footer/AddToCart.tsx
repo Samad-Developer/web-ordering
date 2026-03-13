@@ -16,7 +16,7 @@ export function AddToCartButton({
   onClick,
   disabled = false,
   price,
-  label = 'Add to Cart',
+  label = 'Add To Cart',
   icon,
   className,
 }: AddToCartButtonProps) {
@@ -26,7 +26,7 @@ export function AddToCartButton({
       disabled={disabled}
       size="lg"
       className={cn(
-        "flex-1 h-12 text-base font-semibold cursor-pointer",
+        "flex-1 h-12 text-base font-semibold cursor-pointer px-3",
         disabled && "opacity-50 cursor-not-allowed",
         className
       )}
@@ -34,7 +34,7 @@ export function AddToCartButton({
       <div className="flex items-center justify-between w-full gap-3">
         <div className="flex items-center gap-2">
           {/* {icon} */}
-          <span>{label}</span>
+          <span className='text-medium'>{label}</span>
         </div>
         <span className="font-bold">{formatPrice(price)}</span>
       </div>

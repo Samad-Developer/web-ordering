@@ -4,7 +4,7 @@ import type {
   UserSelectedAddress,
   Branch,
 } from '@/types/address.types';
-import { saveUserAddress, clearUserAddress } from '@/lib/address/addressHelpers';
+import { saveUserAddress, clearUserAddress, loadUserAddress } from '@/lib/address/addressHelpers';
 
 interface AddressState {
   apiData: DeliveryPickupApiResponse | null;
@@ -28,6 +28,15 @@ const addressSlice = createSlice({
   name: 'address',
   initialState,
   reducers: {
+
+    initializeAddress: (state) => {
+      const savedAddress = loadUserAddress();
+      if (savedAddress) {
+        state.selectedAddress = savedAddress;
+        state.selectedBranchDetails = savedAddress.branchDetails || null;
+      }
+    },
+
     addressDataRequested: (state) => {
       state.isLoading = true;
       state.error = null;
@@ -53,7 +62,7 @@ const addressSlice = createSlice({
         deliveryCharges: number;
         deliveryTime: number;
         deliveryChargesWaiveOffLimit: number;
-        branchDetails: Branch; 
+        branchDetails: Branch;
       }>
     ) => {
       const payload = action.payload;
@@ -79,14 +88,14 @@ const addressSlice = createSlice({
           MinimumOrder: payload.branchDetails.MinimumOrder,
           IsBranchOpen: payload.branchDetails.IsBranchOpen,
         },
-        
+
         isCurrentLocation: false,
         lastUpdated: Date.now(),
       };
 
       state.selectedAddress = deliveryAddress;
       state.selectedBranchDetails = payload.branchDetails;
-      
+
       saveUserAddress(deliveryAddress);
     },
 
@@ -95,7 +104,7 @@ const addressSlice = createSlice({
       action: PayloadAction<{
         cityId: string;
         cityName: string;
-        branch: Branch; 
+        branch: Branch;
       }>
     ) => {
       const pickupAddress: UserSelectedAddress = {
@@ -109,7 +118,7 @@ const addressSlice = createSlice({
         deliveryCharges: 0,
         deliveryTime: null,
         deliveryChargesWaiveOffLimit: 0,
-        
+
         branchDetails: {
           BranchId: action.payload.branch.BranchId,
           BranchName: action.payload.branch.BranchName,
@@ -120,14 +129,14 @@ const addressSlice = createSlice({
           MinimumOrder: action.payload.branch.MinimumOrder,
           IsBranchOpen: action.payload.branch.IsBranchOpen,
         },
-        
+
         isCurrentLocation: false,
         lastUpdated: Date.now(),
       };
 
       state.selectedAddress = pickupAddress;
       state.selectedBranchDetails = action.payload.branch;
-      
+
       saveUserAddress(pickupAddress);
     },
 
@@ -148,6 +157,7 @@ const addressSlice = createSlice({
 });
 
 export const {
+  initializeAddress,
   addressDataRequested,
   addressDataReceived,
   addressDataError,
@@ -161,23 +171,17 @@ export const {
 export default addressSlice.reducer;
 
 // Selectors
-export const selectAddressApiData = (state: { address: AddressState }) =>
-  state.address.apiData;
+export const selectAddressApiData = (state: { address: AddressState }) => state.address.apiData;
 
-export const selectAddressLoading = (state: { address: AddressState }) =>
-  state.address.isLoading;
+export const selectAddressLoading = (state: { address: AddressState }) => state.address.isLoading;
 
-export const selectAddressError = (state: { address: AddressState }) =>
-  state.address.error;
+export const selectAddressError = (state: { address: AddressState }) => state.address.error;
 
-export const selectSelectedAddress = (state: { address: AddressState }) =>
-  state.address.selectedAddress;
+export const selectSelectedAddress = (state: { address: AddressState }) => state.address.selectedAddress;
 
-export const selectSelectedBranchDetails = (state: { address: AddressState }) =>
-  state.address.selectedBranchDetails;
+export const selectSelectedBranchDetails = (state: { address: AddressState }) => state.address.selectedBranchDetails;
 
-export const selectIsModalOpen = (state: { address: AddressState }) =>
-  state.address.isModalOpen;
+export const selectIsModalOpen = (state: { address: AddressState }) => state.address.isModalOpen;
 
 export const selectAvailableModes = createSelector(
   [selectAddressApiData],

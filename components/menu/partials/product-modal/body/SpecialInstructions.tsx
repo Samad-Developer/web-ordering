@@ -6,7 +6,7 @@ export function SpecialInstructions() {
   const { customization, setInstructions } = useProductModal();
 
   return (
-    <div className="px-6 py-4 space-y-3">
+    <div className="space-y-3">
       <h3 className="text-base font-semibold text-gray-900">
         Special Instructions
       </h3>

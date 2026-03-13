@@ -10,7 +10,7 @@ import { CheckoutFormData } from "@/types/checkout.types";
 import { transformCartItemsForAPI } from "@/lib/place-order/orderHelpers";
 
 export interface PlaceOrderResponse {
-  order?: unknown; // intentionally untyped
+  order?: unknown; 
 
   dataPayload?: {
     Success: boolean;
@@ -42,20 +42,21 @@ export function useOrderSubmission() {
       setIsSubmitting(true);
 
       return new Promise((resolve, reject) => {
+
         if (!connection || !isConnected) {
           setIsSubmitting(false);     
           reject(new Error("SignalR connection not available"));
           return;
         }
 
-        if (!selectedAddress?.branchId) {
+        if (!selectedAddress) {
           setIsSubmitting(false);
-          reject(new Error("Branch ID not found"));
+          reject(new Error("Address selection is required to place an order."));
           return;
         }
+
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
-        // Prepare complete order object TODO : i have to chnage order type and payment mode and delivery charges based on user selection in checkout form
         const orderObject = {
           customerDetails: customerData,
           items: transformedItems,
@@ -69,14 +70,9 @@ export function useOrderSubmission() {
           status: "Pending",
         };
 
-        console.log("Submitting order:.............", orderObject);
-
-        // Setup response handler
         const handleOrderResponse = (response: PlaceOrderResponse) => {
           // connection.off("CreateOrderResponse", handleOrderResponse);
-          console.log("Received order response:", response);
           setIsSubmitting(false);
-
           if (response.dataPayload?.Success) {
             resolve(response);
           } else {
@@ -84,7 +80,6 @@ export function useOrderSubmission() {
           }
         };
 
-        // Register handler
         connection.on("CreateOrderResponse", handleOrderResponse);
 
         // Invoke SignalR method
@@ -92,7 +87,7 @@ export function useOrderSubmission() {
           .invoke("PlaceOrder", orderObject, "CreateOrderResponse")
           .catch((err) => {
             connection.off("CreateOrderResponse", handleOrderResponse);
-            console.error("SignalR invoke error:", err);
+         
             setIsSubmitting(false);
             reject(err);
           });

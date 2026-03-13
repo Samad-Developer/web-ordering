@@ -40,7 +40,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       disabled={disabled || isLoading}
       type="button"
       className={`cursor-pointer
-        w-full font-semibold rounded-xl transition-all duration-200
+        w-full font-semibold rounded-lg transition-all duration-200
         disabled:opacity-50 disabled:cursor-not-allowed
         flex items-center justify-center gap-2
         focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2

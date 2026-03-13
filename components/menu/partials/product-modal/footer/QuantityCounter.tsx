@@ -17,13 +17,13 @@ export function QuantityCounter() {
   };
 
   return (
-    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+    <div className="flex items-center gap-1 bg-gray-100 rounded-lg py-2 px-1">
       <Button
         variant="ghost"
         size="icon"
         onClick={handleDecrement}
         disabled={customization.quantity <= 1}
-        className="h-10 w-10 hover:bg-white rounded-lg"
+        className="h-8 w-8 hover:bg-white rounded-lg"
       >
         <Minus className="h-4 w-4" />
       </Button>
@@ -38,7 +38,7 @@ export function QuantityCounter() {
         variant="ghost"
         size="icon"
         onClick={handleIncrement}
-        className="h-10 w-10 hover:bg-white rounded-lg"
+        className="h-8 w-8 hover:bg-white rounded-lg"
       >
         <Plus className="h-4 w-4" />
       </Button>

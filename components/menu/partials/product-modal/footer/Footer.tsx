@@ -58,7 +58,7 @@ export function ProductModalFooter() {
 
   return (
     <div className="sticky bottom-0 z-10 bg-white border-t">
-      <div className="px-2 py-4">
+      <div className="px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between gap-2 lg:gap-4">
           {/* Quantity Counter */}
           <div className="flex-shrink-0">

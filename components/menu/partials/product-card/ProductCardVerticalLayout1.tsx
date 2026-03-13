@@ -213,7 +213,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
         </div>
 
         {/* Content Section */}
-        <div className="p-4 sm:p-5 space-y-4">
+        <div className="p-3 sm:p-5 space-y-4">
           <ProductHeader
             name={product.Name}
             description={
@@ -241,7 +241,7 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
               <AddToCartButton
                 onClick={handleAddToCartClick}
                 text={"Add to Cart"}
-                showIcon={true}
+                showIcon={false}
                 isLoading={false}
                 disabled={product.Variations.length === 0}
               />

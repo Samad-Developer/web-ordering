@@ -30,42 +30,42 @@ export const QuantityCounter: React.FC<QuantityCounterProps> = ({
 
   return (
     <div 
-      className={`flex items-center justify-between border rounded-lg overflow-hidden ${className}`}
-      role="group"
-      aria-label="Quantity controls"
-    >
-      <button
-        onClick={showTrash ? onRemove : onDecrease}
-        disabled={disabled}
-        className="cursor-pointer p-3 text-white bg-popup-qty-btn transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label={showTrash ? 'Remove item' : 'Decrease quantity'}
-        type="button"
-      >
-        {showTrash ? (
-          <Trash2 className="w-5 h-5" />
-        ) : (
-          <Minus className="w-5 h-5" />
-        )}
-      </button>
+  className={`flex items-stretch w-full border rounded-lg overflow-hidden ${className}`}
+  role="group"
+  aria-label="Quantity controls"
+>
+  <button
+    onClick={showTrash ? onRemove : onDecrease}
+    disabled={disabled}
+    className="flex-shrink-0 cursor-pointer px-2 py-1.5 text-white bg-popup-qty-btn hover:opacity-90  disabled:opacity-50 disabled:cursor-not-allowed"
+    aria-label={showTrash ? 'Remove item' : 'Decrease quantity'}
+    type="button"
+  >
+    {showTrash ? (
+      <Trash2 className="w-5 h-5" />
+    ) : (
+      <Minus className="w-5 h-5" />
+    )}
+  </button>
 
-      <div 
-        className="px-6 py-2  text-popup-qty-fg font-semibold min-w-[70px] text-center select-none"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {quantity}
-      </div>
+  <div 
+    className="flex-1 flex items-center justify-center py-1.5 text-popup-qty-fg font-bold text-lg bg-white select-none"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    {quantity}
+  </div>
 
-      <button
-        onClick={onIncrease}
-        disabled={disabled || isAtMax}
-        className="cursor-pointer p-3 text-white bg-popup-qty-btn transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Increase quantity"
-        type="button"
-      >
-        <Plus className="w-5 h-5" />
-      </button>
-    </div>
+  <button
+    onClick={onIncrease}
+    disabled={disabled || isAtMax}
+    className="flex-shrink-0 cursor-pointer px-2 py-1.5 text-white bg-popup-qty-btn hover:opacity-90  disabled:opacity-50 disabled:cursor-not-allowed"
+    aria-label="Increase quantity"
+    type="button"
+  >
+    <Plus className="w-5 h-5" />
+  </button>
+</div>
   );
 };

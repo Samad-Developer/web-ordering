@@ -27,7 +27,7 @@ const ProductModalBody = () => {
         <ProductImage image={product.Image} alt={product.Name} />
       </div>
 
-      <div className="px-2 sm:px-6 py-2">
+      <div className="px-4 sm:px-6 py-2">
 
         {/* Size Selection */}
         {uniqueSizes.length > 1 && (
@@ -87,7 +87,7 @@ const ProductModalBody = () => {
       </div>
 
       {/* Special Instructions */}
-      <div ref={registerSection('instructions')}>
+      <div className="px-4 sm:px-6 py-2" ref={registerSection('instructions')}>
         <SpecialInstructions />
       </div>
       
