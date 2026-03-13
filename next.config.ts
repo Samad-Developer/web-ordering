@@ -6,7 +6,12 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 const nextConfig = {
   // Your existing Next.js config options
   images: {
-    domains: ['ordering.eatx.pk'],
+    remotePatterns: [
+      {
+        protocol: 'https' as const,
+        hostname: 'ordering.eatx.pk',
+      },
+    ],
   },
 };
 

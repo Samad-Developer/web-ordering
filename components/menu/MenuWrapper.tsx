@@ -17,7 +17,7 @@ import LoadingState from "../states/LoadingState";
 import { useSearch } from "@/contexts/SearchContext";
 import { useMenuSearch } from "@/hooks/useMenuSearch";
 import ErrorState from "../states/ErrorState";
-import MenuSkeleton from "../skeletons/MenuSkeleton";
+import CompleteMenuSkeleton from "../skeletons/MenuSkeleton";
 
 const MenuWrapper = () => {
   const { apiData } = useAddress();
@@ -48,7 +48,7 @@ const MenuWrapper = () => {
   }, [apiData]);
 
   if (isMenuLoading && !menuData) {
-    return <MenuSkeleton />
+    return <CompleteMenuSkeleton />
   }
 
 
