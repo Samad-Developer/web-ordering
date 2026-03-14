@@ -47,7 +47,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
 
   return (
     <div className="bg-whiteoverflow-hidden">
-      <div className="flex items-start gap-3 px-1.5">
+      <div className="flex items-start gap-3 ">
         {/* Product Image */}
         <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
           <Image

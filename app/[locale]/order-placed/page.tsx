@@ -5,6 +5,7 @@ import { OrderSuccessPageProps } from '@/types/getOrder.types';
 import { Logo } from '@/components/shared/headers/partials/Logo';
 import { fetchOrderDetails } from '@/services/api/get-Order';
 import Link from 'next/link';
+import { formatDateTime } from '@/lib/place-order/orderHelpers';
 
 export default async function OrderSuccessPage({ searchParams }: OrderSuccessPageProps) {
   const resolvedSearchParams = await searchParams;
@@ -56,29 +57,6 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
 
             {/* Order Number & Status */}
             <div className="rounded-xl mt-6 p-6">
-              {/* <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                  <p className="text-sm text-gray-600 mb-1">Order Number</p>
-                  <p className="font-mono font-semibold text-lg text-gray-900">
-                    {order.orderToken}
-                  </p>
-                </div>
-                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Order Date</p>
-                  <p className="text-gray-900">
-                    {new Date(order.createdAt).toLocaleString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                    })}
-                  </p>
-                </div>
-
-              </div> */}
-
-
             </div>
           </div>
 
@@ -113,22 +91,6 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
                 </div>
               )}
 
-              <div className="md:col-span-2">
-                <p className="text-sm text-gray-600 mb-1">Delivery Address</p>
-                <p className="text-gray-900 font-medium">{order.deliveryAddress}</p>
-
-                {order.nearestLandmark && (
-                  <p className="text-sm text-gray-500 mt-1">
-                    Landmark: {order.nearestLandmark}
-                  </p>
-                )}
-
-                {order.deliveryInstructions && (
-                  <p className="text-sm text-gray-500 mt-1">
-                    Note: {order.deliveryInstructions}
-                  </p>
-                )}
-              </div>
 
               {order.isGift && (
                 <div className="md:col-span-2 border-t pt-4">
@@ -157,6 +119,57 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
               )}
             </div>
           </div>
+
+          {/* Order Details - Pickup/Delivery Information */}
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Order Details
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Branch Name */}
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Branch</p>
+                <p className="text-gray-900 font-medium">{order.branchName}</p>
+              </div>
+
+              {/* Order Type */}
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Order Type</p>
+                <p className="text-gray-900 font-medium capitalize">{order.orderType}</p>
+              </div>
+
+              {/* Order Date & Time */}
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Order Date & Time</p>
+                <p className="text-gray-900 font-medium">
+                  {formatDateTime(order.createdAt)}
+                </p>
+              </div>
+
+              {/* Delivery Address - Only show for delivery orders */}
+              {order.orderType.toLowerCase() === 'delivery' && (
+                <div className="md:col-span-2">
+                  <p className="text-sm text-gray-600 mb-1">Delivery Address</p>
+                  <p className="text-gray-900 font-medium">{order.deliveryAddress}</p>
+
+                  {order.nearestLandmark && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Landmark: {order.nearestLandmark}
+                    </p>
+                  )}
+ 
+                  {order.deliveryInstructions && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Note: {order.deliveryInstructions}
+                    </p>
+                  )}
+                </div>
+              )}
+
+            </div>
+          </div>
+
 
           {/* Order Items */}
           <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
@@ -294,7 +307,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
             >
               {/* icon for place new order lucide react icon*/}
               Place New Order
-              
+
             </Link>
           </div>
         </div>

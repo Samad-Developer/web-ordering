@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, RefObject } from "react";
+import { useState, RefObject, useEffect } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { useParams } from "next/navigation";
 import { PlaceOrderResponse } from "@/hooks/useOrderSubmission";
 import { useAppDispatch } from "@/store/hooks";
+import { selectSelectedAddress } from "@/store/slices/addressSlice";
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
@@ -31,19 +32,21 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   const dispatch = useAppDispatch();
   const { locale } = useParams();
   const cartItems = useAppSelector(selectCartItems);
+  const selectedAddress = useAppSelector(selectSelectedAddress);
 
-  const orderMode: OrderMode = "delivery";
+  const orderMode: OrderMode = selectedAddress?.orderMode || "pickup"; // Default to pickup if no address selected
   const [isGift, setIsGift] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cash");
 
   // Create dynamic schema based on current state
   const schema = createCheckoutSchema(orderMode, isGift, paymentMethod);
-
+  
   const form = useForm<CheckoutFormData>({
     resolver: zodResolver(schema) as unknown as Resolver<CheckoutFormData>,
     defaultValues: getDefaultFormValues(),
     mode: "onBlur",
   });
+
 
   const handlePaymentMethodChange = (method: PaymentMethod) => {
     setPaymentMethod(method);
@@ -69,7 +72,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
     try {
       const response = await submitOrder(data);
-
+      console.log("Order submission response:", response);
       if (response.dataPayload?.Success) {
         toast.success("Order placed successfully!", {
           description: "You will receive a confirmation shortly.",

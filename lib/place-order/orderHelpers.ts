@@ -162,7 +162,7 @@ export function extractAddons(variations: ItemVariation[]): OrderItemAddon[] {
 
 
 export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
-  
+    console.log("Transforming API order data:", apiData);
   // Transform items with addons
   const transformedItems: OrderItem[] = apiData.items.map((item) => {
     const addons = extractAddons(item.variations);
@@ -220,4 +220,20 @@ export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
     recipientNumber: apiData.customerDetails?.recipientNumber || '',
 
   };
+}
+
+export function formatDateTime(dateString: string | null | undefined): string {
+  if (!dateString) return "N/A";
+
+  const date = new Date(dateString);
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
+  return date.toLocaleDateString("en-US", options);
 }

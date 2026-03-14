@@ -44,10 +44,10 @@ export function CartDrawer() {
     >
       <SheetContent
         side="right"
-        className="w-full sm:max-w-sm p-0 flex flex-col"
+        className="w-full sm:max-w-sm p-0 sm:p-1 flex flex-col"
       >
         {/* Header */}
-        <SheetHeader className="px-6 py-4 border-b">
+        <SheetHeader className="px-2 py-4 border-b">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-xl font-semibold flex items-center gap-3">
               
@@ -58,7 +58,7 @@ export function CartDrawer() {
               <div className="flex flex-col">
               {t("title")}
               {cartItems.length > 0 && (
-                <span className="text-sm text-gray-400">
+                <span className="text-[14px] text-gray-400">
                   {cartItems.length} items
                 </span>
               )}

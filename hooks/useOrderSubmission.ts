@@ -72,6 +72,7 @@ export function useOrderSubmission() {
 
         const handleOrderResponse = (response: PlaceOrderResponse) => {
           // connection.off("CreateOrderResponse", handleOrderResponse);
+          console.log("Received order response from SignalR:", response);
           setIsSubmitting(false);
           if (response.dataPayload?.Success) {
             resolve(response);

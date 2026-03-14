@@ -99,7 +99,7 @@ const SearchSkeleton = () => (
 // Category Banner Skeleton
 const CategoryBannerSkeleton = () => (
   <div className="mb-6 px-4">
-    <div className="relative h-48 md:h-64 lg:h-80 bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl overflow-hidden shadow-lg">
+    <div className="relative h-36 md:h-64 bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl overflow-hidden shadow-lg">
       <Shimmer />
     </div>
   </div>
@@ -161,7 +161,7 @@ const ProductsGridSkeleton = ({ count = 6 }) => (
 // Main Complete Menu Skeleton Component
 const CompleteMenuSkeleton = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Top Banner */}
       <BannerSkeleton />
 
