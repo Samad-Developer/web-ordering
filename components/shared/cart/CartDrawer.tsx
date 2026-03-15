@@ -47,7 +47,7 @@ export function CartDrawer() {
         className="w-full sm:max-w-sm p-0 sm:p-1 flex flex-col"
       >
         {/* Header */}
-        <SheetHeader className="px-2 py-4 border-b">
+        <SheetHeader className="px-2 py-4 border-b ">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-xl font-semibold flex items-center gap-3">
               
@@ -135,10 +135,8 @@ export function CartDrawer() {
             </div>
 
             {/* Footer - Summary & Checkout */}
-            <div className="p-2 pb-3 border-t">
-              <div className="p-1">
+            <div className="p-3 pb-3 border-t">
                 <CheckoutButton />
-              </div>
             </div>
           </>
         )}

@@ -47,9 +47,9 @@ export function CartItem({ item, isLast }: CartItemProps) {
 
   return (
     <div className="bg-whiteoverflow-hidden">
-      <div className="flex items-start gap-3 ">
+      <div className="flex items-center gap-4">
         {/* Product Image */}
-        <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
+        <div className="relative w-[72px] h-[72px] flex-shrink-0 rounded-2xl overflow-hidden">
           <Image
             src={imageSrc}
             alt={item.productName}
@@ -60,7 +60,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
         </div>
 
         {/* Product Info */}
-        <div className="flex-1  items-center min-w-0">
+        <div className="flex flex-1 flex-col min-w-0">
           {/* Product Name */}
           <h3 className="font-semibold text-gray-900 text-sm line-clamp-1">
             {item.productName}
@@ -68,7 +68,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
 
           {/* Size & Flavor */}
           {(item.sizeName !== "-" || item.flavorName !== "-") && (
-            <div className="flex items-center gap-2 mt-1">
+            <div className="flex items-center gap-2">
 
               {item.sizeName !== "-" && (
                 <span className="text-xs text-gray-700 py-0.5 rounded">
@@ -176,14 +176,14 @@ export function CartItem({ item, isLast }: CartItemProps) {
                   {addons.map((addon, index) => (
                     <div
                       key={index}
-                      className="w-full flex items-center justify-between gap-2 text-xs text-gray-600"
+                      className="w-full flex items-center justify-between gap-2 py-0.5 text-xs text-gray-600 border-b border-border/40 pb-1 last:border-b-0"
                     >
                       <span>
-                        + {addon.name}{" "}
+                        {addon.name}{" "}
                         {addon.quantity > 1 ? `(${addon.quantity}x)` : ""}
                       </span>
                       {addon.price > 0 ? (
-                        <span>Rs {addon.price}</span>
+                        <span className="font-medium">+ Rs {addon.price}</span>
                       ) : (
                         "-"
                       )}
