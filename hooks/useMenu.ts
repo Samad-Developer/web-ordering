@@ -6,13 +6,16 @@ import { useSignalR } from '@/contexts/signalr-provider';
 import { MenuResponse } from '@/types/menu.types';
 import { menuReceived, menuError, menuRequested } from '@/store/slices/menuSlice';
 import { selectSelectedAddress } from '@/store/slices/addressSlice';
+import useDomain from './useDomain';
 
 export function useMenu() {
   const dispatch = useAppDispatch();
+  const domain = useDomain();
   const { connection, isConnected } = useSignalR();
   const { data, isLoading, error } = useAppSelector((state) => state.menu);
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const branchId = selectedAddress?.branchId || 0;
+  console.log("Checking Domain in useMenu", domain)
 
   useEffect(() => {
     if (!connection || !isConnected) return;
@@ -27,7 +30,9 @@ export function useMenu() {
     connection.on('MenuResponse', handler);
     connection.on("Ack", (ack) => console.log("Ack: " + JSON.stringify(ack)));
 
-    connection.invoke('DataRequest', 'rollinnbbq.pk', 'Menu', branchId, 'MenuResponse')
+    // TODO: i have to make the domain 'rollinnbbq.pk' dynamic based on URL
+
+    connection.invoke('MenuRequest', 'rollinnbbq.pk', branchId, 'MenuResponse')
       .catch((err) => {
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
       });

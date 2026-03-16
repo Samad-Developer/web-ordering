@@ -40,8 +40,10 @@ export function useAddress() {
 
       connection.on('DAndPResponse', handler);
 
+      // TODO: i have to make the domain 'rollinnbbq.pk' dynamic based on URL
+
       try {
-        await connection.invoke('DataRequest', 'rollinnbbq.pk', 'DeliveryAndPickup', 0, 'DAndPResponse');
+        await connection.invoke('DeliveryAndPickupRequest', 'rollinnbbq.pk', 0, 'DAndPResponse');
       } catch (err: any) {
         dispatch(
           addressDataError(

@@ -30,7 +30,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
       savings: 'text-[10px]',
     },
     md: {
-      final: 'text-lg',
+      final: 'text-base sm:text-lg',
       original: 'text-sm',
       savings: 'text-xs',
     },

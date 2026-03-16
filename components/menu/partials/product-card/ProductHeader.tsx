@@ -18,7 +18,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
 
   return (
     <div className={`space-y-2 ${className} mb-2`}>
-      <h3 className="text-lg font-bold text-product-name line-clamp-1 leading-tight">
+      <h3 className="text-base sm:text-lg font-bold text-product-name line-clamp-1 leading-tight">
         {name}
       </h3>
         <p className="text-sm text-muted-foreground line-clamp-2 min-h-10">
