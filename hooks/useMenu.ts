@@ -29,7 +29,7 @@ export function useMenu() {
     connection.on('MenuResponse', handler);
     connection.on("Ack", (ack) => console.log("Ack: " + JSON.stringify(ack)));
 
-    connection.invoke('MenuRequest', 'rollinnbbq.pk', branchId, 'MenuResponse')
+    connection.invoke('MenuRequest', domain, branchId, 'MenuResponse')
       .catch((err) => {
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
         console.error('Issue while requesting menu data:', err);
