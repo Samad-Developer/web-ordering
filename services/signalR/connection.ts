@@ -12,8 +12,7 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
 
   // Create new connection
   connection = new signalR.HubConnectionBuilder()
-    .withUrl(
-      `${API_BASE_URL}/gatewayHub`,
+    .withUrl(`${API_BASE_URL}/gatewayHub`,
       {
         accessTokenFactory: () => token,
         withCredentials: false,
@@ -21,7 +20,7 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
     )
     .withAutomaticReconnect([0, 2000, 5000, 10000, 30000])
     .withKeepAliveInterval(15000)
-    .withServerTimeout(30000) 
+    .withServerTimeout(30000)
     .configureLogging(signalR.LogLevel.Warning)
     .build();
 
@@ -31,7 +30,13 @@ export async function createSignalRConnection(token: string): Promise<signalR.Hu
   connection.onclose(() => console.log('SignalR: Closed'));
 
   // Start connection
-  await connection.start();
+  try {
+    await connection.start();
+    console.log('SignalR: Connected successfully');
+  } catch (error) {
+    console.error('SignalR: Connection failed', error);
+    throw error;
+  }
 
   return connection;
 }

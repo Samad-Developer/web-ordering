@@ -43,6 +43,7 @@ export function useAddress() {
       .invoke('DeliveryAndPickupRequest', 'rollinnbbq.pk', 0, 'DAndPResponse')
       .catch((err: any) => {
         dispatch(addressDataError(err?.message ?? 'Failed to load address data'));
+        console.error('Issue while listening for address modal data:', err);
       });
 
     return () => {

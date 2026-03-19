@@ -32,6 +32,7 @@ export function useMenu() {
     connection.invoke('MenuRequest', 'rollinnbbq.pk', branchId, 'MenuResponse')
       .catch((err) => {
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
+        console.error('Issue while requesting menu data:', err);
       });
 
     return () => {
