@@ -15,10 +15,9 @@ export function useMenu() {
   const { data, isLoading, error } = useAppSelector((state) => state.menu);
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const branchId = selectedAddress?.branchId || 0;
-  console.log("Checking Domain in useMenu", domain)
 
   useEffect(() => {
-    if (!connection || !isConnected) return;
+    if (!connection || !isConnected || !domain) return;
 
     dispatch(menuRequested());
 
@@ -30,8 +29,6 @@ export function useMenu() {
     connection.on('MenuResponse', handler);
     connection.on("Ack", (ack) => console.log("Ack: " + JSON.stringify(ack)));
 
-    // TODO: i have to make the domain 'rollinnbbq.pk' dynamic based on URL
-
     connection.invoke('MenuRequest', 'rollinnbbq.pk', branchId, 'MenuResponse')
       .catch((err) => {
         dispatch(menuError(err?.message ?? 'Error while requesting menu'));
@@ -40,7 +37,7 @@ export function useMenu() {
     return () => {
       connection.off('MenuResponse', handler);
     };
-  }, [connection, isConnected, branchId, dispatch]);
+  }, [connection, isConnected, branchId, domain]);
 
   return {
     menuData: data,

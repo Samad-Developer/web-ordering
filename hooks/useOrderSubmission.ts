@@ -8,6 +8,7 @@ import { selectCartItems } from "@/store/slices/cartSlice";
 import { useMenu } from "./useMenu";
 import { CheckoutFormData } from "@/types/checkout.types";
 import { transformCartItemsForAPI } from "@/lib/place-order/orderHelpers";
+import useDomain from "./useDomain";
 
 export interface PlaceOrderResponse {
   order?: unknown; 
@@ -33,6 +34,7 @@ export interface PlaceOrderResponse {
 
 export function useOrderSubmission() {
   const { menuData } = useMenu();
+  const domain = useDomain();
   const { connection, isConnected } = useSignalR();
   const cartItems = useAppSelector(selectCartItems);
   const selectedAddress = useAppSelector(selectSelectedAddress);
@@ -57,13 +59,15 @@ export function useOrderSubmission() {
 
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
+        console.log("Customer Data:", customerData);
+
         const orderObject = {
           customerDetails: customerData,
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: "rollinnbbq.pk",
+          domain: domain,
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "cash" ? "Cash" : "Card",
           deliveryCharges: selectedAddress.deliveryCharges || 0,

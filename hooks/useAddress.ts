@@ -14,11 +14,13 @@ import {
   selectAvailableModes,
 } from '@/store/slices/addressSlice';
 import type { DeliveryPickupApiResponse } from '@/types/address.types';
+import useDomain from './useDomain';
 
 export function useAddress() {
   const dispatch = useAppDispatch();
+  const domain = useDomain();
   const { connection, isConnected } = useSignalR();
-  
+
   // Selectors
   const apiData = useAppSelector(selectAddressApiData);
   const isLoading = useAppSelector(selectAddressLoading);
@@ -26,39 +28,27 @@ export function useAddress() {
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const availableModes = useAppSelector(selectAvailableModes);
 
-  // Fetch address data from SignalR
   useEffect(() => {
-    if (!connection || !isConnected || apiData) return;
+    if (!connection || !isConnected || apiData || !domain) return;
 
-    const fetchAddressData = async () => {
-      dispatch(addressDataRequested());
-
-      const handler = (payload: DeliveryPickupApiResponse) => {
-        console.log('Address Data Received:', payload);
-        dispatch(addressDataReceived(payload));
-      };
-
-      connection.on('DAndPResponse', handler);
-
-      // TODO: i have to make the domain 'rollinnbbq.pk' dynamic based on URL
-
-      try {
-        await connection.invoke('DeliveryAndPickupRequest', 'rollinnbbq.pk', 0, 'DAndPResponse');
-      } catch (err: any) {
-        dispatch(
-          addressDataError(
-            err?.message ?? 'Failed to load address data'
-          )
-        );
-      }
-
-      return () => {
-        connection.off('DAndPResponse', handler);
-      };
+    const handler = (payload: DeliveryPickupApiResponse) => {
+      dispatch(addressDataReceived(payload));
     };
 
-    fetchAddressData();
-  }, [connection, isConnected, apiData, dispatch]);
+    connection.on('DAndPResponse', handler);
+
+    dispatch(addressDataRequested());
+
+    connection
+      .invoke('DeliveryAndPickupRequest', 'rollinnbbq.pk', 0, 'DAndPResponse')
+      .catch((err: any) => {
+        dispatch(addressDataError(err?.message ?? 'Failed to load address data'));
+      });
+
+    return () => {
+      connection.off('DAndPResponse', handler);
+    };
+  }, [connection, isConnected, apiData, dispatch, domain]);
 
   return {
     apiData,
