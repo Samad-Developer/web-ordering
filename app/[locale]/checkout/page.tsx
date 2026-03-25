@@ -25,7 +25,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-[#F9FAFB]">
 
       {/* Logo */}
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full flex items-center justify-center py-3 rounded-full">
         <Logo />
       </div>
 

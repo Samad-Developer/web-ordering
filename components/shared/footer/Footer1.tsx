@@ -102,14 +102,14 @@ const Footer1 = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1.8fr] gap-8 lg:gap-12 items-start mt-10">
-            <ContactDetails contacts={footerData.contact} />
-            <SocialLinks links={footerData.social} />
-            <AppDownloadSection
+            {/* <ContactDetails contacts={footerData.contact} /> */}
+            {/* <SocialLinks links={footerData.social} /> */}
+            {/* <AppDownloadSection
               title={footerData.appDownload.title}
               subtitle={footerData.appDownload.subtitle}
               apps={footerData.appDownload.apps}
               image={footerData.appDownload.image}
-            />
+            /> */}
           </div>
 
         </div>

@@ -50,18 +50,18 @@ export function CartDrawer() {
         <SheetHeader className="px-2 py-4 border-b ">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-xl font-semibold flex items-center gap-3">
-              
+
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15">
-              <ShoppingCart className="h-5 w-5 text-primary" />
-            </div>
+                <ShoppingCart className="h-5 w-5 text-primary" />
+              </div>
 
               <div className="flex flex-col">
-              {t("title")}
-              {cartItems.length > 0 && (
-                <span className="text-[14px] text-gray-400">
-                  {cartItems.length} items
-                </span>
-              )}
+                {t("title")}
+                {cartItems.length > 0 && (
+                  <span className="text-[14px] text-gray-400">
+                    {cartItems.length} items
+                  </span>
+                )}
               </div>
             </SheetTitle>
             <button
@@ -87,9 +87,7 @@ export function CartDrawer() {
               </div>
 
               {/* Promotional items */}
-              <div className="mt-2 border-t py-4">
-                <PromotionalItems />
-              </div>
+              <PromotionalItems />
 
               {/* Add More Items Button */}
               <button
@@ -136,7 +134,7 @@ export function CartDrawer() {
 
             {/* Footer - Summary & Checkout */}
             <div className="p-3 pb-3 border-t">
-                <CheckoutButton />
+              <CheckoutButton />
             </div>
           </>
         )}

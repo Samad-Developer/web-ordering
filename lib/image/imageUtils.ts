@@ -18,10 +18,9 @@ export function isValidImagePath(imagePath: unknown): boolean {
  */
 export function getImageUrl(
   imagePath: string | null | undefined,
-  fallbackPath: string
 ): string {
   if (!isValidImagePath(imagePath)) {
-    return fallbackPath;
+    return '/assets/images/logo/ygen.png';
   }
 
   // If already a full URL, return as-is

@@ -45,7 +45,7 @@ export function useCartTotals() {
       const originalPrice = item.priceBreakdown.originalBasePrice;
       const discountedPrice = item.priceBreakdown.basePrice;
       const discountPerItem = originalPrice - discountedPrice;
-      return sum + (discountPerItem * item.customization.quantity);
+      return Math.round(sum + (discountPerItem * item.customization.quantity));
     }, 0);
 
     // Subtotal after discount

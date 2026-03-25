@@ -191,6 +191,7 @@ export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
     orderNumber: apiData.orderNumber,
     orderToken: apiData.orderToken,
     status: apiData.status || 'Pending',
+    initialLogs: apiData.orderStatusLogs || [],
     branchName: apiData.branchName || '',
     orderType: apiData.orderType || '',
     createdAt: apiData.orderTime,

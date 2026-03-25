@@ -43,7 +43,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
     dispatch(removeItem(item.cartItemId));
   };
 
-  const imageSrc = getImageUrl(item.productImage, '/assets/images/products/product.webp');
+  const imageSrc = getImageUrl(item.productImage);
 
   return (
     <div className="bg-whiteoverflow-hidden">

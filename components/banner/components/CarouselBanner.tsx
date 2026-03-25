@@ -56,7 +56,7 @@ export const CarouselBanner: React.FC<CarouselBannerProps> = ({
             <CarouselItem key={image.id}>
               <div className={imageWrapperClasses} onClick={onClick}>
                 <Image
-                  src={getImageUrl(image.src, '/assets/images/banner/category-banner/new-arrivals.webp')}
+                  src={getImageUrl(image.src)}
                   alt={image.alt}
                   fill
                   priority={bannerImages.indexOf(image) === 0}

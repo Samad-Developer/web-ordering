@@ -18,7 +18,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   priority = false,
 }) => {
 
-  const imageSrc = getImageUrl(image, '/assets/images/products/product.webp')
+  const imageSrc = getImageUrl(image)
 
   return (
     <div

@@ -28,7 +28,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
 
           {/* Success Header */}
           <div className="relative rounded-xl mb-6">
-            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 pt-6 sm:pt-14 pb-16 sm:pb-24 rounded-xl">
+            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 py-6 sm:py-14 rounded-xl">
               <div className="absolute top-3 left-6">
                 <PartyPopper className="w-8 h-8 text-white/80 rotate-[-15deg]" />
               </div>
@@ -45,19 +45,16 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
               <p className="text-white/90 text-sm mt-1">
                 Sit tight, we&apos;ll keep you updated
               </p>
-
-              <div className='bg-white rounded-xl absolute -bottom-12 sm:-bottom-10 shadow left-1/2 -translate-x-1/2 border border-gray-200 w-[calc(100%-2rem)] sm:w-[calc(100%-10rem)]'>               {/* Order Status Tracker */}
-                <OrderStatusTracker
-                  initialStatus={order.status}
-                  orderToken={order.orderToken}
-                />
-
-              </div>
             </div>
+          </div>
 
-            {/* Order Number & Status */}
-            <div className="rounded-xl mt-6 p-6">
-            </div>
+          {/* Order Status Tracker */}
+          <div className='bg-white rounded-lg shadow-sm mb-6'>
+            <OrderStatusTracker
+              initialStatus={order.status}
+              orderToken={order.orderToken}
+              initialLogs={order.initialLogs}
+            />
           </div>
 
           {/* Customer Information */}
@@ -127,6 +124,12 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Order Number */}
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Order Number</p>
+                <p className="text-gray-900 font-medium">{order.orderToken}</p>
+              </div>
+
               {/* Branch Name */}
               <div>
                 <p className="text-sm text-gray-600 mb-1">Branch</p>
@@ -158,7 +161,7 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
                       Landmark: {order.nearestLandmark}
                     </p>
                   )}
- 
+
                   {order.deliveryInstructions && (
                     <p className="text-sm text-gray-500 mt-1">
                       Note: {order.deliveryInstructions}

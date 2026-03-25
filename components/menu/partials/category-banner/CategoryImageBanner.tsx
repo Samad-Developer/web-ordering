@@ -16,7 +16,7 @@ const CategoryImageBanner: React.FC<CategoryBannerProps> = ({
 }) => {
   const { locale } = useParams();
 
-  const imageSrc = getImageUrl(categoryInfo.Image, '/assets/images/banner/category-banner/new-arrivals.webp');
+  const imageSrc = getImageUrl(categoryInfo.Image);
 
   const categorySlug = toSlug(categoryInfo.Image);
 

@@ -56,7 +56,7 @@ export function searchMenuItems(
 }
 
 export function getTotalSearchResults(categories: MenuCategory[]): number {
-  return categories.reduce((total, category) => {
+  return categories?.reduce((total, category) => {
     return total + category.Items.length;
   }, 0);
 }

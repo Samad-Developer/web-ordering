@@ -68,6 +68,7 @@ export interface ApiOrderResponse {
   orderNumber: string;
   orderToken: string;
   orderType: string;
+  orderStatusLogs: Array<{ Id: number; CreatedAt: string }>;
   paymentType: string | null;
   paymentStatus: string | null;
   status: string;
@@ -100,6 +101,7 @@ export interface OrderItem {
 export interface OrderDetails {
   orderNumber: string;
   orderToken: string;
+  initialLogs: Array<{ Id: number; CreatedAt: string }>;
   status: string;
   items: OrderItem[];
   subtotal: number;

@@ -39,7 +39,7 @@ export function calculateDiscount(
   }
 
   discountAmount = Math.min(discountAmount, price);
-  const finalPrice = price - discountAmount;
+  const finalPrice = Math.round(price - discountAmount);
 
   return {
     originalPrice: price,

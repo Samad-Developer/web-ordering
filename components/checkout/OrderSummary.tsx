@@ -50,7 +50,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                 const addons = getCartItemAddonsText(item);
                 const isExpanded = expandedItems.has(item.cartItemId);
                 const hasDiscount = !!item.discount;
-                const imageSrc = getImageUrl(item.productImage, '/assets/images/products/product.webp');
+                const imageSrc = getImageUrl(item.productImage);
 
                 return (
                   <div

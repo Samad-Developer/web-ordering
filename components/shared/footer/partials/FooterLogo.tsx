@@ -10,12 +10,12 @@ interface FooterLogoProps {
 }
 
 export const FooterLogo: React.FC<FooterLogoProps> = ({ footerLogo }) => {
-  const logoSrc = footerLogo?.src || "/assets/images/logo/logo.webp";
+  const logoSrc = footerLogo?.src || "/assets/images/logo/ygen.png";
 
   if (!logoSrc) return null;
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center rounded-full overflow-hidden">
       <Link href="/" className="block w-fit">
         <Image
           src={logoSrc}
@@ -26,12 +26,10 @@ export const FooterLogo: React.FC<FooterLogoProps> = ({ footerLogo }) => {
             h-auto 
             w-28        /* mobile */
             sm:w-36     /* small devices */
-            md:w-44     /* tablets */
-            lg:w-52     /* desktops */
-            xl:w-60     /* large screens */
             transition-all 
             duration-300 
             hover:scale-105
+
           "
           priority
         />

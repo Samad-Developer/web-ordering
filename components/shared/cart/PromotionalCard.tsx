@@ -20,7 +20,7 @@ interface PromotionalCardProps {
 export function PromotionalCard({ item }: PromotionalCardProps) {
 
     const dispatch = useDispatch();
-    const imageSrc = getImageUrl(item.Image, '/assets/images/products/product.webp');
+    const imageSrc = getImageUrl(item.Image);
     const displayDiscount = item.Discount ? item.Discount : null;
 
     // Check if product can be added directly (single variation, no addons)
