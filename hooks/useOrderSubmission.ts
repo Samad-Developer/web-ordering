@@ -67,7 +67,7 @@ export function useOrderSubmission() {
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: 'michiganpizza.eatx.pk',
+          domain: domain,
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "cash" ? "Cash" : "Card",
           deliveryCharges: selectedAddress.deliveryCharges || 0,
