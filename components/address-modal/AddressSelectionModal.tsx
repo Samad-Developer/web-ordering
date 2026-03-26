@@ -59,13 +59,13 @@ export function AddressSelectionModal() {
   //   }
   // }, [isOpen, cities, tempCityId]);
 
-  
+
   if (!apiData) return null;
 
   const cities = getAllCities(apiData);
   const areas = tempCityId ? getAreasForCity(apiData, tempCityId) : [];
   const branches = tempCityId ? getBranchesForCity(apiData, tempCityId) : [];
-  
+
   const isTemporarilyClosed = !availableModes.delivery && !availableModes.pickup;
 
   const handleModeChange = (mode: OrderMode) => {

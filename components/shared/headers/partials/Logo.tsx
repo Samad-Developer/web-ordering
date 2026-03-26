@@ -1,15 +1,15 @@
 'use client';
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppSelector } from "@/store/hooks";
 import { selectAddressApiData } from "@/store/slices/addressSlice";
+import { getImageUrl } from "@/lib/image/imageUtils";
 
 export const Logo = () => {
   const addressAndThemeData = useAppSelector(selectAddressApiData);
   const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
-  const logoSrc = settings?.RESTAURANT_LOGO || "/assets/images/logo/ygen.png";
+  const logoSrc = settings?.RESTAURANT_LOGO;
 
   return (
     <Link
@@ -26,7 +26,7 @@ export const Logo = () => {
         "
       >
         <Image
-          src={logoSrc}
+          src={getImageUrl(logoSrc)}
           alt="Logo"
           fill
           className="object-contain"

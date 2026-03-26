@@ -1,46 +1,61 @@
 'use client';
 
-import React from 'react';
-import { XCircle } from 'lucide-react';
-import { useBranchValidation } from '@/hooks/useBranchValidation';
+import { useState } from 'react';
+import { X, Clock, AlertTriangle } from 'lucide-react';
+import { useFreshBranchStatus } from '@/hooks/useFreshBranchStatus';
 
 export function BranchStatus() {
-  const branch = useBranchValidation();
+  const { branch, isBranchOpen, businessStartTime } = useFreshBranchStatus();
+  const [dismissed, setDismissed] = useState(false);
 
-   if (!branch.hasBranch || !branch.businessStartTime || branch.isBranchOpen) {
-    return null;
-  }
+  // ✅ Show only when closed
+  if (!branch || isBranchOpen || dismissed) return null;
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-red-500 via-red-500 to-rose-600 overflow-hidden shadow-md">
-      {/* Subtle overlay pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '24px 24px'
-        }} />
+
+
+    <div className=" flex items-center justify-between gap-6 bg-red-500 text-white px-2 sm:px-4 py-1.5 shadow-lg border border-white/10">
+
+      {/* Icon */}
+      <div className="flex items-center justify-center w-6 h-6 ">
       </div>
 
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 py-2.5">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white">
-          {/* Icon & Message */}
-          <div className="flex items-center gap-2.5">
-            <XCircle className="w-4 h-4 flex-shrink-0" strokeWidth={2} />
-            <p className="text-sm font-medium">
-              We&lsquo;re currently closed and not accepting orders
-            </p>
-          </div>
+      {/* Text */}
+      <div className="flex-col sm:flex-row items-center gap-2 text-sm">
 
-          {/* Separator (desktop only) */}
-          <div className="hidden sm:block w-1 h-1 rounded-full bg-white/40" />
-
-          {/* Reopening time */}
-          <p className="text-sm font-semibold">
-            Reopens at {branch.businessStartTime}
-          </p>
+        <div className="flex items-center gap-2">
+          <AlertTriangle className="w-5 h-5" />
+          <span className="font-semibold">Sorry, we are currently closed.</span>
         </div>
+
+        {branch?.BusinessStartTime && (
+          <>
+            <span className="w-[3px] h-[3px] rounded-full bg-white/40" />
+            <span className="text-white/80">
+              Opens at{" "}
+              <span className="font-semibold text-white">
+                {branch.BusinessStartTime}
+              </span>
+            </span>
+          </>
+        )}
+
+        {/* Additional message */}
+        {/* <span className=" text-white/80 text-[13px] mt-1 sm:mt-0 sm:ml-2">
+          You can still browse our menu or come back later to place your order.
+        </span> */}
       </div>
+
+      {/* Close */}
+      <button
+        onClick={() => setDismissed(true)}
+        className="cursor-pointer ml-1 p-1 rounded-full bg-white transition self-end"
+        aria-label="Close"
+      >
+        <X className="w-4 h-4 text-red-500" />
+      </button>
+
     </div>
+
   );
 }

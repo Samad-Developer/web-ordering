@@ -51,7 +51,7 @@ export function useBranchValidation() {
       branchId,
 
       // Business hours
-      isBranchOpen: hasBranch && branchDetails.IsBranchOpen,
+      isBranchOpen: branchDetails.IsBranchOpen,
       businessHours,
       businessStartTime,
       businessEndTime,
