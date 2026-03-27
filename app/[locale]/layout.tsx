@@ -61,17 +61,15 @@ export async function generateMetadata() {
       throw new Error("Failed to fetch SEO");
     }
 
-const data: SEOResponse = await response.json();
+    const data: SEOResponse = await response.json();
 
-console.log("checking data", data)
-const seoMap = data.generalSeo?.reduce<Record<string, string>>((acc, item) => {
-  if (item.value) {
-    acc[item.name] = item.value;
-  }
-  return acc;
-}, {});
 
-console.log("checking seo map", seoMap)
+    const seoMap = data.generalSeo?.reduce<Record<string, string>>((acc, item) => {
+      if (item.value) {
+        acc[item.name] = item.value;
+      }
+      return acc;
+    }, {});
 
     const title =
       seoMap.HOMEPAGE_META_TITLE ||
