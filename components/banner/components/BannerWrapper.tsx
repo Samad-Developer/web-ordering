@@ -68,15 +68,11 @@ const BannerWrapper = () => {
 
   // No images at all
   if (!bannerImages || bannerImages.length === 0) {
-    console.error('❌ BannerWrapper: No images available');
     return null;
   }
 
   // Limit to 5 images
   const limitedImages = bannerImages.slice(0, 5);
-  if (bannerImages.length > 5) {
-    console.warn('⚠️ BannerWrapper: Maximum 5 images allowed. Truncating...');
-  }
 
   if (limitedImages.length === 1) {
     return (

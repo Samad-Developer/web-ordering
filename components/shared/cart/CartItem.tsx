@@ -49,12 +49,12 @@ export function CartItem({ item, isLast }: CartItemProps) {
     <div className="bg-whiteoverflow-hidden">
       <div className="flex items-center gap-4">
         {/* Product Image */}
-        <div className="relative w-[72px] h-[72px] flex-shrink-0 rounded-2xl overflow-hidden">
+        <div className="relative w-[72px] h-[72px] flex-shrink-0 rounded-2xl overflow-hidden border">
           <Image
             src={imageSrc}
             alt={item.productName}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="80px"
           />
         </div>
@@ -111,7 +111,6 @@ export function CartItem({ item, isLast }: CartItemProps) {
 
           </div>
         </div>
-
 
         {/* Quantity Controls */}
         <div className="flex items-center gap-0">

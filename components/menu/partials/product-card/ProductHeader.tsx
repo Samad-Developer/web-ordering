@@ -14,7 +14,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
   className = '',
 }) => {
 
-  const shouldShowDescription = description && description !== 'null' && description.trim() !== '' && description.trim().toLowerCase() !== 'N/A';
+  const shouldShowDescription = description && description !== 'null' && description.trim() !== '' && description.trim() !== 'N/A' && description !== 'n/a';
 
   return (
     <div className={`space-y-2 ${className} mb-2`}>

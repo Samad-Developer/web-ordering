@@ -20,7 +20,7 @@ export function getImageUrl(
   imagePath: string | null | undefined,
 ): string {
   if (!isValidImagePath(imagePath)) {
-    return '/assets/images/logo/ygen.png';
+    return '/assets/images/logo/eatx.webp';
   }
 
   // If already a full URL, return as-is

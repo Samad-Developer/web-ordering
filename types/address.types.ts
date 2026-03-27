@@ -129,6 +129,7 @@ export type ProductCardLayoutStyle = 'default' | 'compact' | 'detailed';
 export interface ThemeSettings {
   RESTAURANT_LOGO?: string;
   SPLASH_BANNER?: string;
+  RestaurantName?: string;
   WEBSITE_BACKGROUND_IMAGE?: string;
   BANNER_IMAGES?: string[];
   HEADER_LAYOUT_STYLE?: HeaderLayoutStyle;
@@ -140,7 +141,43 @@ export interface ThemeSettings {
   USER_LOGIN_ICON?: boolean;
   HAMBURGER_MENU?: boolean;
   ABOUT_US?: boolean;
-  OrderStatuses?: Record<string, string>; // e.g., { "1": "Pending", "2": "Accepted", ... }
+  OrderStatuses?: Record<string, string>;
+  WebsiteConfig?: WebsiteConfig;
+}
+
+/* ------------------ Website Config ------------------ */
+
+export interface WebsiteConfig {
+  GeneralSEO?: GeneralSEOItem[];
+  ExternalLinks?: ExternalLinkItem[];
+}
+
+/* ------------------ General SEO ------------------ */
+
+export interface GeneralSEOItem {
+  Id: number;
+  Value: string;
+  Name:
+    | "WEBSITE_META_TITLE"
+    | "HOMEPAGE_META_TITLE"
+    | "HOMEPAGE_META_DESCRIPTION"
+    | "H1_META"
+    | "BODY_CONTENT"
+    | string; // fallback for future-proofing
+}
+
+/* ------------------ External Links ------------------ */
+
+export interface ExternalLinkItem {
+  Id: number;
+  Value: string;
+  Name:
+    | "FACEBOOK"
+    | "INSTAGRAM"
+    | "TIKTOK"
+    | "ANDROID_APP"
+    | "IOS_APP"
+    | string; // fallback
 }
 
 export interface Theme {

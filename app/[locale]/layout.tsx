@@ -1,12 +1,9 @@
 import "../globals.css";
 import React from "react";
-import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { routing } from '@/i18n/routing';
 import { getMessages } from 'next-intl/server';
 import { Toaster } from "@/components/ui/sonner";
-// import Footer1 from "@/components/shared/footer";
-// import Header1 from "@/components/shared/headers";
 import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/contexts/ThemeProvider";
@@ -16,6 +13,9 @@ import { BranchStatus } from "@/components/shared/BranchStatus";
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
+import { headers } from "next/headers";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -31,11 +31,88 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Roll Inn - Order Delicious Food Online",
-  description: "Experience the convenience of ordering your favorite meals online with Roll Inn. Browse our menu, customize your order, and enjoy fast delivery right to your doorstep. Satisfaction guaranteed with every bite!",
-  
+type SEOItem = {
+  id: number;
+  name: string;
+  value: string;
 };
+
+type SEOResponse = {
+  generalSeo: SEOItem[];
+};
+
+export async function generateMetadata() {
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+
+  const domain = host.includes("localhost")
+    ? "pathan.eatx.pk"
+    : host;
+
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/seo?domain=${domain}`,
+      {
+        next: { revalidate: 3600 }, // cache 1 hour
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch SEO");
+    }
+
+const data: SEOResponse = await response.json();
+
+console.log("checking data", data)
+const seoMap = data.generalSeo?.reduce<Record<string, string>>((acc, item) => {
+  if (item.value) {
+    acc[item.name] = item.value;
+  }
+  return acc;
+}, {});
+
+console.log("checking seo map", seoMap)
+
+    const title =
+      seoMap.HOMEPAGE_META_TITLE ||
+      seoMap.WEBSITE_META_TITLE ||
+      "Default Title";
+
+    const description =
+      seoMap.HOMEPAGE_META_DESCRIPTION ||
+      "Default Description";
+
+    return {
+      title,
+      description,
+      metadataBase: new URL(`https://${domain}`),
+
+      // 🔥 Optional but recommended
+      openGraph: {
+        title,
+        description,
+        url: `https://${domain}`,
+        siteName: domain,
+        type: "website",
+      },
+
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+      },
+    };
+  } catch (error) {
+    console.error("SEO Error:", error);
+
+    // ✅ fallback (never break page)
+    return {
+      title: "Default Title",
+      description: "Default Description",
+    };
+  }
+}
+
 
 export default async function RootLayout({
   children,
@@ -57,13 +134,11 @@ export default async function RootLayout({
               <SignalRProvider>
                 <ThemeProvider>
                   <BranchStatus />
-                  {/* <Header1 /> */}
                   {children}
                   <Toaster position="top-center" richColors />
                   <AddressSelectionModal />
                   <ProductModal />
                   <CartDrawer />
-                  {/* <Footer1 /> */}
                 </ThemeProvider>
               </SignalRProvider>
             </SearchProvider>

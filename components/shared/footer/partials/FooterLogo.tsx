@@ -10,8 +10,8 @@ interface FooterLogoProps {
 }
 
 export const FooterLogo: React.FC<FooterLogoProps> = ({ footerLogo }) => {
-  const logoSrc = footerLogo?.src || "/assets/images/logo/ygen.png";
-
+  
+  const logoSrc = footerLogo?.src || "/assets/images/logo/eatx.webp";
   if (!logoSrc) return null;
 
   return (
@@ -22,15 +22,7 @@ export const FooterLogo: React.FC<FooterLogoProps> = ({ footerLogo }) => {
           alt="logo"
           width={300}
           height={300}
-          className="
-            h-auto 
-            w-28        /* mobile */
-            sm:w-36     /* small devices */
-            transition-all 
-            duration-300 
-            hover:scale-105
-
-          "
+          className="h-auto w-28 sm:w-36 transition-all duration-300 hover:scale-105"
           priority
         />
       </Link>

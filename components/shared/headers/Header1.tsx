@@ -13,6 +13,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useAppSelector } from "@/store/hooks";
 import { selectAddressApiData } from "@/store/slices/addressSlice";
 import { MapPin } from "lucide-react";
+import { useFreshBranchStatus } from "@/hooks/useFreshBranchStatus";
 
 const headerConfig = {
   phoneNumber: "+923485497976",
@@ -27,17 +28,15 @@ const headerConfig = {
 };
 
 const Header1 = () => {
+  const { branch } = useFreshBranchStatus();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const addressAndThemeData = useAppSelector(selectAddressApiData);
   const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
 
-  const showSubmitComplaint = settings?.SUBMIT_COMPLAINT_BUTTON ?? false; // Default: show
-  const showMultiLanguage = settings?.MULTI_LANGUAGE ?? false; // Default: show
-  const showUserLogin = settings?.USER_LOGIN_ICON ?? false; // Default: show
-  const showHamburger = settings?.HAMBURGER_MENU ?? false; // Default: show
-
-  // Get restaurant logo or use default
-  const logoSrc = settings?.RESTAURANT_LOGO || headerConfig.logoSrc;
+  const showSubmitComplaint = settings?.SUBMIT_COMPLAINT_BUTTON ?? false; 
+  const showMultiLanguage = settings?.MULTI_LANGUAGE ?? false; 
+  const showUserLogin = settings?.USER_LOGIN_ICON ?? false; 
+  const showHamburger = settings?.HAMBURGER_MENU ?? false; 
 
   return (
     <header className="w-full bg-topbar-bg border-b border-color-border relative">
@@ -46,14 +45,14 @@ const Header1 = () => {
       <div className="relative flex items-center h-16 lg:h-20">
   
         {/* Left Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
           <ChangeLocation locationIcon={
             // <SvgIcon src="/assets/images/svgIcons/location.svg" alt="Location" />
             <MapPin size={20} color="#4B5563" />
             } />
           <PhoneNumber
             phoneIcon={<SvgIcon src="/assets/images/svgIcons/phone-call.svg" alt="Phone" />}
-            phoneNumber={headerConfig.phoneNumber}
+            phoneNumber={branch?.BranchPhoneNumber}
           />
         </div>
   

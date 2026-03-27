@@ -1,15 +1,15 @@
 import React from 'react';
 
 // Shimmer Animation Component
-const Shimmer = () => (
+export const Shimmer = () => (
   <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 );
 
 // Top Banner Skeleton
 const BannerSkeleton = () => (
-  <div className="relative w-full p-2 sm:p-10">
+  <div className="relative w-full p-2 sm:p-6">
     {/* Slider Skeleton */}
-    <div className="w-full h-[20vh] sm:h-[30vh] lg:h-[50vh] bg-gray-200 rounded-xl overflow-hidden animate-pulse flex items-center justify-center">
+    <div className="w-full h-[20vh] sm:h-[30vh] lg:h-[70vh] bg-gray-200 rounded-xl overflow-hidden animate-pulse flex items-center justify-center">
       {/* Mountain & sun placeholder */}
       <svg
         className="w-12 h-12 sm:w-20 sm:h-20 text-gray-400"

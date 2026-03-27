@@ -1,5 +1,5 @@
 import Header1 from "@/components/shared/headers";
-import Footer1 from "@/components/shared/footer";
+import Footer from "@/components/shared/footer/Footer";
 
 export default function MainLayout({
   children,
@@ -10,7 +10,7 @@ export default function MainLayout({
     <>
       <Header1 />
       {children}
-      <Footer1 />
+      <Footer />
     </>
   );
 }

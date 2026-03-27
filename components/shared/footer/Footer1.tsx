@@ -68,7 +68,7 @@ export const footerData: FooterContent = {
         icon: "/assets/images/app/google-play.webp",
       },
     ],
-    image: "/assets/images/app/mockupbg.webp",
+    image: "/assets/images/logo/eatx.webp",
   },
   footerLogo: {
     src: "",

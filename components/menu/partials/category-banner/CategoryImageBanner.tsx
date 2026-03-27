@@ -22,7 +22,7 @@ const CategoryImageBanner: React.FC<CategoryBannerProps> = ({
 
   return (
     <section className="text-center my-2 sm:my-4 rounded-2xl overflow-hidden">
-      <Link href={`/${locale}/category/${categorySlug}`} prefetch={false}>
+      {/* <Link href={`/${locale}/category/${categorySlug}`} prefetch={false}> */}
         <div className="relative w-full cursor-pointer">
           <Image
             src={imageSrc}
@@ -35,7 +35,7 @@ const CategoryImageBanner: React.FC<CategoryBannerProps> = ({
             quality={85}
           />
         </div>
-      </Link>
+      {/* </Link> */}
     </section>
   );
 };
