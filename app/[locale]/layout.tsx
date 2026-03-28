@@ -12,10 +12,8 @@ import { SignalRProvider } from "@/contexts/signalr-provider";
 import { BranchStatus } from "@/components/shared/BranchStatus";
 import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
+import { getDomainFromHeaders, fetchSEOData, createSEOMap } from "@/lib/seo/seo-utils";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
-import { headers } from "next/headers";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -31,61 +29,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-type SEOItem = {
-  id: number;
-  name: string;
-  value: string;
-};
-
-type SEOResponse = {
-  generalSeo: SEOItem[];
-};
-
+// Generate Dynamic SEO Based On Domain
 export async function generateMetadata() {
-  const headersList = await headers();
-  const host = headersList.get("host") || "";
-
-  const domain = host.includes("localhost")
-    ? "pathan.eatx.pk"
-    : host;
-
   try {
-    const response = await fetch(
-      `${API_BASE_URL}/seo?domain=${domain}`,
-      {
-        next: { revalidate: 3600 }, // cache 1 hour
-      }
-    );
+    const domain = await getDomainFromHeaders();
+    const seoData = await fetchSEOData(domain);
+    const seoMap = createSEOMap(seoData?.generalSeo);
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch SEO");
-    }
-
-    const data: SEOResponse = await response.json();
-
-
-    const seoMap = data.generalSeo?.reduce<Record<string, string>>((acc, item) => {
-      if (item.value) {
-        acc[item.name] = item.value;
-      }
-      return acc;
-    }, {});
-
-    const title =
-      seoMap.HOMEPAGE_META_TITLE ||
-      seoMap.WEBSITE_META_TITLE ||
-      "Default Title";
-
-    const description =
-      seoMap.HOMEPAGE_META_DESCRIPTION ||
-      "Default Description";
+    const title = seoMap.WEBSITE_META_TITLE || seoMap.HOMEPAGE_META_TITLE;
+    const description = seoMap.HOMEPAGE_META_DESCRIPTION;
 
     return {
       title,
       description,
       metadataBase: new URL(`https://${domain}`),
 
-      // 🔥 Optional but recommended
       openGraph: {
         title,
         description,
@@ -101,11 +59,8 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error("SEO Error:", error);
-
-    // ✅ fallback (never break page)
     return {
-      title: "Default Title",
+      title: "Your Restaurant Tab Title",
       description: "Default Description",
     };
   }
