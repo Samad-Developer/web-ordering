@@ -37,6 +37,7 @@ export interface CartItem {
 export interface ProductItem {
   Id: number;
   CategoryId: string;
+  Description: string;
   Code: string;
   Name: string;
   DepartmentName: string;

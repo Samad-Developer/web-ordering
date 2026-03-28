@@ -22,6 +22,7 @@ import {
   getDefaultSize,
   getDefaultFlavor,
 } from "@/lib/product/productHelper";
+import { MenuItem } from "@/types/menu.types";
 
 // ============= ACTION TYPES =============
 
@@ -423,7 +424,7 @@ const ProductModalContext = createContext<ProductModalContextValue | null>(
 // ============= PROVIDER =============
 
 interface ProductModalProviderProps {
-  product: ProductItem;
+  product: MenuItem;
   children: ReactNode;
 }
 
