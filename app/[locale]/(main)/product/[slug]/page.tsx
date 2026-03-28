@@ -11,6 +11,8 @@ const demoProduct: ProductItem = {
   CategoryId: "2592",
   Code: "",
   Description: "",
+  IsPopular: false,
+  IsPromotional: false,
   Name: "Tenders & Drink Combo",
   DepartmentName: "430",
   Price: 0,

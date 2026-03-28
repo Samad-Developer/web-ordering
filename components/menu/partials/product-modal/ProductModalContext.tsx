@@ -424,7 +424,7 @@ const ProductModalContext = createContext<ProductModalContextValue | null>(
 // ============= PROVIDER =============
 
 interface ProductModalProviderProps {
-  product: MenuItem;
+  product: ProductItem;
   children: ReactNode;
 }
 

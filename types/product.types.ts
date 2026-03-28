@@ -38,6 +38,8 @@ export interface ProductItem {
   Id: number;
   CategoryId: string;
   Description: string;
+  IsPromotional: boolean;
+  IsPopular: boolean;
   Code: string;
   Name: string;
   DepartmentName: string;
