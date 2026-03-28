@@ -10,6 +10,7 @@ const demoProduct: ProductItem = {
   Id: 9514,
   CategoryId: "2592",
   Code: "",
+  Description: "",
   Name: "Tenders & Drink Combo",
   DepartmentName: "430",
   Price: 0,
@@ -18,6 +19,7 @@ const demoProduct: ProductItem = {
   Quantity: 0,
   Image: "/ProductImages/a42830be-0e8c-46f9-9e0b-9890fee75166.jpg",
   Comment: "",
+
   IsKot: false,
   ItemFOC: false,
   Variations: [
