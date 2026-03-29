@@ -54,7 +54,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
             src={imageSrc}
             alt={item.productName}
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="80px"
           />
         </div>

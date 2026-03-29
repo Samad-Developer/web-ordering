@@ -59,13 +59,13 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <div className="relative w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
+                      <div className="flex items-center gap-4">
+                        <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
                           <Image
                             alt={item.productName}
                             src={imageSrc}
                             fill
-                            className="object-contain"
+                            className="object-cover"
                           />
                         </div>
                         <div className="flex flex-col">

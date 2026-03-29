@@ -22,9 +22,9 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
       <div className="min-h-screen bg-gray-50 py-8">
         <div className="max-w-3xl mx-auto px-4 ">
           {/* Logo */}
-          <div className="w-full flex items-center justify-center">
+          {/* <div className="w-full flex items-center justify-center mb-5">
             <Logo />
-          </div>
+          </div> */}
 
           {/* Success Header */}
           <div className="relative rounded-xl mb-6">

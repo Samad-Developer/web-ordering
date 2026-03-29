@@ -33,7 +33,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
         fill
         priority={priority}
         sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-contain transition-transform duration-300 hover:scale-105"
+        className="object-cover transition-transform duration-300 hover:scale-105"
       />
     </div>
   );

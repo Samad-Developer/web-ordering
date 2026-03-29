@@ -29,7 +29,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
           alt={alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
-          className="object-contain transition-transform duration-300 hover:scale-105"
+          className="object-cover transition-transform duration-300 hover:scale-105"
           placeholder="blur"
           blurDataURL={imageSrc}
           loading={priority ? "eager" : "lazy"}

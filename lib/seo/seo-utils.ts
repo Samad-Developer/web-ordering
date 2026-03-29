@@ -19,7 +19,7 @@ type SEOResponse = {
 export async function getDomainFromHeaders(): Promise<string> {
     const headersList = await headers();
     const host = headersList.get("host") || "";
-    const domain = host.includes("localhost") ? "pathan.eatx.pk" : host;
+    const domain = host.includes("localhost") ? "rollinn.eatx.pk" : host;
 
     return domain;
 }

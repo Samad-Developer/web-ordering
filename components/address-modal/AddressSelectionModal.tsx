@@ -52,14 +52,6 @@ export function AddressSelectionModal() {
     }
   }, [isOpen, selectedAddress, availableModes]);
 
-
-  // useEffect(() => {
-  //   if (isOpen && cities.length === 1 && !tempCityId) {
-  //     setTempCityId(cities[0].id);
-  //   }
-  // }, [isOpen, cities, tempCityId]);
-
-
   if (!apiData) return null;
 
   const cities = getAllCities(apiData);
@@ -99,10 +91,6 @@ export function AddressSelectionModal() {
         return;
       }
 
-
-      // Assuming area has a BranchId or you need to map it
-      // For now, using the first branch from the city as example
-      // const areaBranch = branches[0]; // TODO: Map area to correct branch
       const areaBranch = branches.find((b) => b.BranchId === area.BranchId);
 
       if (!areaBranch) {
