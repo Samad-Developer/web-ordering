@@ -6,11 +6,11 @@ import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import {
   selectIsModalOpen,
   selectSelectedAddress,
-  selectAvailableModes,
   selectAddressApiData,
   closeAddressModal,
   setDeliveryAddress,
   setPickupBranch,
+  changeOrderMode,
 } from '@/store/slices/addressSlice';
 import {
   getAllCities,
@@ -26,15 +26,19 @@ import { CitySelector } from './CitySelector';
 import { AreaSelector } from './AreaSelector';
 import { BranchSelector } from './BranchSelector';
 import { TemporarilyClosedMessage } from './TemporarilyClosedMessage';
-import { LocateFixed } from 'lucide-react';
+import { Logo } from '../shared/headers/partials/Logo';
 
 export function AddressSelectionModal() {
   const dispatch = useAppDispatch();
 
   const isOpen = useAppSelector(selectIsModalOpen);
   const selectedAddress = useAppSelector(selectSelectedAddress);
-  const availableModes = useAppSelector(selectAvailableModes);
   const apiData = useAppSelector(selectAddressApiData);
+
+  // Direct flags from API
+  const isDeliveryEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_DELIVERY_ENABLED ?? false;
+  const isPickupEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_PICKUP_ENABLED ?? false;
+  const isTemporarilyClosed = !isDeliveryEnabled && !isPickupEnabled;
 
   const [tempMode, setTempMode] = useState<OrderMode>('delivery');
   const [tempCityId, setTempCityId] = useState<string | null>(null);
@@ -47,24 +51,34 @@ export function AddressSelectionModal() {
       setTempCityId(selectedAddress.cityId);
       setTempAreaId(selectedAddress.areaId || null);
       setTempBranchId(selectedAddress.branchId || null);
-    } else if (isOpen) {
-      setTempMode(availableModes.delivery ? 'delivery' : 'pickup');
+      setTempMode(isDeliveryEnabled ? 'delivery' : 'pickup');
+      dispatch(changeOrderMode(isDeliveryEnabled ? 'delivery' : 'pickup'));
     }
-  }, [isOpen, selectedAddress, availableModes]);
+  }, [isOpen, selectedAddress, isDeliveryEnabled, isPickupEnabled]);
+
+  console.log("checking temp order mode", tempMode)
 
   if (!apiData) return null;
-
   const cities = getAllCities(apiData);
   const areas = tempCityId ? getAreasForCity(apiData, tempCityId) : [];
   const branches = tempCityId ? getBranchesForCity(apiData, tempCityId) : [];
-
-  const isTemporarilyClosed = !availableModes.delivery && !availableModes.pickup;
 
   const handleModeChange = (mode: OrderMode) => {
     setTempMode(mode);
     setTempCityId(null);
     setTempAreaId(null);
     setTempBranchId(null);
+  };
+
+  const handleCloseModal = () => {
+    dispatch(closeAddressModal());
+
+    if (!selectedAddress) {
+      setTempMode('delivery');
+      setTempCityId(null);
+      setTempAreaId(null);
+      setTempBranchId(null);
+    }
   };
 
   const handleConfirm = () => {
@@ -142,21 +156,7 @@ export function AddressSelectionModal() {
     dispatch(closeAddressModal());
   };
 
-  const handleCloseModal = () => {
-    dispatch(closeAddressModal());
-
-    if (!selectedAddress) {
-      setTempMode('delivery');
-      setTempCityId(null);
-      setTempAreaId(null);
-      setTempBranchId(null);
-    }
-  };
-
-  const canConfirm =
-    tempCityId &&
-    ((tempMode === 'delivery' && tempAreaId) ||
-      (tempMode === 'pickup' && tempBranchId));
+  const canConfirm = tempCityId && ((tempMode === 'delivery' && tempAreaId) || (tempMode === 'pickup' && tempBranchId));
 
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseModal}>
@@ -169,23 +169,27 @@ export function AddressSelectionModal() {
         ) : (
           <div className="max-h-[90vh] overflow-y-auto p-6 space-y-6">
 
+            <div className=' flex justify-center mb-3'>
+              <Logo />
+            </div>
+
             {/* Order Mode Toggle */}
             <div className='w-full max-w-64 mx-auto px-4'>
               <OrderModeToggle
                 selectedMode={tempMode}
                 onModeChange={handleModeChange}
-                availableDelivery={availableModes.delivery}
-                availablePickup={availableModes.pickup}
+                availableDelivery={isDeliveryEnabled}
+                availablePickup={isPickupEnabled}
               />
             </div>
 
             {/* get current location button */}
-            <div className='flex w-full justify-center items-center'>
+            {/* <div className='flex w-full justify-center items-center'>
               <button className='bg-red-500 px-4 font-semibold py-1 rounded-full text-white flex items-center justify-center gap-2 cursor-pointer'>
                 <LocateFixed className='w-4 h-4' />
                 Use Current Location
               </button>
-            </div>
+            </div> */}
 
             {/* City Selector */}
             <CitySelector
@@ -196,27 +200,22 @@ export function AddressSelectionModal() {
             />
 
             {/* Area Selector - Only for Delivery */}
-            {tempMode === 'delivery' && tempCityId && (
-              <>
-                <AreaSelector
-                  areas={areas}
-                  selectedAreaId={tempAreaId}
-                  onAreaSelect={setTempAreaId}
-                  disabled={!tempCityId}
-                />
-              </>
+            {tempMode === 'delivery' && tempCityId && isDeliveryEnabled && (
+              <AreaSelector
+                areas={areas}
+                selectedAreaId={tempAreaId}
+                onAreaSelect={setTempAreaId}
+                disabled={!tempCityId}
+              />
             )}
 
             {/* Branch Selector - Only for Pickup */}
-            {tempMode === 'pickup' && tempCityId && (
-              <>
-
-                <BranchSelector
-                  branches={branches}
-                  selectedBranchId={tempBranchId}
-                  onBranchSelect={setTempBranchId}
-                />
-              </>
+            {tempMode === 'pickup' && tempCityId && isPickupEnabled && (
+              <BranchSelector
+                branches={branches}
+                selectedBranchId={tempBranchId}
+                onBranchSelect={setTempBranchId}
+              />
             )}
 
             {/* Confirm Button */}

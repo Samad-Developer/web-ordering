@@ -56,7 +56,7 @@ export function CartDrawer() {
               </div>
 
               <div className="flex flex-col">
-                {t("title")}
+                <h2 className="text-lg">{t("title")}</h2>
                 {cartItems.length > 0 && (
                   <span className="text-[14px] text-gray-400">
                     {cartItems.length} items

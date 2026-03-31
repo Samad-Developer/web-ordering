@@ -30,7 +30,6 @@ export function useMenu() {
 
     // Optional: Handler for acknowledgments (if your backend sends them)
     const ackHandler = (ack: any) => {
-      console.log("Is My Menu Cached Or Not", ack);
     };
     connection.on("Ack", ackHandler);
 

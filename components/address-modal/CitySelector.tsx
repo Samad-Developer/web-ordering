@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
-import { ParsedCity } from '@/types/address.types';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { ParsedCity } from '@/types/address.types';
 
 interface CitySelectorProps {
     cities: ParsedCity[];
@@ -38,14 +37,14 @@ export function CitySelector({
                         onClick={() => onCitySelect(city.id)}
                     >
                         {/* Wrapper for Button + Checkmark */}
-                        <div className="relative transform group-hover:scale-105 transition-transform duration-200">
+                        <div className="relative">
                             <button
                                 type="button"
                                 className={cn(
-                                    'w-[70px] h-[70px] rounded-lg border-1 flex items-center justify-center p-[10px] transition-all duration-200',
+                                    'w-[70px] h-[70px] rounded-lg border-1 flex items-center justify-center p-[10px] cursor-pointer',
                                     selectedCityId === city.id
                                         ? 'border-red-500 bg-red-100'
-                                        : 'border-gray-200 bg-white  group-hover:shadow-lg' 
+                                        : 'border-gray-200 bg-white' 
                                 )}
                             >
                                 {/* Image Container (50x50) */}

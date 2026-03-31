@@ -101,7 +101,6 @@ export function getCityNameById(
   );
 }
 
-
 const USER_ADDRESS_KEY = 'user_selected_address';
 
 /**

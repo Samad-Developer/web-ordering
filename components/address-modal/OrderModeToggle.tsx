@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
-import { OrderMode } from '@/types/address.types';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { OrderMode } from '@/types/address.types';
 
 interface OrderModeToggleProps {
     selectedMode: OrderMode;
@@ -21,7 +20,7 @@ export function OrderModeToggle({
     return (
         <div className="space-y-3">
             <h3 className="text-xl font-semibold text-gray-900 text-center">
-                Select your order type
+                Select Your Order Type
             </h3>
 
             <div className="relative flex w-full max-w-md mx-auto bg-gray-200 rounded-full p-1">
@@ -42,7 +41,6 @@ export function OrderModeToggle({
                         duration: 0.35,
                     }}
                 />
-
 
                 {/* Delivery Button */}
                 <button

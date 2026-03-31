@@ -140,6 +140,13 @@ const addressSlice = createSlice({
       saveUserAddress(pickupAddress);
     },
 
+    changeOrderMode: (state, action: PayloadAction<'delivery' | 'pickup'>) => {
+      if (!state.selectedAddress) return;
+      state.selectedAddress.orderMode = action.payload;
+
+      saveUserAddress(state.selectedAddress);
+    },
+
     clearSelectedAddress: (state) => {
       state.selectedAddress = null;
       state.selectedBranchDetails = null;
@@ -163,6 +170,7 @@ export const {
   addressDataError,
   setDeliveryAddress,
   setPickupBranch,
+  changeOrderMode,
   clearSelectedAddress,
   openAddressModal,
   closeAddressModal,
@@ -197,7 +205,7 @@ export const selectAvailableModes = createSelector(
     const hasPickup = Object.values(data?.dataPayload?.Pickup ?? {}).some(
       (city) => city.Branches?.length > 0
     );
-    
+
     return { delivery: hasDelivery, pickup: hasPickup };
   }
 );

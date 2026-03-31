@@ -135,6 +135,8 @@ export interface ThemeSettings {
   RESTAURANT_LOGO?: string;
   SPLASH_BANNER?: string;
   RestaurantName?: string;
+  IS_DELIVERY_ENABLED?: boolean,
+  IS_PICKUP_ENABLED?: boolean,
   WEBSITE_BACKGROUND_IMAGE?: string;
   BANNER_IMAGES?: string[];
   HEADER_LAYOUT_STYLE?: HeaderLayoutStyle;

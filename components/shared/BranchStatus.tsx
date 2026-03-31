@@ -12,26 +12,25 @@ export function BranchStatus() {
   if (!branch || isBranchOpen || dismissed) return null;
 
   return (
+    <div className="relative bg-gradient-to-r from-rose-600 via-red-500 to-orange-400 text-white px-4 sm:px-6 py-2 shadow-xl border border-white/10">
 
+      {/* Center Content */}
+      <div className="flex flex-col sm:flex-row items-center justify-center text-center sm:text-left gap-2 text-sm pr-8 sm:pr-12">
 
-    <div className=" flex items-center justify-between gap-6 bg-red-500 text-white px-2 sm:px-4 py-1.5 shadow-lg border border-white/10">
-
-      {/* Icon */}
-      <div className="flex items-center justify-center w-6 h-6 ">
-      </div>
-
-      {/* Text */}
-      <div className="flex-col sm:flex-row items-center gap-2 text-sm">
-
-        <div className="flex items-center gap-2">
+        {/* Icon + Heading */}
+        <div className="flex items-center gap-2 shrink-0">
           <AlertTriangle className="w-5 h-5" />
-          <span className="font-semibold">Sorry, we are currently closed.</span>
+          <span className="font-semibold whitespace-nowrap">
+            We’re currently closed.
+          </span>
         </div>
 
+
+
+        {/* Opening Time */}
         {branch?.BusinessStartTime && (
           <>
-            <span className="w-[3px] h-[3px] rounded-full bg-white/40" />
-            <span className="text-white/80">
+            <span className="text-white/90 whitespace-nowrap">
               Opens at{" "}
               <span className="font-semibold text-white">
                 {branch.BusinessStartTime}
@@ -40,22 +39,22 @@ export function BranchStatus() {
           </>
         )}
 
-        {/* Additional message */}
-        {/* <span className=" text-white/80 text-[13px] mt-1 sm:mt-0 sm:ml-2">
-          You can still browse our menu or come back later to place your order.
-        </span> */}
+        {/* Extra Text */}
+        <span className="text-white/80 text-[13px] sm:whitespace-nowrap">
+          You can still explore our menu and plan your order for later.
+        </span>
+
       </div>
 
-      {/* Close */}
+      {/* Close Button */}
       <button
         onClick={() => setDismissed(true)}
-        className="cursor-pointer ml-1 p-1 rounded-full bg-white transition self-end"
+        className="absolute top-2 right-2 sm:top-1 sm:right-3 p-1 hover:opacity-80 transition cursor-pointer"
         aria-label="Close"
       >
-        <X className="w-4 h-4 text-red-500" />
+        <X className="w-6 h-6 text-white" />
       </button>
 
     </div>
-
   );
 }
