@@ -60,7 +60,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-4">
-                        <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
+                        <div className="relative w-[72px] h-[72px] flex-shrink-0 rounded-lg overflow-hidden border border-gray-200">
                           <Image
                             alt={item.productName}
                             src={imageSrc}
@@ -77,8 +77,33 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                             {item.sizeName && item.sizeName !== "-" && item.flavorName && item.flavorName !== "-" ? " • " : ""}
                             {item.flavorName && item.flavorName !== "-" ? item.flavorName : ""}
                           </p>
+
+                          <span className="font-semibold text-sm text-gray-900 flex-shrink-0">
+                            <div className="flex flex-col gap-0.5">
+                              {hasDiscount ? (
+                                <div className="flex gap-2 items-baseline">
+                                  {/* Original Price - Line Through */}
+                                  <span className="text-xs text-gray-400 line-through">
+                                    {formatPrice(item.priceBreakdown.originalBasePrice)}
+                                  </span>
+
+                                  {/* Discounted Price - Green */}
+                                  <span className="text-base font-bold text-gray-800">
+                                    {formatPrice(item.priceBreakdown.basePrice)}
+                                  </span>
+                                </div>
+                              ) : (
+                                /* No Discount - Normal Price */
+                                <span className="text-base font-bold text-gray-900">
+                                  {formatPrice(item.priceBreakdown.basePrice)}
+                                </span>
+                              )}
+                            </div>
+                          </span>
                         </div>
                       </div>
+
+
 
                       {addons.length > 0 && (
                         <div className="py-2 px-1 space-y-1">
@@ -113,28 +138,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
                       )}
                     </div>
 
-                    <span className="font-semibold text-sm text-gray-900 flex-shrink-0">
-                      <div className="flex flex-col gap-0.5">
-                        {hasDiscount ? (
-                          <div className="flex gap-2 items-baseline">
-                            {/* Original Price - Line Through */}
-                            <span className="text-xs text-gray-400 line-through">
-                              {formatPrice(item.priceBreakdown.originalBasePrice)}
-                            </span>
 
-                            {/* Discounted Price - Green */}
-                            <span className="text-base font-bold text-gray-800">
-                              {formatPrice(item.priceBreakdown.basePrice)}
-                            </span>
-                          </div>
-                        ) : (
-                          /* No Discount - Normal Price */
-                          <span className="text-base font-bold text-gray-900">
-                            {formatPrice(item.priceBreakdown.basePrice)}
-                          </span>
-                        )}
-                      </div>
-                    </span>
                   </div>
                 </div>
               );
@@ -144,7 +148,7 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
           {/* Show cart summary and separator only if showCartDetails is true */}
           {showPaymentDetails && (
             <div className="p-5">
-              <Separator className="bg-gray-500 mb-4" />
+              <Separator className="bg-gray-300 mb-4" />
               <PriceSummary variant="checkout" />
             </div>
           )}

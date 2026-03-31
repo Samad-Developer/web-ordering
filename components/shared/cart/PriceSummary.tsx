@@ -24,13 +24,13 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
   const isFreeDelivery = totals.isFreeDelivery;
 
   const containerStyles = {
-    cart: "space-y-2 p-3 rounded-lg bg-white",
-    checkout: "space-y-3",
+    cart: "space-y-3 p-4 rounded-lg bg-gray-50 border border-gray-200",
+    checkout: "space-y-3 ",
     success: "space-y-3" // Same as checkout but without header
   };
 
   const detailsContainerStyles = {
-    cart: "space-y-2",
+    cart: "space-y-3",
     checkout: "space-y-2 bg-white mb-0 p-2 rounded-lg",
     success: "space-y-2 bg-white p-4 rounded-lg" // Same as checkout
   };
@@ -132,8 +132,10 @@ export function PriceSummary({ variant = 'cart' }: OrderSummaryProps) {
         )}
       </div>
 
+      <div className='border-t border-dashed'></div>
+
       {/* Grand Total */}
-      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? 'p-2 border-t' : ''}`}>
+      <div className={`flex items-center justify-between ${variant === 'checkout' || variant === 'success' ? '' : ''}`}>
         <span className={`${styles.totalLabel} flex gap-2 items-center`}>
           {/* <Wallet className={variant === 'cart' ? 'w-5 h-5' : 'w-6 h-6'} />  */}
           {t('grandTotal')}

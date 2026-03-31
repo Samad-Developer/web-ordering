@@ -36,17 +36,17 @@ export function cityExistsInMode(
   mode: 'delivery' | 'pickup'
 ): boolean {
   if (mode === 'delivery') {
-    return !!data.dataPayload.Delivery?.[cityId];
+    return !!data?.dataPayload?.Delivery?.[cityId];
   }
-  return !!data.dataPayload.Pickup?.[cityId];
+  return !!data?.dataPayload?.Pickup?.[cityId];
 }
 
 export function getAllCities(data: DeliveryPickupApiResponse): ParsedCity[] {
   const citiesMap = new Map<string, ParsedCity>();
 
   // Add delivery cities
-  if (data.dataPayload.Delivery) {
-    Object.entries(data.dataPayload.Delivery).forEach(([cityId, cityData]) => {
+  if (data?.dataPayload?.Delivery) {
+    Object.entries(data?.dataPayload?.Delivery).forEach(([cityId, cityData]) => {
       citiesMap.set(cityId, {
         id: cityId,
         name: cityData.CityName,
@@ -57,8 +57,8 @@ export function getAllCities(data: DeliveryPickupApiResponse): ParsedCity[] {
   }
 
   // Add/Update with pickup cities
-  if (data.dataPayload.Pickup) {
-    Object.entries(data.dataPayload.Pickup).forEach(([cityId, cityData]) => {
+  if (data?.dataPayload?.Pickup) {
+    Object.entries(data?.dataPayload?.Pickup).forEach(([cityId, cityData]) => {
       const existing = citiesMap.get(cityId);
       if (existing) {
         existing.hasPickup = true;
@@ -80,14 +80,14 @@ export function getAreasForCity(
   data: DeliveryPickupApiResponse,
   cityId: string
 ): Area[] {
-  return data.dataPayload.Delivery[cityId]?.Areas || [];
+  return data?.dataPayload?.Delivery?.[cityId]?.Areas || [];
 }
 
 export function getBranchesForCity(
   data: DeliveryPickupApiResponse,
   cityId: string
 ): Branch[] {
-  return data.dataPayload.Pickup[cityId]?.Branches || [];
+  return data?.dataPayload?.Pickup?.[cityId]?.Branches || [];
 }
 
 export function getCityNameById(
@@ -95,8 +95,8 @@ export function getCityNameById(
   cityId: string
 ): string | null {
   return (
-    data.dataPayload.Delivery[cityId]?.CityName ||
-    data.dataPayload.Pickup[cityId]?.CityName ||
+    data?.dataPayload?.Delivery?.[cityId]?.CityName ||
+    data?.dataPayload?.Pickup?.[cityId]?.CityName ||
     null
   );
 }

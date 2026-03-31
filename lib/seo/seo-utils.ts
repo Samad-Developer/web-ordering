@@ -19,7 +19,7 @@ type SEOResponse = {
 export async function getDomainFromHeaders(): Promise<string> {
     const headersList = await headers();
     const host = headersList.get("host") || "";
-    const domain = host.includes("localhost") ? "rollinn.eatx.pk" : host;
+    const domain = host.includes("localhost") ? "pathan.eatx.pk" : host;
 
     return domain;
 }
@@ -31,7 +31,11 @@ export async function getDomainFromHeaders(): Promise<string> {
 export async function fetchSEOData(domain: string): Promise<SEOResponse | null> {
     try {
         const response = await fetch(`${API_BASE_URL}/seo?domain=${domain}`, {
-            next: { revalidate: 3600 },
+            next: { 
+                revalidate: 3600,
+                tags: ['seo-data', `seo-${domain}`]
+             },
+            
         });
 
         if (!response.ok) {
@@ -53,4 +57,17 @@ export function createSEOMap(seoItems: SEOItem[] = []) {
     }
     return acc;
   }, {});
+}
+
+
+export function extractLogoUrl(seoData: any): string | null {
+  const seoArray = seoData?.generalSeo;
+
+  if (!Array.isArray(seoArray)) return null;
+
+  const logoItem = seoArray.find(
+    (item: any) => item.name === "UPLOAD_LOGO"
+  );
+
+  return `${process.env.NEXT_PUBLIC_API_URL}/${logoItem?.value}` || null;
 }

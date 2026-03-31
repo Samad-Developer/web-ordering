@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Generate Dynamic SEO Based On Domain
+// Generate Dynamic SEO Based On Domain 
 export async function generateMetadata() {
   try {
     const domain = await getDomainFromHeaders();

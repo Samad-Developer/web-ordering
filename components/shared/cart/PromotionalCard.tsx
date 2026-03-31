@@ -41,8 +41,7 @@ export function PromotionalCard({ item }: PromotionalCardProps) {
             addToCart({
                 productId: item.Id,
                 productName: item.Name,
-                productImage:
-                    item.Image !== "N/A" ? item.Image : "/placeholder-food.jpg",
+                productImage: item.Image,
                 variationId: variation.Id,
                 sizeName: variation.Size.Name,
                 flavorName: variation.Flavour.Name,

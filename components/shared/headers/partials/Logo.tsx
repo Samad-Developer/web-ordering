@@ -25,7 +25,7 @@ export const Logo = () => {
           w-[70px] h-[70px]        
           sm:w-[100px] sm:h-[100px] 
           rounded-full
-          overflow-hidden "
+          overflow-hidden shadow"
       >
           {isMenuLoading ? (
           <div className="w-full h-full bg-gray-300/40 animate-pulse rounded-full" ><Shimmer /></div>

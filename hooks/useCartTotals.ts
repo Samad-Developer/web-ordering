@@ -25,20 +25,10 @@ export function useCartTotals() {
     const subtotal = cartItems.reduce((sum, item) => {
       const originalPrice = item.priceBreakdown.originalBasePrice;
       const addonsTotal = item.priceBreakdown.addonsTotal || 0;
-      
+
       const itemTotal = (originalPrice + addonsTotal) * item.customization.quantity;
       return sum + itemTotal;
     }, 0);
-
-    // const subtotal = cartItems.reduce((sum, item) => {
-    //   const originalPrice = Number(item.priceBreakdown?.originalBasePrice ?? 0);
-    //   const addonsTotal = Number(item.priceBreakdown?.addonsTotal ?? 0);
-    //   const quantity = Number(item.customization?.quantity ?? 0);
-
-    //   const itemTotal = (originalPrice + addonsTotal) * quantity;
-
-    //   return sum + itemTotal;
-    // }, 0);
 
     // Calculate total discount amount
     const totalDiscount = cartItems.reduce((sum, item) => {
@@ -54,14 +44,17 @@ export function useCartTotals() {
     const getTaxRate = () => {
       if (!addressData || !selectedAddress?.cityId) return 0;
 
-      const cityId = selectedAddress.cityId;
-      const pickupData = addressData.dataPayload.Pickup[cityId];
+      const cityId = selectedAddress?.cityId;
+      const pickupData = addressData.dataPayload?.Pickup?.[cityId];
 
-      if (pickupData && typeof pickupData.Tax === 'number') {
-        return pickupData.Tax / 100; // Convert to decimal (e.g., 16 -> 0.16)
-      }
+      if (!pickupData?.Tax || !Array.isArray(pickupData.Tax)) return 0;
 
-      return 0; // Default to 0 if no tax found
+      const paymentMode = 'CARD';
+      const matchedTax = pickupData.Tax.find(
+        (tax: any) => tax.PaymentMode === paymentMode
+      );
+
+      return matchedTax ? matchedTax.Percentage / 100 : 0;
     };
 
     const taxRate = getTaxRate();
@@ -143,3 +136,4 @@ export function useCartTotals() {
     };
   }, [cartItems, selectedAddress, branchDetails]);
 }
+

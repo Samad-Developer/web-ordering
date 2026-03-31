@@ -25,7 +25,7 @@ export default function Footer() {
         <footer className="w-full bg-footer-bg text-footer-fg border-t border-white/10">
 
             {/* Main Footer */}
-            <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="max-w-6xl mx-auto px-2 sm:px-0 py-10 grid grid-cols-1 md:grid-cols-3 gap-4">
 
                 {/* Card 1 */}
                 <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
@@ -46,8 +46,6 @@ export default function Footer() {
                             <span>{currentBranch?.branch?.BranchPhoneNumber}</span>
                         </div>
                     </div>
-
-                    
                 </div>
 
                 {/* Card 2 */}
@@ -57,7 +55,7 @@ export default function Footer() {
                     </h3>
 
                     {/* Social Links (ADD HERE) */}
-                    {(linksMap.FACEBOOK || linksMap.INSTAGRAM || linksMap.TIKTOK) && (
+                    {(linksMap.FACEBOOK || linksMap.INSTAGRAM || linksMap.TIKTOK) ? (
                         <div className="flex flex-col items-start gap-4 pt-2 border-white/10">
                             {linksMap.FACEBOOK && (
                                 <a
@@ -91,7 +89,10 @@ export default function Footer() {
                                     <Music2 size={18} /> Tiktok
                                 </a>
                             )}
+
                         </div>
+                    ) : (
+                        <p className="text-sm opacity-60">Social links not available</p>
                     )}
                 </div>
 

@@ -1,9 +1,8 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useCartTotals } from '@/hooks/useCartTotals';
+import { Button } from '@/components/ui/button';
 
 interface PlaceOrderButtonProps {
   onPlaceOrder: () => void;
@@ -17,7 +16,6 @@ export function PlaceOrderButton({
   isSubmitting,
 }: PlaceOrderButtonProps) {
   const t = useTranslations("checkout")
- const totals = useCartTotals();
 
   return (
     <div className="space-y-3 ">

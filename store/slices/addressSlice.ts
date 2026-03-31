@@ -190,14 +190,14 @@ export const selectAvailableModes = createSelector(
       return { delivery: false, pickup: false };
     }
 
-    const hasDelivery = Object.values(data.dataPayload.Delivery).some(
-      (city) => city.Areas.length > 0
+    const hasDelivery = Object.values(data?.dataPayload?.Delivery ?? {}).some(
+      (city) => city.Areas?.length > 0
     );
 
-    const hasPickup = Object.values(data.dataPayload.Pickup).some(
-      (city) => city.Branches.length > 0
+    const hasPickup = Object.values(data?.dataPayload?.Pickup ?? {}).some(
+      (city) => city.Branches?.length > 0
     );
-
+    
     return { delivery: hasDelivery, pickup: hasPickup };
   }
 );

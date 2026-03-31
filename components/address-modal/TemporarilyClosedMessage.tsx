@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AlertCircle } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function TemporarilyClosedMessage() {
@@ -11,8 +11,8 @@ export function TemporarilyClosedMessage() {
       animate={{ opacity: 1, scale: 1 }}
       className="flex flex-col items-center justify-center py-12 px-6"
     >
-      <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-        <AlertCircle className="w-10 h-10 text-orange-500" />
+      <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4">
+        <X className="w-12 h-12 text-red-500" />
       </div>
 
       <h3 className="text-2xl font-bold text-gray-900 mb-2">

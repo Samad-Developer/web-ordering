@@ -79,9 +79,14 @@ export interface CityDelivery {
   Areas: Area[];
 }
 
+export interface TaxRule {
+  PaymentMode: 'CASH' | 'CARD';
+  Percentage: number;
+  Gst: string;
+}
 export interface CityPickup {
   CityName: string;
-  Tax: number; // Tax percentage (e.g., 16 for 16%)
+  Tax: TaxRule[]; 
   Branches: Branch[];
 }
 

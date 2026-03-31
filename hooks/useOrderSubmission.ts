@@ -59,15 +59,13 @@ export function useOrderSubmission() {
 
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
 
-        console.log("Customer Data:", customerData);
-
         const orderObject = {
           customerDetails: customerData,
           items: transformedItems,
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: domain,
+          domain: 'pathan.eatx.pk',
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "cash" ? "Cash" : "Card",
           deliveryCharges: selectedAddress.deliveryCharges || 0,
@@ -75,8 +73,8 @@ export function useOrderSubmission() {
         };
 
         const handleOrderResponse = (response: PlaceOrderResponse) => {
-          // connection.off("CreateOrderResponse", handleOrderResponse);
-          console.log("Received order response from SignalR:", response);
+          connection.off("CreateOrderResponse", handleOrderResponse);
+  
           setIsSubmitting(false);
           if (response.dataPayload?.Success) {
             resolve(response);
@@ -92,7 +90,6 @@ export function useOrderSubmission() {
           .invoke("PlaceOrder", orderObject, "CreateOrderResponse")
           .catch((err) => {
             connection.off("CreateOrderResponse", handleOrderResponse);
-         
             setIsSubmitting(false);
             reject(err);
           });
