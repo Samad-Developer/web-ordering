@@ -23,7 +23,7 @@ const initialState: AddressState = {
   selectedAddress: null,
   selectedBranchDetails: null,
   isModalOpen: false,
-  paymentMethod: null,
+  paymentMethod: 'CASH',
 };
 
 const addressSlice = createSlice({
@@ -89,6 +89,7 @@ const addressSlice = createSlice({
           BusinessEndTime: payload.branchDetails.BusinessEndTime,
           MinimumOrder: payload.branchDetails.MinimumOrder,
           IsBranchOpen: payload.branchDetails.IsBranchOpen,
+          BusinessDays: payload.branchDetails.BusinessDays,
         },
 
         isCurrentLocation: false,
@@ -130,6 +131,7 @@ const addressSlice = createSlice({
           BusinessEndTime: action.payload.branch.BusinessEndTime,
           MinimumOrder: action.payload.branch.MinimumOrder,
           IsBranchOpen: action.payload.branch.IsBranchOpen,
+          BusinessDays: action.payload.branch.BusinessDays,
         },
 
         isCurrentLocation: false,

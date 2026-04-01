@@ -5,7 +5,6 @@ export default function useDomain() {
   
   useEffect(() => {
     setDomain(window.location.hostname);
-    console.log("Current Domain:", domain);
   }, []);
 
   return domain;

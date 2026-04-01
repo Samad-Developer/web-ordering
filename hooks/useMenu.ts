@@ -23,19 +23,17 @@ export function useMenu() {
 
     // Handler for receiving menu data
     const handler = (response: MenuResponse) => {
-      console.log("Checking Menu Response", response)
       dispatch(menuReceived(response.dataPayload));
     };
     connection.on('MenuResponse', handler);
 
     // Optional: Handler for acknowledgments (if your backend sends them)
-    const ackHandler = (ack: any) => {
-    };
+    const ackHandler = (ack: any) => {};
     connection.on("Ack", ackHandler);
 
     // Request menu data for the current branch
     connection
-    .invoke('MenuRequest', 'pathan.eatx.pk', branchId, 'MenuResponse')
+    .invoke('MenuRequest', domain, branchId, 'MenuResponse')
     .catch((err) => { dispatch(menuError(err?.message ?? 'Error while requesting menu'));});
 
     return () => {

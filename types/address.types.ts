@@ -52,6 +52,21 @@ export interface ParsedCity {
 
 export type OrderMode = 'delivery' | 'pickup';
 
+export type DayOfWeek =
+  | 'Monday'
+  | 'Tuesday'
+  | 'Wednesday'
+  | 'Thursday'
+  | 'Friday'
+  | 'Saturday'
+  | 'Sunday';
+
+export interface BusinessDay {
+  Day: DayOfWeek;
+  StartTime: string;
+  EndTime: string;
+}
+
 export interface Branch {
   BranchId: number;
   BranchName: string;
@@ -60,6 +75,7 @@ export interface Branch {
   BusinessStartTime: string;
   BusinessEndTime: string;
   MinimumOrder: number;
+  BusinessDays: BusinessDay[];
   IsBranchOpen: boolean;
 }
 
@@ -244,6 +260,7 @@ export interface UserSelectedAddress {
     BusinessEndTime: string;
     MinimumOrder: number;
     IsBranchOpen: boolean;
+    BusinessDays: BusinessDay[];
   };
 
   // Metadata

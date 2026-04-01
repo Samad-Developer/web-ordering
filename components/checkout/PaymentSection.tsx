@@ -112,7 +112,7 @@ export function PaymentSection({ form }: PaymentSectionProps) {
               {/* Icon */}
               <span className={cn(
                 'w-9 h-9 rounded-lg flex items-center justify-center mb-0.5',
-                isSelected ? 'bg-blue-50 text-blue-600' : 'bg-gray-100 text-gray-500'
+                isSelected ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'
               )}>
                 {icon}
               </span>
@@ -143,7 +143,9 @@ export function PaymentSection({ form }: PaymentSectionProps) {
               </svg>
               <span className="text-xs font-medium text-green-800">How to pay</span>
             </div>
-            <p className="text-sm text-gray-600 leading-relaxed">{activeMode.Description}</p>
+            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+              {activeMode.Description}
+            </p>
 
             {/* WhatsApp hint — shown for OnlineTransaction or when Description mentions WhatsApp */}
             {paymentMethod === 'OnlineTransaction' && (
