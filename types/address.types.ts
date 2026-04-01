@@ -86,7 +86,7 @@ export interface TaxRule {
 }
 export interface CityPickup {
   CityName: string;
-  Tax: TaxRule[]; 
+  Tax: TaxRule[];
   Branches: Branch[];
 }
 
@@ -149,7 +149,14 @@ export interface ThemeSettings {
   HAMBURGER_MENU?: boolean;
   ABOUT_US?: boolean;
   OrderStatuses?: Record<string, string>;
+  PaymentModes: PaymentMode[];
   WebsiteConfig?: WebsiteConfig;
+}
+
+interface PaymentMode {
+  PaymentModeId: number;
+  PaymentMode: string;
+  Description: string;
 }
 
 /* ------------------ Website Config ------------------ */
@@ -165,12 +172,12 @@ export interface GeneralSEOItem {
   Id: number;
   Value: string;
   Name:
-    | "WEBSITE_META_TITLE"
-    | "HOMEPAGE_META_TITLE"
-    | "HOMEPAGE_META_DESCRIPTION"
-    | "H1_META"
-    | "BODY_CONTENT"
-    | string; // fallback for future-proofing
+  | "WEBSITE_META_TITLE"
+  | "HOMEPAGE_META_TITLE"
+  | "HOMEPAGE_META_DESCRIPTION"
+  | "H1_META"
+  | "BODY_CONTENT"
+  | string; // fallback for future-proofing
 }
 
 /* ------------------ External Links ------------------ */
@@ -179,12 +186,12 @@ export interface ExternalLinkItem {
   Id: number;
   Value: string;
   Name:
-    | "FACEBOOK"
-    | "INSTAGRAM"
-    | "TIKTOK"
-    | "ANDROID_APP"
-    | "IOS_APP"
-    | string; // fallback
+  | "FACEBOOK"
+  | "INSTAGRAM"
+  | "TIKTOK"
+  | "ANDROID_APP"
+  | "IOS_APP"
+  | string; // fallback
 }
 
 export interface Theme {

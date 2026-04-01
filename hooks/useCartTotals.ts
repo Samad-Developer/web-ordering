@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store/hooks';
 import { selectCartItems } from '@/store/slices/cartSlice';
 import {
   selectAddressApiData,
+  selectPaymentMethod,
   selectSelectedAddress,
   selectSelectedBranchDetails
 } from '@/store/slices/addressSlice';
@@ -15,6 +16,7 @@ export function useCartTotals() {
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const branchDetails = useAppSelector(selectSelectedBranchDetails);
   const addressData = useAppSelector(selectAddressApiData);
+  const paymentMethod = useAppSelector(selectPaymentMethod)
 
   return useMemo(() => {
 
@@ -49,9 +51,8 @@ export function useCartTotals() {
 
       if (!pickupData?.Tax || !Array.isArray(pickupData.Tax)) return 0;
 
-      const paymentMode = 'CARD';
       const matchedTax = pickupData.Tax.find(
-        (tax: any) => tax.PaymentMode === paymentMode
+        (tax: any) => tax.PaymentMode === paymentMethod
       );
 
       return matchedTax ? matchedTax.Percentage / 100 : 0;
@@ -134,6 +135,6 @@ export function useCartTotals() {
       amountToMinimum,
       canCheckout,
     };
-  }, [cartItems, selectedAddress, branchDetails]);
+  }, [cartItems, selectedAddress, branchDetails, paymentMethod]);
 }
 

@@ -31,7 +31,7 @@ export default function CheckoutPage() {
 
       <div className="max-w-[1200px] mx-auto px-2 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
         {/* Left Side - Checkout Form */}
-        <div className="lg:col-span-3 px-4 sm:px-8 py-6 bg-white rounded-lg shadow-sm">
+        <div className="lg:col-span-3 px-4 sm:px-8 py-6 bg-white rounded-lg shadow-sm self-start">
           <h1 className="text-2xl font-semibold mb-8">Checkout</h1>
           <CheckoutForm formRef={formRef} submitOrder={submitOrder} />
         </div>

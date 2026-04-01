@@ -61,8 +61,8 @@ export const CarouselBanner: React.FC<CarouselBannerProps> = ({
                   src={getImageUrl(image.src)}
                   alt={image.alt}
                   width={1400} 
+                  preload={true}
                   height={400}
-                  priority={bannerImages.indexOf(image) === 0}
                   className="w-full h-auto object-contain rounded-xl overflow-hidden"
                   quality={90}
                 />

@@ -1,7 +1,7 @@
 // lib/types/checkout.types.ts
 
 export type OrderMode = 'delivery' | 'pickup';
-export type PaymentMethod = 'cash' | 'online';
+export type PaymentMethod = 'CASH' | 'CARD' | 'OnlineTransaction';
 
 export interface CheckoutFormData {
   // Customer Info (Always Required)

@@ -1,26 +1,21 @@
 "use client";
 
-import { useState, RefObject, useEffect } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useState, RefObject } from "react";
+import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
+import { PaymentSection } from "./PaymentSection";
 import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/store/hooks";
-import { clearCart, selectCartItems } from "@/store/slices/cartSlice";
+import { CheckoutFormFields } from "./CheckoutFormFields";
+import { PlaceOrderResponse } from "@/hooks/useOrderSubmission";
+import { selectSelectedAddress } from "@/store/slices/addressSlice";
 import { createCheckoutSchema } from "@/lib/checkout/checkoutSchema";
 import { getDefaultFormValues } from "@/lib/checkout/checkoutHelpers";
-import {
-  CheckoutFormData,
-  OrderMode,
-  PaymentMethod,
-} from "@/types/checkout.types";
-import { Separator } from "@/components/ui/separator";
-import { CheckoutFormFields } from "./CheckoutFormFields";
-import { PaymentSection } from "./PaymentSection";
-import { toast } from "sonner";
-import { useParams } from "next/navigation";
-import { PlaceOrderResponse } from "@/hooks/useOrderSubmission";
-import { useAppDispatch } from "@/store/hooks";
-import { selectSelectedAddress } from "@/store/slices/addressSlice";
+import { clearCart } from "@/store/slices/cartSlice";
+import { CheckoutFormData, OrderMode } from "@/types/checkout.types";
 
 interface CheckoutFormProps {
   formRef: RefObject<HTMLFormElement>;
@@ -29,33 +24,22 @@ interface CheckoutFormProps {
 
 export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const { locale } = useParams();
-  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+  const [isGift, setIsGift] = useState(false);
   const selectedAddress = useAppSelector(selectSelectedAddress);
 
-  const orderMode: OrderMode = selectedAddress?.orderMode || "pickup"; // Default to pickup if no address selected
-  const [isGift, setIsGift] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cash");
+  const orderMode: OrderMode = selectedAddress?.orderMode || "pickup";
 
   // Create dynamic schema based on current state
-  const schema = createCheckoutSchema(orderMode, isGift, paymentMethod);
-  
+  const schema = createCheckoutSchema(orderMode, isGift);
+
   const form = useForm<CheckoutFormData>({
     resolver: zodResolver(schema) as unknown as Resolver<CheckoutFormData>,
     defaultValues: getDefaultFormValues(),
     mode: "onBlur",
   });
 
-
-  const handlePaymentMethodChange = (method: PaymentMethod) => {
-    setPaymentMethod(method);
-    form.setValue("paymentMethod", method);
-
-    if (method !== "cash") {
-      form.setValue("changeAmount", undefined);
-    }
-  };
 
   const handleGiftToggle = (checked: boolean) => {
     setIsGift(checked);
@@ -82,7 +66,6 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
         form.reset(getDefaultFormValues());
         dispatch(clearCart());
         setIsGift(false);
-        setPaymentMethod("cash");
 
         // Navigate to order confirmation page with order number
         router.push(`/${locale}/order-placed?orderNumber=${response.dataPayload?.OrderNumber}`);
@@ -91,7 +74,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
           description: response.dataPayload?.Message || "Please try again or contact support.",
         });
       }
-      
+
     } catch (error) {
       toast.error("Failed to place order", {
         description: error instanceof Error ? error.message : "Please try again or contact support.",
@@ -100,27 +83,23 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
   };
 
   return (
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6"
-        ref={formRef}
-      >
-        {/* Form Fields */}
-        <CheckoutFormFields
-          form={form}
-          orderMode={orderMode}
-          isGift={isGift}
-          onGiftToggle={handleGiftToggle}
-        />
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className="space-y-6"
+      ref={formRef}
+    >
+      {/* Form Fields */}
+      <CheckoutFormFields
+        form={form}
+        orderMode={orderMode}
+        isGift={isGift}
+        onGiftToggle={handleGiftToggle}
+      />
 
-        <Separator />
-
-        {/* Payment Section */}
-        <PaymentSection
-          form={form}
-          paymentMethod={paymentMethod}
-          onPaymentMethodChange={handlePaymentMethodChange}
-        />
-      </form>
+      {/* Payment Section */}
+      <PaymentSection
+        form={form}
+      />
+    </form>
   );
 }

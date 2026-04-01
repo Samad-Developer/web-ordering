@@ -9,7 +9,6 @@ const phoneRegex = /^03[0-9]{9}$/;
 export const createCheckoutSchema = (
   orderMode: OrderMode,
   isGift: boolean,
-  paymentMethod: PaymentMethod
 ) => {
   return z.object({
     // Basic Info (Always Required)
@@ -36,19 +35,19 @@ export const createCheckoutSchema = (
     deliveryAddress:
       orderMode === "delivery"
         ? z
-            .string()
-            .min(10, "Address must be at least 10 characters")
-            .max(200, "Address must be at most 200 characters")
+          .string()
+          .min(10, "Address must be at least 10 characters")
+          .max(200, "Address must be at most 200 characters")
         : z.string().optional(),
 
     nearestLandmark:
       orderMode === "delivery"
         ? z
-            .string()
-            .min(3, "Landmark must be at least 3 characters")
-            .max(100, "Landmark must be at most 100 characters")
-            .optional()
-            .or(z.literal(""))
+          .string()
+          .min(3, "Landmark must be at least 3 characters")
+          .max(100, "Landmark must be at most 100 characters")
+          .optional()
+          .or(z.literal(""))
         : z.string().optional(),
 
     // Optional Fields
@@ -64,41 +63,37 @@ export const createCheckoutSchema = (
       .optional(),
 
     // Payment
-    paymentMethod: z.enum(["cash", "online"]),
+    paymentMethod: z.enum(['CASH', 'CARD', 'OnlineTransaction']),
 
-    changeAmount:
-      paymentMethod === "cash"
-        ? z.preprocess((val) => {
-            if (val === "" || val === undefined || Number.isNaN(val))
-              return undefined;
-            return Number(val);
-          }, z.number().min(0).optional())
-        : z.number().optional(),
+    changeAmount: z.preprocess((val) => {
+      if (val === '' || val === undefined || Number.isNaN(val)) return undefined;
+      return Number(val);
+    }, z.number().min(0, 'Amount must be positive').optional()),
 
     // Gift Options (Conditional)
     isGift: z.boolean(),
 
     recipientName: isGift
       ? z
-          .string()
-          .min(2, "Recipient name must be at least 2 characters")
-          .max(50, "Recipient name must be at most 50 characters")
+        .string()
+        .min(2, "Recipient name must be at least 2 characters")
+        .max(50, "Recipient name must be at most 50 characters")
       : z.string().optional(),
 
     recipientNumber: isGift
       ? z
-          .string()
-          .regex(phoneRegex, "Please enter a valid mobile number (03xxxxxxxxx)")
-          .length(11, "Mobile number must be 11 digits")
+        .string()
+        .regex(phoneRegex, "Please enter a valid mobile number (03xxxxxxxxx)")
+        .length(11, "Mobile number must be 11 digits")
       : z.string().optional(),
 
     giftingMessage: isGift
       ? z
-          .string()
-          .min(5, "Message must be at least 5 characters")
-          .max(200, "Message must be at most 200 characters")
-          .optional()
-          .or(z.literal(""))
+        .string()
+        .min(5, "Message must be at least 5 characters")
+        .max(200, "Message must be at most 200 characters")
+        .optional()
+        .or(z.literal(""))
       : z.string().optional(),
   });
 };

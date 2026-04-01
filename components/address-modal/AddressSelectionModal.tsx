@@ -40,7 +40,13 @@ export function AddressSelectionModal() {
   const isPickupEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_PICKUP_ENABLED ?? false;
   const isTemporarilyClosed = !isDeliveryEnabled && !isPickupEnabled;
 
-  const [tempMode, setTempMode] = useState<OrderMode>('delivery');
+  const initialMode: OrderMode = isDeliveryEnabled
+  ? 'delivery'
+  : isPickupEnabled
+  ? 'pickup'
+  : 'delivery'; // fallback if both disabled
+
+  const [tempMode, setTempMode] = useState<OrderMode>(initialMode);
   const [tempCityId, setTempCityId] = useState<string | null>(null);
   const [tempAreaId, setTempAreaId] = useState<number | null>(null);
   const [tempBranchId, setTempBranchId] = useState<number | null>(null);
@@ -51,12 +57,9 @@ export function AddressSelectionModal() {
       setTempCityId(selectedAddress.cityId);
       setTempAreaId(selectedAddress.areaId || null);
       setTempBranchId(selectedAddress.branchId || null);
-      setTempMode(isDeliveryEnabled ? 'delivery' : 'pickup');
       dispatch(changeOrderMode(isDeliveryEnabled ? 'delivery' : 'pickup'));
     }
   }, [isOpen, selectedAddress, isDeliveryEnabled, isPickupEnabled]);
-
-  console.log("checking temp order mode", tempMode)
 
   if (!apiData) return null;
   const cities = getAllCities(apiData);

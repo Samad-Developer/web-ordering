@@ -13,6 +13,7 @@ interface AddressState {
   selectedAddress: UserSelectedAddress | null;
   selectedBranchDetails: Branch | null;
   isModalOpen: boolean;
+  paymentMethod: 'CASH' | 'CARD' | 'OnlineTransaction' | null;
 }
 
 const initialState: AddressState = {
@@ -22,6 +23,7 @@ const initialState: AddressState = {
   selectedAddress: null,
   selectedBranchDetails: null,
   isModalOpen: false,
+  paymentMethod: null,
 };
 
 const addressSlice = createSlice({
@@ -147,6 +149,13 @@ const addressSlice = createSlice({
       saveUserAddress(state.selectedAddress);
     },
 
+    setPaymentMethod: (
+      state,
+      action: PayloadAction<'CASH' | 'CARD' | 'OnlineTransaction'>
+    ) => {
+      state.paymentMethod = action.payload;
+    },
+
     clearSelectedAddress: (state) => {
       state.selectedAddress = null;
       state.selectedBranchDetails = null;
@@ -174,6 +183,7 @@ export const {
   clearSelectedAddress,
   openAddressModal,
   closeAddressModal,
+  setPaymentMethod,
 } = addressSlice.actions;
 
 export default addressSlice.reducer;
@@ -190,6 +200,8 @@ export const selectSelectedAddress = (state: { address: AddressState }) => state
 export const selectSelectedBranchDetails = (state: { address: AddressState }) => state.address.selectedBranchDetails;
 
 export const selectIsModalOpen = (state: { address: AddressState }) => state.address.isModalOpen;
+
+export const selectPaymentMethod = (state: { address: AddressState }) => state.address.paymentMethod;
 
 export const selectAvailableModes = createSelector(
   [selectAddressApiData],

@@ -15,7 +15,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   src,
   alt,
   className = "",
-  priority = false,
+  priority = true,
 }) => {
 
   const imageSrc = getImageUrl(src);
@@ -34,6 +34,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
           blurDataURL={imageSrc}
           loading={priority ? "eager" : "lazy"}
           priority={priority}
+          quality={75}
         />
     </div>
   );
