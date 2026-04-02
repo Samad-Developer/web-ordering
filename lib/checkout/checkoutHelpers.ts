@@ -29,7 +29,7 @@ export function getDefaultFormValues(): Partial<CheckoutFormData> {
     nearestLandmark: "",
     emailAddress: "",
     deliveryInstructions: "",
-    paymentMethod: "cash",
+    paymentMethod: "CASH",
     changeAmount: undefined,
     isGift: false,
     recipientName: "",
