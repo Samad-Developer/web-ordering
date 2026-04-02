@@ -15,7 +15,7 @@ export function TemporarilyClosedMessage() {
         <X className="w-12 h-12 text-red-500" />
       </div>
 
-      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+      <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">
         Ordering Temporarily Closed
       </h3>
 

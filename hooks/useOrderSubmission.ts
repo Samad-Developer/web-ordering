@@ -65,7 +65,7 @@ export function useOrderSubmission() {
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: domain,
+          domain: 'pathan.eatx.pk',
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "CASH" ? "Cash" : "Card",
           deliveryCharges: selectedAddress.deliveryCharges || 0,

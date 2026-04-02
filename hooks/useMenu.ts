@@ -23,6 +23,7 @@ export function useMenu() {
 
     // Handler for receiving menu data
     const handler = (response: MenuResponse) => {
+      console.log("Menu Response ...", response)
       dispatch(menuReceived(response.dataPayload));
     };
     connection.on('MenuResponse', handler);
@@ -33,7 +34,7 @@ export function useMenu() {
 
     // Request menu data for the current branch
     connection
-    .invoke('MenuRequest', domain, branchId, 'MenuResponse')
+    .invoke('MenuRequest', 'pathan.eatx.pk', branchId, 'MenuResponse')
     .catch((err) => { dispatch(menuError(err?.message ?? 'Error while requesting menu'));});
 
     return () => {

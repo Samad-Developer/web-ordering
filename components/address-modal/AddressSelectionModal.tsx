@@ -171,7 +171,6 @@ export function AddressSelectionModal() {
           <TemporarilyClosedMessage />
         ) : (
           <div className="max-h-[90vh] overflow-y-auto p-6 space-y-6">
-
             <div className=' flex justify-center mb-3'>
               <Logo />
             </div>

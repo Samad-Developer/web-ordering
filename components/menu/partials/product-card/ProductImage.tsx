@@ -33,7 +33,6 @@ export const ProductImage: React.FC<ProductImageProps> = ({
           placeholder="blur"
           blurDataURL={imageSrc}
           loading={priority ? "eager" : "lazy"}
-          priority={priority}
           quality={75}
         />
     </div>

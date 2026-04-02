@@ -181,8 +181,8 @@ export function transformOrderData(apiData: ApiOrderResponse): OrderDetails {
 
   // Calculate order totals
   const tax = Math.round(apiData.amountWithGst - apiData.amountWithoutGst);
-  const discount = apiData.totalDiscount || 0;
-  const subtotal = apiData.amountWithoutGst + discount;
+  const discount = Math.round(apiData.totalDiscount || 0);
+  const subtotal = Math.round(apiData.amountWithoutGst + discount);
   const deliveryCharges = apiData.deliveryCharges || 0;
   const grandTotal = Math.round(apiData.amountWithGst + deliveryCharges);
 

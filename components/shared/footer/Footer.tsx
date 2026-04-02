@@ -40,14 +40,15 @@ export default function Footer() {
     <footer className="w-full bg-footer-bg text-footer-fg border-t border-white/10">
 
       {/* Main Footer */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-0 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
         {/* Card 1 — Restaurant Info */}
-        <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
-          <h3 className="text-lg font-semibold mb-4 tracking-wide">
-            {restaurantName || "Your Restaurant"}
+        {branch && (
+          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
+            <h3 className="text-lg font-semibold mb-4 tracking-wide">
+              {restaurantName || "Your Restaurant"}
 
-            {/* Open/Closed badge */}
+              {/* Open/Closed badge */}
               <div className="flex items-center gap-2 pt-1">
                 {isOpen ? (
                   <>
@@ -61,9 +62,8 @@ export default function Footer() {
                   </>
                 )}
               </div>
-          </h3>
+            </h3>
 
-          {branch ? (
             <div className="space-y-3 text-sm opacity-90">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="mt-0.5 opacity-70 shrink-0" />
@@ -73,26 +73,18 @@ export default function Footer() {
                 <Phone size={16} className="opacity-70 shrink-0" />
                 <span>{branch.BranchPhoneNumber}</span>
               </div>
-              
             </div>
-          ) : (
-            <div className="space-y-3">
-              {/* Skeleton fallback */}
-              <div className="h-3 w-3/4 rounded bg-white/10 animate-pulse" />
-              <div className="h-3 w-1/2 rounded bg-white/10 animate-pulse" />
-              <div className="h-3 w-2/3 rounded bg-white/10 animate-pulse" />
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Card 2 — Business Hours */}
-        <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
-          <div className="flex items-center gap-2 mb-4">
-            <Clock size={16} className="opacity-70" />
-            <h3 className="text-lg font-semibold tracking-wide">Hours</h3>
-          </div>
+        {sortedDays.length > 0 && (
+          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
+            <div className="flex items-center gap-2 mb-4">
+              <Clock size={16} className="opacity-70" />
+              <h3 className="text-lg font-semibold tracking-wide">Hours</h3>
+            </div>
 
-          {sortedDays.length > 0 ? (
             <ul className="space-y-1.5 text-sm">
               {sortedDays.map((d) => {
                 const isToday = d.Day === todayName;
@@ -104,7 +96,7 @@ export default function Footer() {
                     <span className={`${isToday ? "font-semibold" : ""} min-w-[80px]`}>
                       {d.Day.slice(0, 3)}
                       {isToday && (
-                        <span className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full bg-white/15 font-normal">
+                        <span className="ml-1.5 text-[10px] px-2 py-0.5 rounded-full bg-green-600 font-normal">
                           today
                         </span>
                       )}
@@ -116,23 +108,14 @@ export default function Footer() {
                 );
               })}
             </ul>
-          ) : (
-            <div className="space-y-2">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="flex justify-between gap-4">
-                  <div className="h-3 w-12 rounded bg-white/10 animate-pulse" />
-                  <div className="h-3 w-24 rounded bg-white/10 animate-pulse" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Card 3 — Social Links */}
-        <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
-          <h3 className="text-lg font-semibold mb-4 tracking-wide">Follow Us</h3>
+        {(linksMap.FACEBOOK || linksMap.INSTAGRAM || linksMap.TIKTOK) && (
+          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
+            <h3 className="text-lg font-semibold mb-4 tracking-wide">Follow Us</h3>
 
-          {(linksMap.FACEBOOK || linksMap.INSTAGRAM || linksMap.TIKTOK) ? (
             <div className="flex flex-col gap-3">
               {linksMap.FACEBOOK && (
                 <a href={linksMap.FACEBOOK} target="_blank" rel="noopener noreferrer"
@@ -156,18 +139,14 @@ export default function Footer() {
                 </a>
               )}
             </div>
-          ) : (
-            <div className="space-y-3">
-              <p className="text-xs opacity-40 pt-1">No social links added yet</p>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Card 4 — Get the App */}
-        <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
-          <h3 className="text-lg font-semibold mb-4 tracking-wide">Get Our App</h3>
+        {(linksMap.ANDROID_APP || linksMap.IOS_APP) && (
+          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
+            <h3 className="text-lg font-semibold mb-4 tracking-wide">Get Our App</h3>
 
-          {(linksMap.ANDROID_APP || linksMap.IOS_APP) ? (
             <div className="space-y-3">
               {linksMap.ANDROID_APP && (
                 <a href={linksMap.ANDROID_APP} target="_blank" rel="noopener noreferrer"
@@ -190,12 +169,8 @@ export default function Footer() {
                 </a>
               )}
             </div>
-          ) : (
-            <div className="space-y-3">
-              <p className="text-xs opacity-40 pt-1">App not available yet</p>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
       </div>
 

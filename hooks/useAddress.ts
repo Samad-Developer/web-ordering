@@ -33,6 +33,7 @@ export function useAddress() {
 
     const handler = (payload: DeliveryPickupApiResponse) => {
       dispatch(addressDataReceived(payload));
+      console.log("Address Response ...", payload)
     };
 
     connection.on('DAndPResponse', handler);
@@ -40,7 +41,7 @@ export function useAddress() {
     dispatch(addressDataRequested());
 
     connection
-      .invoke('DeliveryAndPickupRequest', domain, 0, 'DAndPResponse')
+      .invoke('DeliveryAndPickupRequest', 'pathan.eatx.pk', 0, 'DAndPResponse')
       .catch((err: any) => {
         dispatch(addressDataError(err?.message ?? 'Failed to load address data'));
       });
