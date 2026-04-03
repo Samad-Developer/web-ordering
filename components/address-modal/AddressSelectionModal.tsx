@@ -2,7 +2,6 @@
 
 import { toast } from 'sonner';
 import { useState, useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import {
   selectIsModalOpen,
   selectSelectedAddress,
@@ -18,15 +17,17 @@ import {
   getBranchesForCity,
   getCityNameById,
 } from '@/lib/address/addressHelpers';
-import { OrderMode } from '@/types/address.types';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { OrderModeToggle } from './OrderModeToggle';
 import { CitySelector } from './CitySelector';
 import { AreaSelector } from './AreaSelector';
+import { Button } from '@/components/ui/button';
+import { OrderMode } from '@/types/address.types';
 import { BranchSelector } from './BranchSelector';
-import { TemporarilyClosedMessage } from './TemporarilyClosedMessage';
+import { OrderModeToggle } from './OrderModeToggle';
 import { Logo } from '../shared/headers/partials/Logo';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { resolveOrderMode } from '@/lib/address/addressHelpers';
+import { TemporarilyClosedMessage } from './TemporarilyClosedMessage';
 
 export function AddressSelectionModal() {
   const dispatch = useAppDispatch();
@@ -35,31 +36,47 @@ export function AddressSelectionModal() {
   const selectedAddress = useAppSelector(selectSelectedAddress);
   const apiData = useAppSelector(selectAddressApiData);
 
+  const savedOrderMode = selectedAddress?.orderMode;
+
   // Direct flags from API
-  const isDeliveryEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_DELIVERY_ENABLED ?? false;
   const isPickupEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_PICKUP_ENABLED ?? false;
+  const isDeliveryEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_DELIVERY_ENABLED ?? false;
   const isTemporarilyClosed = !isDeliveryEnabled && !isPickupEnabled;
 
-  const initialMode: OrderMode = isDeliveryEnabled
-  ? 'delivery'
-  : isPickupEnabled
-  ? 'pickup'
-  : 'delivery'; // fallback if both disabled
+  const [tempMode, setTempMode] = useState<OrderMode>(() => {
+    const initialOrderMode = resolveOrderMode({
+      savedOrderMode,
+      isDeliveryEnabled,
+      isPickupEnabled,
+    });
 
-  const [tempMode, setTempMode] = useState<OrderMode>(initialMode);
+    return initialOrderMode || 'delivery';
+  });
+
   const [tempCityId, setTempCityId] = useState<string | null>(null);
   const [tempAreaId, setTempAreaId] = useState<number | null>(null);
   const [tempBranchId, setTempBranchId] = useState<number | null>(null);
 
   useEffect(() => {
-    if (isOpen && selectedAddress) {
-      setTempMode(selectedAddress.orderMode);
+
+    const resolvedMode = resolveOrderMode({
+      savedOrderMode,
+      isDeliveryEnabled,
+      isPickupEnabled,
+    });
+
+    if (!resolvedMode) return;
+
+    setTempMode(resolvedMode);
+    dispatch(changeOrderMode(resolvedMode));
+
+    if (selectedAddress) {
       setTempCityId(selectedAddress.cityId);
       setTempAreaId(selectedAddress.areaId || null);
       setTempBranchId(selectedAddress.branchId || null);
-      dispatch(changeOrderMode(isDeliveryEnabled ? 'delivery' : 'pickup'));
     }
-  }, [isOpen, selectedAddress, isDeliveryEnabled, isPickupEnabled]);
+
+  }, [selectedAddress, isDeliveryEnabled, isPickupEnabled]);
 
   if (!apiData) return null;
   const cities = getAllCities(apiData);

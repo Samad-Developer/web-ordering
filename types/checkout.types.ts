@@ -1,4 +1,8 @@
-// lib/types/checkout.types.ts
+import { UseFormReturn } from "react-hook-form";
+
+export interface PaymentSectionProps {
+  form: UseFormReturn<CheckoutFormData>;
+}
 
 export type OrderMode = 'delivery' | 'pickup';
 export type PaymentMethod = 'CASH' | 'CARD' | 'OnlineTransaction';

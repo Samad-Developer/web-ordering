@@ -24,6 +24,8 @@ export async function fetchOrderDetails(orderToken: string): Promise<OrderDetail
     const response = await res.json();
     const apiData = Array.isArray(response) ? response[0] : response;
 
+    console.log('✅ Fetched order data:', apiData);
+
     if (!apiData) {
       console.error('❌ No order data in response');
     }

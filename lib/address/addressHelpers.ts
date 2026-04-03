@@ -159,3 +159,38 @@ export function getSavedBranchId(): number {
     return 0;
   }
 }
+
+type OrderMode = 'delivery' | 'pickup';
+
+export function resolveOrderMode({
+  savedOrderMode,
+  isDeliveryEnabled,
+  isPickupEnabled,
+}: {
+  savedOrderMode?: OrderMode;
+  isDeliveryEnabled: boolean;
+  isPickupEnabled: boolean;
+}): OrderMode | null {
+
+  // ❌ Both OFF → no valid mode
+  if (!isDeliveryEnabled && !isPickupEnabled) {
+    return null;
+  }
+
+  // ✅ Only one enabled
+  if (isDeliveryEnabled && !isPickupEnabled) {
+    return 'delivery';
+  }
+
+  if (!isDeliveryEnabled && isPickupEnabled) {
+    return 'pickup';
+  }
+
+  // ✅ Both enabled
+  if (savedOrderMode) {
+    return savedOrderMode;
+  }
+
+  // fallback default
+  return 'delivery';
+}

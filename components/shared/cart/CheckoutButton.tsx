@@ -4,25 +4,19 @@ import { useParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toggleCart } from '@/store/slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { selectAddressApiData, selectSelectedAddress, changeOrderMode } from '@/store/slices/addressSlice';
+import { selectAddressApiData } from '@/store/slices/addressSlice';
 import { useFreshBranchStatus } from '@/hooks/useFreshBranchStatus';
-import { useEffect } from 'react';
 
 export function CheckoutButton() {
   const { locale } = useParams();
   const dispatch = useAppDispatch();
   const { isBranchOpen } = useFreshBranchStatus();
   const apiData = useAppSelector(selectAddressApiData);
-  const selectedAddress = useAppSelector(selectSelectedAddress);
 
   // Direct flags from API
   const isDeliveryEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_DELIVERY_ENABLED ?? false;
   const isPickupEnabled = apiData?.dataPayload?.Theme?.Settings?.IS_PICKUP_ENABLED ?? false;
   const isTemporarilyClosed = !isDeliveryEnabled && !isPickupEnabled;
-
-  useEffect(() => {
-    dispatch(changeOrderMode(isDeliveryEnabled ? 'delivery' : 'pickup'));
-  }, [])
 
   const handleCheckout = () => {
     if (isTemporarilyClosed) {
@@ -51,6 +45,7 @@ export function CheckoutButton() {
   return (
     <Link
       href={`/${locale}/checkout`}
+      prefetch={true}
       onClick={handleCheckout}
     >
       <Button

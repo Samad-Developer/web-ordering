@@ -1,60 +1,62 @@
 "use client";
 
+import { useMenu } from "./useMenu";
+import useDomain from "./useDomain";
 import { useState, useCallback } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { useSignalR } from "@/contexts/signalr-provider";
-import { selectSelectedAddress } from "@/store/slices/addressSlice";
-import { selectCartItems } from "@/store/slices/cartSlice";
-import { useMenu } from "./useMenu";
 import { CheckoutFormData } from "@/types/checkout.types";
+import { selectCartItems } from "@/store/slices/cartSlice";
+import { getSignalRConnection } from "@/services/signalR/connection";
+import { selectSelectedAddress } from "@/store/slices/addressSlice";
 import { transformCartItemsForAPI } from "@/lib/place-order/orderHelpers";
-import useDomain from "./useDomain";
 
 export interface PlaceOrderResponse {
-  order?: unknown; 
-
+  order?: unknown;
   dataPayload?: {
     Success: boolean;
     Message?: string;
     OrderNumber?: string;
   };
-
   correlationId?: string;
   connectionId?: string;
   userId?: string;
-
   responseKey?: "CreateOrderResponse";
   signalRMethodName?: "PlaceOrder";
-
   restaurantId?: number;
   branchId?: number;
   domainName?: string;
 }
 
-
 export function useOrderSubmission() {
   const { menuData } = useMenu();
   const domain = useDomain();
-  const { connection, isConnected } = useSignalR();
   const cartItems = useAppSelector(selectCartItems);
-  const selectedAddress = useAppSelector(selectSelectedAddress);
+  const { ensureConnected } = useSignalR(); 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const selectedAddress = useAppSelector(selectSelectedAddress);
 
-  const submitOrder = useCallback((customerData: CheckoutFormData): Promise<PlaceOrderResponse> => {
+  const submitOrder = useCallback(
+    async (customerData: CheckoutFormData): Promise<PlaceOrderResponse> => {
       setIsSubmitting(true);
 
-      return new Promise((resolve, reject) => {
-
-        if (!connection || !isConnected) {
-          setIsSubmitting(false);     
-          reject(new Error("SignalR connection not available"));
-          return;
+      try {
+        // Ensure connection is active before proceeding
+        const isConnected = await ensureConnected();
+        
+        if (!isConnected) {
+          throw new Error("Unable to establish connection. Please check your internet and try again.");
         }
 
-        if (!selectedAddress) {
-          setIsSubmitting(false);
-          reject(new Error("Address selection is required to place an order."));
-          return;
+        // Get the CURRENT connection after ensureConnected
+        const connection = getSignalRConnection();
+        
+        if (!connection) {
+          throw new Error("Connection not available");
+        }
+
+        if (!selectedAddress?.branchId) {
+          throw new Error("Branch ID not found");
         }
 
         const transformedItems = transformCartItemsForAPI(cartItems, menuData);
@@ -68,34 +70,58 @@ export function useOrderSubmission() {
           domain: 'pathan.eatx.pk',
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "CASH" ? "Cash" : "Card",
-          deliveryCharges: selectedAddress.deliveryCharges || 0,
+          deliveryCharges: selectedAddress?.orderMode === "delivery" ? selectedAddress.deliveryCharges : 0,
           status: "Pending",
         };
 
-        const handleOrderResponse = (response: PlaceOrderResponse) => {
-          connection.off("CreateOrderResponse", handleOrderResponse);
-  
-          setIsSubmitting(false);
-          if (response.dataPayload?.Success) {
-            resolve(response);
-          } else {
-            reject(new Error(response.dataPayload?.Message));
-          }
-        };
+        console.log("Submitting order:", orderObject);
 
-        connection.on("CreateOrderResponse", handleOrderResponse);
-
-        // Invoke SignalR method
-        connection
-          .invoke("PlaceOrder", orderObject, "CreateOrderResponse")
-          .catch((err) => {
+        // Return promise that resolves when order response is received
+        return new Promise((resolve, reject) => {
+          const handleOrderResponse = (response: PlaceOrderResponse) => {
+            console.log("Received order response:", response);
+            
+            // Clean up listener
             connection.off("CreateOrderResponse", handleOrderResponse);
             setIsSubmitting(false);
-            reject(err);
-          });
-      });
+
+            if (response.dataPayload?.Success) {
+              resolve(response);
+            } else {
+              reject(new Error(response.dataPayload?.Message || "Order failed"));
+            }
+          };
+
+          // Register response handler
+          connection.on("CreateOrderResponse", handleOrderResponse);
+
+          // Invoke SignalR method with timeout
+          const invokeTimeout = setTimeout(() => {
+            connection.off("CreateOrderResponse", handleOrderResponse);
+            setIsSubmitting(false);
+            reject(new Error("Order request timed out. Please try again."));
+          }, 30000); // 30 second timeout
+
+          connection
+            .invoke("PlaceOrder", orderObject, "CreateOrderResponse")
+            .then(() => {
+              // Clear timeout if invoke succeeds
+              clearTimeout(invokeTimeout);
+            })
+            .catch((err) => {
+              clearTimeout(invokeTimeout);
+              connection.off("CreateOrderResponse", handleOrderResponse);
+              console.error("SignalR invoke error:", err);
+              setIsSubmitting(false);
+              reject(new Error("Failed to send order. Please try again."));
+            });
+        });
+      } catch (error) {
+        setIsSubmitting(false);
+        throw error;
+      }
     },
-    [connection, isConnected, selectedAddress, cartItems, menuData]
+    [ensureConnected, selectedAddress, cartItems, menuData, domain]
   );
 
   return {

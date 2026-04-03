@@ -1,31 +1,27 @@
 "use client";
 
-import { CheckCircle2, XCircle, Truck, ChefHat, Clock } from "lucide-react";
-import { useSignalR } from "@/contexts/signalr-provider";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
-import { selectAddressApiData } from "@/store/slices/addressSlice";
+import { useSignalR } from "@/contexts/signalr-provider";
 import { formatDateTime } from "@/lib/place-order/orderHelpers";
+import { selectAddressApiData } from "@/store/slices/addressSlice";
+import { CheckCircle2, XCircle, Truck, ChefHat, Clock } from "lucide-react";
+import { OrderStatusTrackerProps } from "@/types/order-placed";
 
 export function OrderStatusTracker({
   initialStatus,
   orderToken,
   initialLogs = []
-}: {
-  initialStatus: string;
-  orderToken: string;
-  initialLogs?: Array<{ Id: number; CreatedAt: string }>;
-}) {
+}: OrderStatusTrackerProps) {
+
   const { connection, isConnected } = useSignalR();
-  const apiData = useAppSelector(selectAddressApiData);
+  
+  const configData = useAppSelector(selectAddressApiData);
+  const statusMap = configData?.dataPayload?.Theme?.Settings?.OrderStatuses || {};
 
-  const [currentStatus, setCurrentStatus] = useState<string | null>(initialStatus || null);
-  console.log("checking current status in tracker", currentStatus);
   const [statusLogs, setStatusLogs] = useState(initialLogs);
-  console.log("Initial status logs:", initialLogs);
+  const [currentStatus, setCurrentStatus] = useState<string | null>(initialStatus || null);
 
-  const statusMap = apiData?.dataPayload?.Theme?.Settings?.OrderStatuses || {};
-  console.log("Status mapping from API:", statusMap);
 
   useEffect(() => {
     if (!connection || !isConnected) return;
@@ -34,7 +30,6 @@ export function OrderStatusTracker({
       if (OrderStatus.orderToken !== orderToken) return;
 
       const statusName = statusMap[String(OrderStatus.orderStatusId)];
-
       if (statusName) {
         setCurrentStatus(statusName);
       }
@@ -50,20 +45,20 @@ export function OrderStatusTracker({
   }, [connection, isConnected, orderToken, statusMap]);
 
   useEffect(() => {
-  if (!statusLogs.length && currentStatus) {
-    const index = getCurrentStepIndex();
-    const filledLogs = TIMELINE_STEPS.slice(0, index + 1).map((step, i) => {
-      const statusId = Object.keys(statusMap).find(
-        (key) => statusMap[key] === STEP_STATUS_MAP[step.key]
-      );
-      return {
-        Id: Number(statusId),
-        CreatedAt: new Date().toISOString() // fallback, or fetch real timestamp if available
-      };
-    });
-    setStatusLogs(filledLogs);
-  }
-}, []);
+    if (!statusLogs.length && currentStatus) {
+      const index = getCurrentStepIndex();
+      const filledLogs = TIMELINE_STEPS.slice(0, index + 1).map((step, i) => {
+        const statusId = Object.keys(statusMap).find(
+          (key) => statusMap[key] === STEP_STATUS_MAP[step.key]
+        );
+        return {
+          Id: Number(statusId),
+          CreatedAt: new Date().toISOString() // fallback, or fetch real timestamp if available
+        };
+      });
+      setStatusLogs(filledLogs);
+    }
+  }, []);
 
   if (!currentStatus) return null;
 
@@ -98,24 +93,24 @@ export function OrderStatusTracker({
   if (isCancelled) {
     return (
       <div className="p-6">
-    <div className="flex flex-col items-center gap-2 bg-red-50 border border-red-200 rounded-lg p-6  w-full text-center shadow-sm">
-      
-      {/* ICON */}
-      <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-        <XCircle className="h-6 w-6 text-red-600" />
+        <div className="flex flex-col items-center gap-2 bg-red-50 border border-red-200 rounded-lg p-6  w-full text-center shadow-sm">
+
+          {/* ICON */}
+          <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <XCircle className="h-6 w-6 text-red-600" />
+          </div>
+
+          {/* TITLE */}
+          <h3 className="text-lg font-semibold text-red-700"> This order has been cancelled</h3>
+
+          {/* TIME (if available) */}
+          {statusLogs.length > 0 && (
+            <p className="text-xs text-red-500 ">
+              Cancelled at: {formatDateTime(statusLogs[statusLogs.length - 1].CreatedAt)}
+            </p>
+          )}
+        </div>
       </div>
-
-      {/* TITLE */}
-      <h3 className="text-lg font-semibold text-red-700"> This order has been cancelled</h3>
-
-      {/* TIME (if available) */}
-      {statusLogs.length > 0 && (
-        <p className="text-xs text-red-500 ">
-          Cancelled at: {formatDateTime(statusLogs[statusLogs.length - 1].CreatedAt)}
-        </p>
-      )}
-    </div>
-    </div>
     );
   }
 
@@ -181,9 +176,8 @@ export function OrderStatusTracker({
                 </div>
 
                 {/* LABEL */}
-                <p className={`text-xs font-semibold text-center mb-1 ${
-                  isActive ? "text-neutral-900 dark:text-white" : "text-neutral-400"
-                }`}>
+                <p className={`text-xs font-semibold text-center mb-1 ${isActive ? "text-neutral-900 dark:text-white" : "text-neutral-400"
+                  }`}>
                   {step.label}
                 </p>
 
@@ -220,27 +214,24 @@ export function OrderStatusTracker({
           return (
             <div key={step.key} className="flex items-start gap-3">
               <div className="flex flex-col items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${
-                  isActive
-                    ? `${STATUS_COLORS[step.key]} border-white shadow-lg`
-                    : "bg-neutral-100 border-neutral-300"
-                }`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 ${isActive
+                  ? `${STATUS_COLORS[step.key]} border-white shadow-lg`
+                  : "bg-neutral-100 border-neutral-300"
+                  }`}>
                   <div className={`${isActive ? "text-white" : "text-neutral-400"}`}>
                     {isActive ? step.activeIcon : step.inactiveIcon}
                   </div>
                 </div>
 
                 {!isLastStep && (
-                  <div className={`w-0.5 h-12 mt-1 ${
-                    isActive ? "bg-neutral-400" : "bg-neutral-200"
-                  }`} />
+                  <div className={`w-0.5 h-12 mt-1 ${isActive ? "bg-neutral-400" : "bg-neutral-200"
+                    }`} />
                 )}
               </div>
 
               <div className="flex-1 pb-3">
-                <p className={`text-sm font-semibold ${
-                  isActive ? "text-neutral-900" : "text-neutral-400"
-                }`}>
+                <p className={`text-sm font-semibold ${isActive ? "text-neutral-900" : "text-neutral-400"
+                  }`}>
                   {step.label}
                 </p>
 

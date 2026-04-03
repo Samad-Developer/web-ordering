@@ -1,19 +1,18 @@
 'use client';
 
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { Label } from '../ui/label';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { UseFormReturn } from 'react-hook-form';
 import { CreditCard, AlertCircle } from 'lucide-react';
-import { selectAddressApiData, setPaymentMethod, selectPaymentMethod } from '@/store/slices/addressSlice';
-import { CheckoutFormData } from '@/types/checkout.types';
-import React from 'react';
-
-interface PaymentSectionProps {
-  form: UseFormReturn<CheckoutFormData>;
-}
+import { PaymentSectionProps } from '@/types/checkout.types';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import {
+  selectAddressApiData,
+  setPaymentMethod,
+  selectPaymentMethod
+} from '@/store/slices/addressSlice';
 
 export function PaymentSection({ form }: PaymentSectionProps) {
   const dispatch = useAppDispatch();
@@ -83,7 +82,7 @@ export function PaymentSection({ form }: PaymentSectionProps) {
       <h3 className="text-base font-semibold text-gray-900">{t('paymentMethod')}</h3>
 
       {/* Payment Method Selection */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {paymentModes.map((mode) => {
           const isSelected = paymentMethod === mode.PaymentMode;
           const icon = paymentIcons[mode.PaymentMode] || <CreditCard className="w-6 h-6 text-gray-400" />;

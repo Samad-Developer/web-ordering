@@ -10,6 +10,7 @@ import { useOrderSubmission } from "@/hooks/useOrderSubmission";
 import { Logo } from "@/components/shared/headers/partials/Logo";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { OrderModeBanner } from "@/components/checkout/OrderModeBanner";
 import { PlaceOrderButton } from "@/components/checkout/PlaceOrderButton";
 
 export default function CheckoutPage() {
@@ -25,21 +26,24 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-[#F9FAFB]">
+
       <div className="w-full flex items-center justify-center py-3 rounded-full">
         <Logo />
       </div>
 
       <div className="max-w-[1200px] mx-auto px-2 pb-24 lg:pb-8 grid grid-cols-1 lg:grid-cols-5 gap-8">
+
         {/* Left Side - Checkout Form */}
         <div className="lg:col-span-3 px-4 sm:px-8 py-6 bg-white rounded-lg shadow-sm self-start">
-          <h1 className="text-2xl font-semibold mb-8">Checkout</h1>
+          <h1 className="text-2xl font-semibold mb-4">Checkout</h1>
+          <OrderModeBanner />
           <CheckoutForm formRef={formRef} submitOrder={submitOrder} />
         </div>
 
         {/* Right Side - Order Summary */}
         <div className="lg:col-span-2 space-y-4 lg:sticky lg:top-8 h-fit">
           <OrderSummary />
-
+          
           {/* Desktop Button */}
           <div className="hidden lg:block">
             <PlaceOrderButton

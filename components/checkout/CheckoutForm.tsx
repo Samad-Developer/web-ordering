@@ -56,7 +56,7 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
 
     try {
       const response = await submitOrder(data);
-      console.log("Order submission response:", response);
+
       if (response.dataPayload?.Success) {
         toast.success("Order placed successfully!", {
           description: "You will receive a confirmation shortly.",
@@ -71,13 +71,13 @@ export function CheckoutForm({ formRef, submitOrder }: CheckoutFormProps) {
         router.push(`/${locale}/order-placed?orderNumber=${response.dataPayload?.OrderNumber}`);
       } else {
         toast.error("Failed to place order", {
-          description: response.dataPayload?.Message || "Please try again or contact support.",
+          description: "Please try again or contact support.",
         });
       }
 
     } catch (error) {
       toast.error("Failed to place order", {
-        description: error instanceof Error ? error.message : "Please try again or contact support.",
+        description: "Please try again or contact support.",
       });
     }
   };
