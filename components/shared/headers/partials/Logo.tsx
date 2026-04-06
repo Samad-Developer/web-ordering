@@ -35,7 +35,7 @@ export const Logo = () => {
               src={`${API_BASE_URL}/${logoSrc}`}
               alt="Logo"
               fill
-              className="object-contain"
+              className="object-cover"
               priority
               sizes="(max-width: 640px) 70px, (max-width: 1024px) 130px, 150px"
             />

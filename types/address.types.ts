@@ -150,6 +150,7 @@ export type ProductCardLayoutStyle = 'default' | 'compact' | 'detailed';
 export interface ThemeSettings {
   RESTAURANT_LOGO?: string;
   SPLASH_BANNER?: string;
+  WEBSITE_VERSION?: string;
   RestaurantName?: string;
   IS_DELIVERY_ENABLED?: boolean,
   IS_PICKUP_ENABLED?: boolean,

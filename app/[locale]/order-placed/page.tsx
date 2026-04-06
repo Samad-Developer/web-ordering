@@ -20,27 +20,52 @@ export default async function OrderSuccessPage({ searchParams }: OrderSuccessPag
 
     return (
       <div className="min-h-screen bg-gray-50 py-8">
-        <div className="max-w-3xl mx-auto px-4 ">
+        <div className="max-w-3xl mx-auto px-3">
 
           {/* Success Header */}
           <div className="relative rounded-xl mb-6">
-            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 py-6 sm:py-14 rounded-xl">
-              <div className="absolute top-3 left-6">
+            <div className="relative text-center bg-[#00c853] text-white px-2 sm:px-20 py-10 sm:py-12 rounded-xl">
+              
+              {/* Party Popper */}
+              <div className="absolute top-5 left-6">
                 <PartyPopper className="w-8 h-8 text-white/80 rotate-[-15deg]" />
               </div>
-              <div className="absolute top-3 right-6">
+              <div className="absolute top-5 right-6">
                 <PartyPopper className="w-8 h-8 text-white/80 rotate-[15deg] scale-x-[-1]" />
               </div>
 
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4">
-                <Check className="w-7 h-7 text-green-600" />
+              {/* Check Circle */}
+              <div className="mb-4 flex justify-center">
+                <div className="flex sm:h-24 sm:w-24 h-18 w-18 items-center justify-center rounded-full bg-white shadow-xl">
+                  <Check className="sm:h-12 sm:w-12 h-9 w-9 text-green-500" strokeWidth={3} />
+                </div>
               </div>
+
+              {/* Heading */}
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Woohoo! Order Placed!
               </h1>
+
+              {/* Subheading */}
               <p className="text-white/90 text-sm mt-1">
                 Sit tight, we&apos;ll keep you updated
               </p>
+
+              {/* Order Number Badge */}
+              <div className="mx-auto inline-block mt-6 sm:mt-8">
+                <div className="relative inline-block">
+                  <div className="absolute inset-0 rounded-xl bg-white/20 blur-xl"></div>
+                  <div className="relative rounded-xl bg-white/95 px-8 py-2 backdrop-blur-sm">
+                    <p className="mb-1 text-sm font-semibold uppercase tracking-widest text-green-600">
+                      Order Number
+                    </p>
+                    <p className="font-mono text-2xl font-bold text-green-700 tracking-wider">
+                      {order.orderToken}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 

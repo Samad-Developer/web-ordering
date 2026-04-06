@@ -34,6 +34,7 @@ export async function generateMetadata() {
   try {
     const domain = await getDomainFromHeaders();
     const seoData = await fetchSEOData(domain);
+    console.log("SEO Data ...", seoData)
     const seoMap = createSEOMap(seoData?.generalSeo);
 
     const title = seoMap.WEBSITE_META_TITLE || seoMap.HOMEPAGE_META_TITLE;

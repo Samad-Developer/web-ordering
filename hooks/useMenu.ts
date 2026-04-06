@@ -9,8 +9,8 @@ import { selectSelectedAddress } from '@/store/slices/addressSlice';
 import useDomain from './useDomain';
 
 export function useMenu() {
-  const dispatch = useAppDispatch();
   const domain = useDomain();
+  const dispatch = useAppDispatch();
   const { connection, isConnected } = useSignalR();
   const { data, isLoading, error } = useAppSelector((state) => state.menu);
   const selectedAddress = useAppSelector(selectSelectedAddress);

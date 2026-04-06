@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useAppSelector } from "@/store/hooks";
-import { selectAddressApiData } from "@/store/slices/addressSlice";
+import { useConfig } from "@/hooks/useConfig";
 import { useFreshBranchStatus } from "@/hooks/useFreshBranchStatus";
 import { Facebook, Instagram, Music2, MapPin, Phone, Smartphone, Clock, CheckCircle2, XCircle } from "lucide-react";
 
@@ -16,10 +15,10 @@ function formatTime(time: string) {
 }
 
 export default function Footer() {
+  const settings = useConfig();
   const currentBranch = useFreshBranchStatus();
-  const addressAndThemeData = useAppSelector(selectAddressApiData);
-  const settings = addressAndThemeData?.dataPayload?.Theme?.Settings;
 
+  const version = settings?.WEBSITE_VERSION;
   const restaurantName = settings?.RestaurantName;
   const externalLinks = settings?.WebsiteConfig?.ExternalLinks;
 
@@ -44,8 +43,8 @@ export default function Footer() {
 
         {/* Card 1 — Restaurant Info */}
         {branch && (
-          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition">
-            <h3 className="text-lg font-semibold mb-4 tracking-wide">
+          <div className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition flex flex-col">
+            <h3 className="text-lg font-semibold mb-4 tracking-wide flex items-center gap-3">
               {restaurantName || "Your Restaurant"}
 
               {/* Open/Closed badge */}
@@ -74,6 +73,11 @@ export default function Footer() {
                 <span>{branch.BranchPhoneNumber}</span>
               </div>
             </div>
+
+
+            <p className="text-xs opacity-50  mt-auto">
+              Version: {version || "N/A"}
+            </p>
           </div>
         )}
 
