@@ -34,7 +34,7 @@ export function useMenu() {
 
     // Request menu data for the current branch
     connection
-    .invoke('MenuRequest', 'pathan.eatx.pk', branchId, 'MenuResponse')
+    .invoke('MenuRequest', domain, branchId, 'MenuResponse')
     .catch((err) => { dispatch(menuError(err?.message ?? 'Error while requesting menu'));});
 
     return () => {

@@ -41,7 +41,7 @@ export function useAddress() {
     dispatch(addressDataRequested());
 
     connection
-      .invoke('DeliveryAndPickupRequest', 'pathan.eatx.pk', 0, 'DAndPResponse')
+      .invoke('DeliveryAndPickupRequest', domain, 0, 'DAndPResponse')
       .catch((err: any) => {
         dispatch(addressDataError(err?.message ?? 'Failed to load address data'));
       });

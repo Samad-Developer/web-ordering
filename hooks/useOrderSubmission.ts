@@ -7,8 +7,8 @@ import { useAppSelector } from "@/store/hooks";
 import { useSignalR } from "@/contexts/signalr-provider";
 import { CheckoutFormData } from "@/types/checkout.types";
 import { selectCartItems } from "@/store/slices/cartSlice";
-import { getSignalRConnection } from "@/services/signalR/connection";
 import { selectSelectedAddress } from "@/store/slices/addressSlice";
+import { getSignalRConnection } from "@/services/signalR/connection";
 import { transformCartItemsForAPI } from "@/lib/place-order/orderHelpers";
 
 export interface PlaceOrderResponse {
@@ -67,7 +67,7 @@ export function useOrderSubmission() {
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: 'pathan.eatx.pk',
+          domain: domain,
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "CASH" ? "Cash" : "Card",
           deliveryCharges: selectedAddress?.orderMode === "delivery" ? selectedAddress.deliveryCharges : 0,
