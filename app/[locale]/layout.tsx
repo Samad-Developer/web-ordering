@@ -14,6 +14,7 @@ import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { getDomainFromHeaders, fetchSEOData, createSEOMap } from "@/lib/seo/seo-utils";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -93,6 +94,7 @@ export default async function RootLayout({
                   <AddressSelectionModal />
                   <ProductModal />
                   <CartDrawer />
+                  <ServiceWorkerRegister />
                 </ThemeProvider>
               </SignalRProvider>
             </SearchProvider>
