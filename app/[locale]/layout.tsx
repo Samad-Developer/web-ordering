@@ -14,7 +14,6 @@ import { CartDrawer } from "@/components/shared/cart/CartDrawer";
 import { ProductModal } from "@/components/menu/partials/product-modal/ProductModal";
 import { getDomainFromHeaders, fetchSEOData, createSEOMap } from "@/lib/seo/seo-utils";
 import { AddressSelectionModal } from "@/components/address-modal/AddressSelectionModal";
-import SWCleaner from "./sw-cleaner";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -35,7 +34,6 @@ export async function generateMetadata() {
   try {
     const domain = await getDomainFromHeaders();
     const seoData = await fetchSEOData(domain);
-    console.log("SEO Data ...", seoData)
     const seoMap = createSEOMap(seoData?.generalSeo);
 
     const title = seoMap.WEBSITE_META_TITLE || seoMap.HOMEPAGE_META_TITLE;
@@ -94,7 +92,6 @@ export default async function RootLayout({
                   <AddressSelectionModal />
                   <ProductModal />
                   <CartDrawer />
-                  <SWCleaner />
                 </ThemeProvider>
               </SignalRProvider>
             </SearchProvider>
