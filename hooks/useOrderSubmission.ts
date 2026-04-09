@@ -67,7 +67,7 @@ export function useOrderSubmission() {
           branchId: selectedAddress.branchId || 0,
           areaId: selectedAddress.orderMode === "delivery" ? selectedAddress.areaId : null,
           branchName: selectedAddress.branchName || "",
-          domain: domain,
+          domain: 'maishafoods.pk',
           orderType: selectedAddress.orderMode === "pickup" ? "Pickup" : "Delivery",
           paymentType: customerData.paymentMethod === "CASH" ? "Cash" : "Card",
           deliveryCharges: selectedAddress?.orderMode === "delivery" ? selectedAddress.deliveryCharges : 0,
