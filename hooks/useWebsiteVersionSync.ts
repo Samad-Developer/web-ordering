@@ -9,7 +9,7 @@ export function useWebsiteVersionSync() {
     const settings = useConfig();
     const [isReady, setIsReady] = useState(false);
 
-    const apiVersion = settings?.WEBSITE_VERSION;
+    const apiVersion = settings?.WEBSITE_VERSION || "0.0.1";
 
     useEffect(() => {
         if (!apiVersion) return;

@@ -79,7 +79,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ur' || locale === 'ur' ? 'rtl' : 'ltr'}>
+    <html lang={locale} dir={locale === 'ur' ? 'rtl' : 'ltr'}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
           <NextIntlClientProvider messages={messages}>

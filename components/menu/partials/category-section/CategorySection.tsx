@@ -9,13 +9,13 @@ interface CategorySectionProps {
 
 const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
 
-    const { Items, ...categoryInfo } = category;
+    const { Items, Layout, ...categoryInfo } = category;
 
     return (
         <section id={categoryInfo.Id} className="max-w-6xl mx-auto px-2 sm:px-0">
 
             <CategoryBannerWrapper categoryInfo={categoryInfo}/>
-            <ItemsList itemsList={Items}/> 
+            <ItemsList itemsList={Items} layout={Layout}/> 
 
         </section>
     );

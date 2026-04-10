@@ -1,3 +1,4 @@
+import { ProductCardLayout } from "@/lib/product/productCardVariants";
 import { Discount } from "./discount.types";
 
 // types/menu.types.ts
@@ -57,6 +58,7 @@ export interface MenuCategory {
   Id: string;
   Name: string;
   Image: string;
+  Layout: ProductCardLayout;
   Items: MenuItem[];
 }
 

@@ -27,13 +27,21 @@ import { getLastAddedItem } from "@/lib/cart/cartHelpers";
 import { toSlug } from "@/lib/address/slug";
 import { DiscountBadge } from "../DiscountBadge";
 import { calculateDiscount } from "@/lib/discount/discountUtils";
+import { cn } from "@/lib/utils";
+import {
+  cartActionVariants,
+  contentSectionVariants,
+  discountBadgePositionVariants,
+  ProductCardLayout,
+  productCardVariants,
+} from "@/lib/product/productCardVariants";
 
 interface ProductProps {
   product: MenuItem;
+  cardLayout: ProductCardLayout;
 }
 
-const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
-
+const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product, cardLayout }) => {
   const dispatch = useDispatch();
   const cartItems = useAppSelector(selectCartItems);
   const [showVariationModal, setShowVariationModal] = useState(false);
@@ -59,9 +67,10 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   const lastAddedItem = getLastAddedItem(cartItems, product.Id);
 
   // Check if product has multiple variations available
-  const hasMultipleVariationsAvailable = product.Variations.length > 1 ||
-    (product.Variations[0]?.ItemChoices && product.Variations[0].ItemChoices.length > 0);
-
+  const hasMultipleVariationsAvailable =
+    product.Variations.length > 1 ||
+    (product.Variations[0]?.ItemChoices &&
+      product.Variations[0].ItemChoices.length > 0);
 
   // Direct add to cart (simple products)
   const handleDirectAddToCart = (e: React.MouseEvent) => {
@@ -87,15 +96,15 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
           specialInstructions: "",
         },
         priceBreakdown: {
-          basePrice: priceCalc.finalPrice,        
-          originalBasePrice: variation.Price,      
+          basePrice: priceCalc.finalPrice,
+          originalBasePrice: variation.Price,
           addonsTotal: 0,
-          subtotal: priceCalc.finalPrice,          
-          total: priceCalc.finalPrice,          
+          subtotal: priceCalc.finalPrice,
+          total: priceCalc.finalPrice,
         },
         discount: variation.Discount,
         specialInstructions: "",
-      })
+      }),
     );
 
     toast.success("Added to cart!", {
@@ -123,7 +132,6 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
       handleOpenModal();
     }
   };
-
 
   const handleIncrease = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -162,12 +170,14 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
     // If single variation, decrement/remove directly
     else if (productCartItems.length === 1) {
       const item = productCartItems[0];
+
       if (item.customization.quantity > 1) {
         dispatch(decrementItem(item.cartItemId));
       } else {
         dispatch(removeItem(item.cartItemId));
         toast.info("Removed from cart");
       }
+
     }
   };
 
@@ -191,62 +201,53 @@ const ProductCardVerticalLayout1: React.FC<ProductProps> = ({ product }) => {
   return (
     <>
       <article
-        className={`
-          relative bg-product-bg hover:bg-product-hover rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] 
-          hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] 
-          overflow-hidden transition-all duration-300 
-          transform hover:-translate-y-1
-          ${!isSimpleProduct ? "cursor-pointer" : ""}
-        `}
+        className={cn(
+          productCardVariants({ layout: cardLayout, clickable: !isSimpleProduct }),
+        )}
         onClick={handleOpenModal}
       >
-
         {displayDiscount && (
-          <div className="absolute top-2 left-2 z-10">
-            <DiscountBadge discount={displayDiscount} size="md" bounce={true}/>
+          <div className={discountBadgePositionVariants({ layout: cardLayout })}>
+            <DiscountBadge discount={displayDiscount} size="md" bounce={true} />
           </div>
         )}
 
-        <div className="relative w-full overflow-hidden bg-white">
-          <ProductImage src={product.Image} alt={product.Name} priority={true} />
-        </div>
+        {/* Product Image */}
+        <ProductImage src={product.Image} alt={product.Name} priority={true} layout={cardLayout}/>
 
         {/* Content Section */}
-        <div className="p-3 sm:p-5 space-y-4">
+        <div className={contentSectionVariants({ layout: cardLayout })}>
           <ProductHeader
             name={product.Name}
-            description={
-              product.Description
-            }
+            description={product.Description}
+            layout={cardLayout}
           />
 
           <PriceDisplay
             price={displayPrice}
             discount={displayDiscount}
             size="md"
+            layout={cardLayout}
           />
 
           {/* Add to Cart / Quantity Counter */}
-          <div className="" onClick={(e) => e.stopPropagation()}>
+          <div className={cartActionVariants({ layout: cardLayout })} onClick={(e) => e.stopPropagation()}>
             {isInCart ? (
               <QuantityCounter
                 quantity={totalQuantity}
                 onIncrease={handleIncrease}
                 onDecrease={handleDecrease}
                 onRemove={handleRemove}
-                disabled={false}
+                layout={cardLayout}
               />
             ) : (
               <AddToCartButton
                 onClick={handleAddToCartClick}
-                text={"Add to Cart"}
-                showIcon={false}
-                isLoading={false}
                 disabled={product.Variations.length === 0}
+                layout={cardLayout}
               />
             )}
           </div>
-
         </div>
       </article>
 

@@ -1,29 +1,40 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+import { cn } from "@/lib/utils";
+import {
+  productHeaderVariants,
+  productNameVariants,
+  productDescriptionVariants,
+  ProductCardLayout,
+} from "@/lib/product/productCardVariants";
 
 interface ProductHeaderProps {
   name: string;
   description?: string;
-  className?: string;
+  layout: ProductCardLayout;
 }
 
 export const ProductHeader: React.FC<ProductHeaderProps> = ({
   name,
   description,
-  className = '',
+  layout,
 }) => {
-
-  const shouldShowDescription = description && description !== 'null' && description.trim() !== '' && description.trim() !== 'N/A' && description !== 'n/a';
+  const shouldShowDescription =
+    description &&
+    description !== "null" &&
+    description.trim() !== "" &&
+    description.trim() !== "N/A" &&
+    description !== "n/a";
 
   return (
-    <div className={`space-y-2 ${className} mb-2`}>
-      <h3 className="text-base sm:text-lg font-bold text-product-name line-clamp-1 leading-tight">
-        {name}
-      </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2 min-h-10">
-          {shouldShowDescription ? description : 'A deliciously prepared dish made with fresh, high-quality ingredients for great taste.'}
-        </p>
+    <div className={productHeaderVariants({ layout })}>
+      <h3 className={productNameVariants({ layout })}>{name}</h3>
+      <p className={productDescriptionVariants({ layout })}>
+        {shouldShowDescription
+          ? description
+          : "A deliciously prepared dish made with fresh, high-quality ingredients for great taste."}
+      </p>
     </div>
   );
 };

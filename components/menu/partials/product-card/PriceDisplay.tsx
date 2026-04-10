@@ -1,27 +1,28 @@
 import React from 'react';
 import { Discount } from '@/types/discount.types';
 import { calculateDiscount } from '@/lib/discount/discountUtils';
+import { cn } from '@/lib/utils';
+import { priceFinalVariants, ProductCardLayout } from '@/lib/product/productCardVariants';
 
 interface PriceDisplayProps {
   price: number;
   discount: Discount | null | undefined;
-  className?: string;
   showOriginalPrice?: boolean;
   showSavings?: boolean;
   size?: 'sm' | 'md' | 'lg';
-  layout?: 'horizontal' | 'vertical';
+  layout?: ProductCardLayout;
 }
 
 export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   price,
   discount,
-  className = '',
   showOriginalPrice = true,
   showSavings = true,
   size = 'md',
-  layout = 'horizontal',
+  layout,
 }) => {
   const calculation = calculateDiscount(price, discount);
+
 
   const sizeClasses = {
     sm: {
@@ -44,7 +45,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   // No discount - show normal price
   if (!calculation.hasDiscount) {
     return (
-      <div className={`font-bold text-primary ${sizeClasses[size].final} ${className}`}>
+      <div className={priceFinalVariants({ size, layout })}>
         Rs. {price}
       </div>
     );
@@ -53,7 +54,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   // With discount
   if (layout === 'vertical') {
     return (
-      <div className={`flex items-baseline justify-center gap-2 ${className}`}>
+      <div className={`flex items-baseline justify-center gap-2`}>
 
         {/* Final Price */}
         <span className={`font-semibold text-gray-700 ${sizeClasses[size].final}`}>
@@ -78,7 +79,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
 
   // Horizontal layout
   return (
-    <div className={`flex items-baseline justify-start gap-2 ${className}`}>
+    <div className={`flex items-baseline justify-start gap-2`}>
       {/* Final Price */}
       <span className={`font-bold text-primary ${sizeClasses[size].final}`}>
         Rs. {calculation.finalPrice.toFixed(0)}

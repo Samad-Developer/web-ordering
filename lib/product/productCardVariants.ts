@@ -40,7 +40,7 @@ export const productImageVariants = cva(
     variants: {
       layout: {
         vertical: "w-full aspect-square rounded-t-2xl",
-        "horizontal-left": "w-2/4 aspect-square rounded-l-xl",
+        "horizontal-left": "w-2/5 aspect-square rounded-xl",
         "horizontal-right": "w-1/3 aspect-square rounded-r-2xl",
       },
     },
@@ -94,8 +94,8 @@ export const productNameVariants = cva(
     variants: {
       layout: {
         vertical: "text-base sm:text-lg line-clamp-1",
-        "horizontal-left": "text-sm sm:text-base line-clamp-2",
-        "horizontal-right": "text-sm sm:text-base line-clamp-2",
+        "horizontal-left": "text-sm sm:text-base line-clamp-1",
+        "horizontal-right": "text-sm sm:text-base line-clamp-1",
       },
     },
     defaultVariants: {
@@ -110,8 +110,8 @@ export const productDescriptionVariants = cva(
     variants: {
       layout: {
         vertical: "text-sm line-clamp-2 min-h-10",
-        "horizontal-left": "text-xs line-clamp-1",
-        "horizontal-right": "text-xs line-clamp-1",
+        "horizontal-left": "text-xs line-clamp-2",
+        "horizontal-right": "text-xs line-clamp-2",
       },
     },
     defaultVariants: {
@@ -179,6 +179,85 @@ export const discountBadgePositionVariants = cva(
     },
   }
 );
+
+// ============================================
+// CART ACTION SECTION VARIANTS (wrapper for AddToCart / QuantityCounter)
+// ============================================
+export const cartActionVariants = cva(
+  "flex",
+  {
+    variants: {
+      layout: {
+        vertical: "w-full",
+        "horizontal-left": "w-full justify-end",
+        "horizontal-right": "w-full justify-end",
+      },
+    },
+    defaultVariants: {
+      layout: "vertical",
+    },
+  }
+);
+
+// ============================================
+// ADD TO CART BUTTON VARIANTS
+// ============================================
+export const addToCartButtonVariants = cva(
+  `cursor-pointer font-semibold rounded-lg transition-all duration-200
+   disabled:opacity-50 disabled:cursor-not-allowed
+   flex items-center justify-center gap-2
+   focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+   shadow-md hover:shadow-lg active:shadow-sm
+   bg-popup-cart-bg text-popup-cart-fg`,
+  {
+    variants: {
+      layout: {
+        vertical: "w-full py-2 px-2 text-base",
+        "horizontal-left": "w-auto p-1.5",
+        "horizontal-right": "w-auto p-1.5",
+      },
+    },
+    defaultVariants: {
+      layout: "vertical",
+    },
+  }
+);
+
+// ============================================
+// QUANTITY COUNTER VARIANTS
+// ============================================
+export const quantityCounterVariants = cva(
+  "flex gap-2 items-stretch border rounded-lg overflow-hidden",
+  {
+    variants: {
+      layout: {
+        vertical: "w-full",
+        "horizontal-left": "w-auto",
+        "horizontal-right": "w-auto",
+      },
+    },
+    defaultVariants: {
+      layout: "vertical",
+    },
+  }
+);
+
+
+// ============================================
+// CVA for grid variants
+// ============================================
+export const gridVariants = cva("grid mt-4", {
+  variants: {
+    layout: {
+      vertical: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-6",
+      "horizontal-left": "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-6",
+      "horizontal-right": "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-6",
+    },
+  },
+  defaultVariants: {
+    layout: "vertical",
+  },
+});
 
 // ============================================
 // LAYOUT CONTEXT TYPE

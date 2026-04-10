@@ -1,16 +1,19 @@
 import React from "react";
 import { MenuItem } from "@/types/menu.types";
 import ProductCardVerticalLayout1 from "../product-card/ProductCardVerticalLayout1";
+import { gridVariants, ProductCardLayout } from "@/lib/product/productCardVariants";
 
 interface ItemsListProps {
   itemsList: MenuItem[];
+  layout: ProductCardLayout;
 }
 
-const ItemsList: React.FC<ItemsListProps> = ({ itemsList }) => {
+const ItemsList: React.FC<ItemsListProps> = ({ itemsList, layout }) => {
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-6 mt-4">
+    <div className={gridVariants({ layout })}>
       {itemsList.map((product) => (
-        <ProductCardVerticalLayout1 product={product} key={product.Id}/>
+        <ProductCardVerticalLayout1 product={product} key={product.Id} cardLayout={layout}/>
       ))}
     </div>
   );
