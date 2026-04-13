@@ -1,9 +1,9 @@
 'use client';
- 
-import { UtensilsCrossed, RefreshCw, Home } from 'lucide-react';
+
+import { UtensilsCrossed, RefreshCw } from 'lucide-react';
 import { useEffect } from 'react';
 import Link from 'next/link';
- 
+
 export default function Error({
   error,
   reset,
@@ -11,11 +11,12 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+
   useEffect(() => {
     // Optionally log the error to an error reporting service
     console.error(error);
   }, [error]);
- 
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center bg-white rounded-2xl shadow-xl p-8">
@@ -26,13 +27,12 @@ export default function Error({
 
         {/* Title */}
         <h1 className="mt-6 text-2xl font-bold text-gray-900">
-          Oops! Something went wrong
+          Oops! Something went wrong 😞 I am a global wrong file
         </h1>
 
         {/* Description */}
         <p className="mt-3 text-sm text-gray-600">
-          We’re having trouble loading this page right now.
-          Please try again or go back to the menu.
+          {error.message}
         </p>
 
         {/* Actions */}

@@ -26,13 +26,12 @@ export default function Error({
 
         {/* Title */}
         <h1 className="mt-6 text-2xl font-bold text-gray-900">
-          Oops! Something went wrong
+          Oops! Something went wrong 😞
         </h1>
 
         {/* Description */}
         <p className="mt-3 text-sm text-gray-600">
-          We’re having trouble loading this page right now.
-          Please try again or go back to the menu.
+          {error.message}
         </p>
 
         {/* Actions */}
