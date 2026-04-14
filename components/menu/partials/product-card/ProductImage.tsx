@@ -2,9 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { getImageUrl } from "@/lib/image/imageUtils";
 import { ProductCardLayout, productImageVariants } from "@/lib/product/productCardVariants";
+import { useConfig } from "@/hooks/useConfig";
 
 interface ProductImageProps {
   src?: string;
@@ -19,8 +19,10 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   priority = true,
   layout,
 }) => {
-  const imageSrc = getImageUrl(src);
-
+  const websiteConfig = useConfig();
+  const websiteLogo = websiteConfig?.RESTAURANT_LOGO || '';
+  const imageSrc = getImageUrl(src, websiteLogo);
+  
   return (
     <div className={productImageVariants({ layout })}>
       <Image

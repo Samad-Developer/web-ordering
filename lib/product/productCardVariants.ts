@@ -54,7 +54,7 @@ export const productImageVariants = cva(
 // CONTENT SECTION VARIANTS
 // ============================================
 export const contentSectionVariants = cva(
-  "space-y-4",
+  "space-y-4 overflow-hidden",
   {
     variants: {
       layout: {
@@ -110,8 +110,8 @@ export const productDescriptionVariants = cva(
     variants: {
       layout: {
         vertical: "text-sm line-clamp-2 min-h-10",
-        "horizontal-left": "text-xs line-clamp-2",
-        "horizontal-right": "text-xs line-clamp-2",
+        "horizontal-left": "text-xs line-clamp-2 break-words",
+        "horizontal-right": "text-xs line-clamp-2 break-words",
       },
     },
     defaultVariants: {

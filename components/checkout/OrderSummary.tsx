@@ -11,6 +11,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { getImageUrl } from "@/lib/image/imageUtils";
+import { useConfig } from "@/hooks/useConfig";
 
 interface OrderSummaryProps {
   showPaymentDetails?: boolean;
@@ -18,7 +19,9 @@ interface OrderSummaryProps {
 }
 
 export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }: OrderSummaryProps) {
-  const t = useTranslations("checkout")
+  const t = useTranslations("checkout");
+  const websiteConfig = useConfig();
+  const websiteLogo = websiteConfig?.RESTAURANT_LOGO || '';
   const cartItems = useAppSelector(selectCartItems);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
@@ -50,7 +53,8 @@ export function OrderSummary({ showPaymentDetails = true, variant = "checkout" }
               const addons = getCartItemAddonsText(item);
               const isExpanded = expandedItems.has(item.cartItemId);
               const hasDiscount = !!item.discount;
-              const imageSrc = getImageUrl(item.productImage);
+
+              const imageSrc = getImageUrl(item.productImage, websiteLogo);
 
               return (
                 <div

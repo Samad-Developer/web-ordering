@@ -33,7 +33,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
       <p className={productDescriptionVariants({ layout })}>
         {shouldShowDescription
           ? description
-          : "A deliciously prepared dish made with fresh, high-quality ingredients for great taste."}
+          : "A freshly brewed coffee crafted from premium beans, delivering rich aroma and smooth flavor in every sip."}
       </p>
     </div>
   );

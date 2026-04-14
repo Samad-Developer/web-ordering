@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { getImageUrl } from "@/lib/image/imageUtils";
 import { motion, AnimatePresence } from "framer-motion";
+import { useConfig } from "@/hooks/useConfig";
 
 interface CartItemProps {
   item: CartItemType;
@@ -25,6 +26,8 @@ interface CartItemProps {
 export function CartItem({ item, isLast }: CartItemProps) {
   const dispatch = useAppDispatch();
   const t = useTranslations("cart");
+  const websiteConfig = useConfig();
+  const websiteLogo = websiteConfig?.RESTAURANT_LOGO || '';
   const [showAddons, setShowAddons] = useState(false);
 
   const addons = getCartItemAddons(item);
@@ -43,7 +46,7 @@ export function CartItem({ item, isLast }: CartItemProps) {
     dispatch(removeItem(item.cartItemId));
   };
 
-  const imageSrc = getImageUrl(item.productImage);
+  const imageSrc = getImageUrl(item.productImage, websiteLogo);
 
   return (
     <div className="bg-whiteoverflow-hidden">

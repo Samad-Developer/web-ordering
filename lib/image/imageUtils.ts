@@ -18,9 +18,12 @@ export function isValidImagePath(imagePath: unknown): boolean {
  */
 export function getImageUrl(
   imagePath: string | null | undefined,
+  fallbackUrl?: string,
 ): string {
+
   if (!isValidImagePath(imagePath)) {
-    return '/assets/images/logo/eatx.png';
+    console.warn(`${API_BASE_URL}/${fallbackUrl} is being used as fallback image URL.`);
+    return `${API_BASE_URL}/${fallbackUrl}`;
   }
 
   // If already a full URL, return as-is

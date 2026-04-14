@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getImageUrl } from "@/lib/image/imageUtils";
+import { useConfig } from "@/hooks/useConfig";
 
 interface ProductImageProps {
   image: string;
@@ -17,8 +18,9 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   className,
   priority = false,
 }) => {
-
-  const imageSrc = getImageUrl(image)
+  const websiteConfig = useConfig();
+  const websiteLogo = websiteConfig?.RESTAURANT_LOGO || '';
+  const imageSrc = getImageUrl(image, websiteLogo);
 
   return (
     <div
