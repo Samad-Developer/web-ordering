@@ -27,7 +27,7 @@ export default function Error({
 
         {/* Title */}
         <h1 className="mt-6 text-2xl font-bold text-gray-900">
-          Oops! Something went wrong 😞 I am a global wrong file
+          Oops! Something went wrong 😞
         </h1>
 
         {/* Description */}

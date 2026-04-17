@@ -74,7 +74,7 @@ export function useOrderSubmission() {
           status: "Pending",
         };
 
-        console.log("Submitting order:", orderObject);
+        console.log("Next.js Order Place API JSON:", orderObject);
 
         // Return promise that resolves when order response is received
         return new Promise((resolve, reject) => {

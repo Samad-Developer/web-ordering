@@ -23,7 +23,7 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       aria-label={"add to cart"}
       className={addToCartButtonVariants({layout})}
     >
-      {layout === "vertical" ? (
+      {layout === "vertical" || layout === null ? (
         <span>Add to Cart</span>
       ) : (
         <PlusIcon className="w-5 h-5" />

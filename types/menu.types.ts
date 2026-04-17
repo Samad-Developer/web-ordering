@@ -47,6 +47,7 @@ export interface MenuItem {
   Description: string;
   IsKot: boolean;
   IsPromotional: boolean;
+  SortOrder: number;
   IsPopular: boolean;
   ItemFOC: boolean;
   Variations: Variation[];

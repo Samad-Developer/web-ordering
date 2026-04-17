@@ -12,9 +12,15 @@ const ItemsList: React.FC<ItemsListProps> = ({ itemsList, layout }) => {
 
   return (
     <div className={gridVariants({ layout })}>
-      {itemsList.map((product) => (
-        <ProductCardVerticalLayout1 product={product} key={product.Id} cardLayout={layout}/>
-      ))}
+      {[...(itemsList ?? [])]
+        .sort((a, b) => (a.SortOrder ?? 0) - (b.SortOrder ?? 0))
+        .map((product) => (
+          <ProductCardVerticalLayout1
+            key={product.Id}
+            product={product}
+            cardLayout={layout}
+          />
+        ))}
     </div>
   );
 };

@@ -95,9 +95,11 @@ const MenuWrapper = () => {
       )}
 
       <div className="my-10">
-        {filteredMenu?.map((category) => (
-          <CategorySection key={category?.Id} category={category} />
-        ))}
+        {[...(filteredMenu ?? [])]
+          .sort((a, b) => (a.Order ?? 0) - (b.Order ?? 0))
+          .map((category) => (
+            <CategorySection key={category?.Id} category={category} />
+          ))}
       </div>
 
       {itemCount > 0 && <FloatingCartButton />}

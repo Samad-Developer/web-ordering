@@ -74,9 +74,15 @@ export function AddressSelectionModal() {
       setTempCityId(selectedAddress.cityId);
       setTempAreaId(selectedAddress.areaId || null);
       setTempBranchId(selectedAddress.branchId || null);
+    } else if (apiData) {
+      // auto select city if only one is available for the chosen mode
+      const cities = getAllCities(apiData);
+      if (cities.length === 1) {
+        setTempCityId(cities[0].id);
+      }
     }
 
-  }, [selectedAddress, isDeliveryEnabled, isPickupEnabled]);
+  }, [selectedAddress, isDeliveryEnabled, isPickupEnabled, apiData]);
 
   if (!apiData) return null;
   const cities = getAllCities(apiData);
@@ -85,7 +91,7 @@ export function AddressSelectionModal() {
 
   const handleModeChange = (mode: OrderMode) => {
     setTempMode(mode);
-    setTempCityId(null);
+    // setTempCityId(null);
     setTempAreaId(null);
     setTempBranchId(null);
   };
@@ -211,12 +217,16 @@ export function AddressSelectionModal() {
             </div> */}
 
             {/* City Selector */}
-            <CitySelector
-              cities={cities}
-              selectedCityId={tempCityId}
-              onCitySelect={setTempCityId}
-              orderMode={tempMode}
-            />
+            {
+              cities.length > 1 && (
+                <CitySelector
+                  cities={cities}
+                  selectedCityId={tempCityId}
+                  onCitySelect={setTempCityId}
+                  orderMode={tempMode}
+                />
+              )
+            }
 
             {/* Area Selector - Only for Delivery */}
             {tempMode === 'delivery' && tempCityId && isDeliveryEnabled && (

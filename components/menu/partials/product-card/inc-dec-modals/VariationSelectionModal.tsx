@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { CartItem } from '@/types/cart.types';
 import { useAppDispatch } from '@/store/hooks';
 import { decrementItem, removeItem } from '@/store/slices/cartSlice';
@@ -13,7 +12,6 @@ import {
     DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Minus, Trash2, X } from 'lucide-react';
 import { formatPrice } from '@/lib/product/productHelper';
 import { getCartItemAddonsText } from '@/lib/cart/cartHelpers';
@@ -21,6 +19,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { normalizeLabel } from '@/lib/cart/cartHelpers';
+import { getImageUrl } from '@/lib/image/imageUtils';
 
 interface VariationSelectionModalProps {
     open: boolean;
@@ -116,7 +115,7 @@ function VariationItem({
     isLast
 }: VariationItemProps) {
     const addons = getCartItemAddonsText(item);
-    const imageSrc = "/assets/images/products/product.webp";
+    const imageSrc = getImageUrl(item.productImage);
 
     return (
         <motion.div

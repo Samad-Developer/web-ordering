@@ -19,6 +19,7 @@ import { getCartItemAddonsText, normalizeLabel } from '@/lib/cart/cartHelpers';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
+import { getImageUrl } from '@/lib/image/imageUtils';
 
 interface RepeatLastOrderModalProps {
     open: boolean;
@@ -35,7 +36,7 @@ export function RepeatLastOrderModal({
 }: RepeatLastOrderModalProps) {
     const dispatch = useAppDispatch();
     const addons = getCartItemAddonsText(lastOrder);
-    const imageSrc = "/assets/images/products/product.webp";
+    const imageSrc = getImageUrl(lastOrder.productImage);
 
     const handleRepeat = () => {
         dispatch(incrementItem(lastOrder.cartItemId));
@@ -78,7 +79,7 @@ export function RepeatLastOrderModal({
                         {/* Product Info */}
                         <div className="flex gap-4">
                             {/* Image */}
-                            <div className="relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 shadow-md">
+                            <div className="relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden border">
                                 <Image
                                     src={imageSrc}
                                     alt={lastOrder.productName}
@@ -86,7 +87,7 @@ export function RepeatLastOrderModal({
                                     className="object-cover"
                                     sizes="96px"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" /> */}
                             </div>
 
                             {/* Details */}
@@ -166,7 +167,7 @@ export function RepeatLastOrderModal({
                         >
                             <Button
                                 onClick={handleRepeat}
-                                className="rounded-lg cursor-pointer w-full h-14 text-base font-semibold bg-gradient-to-r from-red-600 to-red-600 hover:from-red-700 hover:to-red-700 text-white shadow-lg hover:shadow-xl transition-all"
+                                className="rounded-lg cursor-pointer w-full h-14 text-base font-semibold bg-primary text-white shadow-lg hover:shadow-xl transition-all"
                             >
                                 <RefreshCw className="w-5 h-5 mr-2" />
                                 Yes, Repeat This Order

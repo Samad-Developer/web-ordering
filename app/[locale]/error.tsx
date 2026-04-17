@@ -21,12 +21,12 @@ export default function Error({
       <div className="max-w-md w-full text-center bg-white rounded-2xl shadow-xl p-8">
         {/* Icon */}
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
-          <UtensilsCrossed className="h-8 w-8 text-red-600" />
+          😞
         </div>
 
         {/* Title */}
         <h1 className="mt-6 text-2xl font-bold text-gray-900">
-          Oops! Something went wrong 😞
+          Oops! Something went wrong 
         </h1>
 
         {/* Description */}
