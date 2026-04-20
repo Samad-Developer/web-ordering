@@ -33,7 +33,6 @@ export function useAddress() {
 
     const handler = (payload: DeliveryPickupApiResponse) => {
       dispatch(addressDataReceived(payload));
-      console.log("Address Response ...", payload)
     };
 
     connection.on('DAndPResponse', handler);
