@@ -32,6 +32,7 @@ export function useAddress() {
     if (!connection || !isConnected || apiData || !domain) return;
 
     const handler = (payload: DeliveryPickupApiResponse) => {
+      console.log("Received address data:", payload);
       dispatch(addressDataReceived(payload));
     };
 

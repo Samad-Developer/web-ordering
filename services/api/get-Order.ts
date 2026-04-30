@@ -13,6 +13,8 @@ export async function fetchOrderDetails(orderToken: string): Promise<OrderDetail
       next: { revalidate: 30 },
     });
 
+    console.log("Fetching Order Details Based on Order Number:", res);
+
 
     if (!res.ok) {
       if (res.status === 404) {
@@ -22,9 +24,8 @@ export async function fetchOrderDetails(orderToken: string): Promise<OrderDetail
     }
 
     const response = await res.json();
+    console.log("convert order details to json format:", response);
     const apiData = Array.isArray(response) ? response[0] : response;
-
-    console.log('✅ Fetched order data:', apiData);
 
     if (!apiData) {
       console.error('❌ No order data in response');

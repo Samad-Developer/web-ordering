@@ -39,7 +39,7 @@ export async function fetchSEOData(domain: string): Promise<SEOResponse | null> 
         });
 
         if (!response.ok) {
-            throw new Error(`API responded with status: ${response.status}`);
+           console.log(`API responded with status: ${response.status}`);
         }
 
         return await response.json();

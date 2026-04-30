@@ -10,7 +10,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https' as const,
-        hostname: 'ordering.eatx.pk',
+        hostname: '**.eatx.pk',
       },
     ],
   },
